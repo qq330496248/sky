@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改产品属性详情</title>
+<link href="public/template/css/cp_tj.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">修改产品属性详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改产品属性详情</span></div>
+    <input type="hidden" id="parent" value="{{$parent}}" />
+     <input type="hidden" name="id" id="id" value="{{$id}}" />
+     <font color="#FF0000">带 * 的为必填项目</font>
+    	<table class="imgtable" style="background-color:#FFFFFF">
+			<tbody>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						<font color="#FF0000" style="font-size:16px">*</font>属性分类：
+					</td>
+					<td style="text-align:left" width="70%">
+						<select class="dfinput" id="pid" name="parent" onblur="" style="width:150px">
+							
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%" >
+						<font color="#FF0000" style="font-size:16px">*</font>属性名称：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input name="cpsx" id="cpsx" type="text" value="{{$cpsx}}" class="dfinput" style="width:150px" onblur="checkCpsx()" />
+						<font id="sxfont" color="#FFF000000"></font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						<font color="#FF0000" style="font-size:16px">*</font>可选值列表：
+					</td>
+					<td style="text-align:left" width="70%">
+						<textarea class="textinput" name="str" id="str" onblur="checkStr()">{{$str}}</textarea>
+						<font id="strfont" color="#FFF000000"></font>
+						多个值以 “|” 号隔开！例：白色|红色|蓝色
+					</td>
+				</tr>
+			</tbody>
+	    </table>
+	     <ul class="forminfo">
+	    
+		<li></li>
+		 
+		 
+	    <li><label>&nbsp;</label><input name="" type="button" onclick="updateCpsxxq()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1);"/></li>
+	    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cpgl/xgcpsxxq.js"></script>
+</html>

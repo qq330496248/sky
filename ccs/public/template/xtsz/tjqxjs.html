@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加权限角色</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+	
+<!--
+<style type="text/css">
+	.imgtable th{background:url(public/template/images/th.gif);}
+</style>
+-->
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>添加权限角色</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加权限角色</span></div>
+    
+    
+	<form action="index.php?r=xtsz/AddGroupRight" method="post" onsubmit="return checkValue();" >
+	<ul class="forminfo">
+	<li></li>
+		<table class="imgtable">
+		<tbody>
+			<tr style="font-size:14px;">
+				<th style="width:20%; text-align:right; ">权限角色：</th>
+				<td style="text-align:left; text-indent:5px;">
+					<input type="text" class="dfinput" name="groupname" id="groupname" style="width:200px" onblur="qxjsCheck();" />
+					<font id="qxjsCheck">十个字以内</font>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align:right;">限定产品：</th>
+				<td style="text-align:left; text-indent:5px;">
+					<input type="radio" name="xdcp" value="不限" id="xdcp" checked="checked" />不限
+					<input type="radio" name="xdcp" value="一线产品" id="xdcp" />一线产品
+					<input type="radio" name="xdcp" value="二线产品" id="xdcp" />二线产品
+				</td>
+			</tr>
+		</tbody>
+		<tbody id="menuTable">
+		</tbody>
+    
+    </table>
+    <li></li>
+   <li><label>&nbsp;</label><input type="button" onclick="addQxjs()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+	<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"  onclick="history.go(-1);" /></li>
+    </ul>
+	</form>
+	
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/tjqxjs_xtsz.js"></script>
+</html>

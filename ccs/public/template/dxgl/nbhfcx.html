@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>内部短信回复查询</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">短信平台</a></li>
+    <li><a href="#">内部短信回复查询</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>内部短信回复查询</span></div>
+    
+    <ul class="forminfo">
+    
+    <li>
+		<a href="index.php?r=dxgl/GetFsnbdxHtml"><input name="" type="button" class="btn" value="发送内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYfnbdxHtml"><input name="" type="button" class="btn" value="已发内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYsnbdxHtml"><input name="" type="button" class="btn" value="已收内部短信"/></a>
+		<a href="index.php?r=dxgl/GetNbhfcxHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="回复查询"/></a>
+	</li>
+
+	<li>
+		开始日期：<input id="cjsjq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setCjsjBegin})"/>
+		结束日期：<input id="cjsjz" name="" type="text" class="dfinput" style="width:140px" onClick="getCjsjEnd()"/>
+		接收号码：
+		<input id="" name="" type="text" class="dfinput" style="width:140px" />
+		回复号码：
+		<input id="" name="" type="text" class="dfinput" style="width:140px" />
+		发送内容：
+		<input id="" name="" type="text" class="dfinput" style="width:140px" />
+		发送账号：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+
+	</li>
+
+	<li>
+		回复内容：
+		<input id="" name="" type="text" class="dfinput" style="width:140px" />
+
+		发送账号：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择账号</option>
+		</select>
+
+		座席工号：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+
+		<input name="" type="button" class="btn" value="搜索"/>
+	</li>
+	
+
+	<li> </li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>接收号码</th>
+				<th>发送内容</th>
+				<th>发送账号</th>
+				<th>座席工号</th>
+				<th>发送时间</th>
+				<th>回复内容</th>
+				<th>回复号码</th>
+				<th>回复时间</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate,onpicked:setCjsjEnd});
+	}
+	function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+
+
+</html>

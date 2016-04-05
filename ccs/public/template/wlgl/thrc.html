@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>销售退货</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">销售退货</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>销售退货</span></div>
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <ul class="forminfo">
+    <li>
+	
+	</li>
+	<li>
+		<input id="ordernum" type="hidden" value="" />
+		订单号：<input id="orderno" name="" type="text" class="dfinput" style="width:100px" value="" />
+		<!-- <input name="" onclick="showCzThdd()" type="button" class="btn-info" style="width:60px" value="查 找"/> -->
+		<img onclick="showCzThdd()" src="public/img/1.png" border="0" title="查找"  style="width:1.4%;cursor:pointer"/>
+		&nbsp;&nbsp;
+		快递号：<input id="expressno" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;
+		<input id="inquire" style="width:60px" name="" type="button" class="btn" value="查 询"/>
+		<font id="tips" style="color:#ff0000;"></font>
+	</li>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="5%"></th>
+				<th width="14%"><font id="kh">款号</font></th>
+				<th width="14%"><font id="spmc">商品名称</font></th>
+				<th width="16%"><font id="jg">价格（元）</font></th>
+				<th width="16%"><font id="zsl">总数量</font></th>
+				<th width="15%"><font id="zps">正品数</font></th>
+				<th width="20%"><font id="xj">小计（元）</font></th>
+			</tr>
+		</thead>
+		
+		<tbody id="tbody2">
+		<tr style="display:none;" id="mark" class="returnMark"><td colspan="7" style="color:red;text-align:left;">显示的只是做了退货或换货标记的款号。</td></tr>
+		</tbody>
+    	<tr style="display:none;" class="returnMark">
+    		<!-- <td colspan="3">顺丰退货单号：<input type="text" class="dfinput" style="width:100px" value="" />(其他快递公司没有就不要填写)</td> -->
+    		<td colspan="7" style="text-align:left;">
+    			<input id="warehousing" name="" type="button" class="btn" value="入库"/>
+    			<input id="termination" name="" type="button" class="btn" value="终止"/>
+    			<input id="return" name="" type="button" class="btn" value="返回"/>
+    		</td>
+    	</tr>
+    </table>
+	
+	<li>
+		<font color="#FF0000">
+		提示：<br />
+		1.如果货品未退回仓库，就做入仓处理，入仓后 货品状态就是已入仓状态。<br />
+		2.如果货品无法退回仓库，比如以途中破损或已丢失就做终止处理，否则就一直是退货未入仓状态，系统就当一直退货在途处理。
+		</font>
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thrc_wl.js"></script>
+</html>

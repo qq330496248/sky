@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>修改密码</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改密码</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+		<label>原始密码：</label><input name="" id="oldpwd" type="password" class="dfinput" onblur="oldpwdCheck()" value="" maxlength="12" />
+		<font id="oldpwdfont"> </font>
+	</li>
+	<li>
+		<label>新密码：</label><input id="newpwd" type="password" class="dfinput" onblur="newpwdCheck()" value="" maxlength="12" />
+		<font id="newpwdfont" color="#797979">请输入新密码，长度为6到12位</font>
+	</li>
+	<li>
+		<label>新密码确认：</label><input id="conpwd" type="password" class="dfinput" onblur="conpwdCheck()" value="" maxlength="12" />
+		<font id="conpwdfont" color="#797979">请重复输入新密码</font>
+	</li>
+	<li>
+		<input name="" type="button" class="btn" onclick="updatePwd();" value="提交保存"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:50px" value="取消" onclick="history.go(-1);" />
+	</li>
+	
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgmm.js"></script>
+</html>

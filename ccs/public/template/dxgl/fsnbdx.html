@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发送内部短信</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">短信平台</a></li>
+    <li><a href="#">发送内部短信</a></li>
+    </ul>
+    </div>
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="formbody">
+    
+    <div class="formtitle"><span>发送内部短信</span></div>
+    
+    <ul class="forminfo">
+    
+    <li>
+		<a href="index.php?r=dxgl/GetFsnbdxHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="发送内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYfnbdxHtml"><input name="" type="button" class="btn" value="已发内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYsnbdxHtml"><input name="" type="button" class="btn" value="已收内部短信"/></a>
+		<!-- <a href="index.php?r=dxgl/GetNbhfcxHtml"><input name="" type="button" class="btn" value="回复查询"/></a> -->
+	</li>
+	
+	<li>
+	    <!-- <input id="fyxz" name="" type="text" disabled="disabled" class="dfinput" /> -->
+		发送到：
+		<input id="sxyh" name="" type="text" onchange="closeXzyh()" class="dfinput" />
+		<input id="QueryNumber" name="" type="button" onclick="showXzyh()" class="btn" value="选择用户"/>  <!-- id="QueryNumber" -->
+		<input id="qunfa" class="checkbox" type="checkbox" />群发
+	</li>
+	<li>
+		标&nbsp;&nbsp;&nbsp;题：
+		<input id="dxbt" name="" type="text" class="dfinput" value="{{$biaoti}}" />
+	</li>
+	<li>
+		内容：
+		<textarea id="dxnr" class="textinput"></textarea>
+	</li>
+	<li>
+		<input id="SendOut" name="" type="button" class="btn" value="确定"/>
+	</li>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script type="text/javascript" src="public/template/js/dxgl/fsnbdx_kh.js"></script>
+
+
+</html>

@@ -1,0 +1,43 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>电话转移</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>转移分机：</label>
+		<input type="text" id="fenji" class="dfinput" />
+		<input name="" type="button" class="btn-info" onclick="selectFj()" value="分机查找"/>
+		<input name="" type="button" class="btn-info" onclick="" value="转移"/>
+    </li>
+	<li>
+		<font style="color:#ff0000">注：选择或填写分机号时只能选一个分机</font>
+	</li>
+	<li></li>
+	<li>
+		<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="17%">用户工号</th>
+				<th width="17%">分机号</th>
+				<th width="17%">真实姓名</th>
+				<th width="17%">绑定号码</th>
+				<th>角色</th>
+				<th width="16%">部门</th>
+			</tr>
+		</thead>
+		<tbody id="txlTable">
+		</tbody>
+    	<tfoot>
+    		<tr><td colspan="6" id="page"></td></tr>
+    	</tfoot>
+    </table>
+	</li>
+	</ul>
+	</div>
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/dialog/dhzy.js"></script>	
+
+</html>

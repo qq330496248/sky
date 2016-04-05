@@ -1,0 +1,33 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 通过 DataParam 传递大数据量参数</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <script type="text/javascript">
+//改变工具栏按钮
+function window_onload() {
+    //这里是故意创造一个很长的SQL语句，仅为了测试
+    var SQL = "select * from customers where CustomerID<'Z";
+    for (i=0; i<100; i++)
+        SQL = SQL + "1234567890abcdefghijklmn";
+    SQL = SQL + "'";
+    
+    ReportViewer.DataURL = "../data/xmlSQLDataParam.php";
+    ReportViewer.DataParam = SQL;
+    
+    ReportViewer.Start();
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+	<script type="text/javascript"> 
+		CreateDisplayViewerEx("100%", "100%", "../grf/1a.grf", "", false, "");
+	</script>
+</body>
+</html>

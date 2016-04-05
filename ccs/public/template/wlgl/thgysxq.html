@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货供应商记录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">退货供应商记录</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>退货供应商记录</span></div>
+    <ul class="forminfo">
+    <li>
+		
+	</li>
+	<li>
+		采购单号：<input id="cgdh" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		下单时间：<input id="ddsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input id="ddsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getDdsjEnd()"/>	
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：
+        <select class="dfinput" style="width:100px">
+            <option name="gys" value="">---</option>
+            {{foreach from=$SupplierOptions key=value item=name}}
+            <option name="gys" checked="checked" value="{{$name}}">{{$name}}</option>
+            {{/foreach}}
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+		退货时间：<input id="rcsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="rcsjz" name="" type="text" class="dfinput" style="width:100px"  onClick="getRcsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<input id="ReturnOrderQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li>
+	</li>
+	<li></li>
+	<table class="imgtable">
+	<input type="hidden" id="sequence" value="DESC" />
+	<input type="hidden" id="order" value="xsaa01" />    
+		<thead>
+			<tr>
+				<th width="10%"><font id="ddid">采购单号</font></th>
+				<th width="12%"><font id="fkfs">供应商</font></th>
+				<th width="8%"><font id="fkfs">退货总数</font></th>
+				<th width="8%"><font id="thje">退货总额（元）</font></th>
+				<th width="10%"><font id="xsgh">下单人</font></th>
+				<th width="12%"><font id="ddsj">下单时间</font></th>
+				<th width="10%"><font id="czr">退货操作人</font></th>
+				<th width="12%"><font id="rcsj">退货时间</th>
+			</tr>
+		</thead>
+    	<tbody id="getCheckeboxId">
+
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				<td colspan="8" class="page">
+				
+				</td>
+			</tr>
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+					
+	<li style="margin-top:2px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+		
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thgysxq_wl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//订单时间
+	/*function setDdsjBegin(){
+		$("#ddsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getDdsjEnd(){
+		var begindate = $("#ddsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setDdsjEnd(){
+		$("#ddsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//入仓时间
+	/*function setRcsjBegin(){
+		$("#rcsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getRcsjEnd(){
+		var begindate = $("#rcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+/*	function setRcsjEnd(){
+		$("#rcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

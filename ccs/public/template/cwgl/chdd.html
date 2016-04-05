@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>出货订单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="{{$page}}" psize="{{$psize}}">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">出货订单</a></li>
+    </ul>
+    </div>
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formbody">
+    <input id="url" type="hidden" value="" />
+    <div class="formtitle"><span>出货订单</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		订&nbsp;&nbsp;单&nbsp;号&nbsp;：<input id="ddid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户ID：<input id="khid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		快递公司：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$DeliveryCompanyOptions key=value item=name}}
+			<option name="kdgs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		订单状态：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$OrderStatus key=value item=name}}
+			<option name="ddzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+		下单时间：<input name="" id="xdsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="xdsjz" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		发货时间&nbsp;&nbsp;：<input name="" id="fhsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="fhsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getShsjEnd()" value="{{$defaultCurrentTime}}"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+		快递单号：<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+	</li>
+	<li>
+		收货时间：<input name="" id="shsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="shsjz" type="text" class="dfinput" style="width:100px" onClick="getShsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		支付方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$PaymentMethodOptions key=value item=name}}
+			<option name="zffs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="szz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		发票类型：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$InvoiceTypeOptions key=value item=name}}
+			<option name="fplx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+		记&nbsp;&nbsp;账&nbsp;&nbsp;1&nbsp;：<input name="" id="jz1sjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="jz1sjz" type="text" class="dfinput" style="width:100px" onClick="getJz1sjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		记账2：<input name="" id="jz2sjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="jz2sjz" type="text" class="dfinput" style="width:100px" onClick="getJz2sjEnd()"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        记账：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$WhetherAccountingOptions key=value item=name}}
+			<option name="sfjz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		来源：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$ClientSourceOptions key=value item=name}}
+			<option name="khly" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<!-- &nbsp;&nbsp;&nbsp;&nbsp;
+		<select class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			{{foreach from=$ExpressFeeOptions key=value item=name}}
+			<option name="ywkdf" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select> -->
+		&nbsp;&nbsp;
+		<input id="ShipmentQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li>
+		<input type="file" />
+		<input type="checkbox" />记账1
+		<input type="checkbox" />记账2
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:150px" value="上传批量更新快递费"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:150px" value="点此下载文档模板"/>
+	</li>
+	<li>
+		<font style="color:#ff0000;font-size:14px;">*注意：记账1用来标识快递费结算，记账2用来标识服务费结算。(在撤销记账的状态下才能修改快递费和服务费)</font>
+	</li>
+  	<table class="imgtable" id="table5">
+    
+		<thead>
+			<tr>
+				<th width="6%">订单ID</th>
+				<th width="6%">支付方式</th>
+				<th width="9%">总金额</th>
+				<th width="7%">运费</th>
+				<th width="9%">发货时间</th>
+				<th width="5%">状态</th>
+				<th width="7%">快递公司</th>
+				<th width="9%">快递单号</th>
+				<th width="9%">业绩工号</th>
+				<th width="9%">快递费</th>
+				<th width="9%">服务费</th>
+				<!-- <th width="5%">其他费</th> -->
+				<th width="5%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				<td colspan="11" class="page rightLine"></td>
+				<!-- <td colspan="3"></td> -->
+			</tr>
+		</tfoot>    
+    </table>
+    <li style="padding-top:3px;">
+		<input type="checkbox" id="checkall"/>全选
+		&nbsp;&nbsp;
+		<input id="batchArragin1" name="" type="button" class="btn" value="批量记账1"/>
+		&nbsp;&nbsp;
+		<input id="batchArragin2" name="" type="button" class="btn" value="批量记账2"/>
+		&nbsp;&nbsp;
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/chdd_cw.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//下单
+	/*function setXdsjBegin(){
+		$("#xdsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setXdsjEnd(){
+		$("#xdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//发货
+	/*function setFhsjBegin(){
+		$("#fhsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getFhsjEnd(){
+		var begindate = $("#fhsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setFhsjEnd(){
+		$("#fhsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//收货
+	/*function setShsjBegin(){
+		$("#shsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getShsjEnd(){
+		var begindate = $("#shsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setShsjEnd(){
+		$("#shsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//记账1
+	/*function setJz1sjBegin(){
+		$("#jz1sjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getJz1sjEnd(){
+		var begindate = $("#jz1sjq").val();
+		WdatePicker({minDate:begindate});
+	}
+/*	function setJz1sjEnd(){
+		$("#jz1sjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//记账2
+	/*function setJz2sjBegin(){
+		$("#jz2sjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getJz2sjEnd(){
+		var begindate = $("#jz2sjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setJz2sjEnd(){
+		$("#jz2sjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+</html>

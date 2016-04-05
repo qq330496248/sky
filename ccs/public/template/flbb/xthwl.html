@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统话务量</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">系统话务量</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>系统话务量</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<a href="index.php?r=flbb/GetZxhwlHtml"><input name="" type="button" class="btn" value="座席话务量"/></a>
+		<a href="index.php?r=flbb/GetBzhwlHtml"><input name="" type="button" class="btn" value="班组话务量"/></a>
+		<a href="index.php?r=flbb/GetXthwlHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="系统话务量"/></a>
+		<a href="index.php?r=flbb/GetXtyyzbbbHtml"><input name="" type="button" class="btn" style="width:140px" value="系统运营指标报表"/></a>
+    </li>
+    <li>	
+    	统计步长：
+		<input type="radio" name="bc" />按天
+		<input type="radio" name="bc" />小时
+		日期：<input id="cjsjq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setCjsjBegin})"/>
+		到<input id="cjsjz" name="" type="text" class="dfinput" style="width:140px" onClick="getCjsjEnd()"/>
+		<input name="" type="button" class="btn" value="搜索"/>
+		<input name="" type="button" class="btn-excel" value="导出Excel"/>
+		<input name="" type="button" class="btn" value="生成图表"/>
+		<input type="checkbox" />选项
+	</li>
+	<li> </li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th rowspan="2">日期</th>
+				<th colspan="11">呼入</th>
+				<th colspan="8">呼出</th>
+			</tr>
+			<tr>
+				<th>呼入次数</th>
+				<th>通话次数</th>
+				<th>通话率</th>
+				<th>通话时长</th>
+				<th>最长通话时长</th>
+				<th>最短通话时长</th>
+				<th>IVR占用数</th>
+				<th>IVR接通数</th>
+				<th>人工占用数</th>
+				<th>人工接通数</th>
+				<th>排队等待数</th>
+				<th>呼出次数</th>
+				<th>通话次数</th>
+				<th>通话率</th>
+				<th>呼损数</th>
+				<th>通话时长</th>
+				<th>平均通话时长</th>
+				<th>最长通话时长</th>
+				<th>最短通话时长</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate,onpicked:setCjsjEnd});
+	}
+	function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>款号出货汇总</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <input type="hidden" id="pagehidden2" page="" psize="" />
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">款号出货汇总</a></li>
+    </ul>
+    </div>
+    <input id="inquireSign" type="hidden" value="0" />
+    <input id="exportExcelSign" type="hidden" value="1" />
+    <div class="formbody">
+    
+    <div class="formtitle"><span>款号出货汇总</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    款号状态：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$GirardNum key=value item=name}}
+			<option  name="khzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		订单号：<input id="ddid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		下单时间：<input name="" id="xdsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="xdsjz" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		发货时间：<input name="" id="fhsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input name="" id="fhsjz" type="text" class="dfinput" style="width:100px" onClick="getFhsjEnd()" value="{{$defaultCurrentTime}}"/>
+	</li>
+	<li>
+		订单状态：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$OrderStatus key=value item=name}}
+			<option  name="ddzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款&nbsp;&nbsp;&nbsp;号：<input id="cpkh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		收货时间：<input name="" id="shsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="shsjz" type="text" class="dfinput" style="width:100px" onClick="getShsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		退货时间：<input name="" id="thsjq" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input name="" id="thsjz" type="text" class="dfinput" style="width:100px" onClick="getThsjEnd()"/>
+	</li>
+	<li>
+		供&nbsp;应&nbsp;商&nbsp;：
+		<select class="dfinput" style="width:100px">
+			<option  value="">--</option>
+			{{foreach from=$SuppliersOptions key=value item=name}}
+			<option name="gys" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分&nbsp;&nbsp;&nbsp;组：
+		<select class="dfinput" style="width:100px">
+			<option  value="">--</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="szz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input id="ddgh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		来源：
+		<select class="dfinput" style="width:100px">
+			<option  value="">--</option>
+			{{foreach from=$ClientSourceOptions key=value item=name}}
+			<option name="khly" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+
+		</select>
+		<input class="type" type="radio" value="1" name="type" checked="checked"/>汇总 
+		<input class="type" type="radio" value="2" name="type" />明细
+		&nbsp;&nbsp;
+		<input id="chaxunmxhz" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<div id="table5">
+	  	<table class="imgtable">
+	    
+			<thead>
+				<tr>
+					<th width="8%">款号</th>
+					<th width="50%">产品名称</th>
+					<th width="14%">销售数量</th>
+					<th width="14%">销售金额</th>
+					<th>成本金额</th>
+				</tr>
+			</thead>
+			<tbody id="getCheckeboxId">
+			</tbody>
+			<tfoot id="tfoot">
+				<tr>
+					<td colspan="5" class="page"></td>
+				</tr>
+			</tfoot>
+	    </table>
+	    <li style="padding-top:3px;">
+	    	<input id="exportExcel1" name="" type="button" class="btn-excel" value="导出Excel"/>
+	    </li>
+	</div>
+
+	<div id="table2" style="display:none;">
+	    <table class="imgtable">   
+			<thead>
+				<tr>
+					<th width="6%">订单号</th>
+					<th width="6%">款号</th>
+					<th width="10%">产品名称</th>
+					<th width="6%">销售数量</th>
+					<th width="6%">销售金额</th>
+					<th width="6%">成本金额</th>
+				</tr>
+			</thead>
+			<tbody id="getGoodsDetail">
+
+			</tbody>
+			<tfoot id="tfoot2">
+				<tr>
+					<td colspan="6" class="detailPage">
+					
+					</td>
+				</tr>
+			</tfoot>
+	    </table>
+	    <li style="padding-top:3px;">
+	    	<input id="exportExcel2" name="" type="button" class="btn-excel" value="导出到Excel"/>
+	    </li>
+    </div>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/khchhz_cw.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//下单时间
+	/*function setXdsjBegin(){
+		$("#xdsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setXdsjEnd(){
+		$("#xdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//发货时间
+	/*function setFhsjBegin(){
+		$("#fhsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getFhsjEnd(){
+		var begindate = $("#fhsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setFhsjEnd(){
+		$("#fhsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//收货时间
+	/*function setShsjBegin(){
+		$("#shsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getShsjEnd(){
+		var begindate = $("#shsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setShsjEnd(){
+		$("#shsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//退货时间
+	/*function setThsjBegin(){
+		$("#thsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getThsjEnd(){
+		var begindate = $("#thsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setThsjEnd(){
+		$("#thsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

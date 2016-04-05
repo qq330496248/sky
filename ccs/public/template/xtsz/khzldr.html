@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户资料导入</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>客户资料导入</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>客户资料导入</span></div>
+    
+    <ul class="forminfo">
+    <form action="index.php?r=excel/UploadExcel&type=khzl" onsubmit="return checkExist('khzl')" method="post" enctype="multipart/form-data">
+    	<li>
+			<input name="file" id="khzl" type="file" /><input name="" type="submit" class="btn" value="上传导入"/>
+		</li>
+    </form>
+	
+	<li>
+		<font color="#0000FF">资料导入以下工号，多个工号请用英文逗号隔开，系统会平均分配。如果导入文档里指定了工号，则优先保存为文档中工号。</font>
+	</li>
+	<li>
+		<textarea class="textinput"></textarea>
+	</li>
+	<li></li>
+   ·<li>
+   	注意：<br />
+	
+	1.导入前请按照规定格式编辑好Excel(2003格式)文档。<a href="http://localhost/ccs/template/ClientDataTemplate.xls" style="color:#0000FF">点击这里</a>下载范例文档格式。资料要导入的来源，意向等必须在系统设置里先设置好，否则匹配不到。<br /> 
+	<font color="#FF0000">
+	2.如果一次导入的数据过多（几千条以上），请先把Excel文档另存为CSV格式再导入，这样保证导入成功。<br />
+	
+	3.建档日期为空，则默认建档日期为当前时间，其他没有值的字段可以为空。<br />
+	</font> 
+   </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript">
+  function checkExist(str){
+    var s = $("#"+str).val();
+    if(s == ''){
+      alert("上传内容不能为空");
+      return false;
+    }
+    return true;
+  }
+</script>
+</html>

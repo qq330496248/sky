@@ -1,0 +1,64 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>分业绩</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">
+    <li style="margin:0;text-align:center;">
+        <table id="table8">
+                <tr>
+                    <td style="font-size:15px;font-weight:bold;" colspan="2">请选择工号及业绩比例。</td>
+                </tr>
+                <tr class="JnLine">
+                    <td>工号1：
+                        <input class="showNumber" style="border:1px solid #000;" type="text" name="" value="{{$sessioninfo.account}}:{{$sessioninfo.name}}"/>
+                        <div class="workNumberList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:200px;height:150px;z-index:5;">
+                        <table style="width:400px;" class="table3">
+                        </table> 
+                        </div>
+                    </td>
+                    <td style="padding-left:30px;">业绩比例：
+                        <select style="width:57px;height:20px;" name="" id="" >
+                            <option name="yjbl" value="1">1</option>
+                            <option name="yjbl" value="0.9">0.9</option>
+                            <option name="yjbl" value="0.8">0.8</option>
+                            <option name="yjbl" value="0.7">0.7</option>
+                            <option name="yjbl" value="0.6">0.6</option>
+                            <option name="yjbl" value="0.5">0.5</option>
+                            <option name="yjbl" value="0.4">0.4</option>
+                            <option name="yjbl" value="0.3">0.3</option>
+                            <option name="yjbl" value="0.2">0.2</option>
+                            <option name="yjbl" value="0.1">0.1</option>
+                        </select>
+                    </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<img class="delgoodline" src="public/img/del.png"  border="0" style="width:50%;cursor:pointer" title="删除该行"/></td>
+
+                   
+                </tr> 
+                <tr>
+                     
+                </tr>                      
+            </table>
+            <div>
+                <li>
+                    <input id="addJobNum" style="margin-top:15px;margin-bottom:15px;" name="" type="button" class="btn-info" value="增加工号"/>
+                </li>
+                <li>
+                    <input id="saveJobNum" name="" type="button" class="btn-info" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+                    <!-- <input id="cancelJobNum" name="" onclick="closeDialog()" type="button" class="btn" style="color:#000000; background:#999999" value="取消"/> -->
+                    <font id="showRatio" style="color:#f00;"></font>
+                </li>
+            </div>
+    </li>
+    </ul>
+    </div>
+</div>
+	
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>		
+<script type="text/javascript" src="public/template/js/dialog/ddfyj.js"></script> 
+<script type="text/javascript">
+	
+</script>
+
+</html>

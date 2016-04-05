@@ -1,0 +1,63 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 演示查寻显示器插件(GRDisplayViewer)的分页功能</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <script type="text/javascript">
+function window_onload() {
+}
+
+function btnrdSinglePage_onclick() {
+    //不进行分页 
+    ReportViewer.RowsPerPage = 0;
+}
+
+function btnrdAutoRowMultiPage_onclick() {
+    //每页行数自动适应分页
+    ReportViewer.RowsPerPage = -1;
+}
+
+function btnrdFixRowMultiPage_onclick() {
+    //指定每页行数分页
+    ReportViewer.RowsPerPage = document.getElementById("txtApplyRowsPerPage").value;
+}
+
+function btnApplyRowsPerPage_onclick() {
+    btnrdFixRowMultiPage_onclick();
+}
+
+function OnStatusChange()
+{
+    //响应 StatusChange 事件，更新分页状态信息
+    var Text;
+    if (ReportViewer.RowsPerPage == 0)
+        Text = "不分页";
+    else 
+        Text = "第" + ReportViewer.CurPageNo + "页 共" + ReportViewer.PageCount + "页";
+	document.getElementById("txtPageStatus").value = Text;
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+    <input id="btnrdSinglePage" type="radio" type="text/javascript" onclick="return btnrdSinglePage_onclick()" name="Pages" />不分页
+    <input id="btnrdAutoRowMultiPage" type="radio" type="text/javascript" onclick="return btnrdAutoRowMultiPage_onclick()" name="Pages" checked="CHECKED"/>每页行数自动适应分页
+    <input id="btnrdFixRowMultiPage" type="radio" type="text/javascript" onclick="return btnrdFixRowMultiPage_onclick()" name="Pages"/>指定每页行数分页
+    <input id="txtApplyRowsPerPage" name="txtApplyRowsPerPage" style="width: 36px" type="text"
+        value="10" />
+    <input id="btnApplyRowsPerPage" type="button" value="应用" type="text/javascript" onclick="return btnApplyRowsPerPage_onclick()" />
+    分页状态:<input id="txtPageStatus" readonly="readonly" style="width: 98px; color: red;" type="text" /><br />
+    <script type="text/javascript"> 
+        //RowsPerPage=-1：这里设定每页行数自动适应空间窗口大小进行分页
+        CreateDisplayViewerEx("100%", "90%", "../grf/1c.grf", "../data/xmlCustomer.php", true, 
+            "<param name=BorderStyle value=1>" +
+            "<param name=RowsPerPage value=-1>" +
+            "<param name=OnStatusChange value=OnStatusChange>");
+    </script>
+</body>
+</html>

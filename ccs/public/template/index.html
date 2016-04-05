@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息管理系统界面</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="http://192.168.10.230/interface/api/?action=popscreen&extension={{$sessioninfo.fenji}}&pop_out=DialIn&mixcallback=callback&open_type=2&pop_type=RING"></script>
+<script>
+//电话弹屏
+function callback(str){
+    var arr = str.split("&");
+    var Callerid = arr[3]; 
+    var arr2 = Callerid.split("=");
+    Callerid = arr2[1]; //呼叫号码
+    var DateTime = arr[8];
+    var arr4 = DateTime.split("=");
+    DateTime = arr4[1]; //呼叫时间
+    if(Callerid){
+        $.post('index.php?r=khgl/GetClientDetailByNumber',{Callerid:Callerid},function(data){
+            if(data){
+                $('#rightArrow').remove();
+                $('#floatDivBoxs').remove();
+                $('#newClient').remove();
+                var clientno = (data.khaa02 == undefined) ? '' : data.khaa02;
+                var khname = (data.khaa03 == undefined) ? '' : data.khaa03;
+                var khsex = (data.khaa04 == undefined) ? '' : data.khaa04;
+                var khage = (data.khaa47 == undefined) ? '' : data.khaa47;
+                var consumeMoney = (data.khaa28 == undefined) ? '' : data.khaa28;
+
+                $('body').append('<div id="rightArrow"><a href="javascript:;" title="来电客户"></a></div><div id="floatDivBoxs"><div class="floatDtt" id="flashingWord">来电号码显示-------->>></div><div class="floatShadow"><ul class="floatDqq"><li style="padding-left:0px;">来电号码：'+ Callerid +'</li><li style="padding-left:0px;">客户姓名：'+ khname +'</li><li style="padding-left:0px;">性  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：'+ khsex +'</li><li style="padding-left:0px;">年  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：'+ khage +'</li><li style="padding-left:0px;">消费金额：'+ consumeMoney +'</li></ul><div class="floatDtxt"><a href="index.php?r=khgl/NewClientData&clientno='+ clientno +'" target="_blank"><input name="" type="button" class="btn" value="客户详情"/></a>&nbsp;&nbsp;&nbsp;<a href="index.php?r=ddgl/GetDdcjjlHtml&clientno='+ clientno +'" target="_blank"><input name="" type="button" class="btn" value="交易记录"/></a></div></div></div>');
+                if(clientno == ''){
+                    $('.floatDtxt').remove();
+                    $('.floatDqq').append('<li id="newClient" style="padding-left:0px;"><a href="index.php?r=khgl/GetTjkhzlHtml&Callerid='+ Callerid +'" target="_blank"><input name="" type="button" class="btn" value="添加新客户"/></a></li>');
+                }
+            }
+
+        },'json');       
+    }
+    
+}
+</script>
+
+<script>
+var i = 0;
+function shine(id){
+    var obj = $('#'+id);
+    if(i == 0){
+        obj.css('color','black');
+        i = 1;
+    }else{
+        obj.css('color','red');
+        i = 0;
+    }
+}
+setInterval("shine('flashingWord')",400);
+</script>
+
+<style type="text/css">
+    .imgbtn{
+        cursor:pointer;
+        width: 30px;
+        height: 30px;
+    }
+    .imgbtn:hover{
+        border:solid 1px rgb(139,181,217);
+    }
+</style>
+
+</head>
+
+<body>
+<div style="height:5px;">
+    
+   
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div style="background:url(public/template/images/topbg.png) repeat-x;width:100%;height:88px">
+        <div class="topleft">
+       <a href="index.php?r=login/GetIndexHtml" target="_parent"><img src="public/template/images/loginlogo.png" title="系统logo" /></a>
+        </div>
+        <ul class="nav">
+        <!-- <div style="position:fixed;left:53.3%;top:5%;">
+            <li style="float:left;padding-top:20px;padding-right:55px;width:50px;height:20px;">
+                <input id="secondPhone" class="dfinput" style="width:100px;" value=""/>
+            </li>
+            <li style="float:left;width:170px;">style="position:fixed;left:36.3%;top:3.5%;width:690px;height:0;">
+                <img id="phonecall" src="public/template/images/calling/yd_a.png" class="imgbtn" title="快速呼叫"  />
+                <img id="keep" src="public/template/images/calling/keep.png" class="imgbtn" title="通话保持" />
+                <img id="showShift" src="public/template/images/calling/zj.png" onclick="showDhzy()" class="imgbtn" title="电话转移" />
+                <img id="hangup" src="public/template/images/calling/gd.png" class="imgbtn" title="挂断" />
+                <img id="" src="public/template/images/calling/jj.png" class="imgbtn" title="客户评价"  />
+                <img id="" src="public/template/images/calling/hy.png" class="imgbtn" title="语音会议室"  />
+                
+            </li>
+        </div> -->
+        </ul>
+        <div class="topright">    
+            <ul>
+            <li style="padding-left:0px;padding-right:0px;">
+                <input id="secondPhone" class="dfinput" style="width:90px; " value=""/>
+            </li>
+            <li style="float:left;"><!--  style="position:fixed;left:36.3%;top:3.5%;width:690px;height:0;"> -->
+                <img id="phonecall" src="public/template/images/calling/yd_a2.png" class="imgbtn" title="快速呼叫"  />
+                <img id="keep" src="public/template/images/calling/keep2.png" class="imgbtn" title="通话保持" />
+                <img id="showShift" src="public/template/images/calling/zj2.png" onclick="showDhzy()" class="imgbtn" title="电话转移" />
+                <img id="hangup" src="public/template/images/calling/gd4.png" class="imgbtn" title="挂断" />
+            </li>
+            <li style="border-right:1px solid #cccccc;"><a href="index.php?r=xtsz/GetBacklogHtml" target="rightFrame" class=""><input name="" type="button" class="btn" value="待办事项"/></a></li>
+            <li style="border-right:1px solid #cccccc;"><a style="cursor:pointer;" onclick="showTxl()"><input name="" type="button" class="btn-info" value="通讯录"/></a></li>
+            <li><a style="cursor:pointer;" onclick="LogOut()" target="_parent"><input name="" type="button" class="btn-warning" value="注销退出"/></a></li>
+            </ul>
+         
+            <div class="user">
+            <span id="gh"></span><!-- 工号:{$sessioninfo.account} -->
+            <i id="name"></i><!-- 姓名:{$sessioninfo.name} -->
+            <i id="fenji"></i>
+            </div>      
+            
+        </div>
+    </div>
+    <input id="account" type="hidden" value="{{$sessioninfo.account}}" />
+    <iframe src="public/template/bottom.html" name="bottomFrame" id="demo" style="position:absolute;width:100%;height:100%"></iframe>
+</div> 
+</body>
+
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript" src="public/template/js/index.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript">
+    function LogOut(){
+        var con = confirm("确认要退出吗？");
+        if(con){
+            $.post("index.php?r=login/LogOut",function(data){
+                parent.location.href="index.php?r=login/Index";
+            });
+        }
+    }
+    
+    var httpHost = $('#httpHost').val();  //服务器地址
+    function showTxl(){
+        var dialog = new Dialog();
+        dialog.Width=600;
+        dialog.Height=600;
+        dialog.URL="http://"+httpHost+"/index.php?r=dialog/GetTxlHtml";
+        dialog.show();
+    }
+
+    function showDhzy(){
+        var dialog = new Dialog();
+        dialog.Width=600;
+        dialog.Height=700;
+    //    dialog.URL="http://localhost/ccs/public/template/xtsz/txl.html";
+        dialog.URL="http://"+httpHost+"/index.php?r=dialog/GetDhzyHtml";
+        dialog.show();
+       // Dialog.open({URL:"http://localhost/ccs/public/template/xtsz/txl.html"});
+    }
+    {{$apiResult}}
+
+    //用定时器，每隔一分钟去调用函数，检测并把在线状态改为离线的状态
+    var account = $('#account').val();
+    setInterval("checkOrChangeStatus(account)",60000);
+    function checkOrChangeStatus(account){
+        $.post('index.php?r=xtsz/CheckAndChangeStatus',{account:account},function(data){
+             
+        },'json');
+    }
+</script>
+<script type="text/javascript">
+$(function(){
+    //顶部导航切换
+    $(".nav li a").click(function(){
+        $(".nav li a.selected").removeClass("selected")
+        $(this).addClass("selected");
+    })  
+
+    $.post("index.php?r=xtsz/GetSess",function(data){
+        $("#gh").html("工号："+data.gh);
+        $("#name").html("姓名："+data.name+"&nbsp;");
+        $("#fenji").html("分机："+data.fenji+"&nbsp;&nbsp;&nbsp;");
+    });
+
+});
+
+/**
+ * @desc 设置页面的宽高
+ * @author WuJunhua
+ * @date 2016-03-28
+ */
+$(function() {
+    windowResize();
+    $(window).resize(function() {
+        windowResize();
+    });        
+
+});
+
+function getWindowHeight() {
+    return $(window).height();
+}
+function windowResize() {
+    var height = getWindowHeight() - 100;
+    $('#demo').height(height);
+    //getheight();
+    //$('body').layout();
+}
+
+</script>
+</html>

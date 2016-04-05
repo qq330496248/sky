@@ -1,0 +1,658 @@
+﻿Object Report
+	Version='6.0.0.0'
+	Title='Grid++Report'
+	PageDivideLine=T
+	PrintAsDesignPaper=F
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		TopMargin=1.5
+		BottomMargin=1.5
+	End
+	Object DetailGrid
+		ShowColLine=F
+		ShowRowLine=F
+		Object Border
+			Styles=[]
+		End
+		Object Recordset
+			ConnectionString='Provider=SQLOLEDB.1;\r\nPersist Security Info=True;\r\nData Source=;\r\nInitial Catalog=gridreport;\r\nUser ID=sa;\r\nPassword=;'
+			QuerySQL='select top 5 * from Customers\r\norder by CustomerID'
+			Items Field
+				Item
+					Name='CustomerID'
+				End
+				Item
+					Name='CompanyName'
+				End
+				Item
+					Name='ContactName'
+				End
+				Item
+					Name='ContactTitle'
+				End
+				Item
+					Name='Address'
+				End
+				Item
+					Name='City'
+				End
+				Item
+					Name='Region'
+				End
+				Item
+					Name='PostalCode'
+				End
+				Item
+					Name='Country'
+				End
+				Item
+					Name='Phone'
+				End
+				Item
+					Name='Fax'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='CustomerID'
+				Width=2.38125
+			End
+			Item
+				Name='CompanyName'
+				Width=3.175
+			End
+			Item
+				Name='ContactName'
+				Width=1.5875
+			End
+			Item
+				Name='ContactTitle'
+				Width=1.98438
+			End
+			Item
+				Name='Phone'
+				Width=2.98979
+			End
+			Item
+				Name='Fax'
+				Width=3.175
+			End
+		End
+		Object ColumnContent
+			BackColor=Aqua
+			Height=0.79375
+			AlternatingBackColor=Aqua
+			Items ColumnContentCell
+				Item
+					Column='CustomerID'
+					DataField='CustomerID'
+				End
+				Item
+					Column='CompanyName'
+					DataField='CompanyName'
+				End
+				Item
+					Column='ContactName'
+					DataField='ContactName'
+				End
+				Item
+					Column='ContactTitle'
+					DataField='ContactTitle'
+				End
+				Item
+					Column='Phone'
+					DataField='Phone'
+				End
+				Item
+					Column='Fax'
+					DataField='Fax'
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0
+			Object Font
+				Name='宋体'
+				Size=90000,0
+				Bold=T
+				Charset=134
+			End
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='CustomerID'
+					Text='客户编号'
+				End
+				Item
+					GroupTitle=F
+					Column='CompanyName'
+					Text='公司名称'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactName'
+					Text='联系人'
+				End
+				Item
+					GroupTitle=F
+					Column='ContactTitle'
+					Text='联系人称谓'
+				End
+				Item
+					GroupTitle=F
+					Column='Phone'
+					Text='电话'
+				End
+				Item
+					GroupTitle=F
+					Column='Fax'
+					Text='传真'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				ByFields='CustomerID'
+				Object GroupHeader
+					Height=0.396875
+				End
+				Object GroupFooter
+					KeepTogether=F
+					CanGrow=T
+					Height=1.19063
+					NewPage=After
+					PrintGridBorder=F
+					Items Control
+						Item
+							Type=SubReport
+							Name='srLevel1'
+							Dock=Fill
+							RelationFields='CustomerID'
+Object Report
+	Version='6.0.0.0'
+	Title='你的报表标题'
+	PrintAsDesignPaper=F
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object DetailGrid
+		ShowColLine=F
+		ShowRowLine=F
+		Object Border
+			Styles=[]
+		End
+		Object ColLine
+			Color=00646F71
+		End
+		Object RowLine
+			Color=00646F71
+		End
+		Object Recordset
+			ConnectionString='Provider=SQLOLEDB.1;\r\nPersist Security Info=True;\r\nData Source=;\r\nInitial Catalog=gridreport;\r\nUser ID=sa;\r\nPassword=;'
+			QuerySQL='select * from Orders\r\nwhere CustomerID=:CustomerID and OrderDate between '1997-1-1' and '1997-12-31'\r\norder by OrderID'
+			SkipQuery=T
+			Items Field
+				Item
+					Name='OrderID'
+					Type=Integer
+				End
+				Item
+					Name='CustomerID'
+				End
+				Item
+					Name='EmployeeID'
+					Type=Integer
+				End
+				Item
+					Name='OrderDate'
+					Type=DateTime
+				End
+				Item
+					Name='Freight'
+					Type=Currency
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='UnitPriceaaa'
+				Width=15.9808
+			End
+		End
+		Object ColumnContent
+			Height=2.98979
+			Items ColumnContentCell
+				Item
+					Column='UnitPriceaaa'
+					FreeCell=T
+					CanGrow=T
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox4'
+							Left=4.78896
+							Top=0.0529167
+							Width=1.98438
+							Height=0.608542
+							Object Font
+								Name='宋体'
+								Size=105000,0
+								Bold=T
+								Charset=134
+							End
+							Text='订单号：'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox5'
+							Top=0.635
+							Width=1.98438
+							Height=0.608542
+							Object Font
+								Name='宋体'
+								Size=105000,0
+								Bold=T
+								Charset=134
+							End
+							Text='日期：'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox6'
+							Left=4.78896
+							Top=0.635
+							Width=1.98438
+							Height=0.608542
+							Object Font
+								Name='宋体'
+								Size=105000,0
+								Bold=T
+								Charset=134
+							End
+							Text='运费：'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox7'
+							Top=0.0529167
+							Width=1.98438
+							Height=0.608542
+							Object Font
+								Name='宋体'
+								Size=105000,0
+								Bold=T
+								Charset=134
+							End
+							Text='客户编号：'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							Left=6.72042
+							Top=0.0529167
+							Width=2.59292
+							Height=0.582083
+							DataField='OrderID'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox2'
+							Left=1.98438
+							Top=0.0529167
+							Width=2.59292
+							Height=0.582083
+							DataField='CustomerID'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox3'
+							Left=1.98438
+							Top=0.635
+							Width=2.59292
+							Height=0.608542
+							DataField='OrderDate'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox4'
+							Left=6.72042
+							Top=0.635
+							Width=2.59292
+							Height=0.608542
+							DataField='Freight'
+						End
+						Item
+							Type=SubReport
+							Name='srLevel2'
+							Top=1.40229
+							Width=16.0073
+							Height=1.5875
+							RelationFields='OrderID'
+Object Report
+	Version='6.0.0.0'
+	Title='你的报表标题'
+	PrintAsDesignPaper=F
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+	End
+	Object DetailGrid
+		Object ColLine
+			Color=00646F71
+		End
+		Object RowLine
+			Color=00646F71
+		End
+		Object Recordset
+			ConnectionString='Provider=SQLOLEDB.1;\r\nPersist Security Info=True;\r\nData Source=;\r\nInitial Catalog=gridreport;\r\nUser ID=sa;\r\nPassword=;'
+			QuerySQL='select * from OrderDetails\r\nwhere OrderID=:OrderID\r\norder by OrderID'
+			SkipQuery=T
+			Items Field
+				Item
+					Name='OrderID'
+					Type=Integer
+				End
+				Item
+					Name='ProductID'
+					Type=Integer
+				End
+				Item
+					Name='UnitPrice'
+					Type=Currency
+				End
+				Item
+					Name='Quantity'
+					Type=Integer
+				End
+				Item
+					Name='Discount'
+					Type=Float
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='Column1'
+				Width=2.16958
+			End
+			Item
+				Name='Product'
+				Width=2.77813
+			End
+			Item
+				Name='UnitPrice'
+				Width=1.98438
+			End
+			Item
+				Name='Quantity'
+				Width=1.5875
+			End
+			Item
+				Name='Amount'
+				Width=2.77813
+			End
+		End
+		Object ColumnContent
+			Height=0.582083
+			Items ColumnContentCell
+				Item
+					Column='Column1'
+					TextAlign=MiddleCenter
+					DataField='OrderID'
+				End
+				Item
+					Column='Product'
+					DataField='ProductID'
+				End
+				Item
+					Column='UnitPrice'
+					TextAlign=MiddleRight
+					DataField='UnitPrice'
+				End
+				Item
+					Column='Quantity'
+					TextAlign=MiddleRight
+					DataField='Quantity'
+				End
+				Item
+					Column='Amount'
+					FreeCell=T
+					Items Control
+						Item
+							Type=MemoBox
+							Name='MemoBox1'
+							Dock=Fill
+							Text='[#Quantity*UnitPrice:#,##0.00#]'
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=00E2EFF1
+			Height=0.608542
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='Column1'
+					TextAlign=MiddleCenter
+					Text='OrderID'
+				End
+				Item
+					GroupTitle=F
+					Column='Product'
+					TextAlign=MiddleCenter
+					Text='产品名称'
+				End
+				Item
+					GroupTitle=F
+					Column='UnitPrice'
+					TextAlign=MiddleCenter
+					Text='单价'
+				End
+				Item
+					GroupTitle=F
+					Column='Quantity'
+					TextAlign=MiddleCenter
+					Text='数量'
+				End
+				Item
+					GroupTitle=F
+					Column='Amount'
+					TextAlign=MiddleCenter
+					Text='金额'
+				End
+			End
+		End
+		Items Group
+			Item
+				Name='Group1'
+				Object GroupHeader
+					Height=0
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+				End
+				Object GroupFooter
+					BackColor=00E1FFFF
+					Height=0.608542
+					Object Font
+						Name='宋体'
+						Size=90000,0
+						Bold=T
+						Charset=134
+					End
+					Items Control
+						Item
+							Type=StaticBox
+							Name='StaticBox2'
+							BackColor=White
+							AlignColumn='Product'
+							Left=2.16958
+							Width=2.80458
+							Height=0.608542
+							Text='本单小计'
+						End
+						Item
+							Type=SummaryBox
+							Name='Summary1'
+							BackColor=White
+							AlignColumn='Amount'
+							Left=8.51958
+							Width=2.80458
+							Height=0.608542
+							TextAlign=MiddleRight
+							DataField='Quantity*UnitPrice'
+							Format='#,##0.00'
+						End
+					End
+				End
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='OrderID'
+			DataType=Integer
+			Value='10778'
+		End
+	End
+End
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			BackColor=00E2EFF1
+			Height=0
+			RepeatStyle=OnPage
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='UnitPriceaaa'
+					BackColor=White
+					Text='产品名称'
+				End
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='CustomerID'
+			Value='BERGS'
+		End
+	End
+End
+						End
+					End
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox1'
+				Anchor=[Top|Right]
+				Left=2.19604
+				Top=0.396875
+				Width=13.7054
+				Height=0.47625
+				Object Font
+					Name='楷体_GB2312'
+					Size=120000,0
+					Bold=T
+					Charset=134
+				End
+				Text='欢迎访问Grid++Report网站www.rubylong.cn，了解最新产品信息。'
+			End
+			Item
+				Type=Line
+				Name='Line1'
+				Anchor=[Left|Top|Right]
+				Top=1.00542
+				Width=16.0073
+				Object Pen
+					Width=2
+				End
+			End
+		End
+	End
+	Object PageFooter
+		Height=1.32292
+		Items Control
+			Item
+				Type=MemoBox
+				Name='MemoBox2'
+				Anchor=[Top|Right]
+				Left=13.2027
+				Top=0.396875
+				Width=2.59292
+				Height=0.608542
+				Text='第[#SystemVar(PageNumber)#]页 共[#SystemVar(PageCount)#]页'
+			End
+			Item
+				Type=MemoBox
+				Name='MemoBox3'
+				Left=0.211667
+				Top=0.396875
+				Width=6.19125
+				Height=0.608542
+				Text='打印时间：[#SystemVar(CurrentDateTime):yyyy年MM月dd日 HH:mm:ss#]'
+			End
+		End
+	End
+	Items Parameter
+		Item
+			Name='Comment'
+			Value='演示一个最基本的列表报表。'
+		End
+	End
+	Items ReportHeader
+		Item
+			Height=1.00542
+			Items Control
+				Item
+					Type=StaticBox
+					Name='StaticBox1'
+					Center=Horizontal
+					Left=4.55083
+					Top=0.185208
+					Width=6.90563
+					Height=0.582083
+					Object Font
+						Name='宋体'
+						Size=150000,0
+						Bold=T
+						Charset=134
+					End
+					TextAlign=MiddleCenter
+					Text='子报表嵌套子报表'
+				End
+			End
+		End
+	End
+End

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单审核</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">订单管理</a></li>
+    <li><a href="#">订单审核</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>订单审核</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		订单号&nbsp;&nbsp;&nbsp;：<input id="ddid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户ID：<input id="khid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		审核：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$OrderAuditStatusOptions key=value item=name}}
+			<option name="ddshzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select class="dfinput" style="width:100px">
+			<option>---</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="khfz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	 <li>
+	  下单时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		地&nbsp;&nbsp;址：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="khsf" checked="checked" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select id="city" class="dfinput" style="width:100px">
+			<option>选择市</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户意向：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$CustomerIntentionOptions key=value item=name}}
+		    <option name="khyx" checked="checked" value="{{$name}}">{{$name}}</option>
+		    {{/foreach}}
+		</select>
+		</li>
+		<li>
+		快递单号：<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		订单类型：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+		     {{foreach from=$OrderTypeOptions key=value item=name}}
+		     <option name="ddlx" checked="checked" value="{{$name}}">{{$name}}</option>
+		     {{/foreach}}
+		</select>
+		&nbsp;&nbsp;
+		<input id="ddQuery" name="" type="button" class="btn" value="查询"/>
+
+		&nbsp;&nbsp;刷新时间：<font id="refurbishTime" color="#FF0000">不刷新</font>
+		<input name="" type="button" class="btn" id="60" onclick="refurbish(60)" value="60秒"/>
+		<input name="" type="button" class="btn" id="120" onclick="refurbish(120)" value="120秒"/>
+		<input name="" type="button" class="btn" id="180" onclick="refurbish(180)" value="180秒"/>
+		<input name="" type="button" class="btn" id="0" style="color:#000000; background:#999999" onclick="refurbish(0)" value="不刷新"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="3%"></th>
+				<th width="5%">订单ID</th>
+				<th width="5%">客户ID</th>
+				<th width="6%">客户姓名</th>
+				<th width="5%">付款方式</th>
+				<th width="5%">订单金额</th>
+				<th width="5%">已收</th>
+				<th width="8%">下单时间</th>
+				<th width="5%">状态</th>
+				<th width="8%">快递</th>
+				<th width="6%">下单人</th>
+				<th width="8%">业绩工号</th>
+				<th width="6%">客户意向</th>
+				<th width="10%">最新跟进//备注</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				
+				<td colspan="12" class="page rightLine"></td>
+			   <!--  <td colspan="2"></td> -->
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    <li style="margin-top:3px;">
+        <input type="checkbox" id="checkall"/>全选&nbsp;&nbsp;
+		<input id="batchArragin" name="" type="button" class="btn" value="批量审单"/>&nbsp;&nbsp;&nbsp;<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>		
+    </li>
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_dd.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/ddgl/ddsh_dd.js"></script>
+
+
+<script type="text/javascript">
+	/*function setXdsjBegin(){
+		$("#xdsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+/*	function setXdsjEnd(){
+		$("#xdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

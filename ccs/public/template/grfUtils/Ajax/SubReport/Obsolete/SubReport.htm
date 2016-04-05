@@ -1,0 +1,70 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 子报表(AJAX方式)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+var CustomerReport;
+var ProductReport;
+var Top10CustomerReport;
+var Top10ProductReport;
+
+//在网页初始加载时向报表提供数据
+function window_onload() {
+    CustomerReport = ReportViewer.Report.ControlByName("srCustomerList").AsSubReport.Report;
+    ProductReport = ReportViewer.Report.ControlByName("srProductList").AsSubReport.Report;
+    Top10CustomerReport = ReportViewer.Report.ControlByName("srTop10Customer").AsSubReport.Report;
+    Top10ProductReport = ReportViewer.Report.ControlByName("srTop10Product").AsSubReport.Report;
+    
+    //关联事件
+    CustomerReport.OnInitialize = OnCustomerInitialize;
+    ProductReport.OnInitialize = OnProductInitialize;
+    Top10CustomerReport.OnInitialize = OnTop10CustomerInitialize;
+    Top10ProductReport.OnInitialize = OnTop10ProductInitialize;
+    
+	//开启报表生成进度条显示
+	ReportViewer.Report.ShowProgressUI = true;
+	
+    //启动运行
+    ReportViewer.Start();
+}
+
+function OnCustomerInitialize()
+{
+    //载入子报表数据，用 Ajax 载入子报表数据必须用 HTTP 同步数据请求
+    AjaxSyncLoadReportData(CustomerReport, "../../../data/xmlCustomer.php");
+}
+
+function OnProductInitialize()
+{
+    //载入子报表数据，用 Ajax 载入子报表数据必须用 HTTP 同步数据请求
+    AjaxSyncLoadReportData(ProductReport, "../../../06.SubReport/Obsolete/xmlProductList.php");
+}
+
+function OnTop10CustomerInitialize()
+{
+    //载入子报表数据，用 Ajax 载入子报表数据必须用 HTTP 同步数据请求
+    AjaxSyncLoadReportData(Top10CustomerReport, "../../../06.SubReport/Obsolete/xmlTop10Customer.php");
+}
+
+function OnTop10ProductInitialize()
+{
+    //载入子报表数据，用 Ajax 载入子报表数据必须用 HTTP 同步数据请求
+    AjaxSyncLoadReportData(Top10ProductReport, "../../../06.SubReport/Obsolete/xmlTop10Product.php");
+}
+	</script>
+
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="window_onload()">
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "../../../grf/4a.grf", "", false, "");
+    </script>
+</body>
+</html>

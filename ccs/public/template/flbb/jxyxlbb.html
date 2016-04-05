@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>接线有效率报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">接线有效率报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>接线有效率报表</span></div>
+    
+    <ul class="forminfo">
+ 
+    <li>
+    	<input id="today" type="button" onclick="selectDay('today')" class="btn" value="今日"/>
+		<input id="yesterday" type="button" onclick="selectDay('yesterday')" class="btn" value="昨日"/>
+		<input id="seven" type="button" onclick="selectDay('seven')" class="btn" value="最近7天"/>
+		<input id="thirty" type="button" onclick="selectDay('thirty')" class="btn" value="最近30天"/>
+		<input id="month" type="button" onclick="selectDay('month')" class="btn" value="本月"/>
+    </li> 
+    <li>
+	    <div id="todayDiv" style="display:block">
+	    	<input id="lastDay" type="button" onclick="changeDay('lastDay')" class="btn" value="前一天"/>
+			<input id="nextDay" type="button" onclick="changeDay('nextDay')" disabled="disabled" style="background:#999999" class="btn" value="后一天"/>
+	    </div>
+	    <div id="sevenDiv" style="display:none">
+	    	<input id="lastSeven" type="button" onclick="changeDay('lastSeven')" class="btn" value="前7天"/>
+			<input id="nextSeven" type="button" onclick="changeDay('nextSeven')" disabled="disabled" class="btn" value="后7天"/>
+	    </div>
+	    <div id="thirtyDiv" style="display:none">
+	    	<input id="lastThirty" type="button" onclick="changeDay('lastThirty')" class="btn" value="前30天"/>
+			<input id="nextThirty" type="button" onclick="changeDay('nextThirty')" disabled="disabled" class="btn" value="后30天"/>
+	    </div>
+	    <div id="monthDiv" style="display:none">
+	    	<input id="lastMonth" type="button" onclick="changeDay('lastMonth')" class="btn" value="上个月"/>
+			<input id="nextMonth" type="button" onclick="changeDay('nextMonth')" disabled="disabled" class="btn" value="下个月"/>
+	    </div>
+    </li> 
+    <li>	
+   	 	<input type="hidden" id="hiddenBeginDate" />
+    	<input type="hidden" id="hiddenEndDate" />
+    	开始时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select id="dept" class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$dept key=value item=name}}
+			<option value="{{$name.depttext}}">{{$name.depttext}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;
+		<input name="" onclick="getJxyxlbb()" type="button" class="btn" value="查询"/>	
+	</li>
+	<li> </li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="15%">工号</th>
+				<th width="15%">拨号次数</th>
+				<th width="15%">接听次数</th>
+				<th width="15%">客户总数</th>
+				<th width="15%">无效客户</th>
+				<th width="15%">无效率</th>
+			</tr>
+		</thead>
+		
+		<tbody id="jxyxlbb">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/flbb/jxyxlbb.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

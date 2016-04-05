@@ -1,0 +1,86 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>修改区/县</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>省份：</label>
+    <input type="hidden" value="{{$area.pid}}" id="pid" />
+    <input type="hidden" value="{{$area.cid}}" id="cid" />
+    <input type="hidden" value="{{$area.aid}}" id="aid" />
+		<select class="dfinput" id="province" onchange="getCity()" style="width:100px">
+			<option name="province" value="0">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="province" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+    </li>
+	<li><label>城市：</label>
+		<select class="dfinput" id="city" style="width:100px">
+			<option name="province" value="0">选择市</option>
+		</select>
+	</li>
+	<li><label>区名（县名）：</label><input value="{{$area.aname}}" id="updateArea" type="text" class="dfinput" /></li>
+	<li><input name="" type="button" class="btn-info" onclick="updateArea()" value="修改"/></li></ul></div>
+</div>	
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	$(function(){
+		var pid = $("#pid").val();
+		var cid = $("#cid").val();
+		$("option").each(function(){
+			if($(this).val() == pid){
+				$(this).attr("selected","selected");
+			}
+		});
+		$.post("index.php?r=xtsz/GetCity",{provinceID:pid},function(data){
+			if(data.res == "success"){
+				$("#city").empty();
+				$("#city").append('<option name="city" value="0">选择市</option>');
+				if(data.res == "success"){
+					$.each(data.list,function(i, n){
+						if(i == cid){
+							$("#city").append('<option selected="" name="city" value="'+ i+'">'+ n +'</option>');
+						}else{
+							$("#city").append('<option name="city" value="'+ i+'">'+ n +'</option>');
+						}
+					});
+				}
+			}
+		},"json");
+	});
+	function getCity(){
+		var provinceID = $("#province").val();
+		$.post("index.php?r=xtsz/GetCity",{provinceID:provinceID},function(data){
+			if(data.res == "success"){
+				$("#city").empty();
+				$("#city").append('<option name="city" value="0">选择市</option>');
+				if(data.res == "success"){
+					$.each(data.list,function(i, n){
+						$("#city").append('<option name="city" value="'+ i+'">'+ n +'</option>');
+					});
+				}
+			}
+		},"json");
+	}
+	//添加城市以及区号
+	function updateArea(){
+		var aid = $("#aid").val();
+		var cid = $("#city").val();
+		var name = $("#updateArea").val();
+		if(name == "" ||  cid == 0){
+			alert("城市和区名都不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/UpdateArea",{aid:aid,cid:cid,name:name},function(data){
+				alert(data.mes);
+				if(data.res == "success"){
+					parent.location.href = "index.php?r=xtsz/GetDqHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

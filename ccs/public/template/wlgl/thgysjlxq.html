@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货供应商记录详情</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">退货供应商记录详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>退货供应商记录详情</span></div>
+    
+    <ul class="forminfo">
+	<input id="orderno" type="hidden" value="{{$orderno}}"/>
+	<table class="imgtable">
+		<thead>
+			<tr>
+			    <th>序号</th>
+				<th>采购单编号</th>
+				<th>商品款号</th>
+				<th>退货总数</th>
+				<th>退货总额</th>
+				<th>采购量</th>
+				<th>进货单价</th>
+				<th>进货总价</th>
+				<th>厂家货号</th>
+				<th>退货时间</th>
+			</tr>
+		</thead>
+    	<tbody id="getCheckeboxId">
+
+		</tbody>
+		<tfoot>
+			<!-- <tr><td colspan="15" class="page"></td></tr> -->				
+		</tfoot>
+    </table>
+    <input id="return" name="" type="button" class="btn" value="返回"/>
+					   
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thgysjlxq.js"></script>
+</html>

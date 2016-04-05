@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录日志</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>登录日志</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>登录日志</span></div>
+    
+    <ul class="forminfo">
+    <form action="index.php?r=login/GetSet" method="post">
+    	<li>
+			工号：<input id="gh" type="text" class="dfinput" style="width:140px"/>
+			分机：<input id="fj" type="text" class="dfinput" style="width:140px"/>
+			时间：<input id="begindate" type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setBegindate})"/>
+			到<input id="enddate" type="text" class="dfinput" style="width:140px" onClick="getEnddate()"/>
+			<input name="" type="button" class="btn" onclick="getSet()" value="开始查询"/>
+		</li>
+    </form>
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="10%"> </th>
+				<th width="30%">工号</th>
+				<th width="15%">分机</th>
+				<th width="15%">IP</th>
+				<th width="10%">MAC地址</th>
+				<th width="40%">登录时间</th>
+			</tr>
+		</thead>
+		
+		<tbody id="dlrzTable">
+		</tbody>
+    	<tfoot>
+    		
+    	</tfoot>
+    </table>
+    <li></li>
+	<li>
+		<input type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1);"/>
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/dlrz.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+<script type="text/javascript">
+	function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate,onpicked:setEnddate});
+	}
+	function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+</script>
+</html>

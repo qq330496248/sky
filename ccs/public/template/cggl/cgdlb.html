@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息管理系统界面</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">采购单列表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>采购单列表</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input id="cpmc" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input id="cgkh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		采购单号：<input id="cgdh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：
+		<select class="dfinput" id="gys" style="width:150px">
+			<option value="">全部</option>
+			{{foreach from=$SuppliersOptions key=value item=name}}
+			<option name="gys" checked="checked" value="{{$name.cgab01}}">{{$name.cgab02}}</option>
+			{{/foreach}}
+		</select>
+        </li>
+        <li>
+        完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成：
+		<select class="dfinput" id="finish" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$IsCompleteOptions key=value item=name}}
+			<option name="sfwc" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		 &nbsp;&nbsp;&nbsp;&nbsp;
+		 审核：
+		<select class="dfinput" id="check" style="width:100px">
+			<option value="">--</option>
+			<option value="未审核">未审核</option>
+			<option value="已审核">已审核</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		 下单时间：<input id="begindate" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到 &nbsp;<input id="enddate" name="" type="text" class="dfinput" style="width:100px" onClick="getEnddate()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;<input id="PurchaseList" name="" type="button" class="btn" value="查询"/>
+		<!-- <a href="xcgd.html"><input name="" type="button" class="btn" value="下采购单"/></a> -->
+		 &nbsp;&nbsp;
+		<a href="index.php?r=cggl/GetXcgdHtml"><input name="" type="button" class="btn" value="下采购单"/></a>&nbsp;&nbsp;&nbsp;
+		
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="14" style="text-align:center">采购单列表</th>
+			</tr>
+			<tr>
+				<th width="6%">单号</th>
+				<th width="5%">审核</th>
+				<th width="4%">款号</th>
+				<th width="15%">产品名</th>
+				<th width="6%">货号</th>
+				<th>属性</th>
+				<th width="6%">进价</th>
+				<th width="6%">数量</th>
+				<th width="6%">运费</th>
+				<th width="9%">总金额</th>
+				<th width="4%">入库</th>
+				<th width="6%">人员</th>
+				<th width="8%">供货商</th>
+				<th width="9%">时间/操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getPurchase">
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				<td id="page" colspan="14" > </td>
+			</tr>
+		</tfoot>
+    
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/cggl/cgdlb.js"></script>
+<script type="text/javascript">
+	/*function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+</html>
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>黑名单导入</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">黑名单导入</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>黑名单导入</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+    <li><font style="color:#FF0000;">拦截不被信任的来电用户</font></li>
+	<li>
+		<!-- <a href="index.php?r=khgl/">
+			<input name="" type="button" class="btn" value="黑名单"/>
+		</a>
+		<a href="index.php?r=khgl/">
+			<input name="" type="button" class="btn" value="黑名单导入"/>
+		</a> -->
+		<a class="selected" href="index.php?r=khgl/GetkhhmdHtml&status=0"><input id="btn_1" type="button" class="btn" value="黑名单"/></a>
+		<a class="selected" href="index.php?r=khgl/GethmddrHtml&status=1"><input id="btn_2" type="button" style="color:#000000; background:#999999" class="btn" value="黑名单导入"/></a>
+		
+	</li>
+	<li>
+		上传.csv文件,系统将自动将其中数据导入数据库。可<a href="http://localhost/ccs/template/HmdTemplate.csv" style="color:#0000FF">点击这里</a>下载.csv文件模板，编辑完成后保存为csv格式
+	</li>
+	<form action="index.php?r=excel/Test&type=hmddr" onsubmit="return checkExist('hmd')" method="post" enctype="multipart/form-data">
+		 <li>
+			<span>CSV文件：</span>
+			<input type="file" id="hmd" name="file" />
+			<input name="" type="submit" class="btn" value="导入"/>
+
+		</li>
+	</form>
+    </ul>
+		
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript">
+  function checkExist(str){
+    var s = $("#"+str).val();
+    if(s == ''){
+      alert("上传内容不能为空");
+      return false;
+    }
+    return true;
+  }
+</script>
+</html>

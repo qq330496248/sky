@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>问卷列表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">外呼管理</a></li>
+    <li><a href="#">问卷列表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>问卷列表</span></div>
+    
+    <ul class="forminfo">
+    <li>	
+    	问卷名称：<input id="kddh" name="" type="text" class="dfinput" style="width:200px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;创建时间：<input id="cjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input id="cjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getCjsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="搜索"/>
+		&nbsp;&nbsp;<a href="index.php?r=whgl/GetTjwjHtml"><input name="" type="button" class="btn" value="问卷添加"/></a>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="2%">序号</th>
+				<th width="6%">问卷名称</th>
+				<th width="6%">创建时间</th>
+				<th width="6%">最近更新</th>
+				<th width="6%">更新时间</th>
+				<th width="16%">操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot>
+			<tr><td colspan="6" class="page"></td></tr>				
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/whgl/wjlb_wh.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

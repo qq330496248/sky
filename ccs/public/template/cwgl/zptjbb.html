@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>赠品统计报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">赠品统计报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>赠品统计报表</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    产品分类：
+		<select class="dfinput" style="width:100px">
+			<option>请选择</option>
+			<option>丰胸</option>
+			<option>支出记录</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：<select class="dfinput" style="width:100px">
+			<option>--</option>
+		</select>
+		
+	</li>
+	<li>
+		签收时间：<input name="" type="text" class="dfinput" style="width:100px" />
+		到&nbsp;<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		退货时间：<input name="" type="text" class="dfinput" style="width:100px" />
+		到&nbsp;<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="查询"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="6">赠品统计报表</th>
+			</tr>
+			<tr>
+				<th width="10%">款号</th>
+				<th width="50%">产品名称</th>
+				<th width="10%">退货数量</th>
+				<th width="10%">签收数量</th>
+				<th width="10%">成本单价</th>
+				<th>成本金额</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td colspan="2" style="text-align:center">
+					总计
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="6" style="text-align:center">
+					暂时没有记录！
+				</td>
+			</tr>
+		</tbody>
+    
+    </table>
+    <li style="padding-top:3px;">
+    	<input name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+</html>

@@ -1,0 +1,20 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 点击列标题排序，按住CTRL键可以多列综合排序</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0">
+	<script type="text/javascript"> 
+	    //设置 Resortable 属性为 true，开启重排序功能     
+		CreateDisplayViewerEx("100%", "100%", "../grf/1a.grf", "../data/xmlCustomer.php", true, "<param name=Resortable value=true>");
+		ReportViewer.ToPostColumnLayout = true;
+	</script>
+</body>
+</html>

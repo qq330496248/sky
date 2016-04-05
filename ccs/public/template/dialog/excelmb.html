@@ -1,0 +1,44 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>{{$str}}模板</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">  
+    <input type="hidden" value="{{$type}}" id="type"  />
+    <li>
+        <select id="allCol" class="dfinput">
+            <option value="0">--</option>
+            {{foreach from=$allCol key=value item=name}}
+            <option value="{{$name.id}}">{{$name.valuetype3}}</option>
+            {{/foreach}}
+        </select>
+        <input type="button" class="btn-info" value="添加" onclick="addCol()" style="width:100px;" />
+    </li>
+    <li>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="10%"> </th>
+                    <th width="30%">列名</th>
+                    <th width="30%">排序</th>
+                    <th width="30%">操作</th>
+                </tr>
+            </thead>
+            <tbody id="mbTable">
+                
+            </tbody>
+            <tfoot>
+                <tr><td colspan="4" id="page"></td></tr>                
+            </tfoot>
+        </table>
+    </li>
+    </ul>
+    </div>
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>		
+<script type="text/javascript" src="public/template/js/dialog/excelmb.js"></script> 
+<script type="text/javascript">
+	
+</script>
+
+</html>

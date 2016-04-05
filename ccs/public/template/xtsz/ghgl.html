@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>工号管理</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>工号管理</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>工号管理</span></div>
+    
+    <ul class="forminfo">
+    <form action="index.php?r=xtsz/GetRylistByCond" method="post">
+    	<li>
+			提醒：最多<font color="#FF0000"><b> 人 </b></font>同时在线，当前在线 <font color="#FF0000"><b> 人  </b></font>
+			<a href="index.php?r=xtsz/GetTjghHtml"><input name="" type="button" class="btn" value="添加工号"/></a>
+			<input name="" type="button" class="btn" value="批量导入"/>
+			<a href="index.php?r=login/GetDlrzHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="查看登录日志"/></a>
+		</li>
+		<li>
+		角色:
+			<select class="dfinput" name="groupbh" id="groupbh" style="width:100px">
+				<option value="0">--</option>
+				{{foreach from=$role key=value item=name}}
+				<option id="qxjs" name="qxjs" value="{{$name.groupbh}}">{{$name.groupname}}</option>
+				{{/foreach}}
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			分组：
+			<select id="dept" class="dfinput" style="width:100px">
+				<option value="">--</option>
+				{{foreach from=$dept key=value item=name}}
+				<option value="{{$name.depttext}}">{{$name.depttext}}</option>
+				{{/foreach}}
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			在线：
+			<select class="dfinput" id="isonline" style="width:80px">
+				<option value="">--</option>
+				<option value="T">在线</option>
+				<option value="F">离线</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			禁用：
+			<select class="dfinput" id="enabled" style="width:80px">
+				<option value="">--</option>
+				<option value="F">禁用</option>
+				<option value="T">可用</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			工号：<input name="username" id="username" type="text" class="dfinput aainput" value="" />
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			姓名：<input name="personname" id="personname" type="text" class="dfinput aainput" style="width:100px" />
+			<input id="ghQuery" name="" type="button" class="btn" value="查询"/>
+		</li>
+
+    </form>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="5%">工号</th>
+				<th width="6%">姓名</th>
+				<th width="7%">所属角色</th>
+				<th width="7%">最后登录时间</th>
+				<th width="8%">登录IP</th>
+				<th width="5%">分机</th>
+				<th width="6%">手机号码</th>
+				<th>可看组别</th>
+				<th width="10%">限定IP</th>
+				<th width="10%">限定MAC</th>
+				<th width="5%">在线</th>
+				<th width="5%">禁止</th>
+				<th width="9%">操作</th>
+			</tr>
+		</thead>
+		
+		<tbody name="ghglTable" id="ghglTable">
+
+		</tbody>
+    	<tfoot>
+    		<tr><td colspan="13" id="page"></td></tr>
+    	</tfoot>
+    </table>
+	<li style="padding-top:3px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/ghgl_xtsz.js"></script>
+</html>

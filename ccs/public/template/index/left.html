@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="public/template/js/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){	
+     $.post('index.php?r=xtsz/GetRyRight',function(data){
+        if(data.result == 'success'){
+            //$('#leftmenu').empty();
+            var length = data.list.length;
+            var dd = '';
+            for(var i = 0; i < length; i++){
+                var listInfo = '';
+                if(data.list[i]['menu_bh'] == ""){
+                    dd = data.list[i]['menu_name'];
+                    $("#"+dd.substr(1,2)).css("display","block");
+                }else{
+                    listInfo += ' <li><div class="header" onclick="changeMenu(this)"><cite></cite>'
+                                +'<a href="'+data.list[i]['web']+'" target="rightFrame">'+data.list[i]['illustrate']+'</a><i></i></div></li>';
+                }
+                $('#'+dd).append(listInfo); 
+            }
+        }
+    },'json');
+	
+	// 三级菜单点击
+	$('.sub-menus li').click(function(e) {
+        $(".sub-menus li.active").removeClass("active")
+		$(this).addClass("active");
+    });
+	
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		$('dd').find('.menuson').slideUp();
+		if($ul.is(':visible')){
+			$(this).next('.menuson').slideUp();
+		}else{
+			$(this).next('.menuson').slideDown();
+		}
+	});
+
+    $('.title').each(function(){
+        $(this).next('.menuson').hide();
+    });
+//修改高度
+    windowResize();
+    $(window).resize(function() {
+        windowResize();
+    }); 
+   
+});
+//获取高度
+function getWindowHeight() {
+    return $(window).height();
+}
+function windowResize() {
+    var height = getWindowHeight() - 40;
+    $('#menu').height(height);
+    //getheight();
+    //$('body').layout();
+}
+
+//导航切换
+function changeMenu(menu){
+    var $parent = $(menu).parent();
+    $(".menuson>li.active").not($parent).removeClass("active open").find('.sub-menus').hide();
+    
+    $parent.addClass("active");
+    if(!!$(menu).next('.sub-menus').size()){
+        if($parent.hasClass("open")){
+            $parent.removeClass("open").find('.sub-menus').hide();
+        }else{
+            $parent.addClass("open").find('.sub-menus').show(); 
+        }
+    }	
+}
+</script>
+
+
+</head>
+
+<body style="background:rgb(194, 213, 217);">
+           <div class="lefttop">
+           <span>
+               <img src="public/template/images/house1.png" title="系统首页" style="width:20px;height:20px" />
+           </span>
+           <a href="index.php?r=login/GetIndexHtml" target="_top"><font style="color:#FFFFFF;font-size:15px">首页</font></a>
+           &nbsp;&nbsp;
+           
+           <img src="public/template/images/call34.png" title="座席状态" style="width:25px;height:25px;top:7px;position:absolute;" />
+           <a href="index.php?r=hwgl/GetZxztHtml" target="rightFrame"><font style="color:#FFFFFF;font-size:15px;left:107px;position:absolute;">座席状态</font></a>
+           </div>
+            <input type="hidden" id="appgroup" value="{$sessioninfo.groupbh}" />
+            <div style="overflow-y:auto; overflow-x:hidden; width:186px;"  id="menu">
+
+                <dl class="leftmenu" id="leftmenu">
+                
+                <dd id="01" style="display:none">
+                <div class="title">
+                <span><img src="public/template/images/left/customers.png" /></span>客户管理
+                </div>
+                    <ul class="menuson" id="A01">
+                    </ul>    
+                </dd>
+
+                <dd id="02" style="display:none">
+                <div class="title">
+                <span><img src="public/template/images/left/book.gif" /></span>订单管理
+                </div>
+                <ul class="menuson" id="A02">
+                    
+                </ul>     
+                </dd> 
+
+                <dd id="03" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/infomation.png" style="width:16px;height:16px" /></span>物流管理</div>
+                <ul class="menuson" id="A03">
+                        
+                </ul>    
+                </dd>  
+
+                <dd id="04" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/wo.png" /></span>采购管理</div>
+                <ul class="menuson" id="A04">
+                            
+                </ul>
+                </dd>
+
+                <dd id="05" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/money.jpg" style="width:16px;height:16px" /></span>财务管理</div>
+                <ul class="menuson" id="A05">
+                    
+                </ul>    
+                </dd> 
+
+                <dd id="06" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/staments.png" /></span>分类报表</div>
+                <ul class="menuson" id="A06">
+                   
+                </ul>    
+                </dd> 
+
+                <dd id="07" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/cp.jpg" style="width:16px;height:16px" /></span>产品管理</div>
+                    <ul class="menuson" id="A07">
+                    
+                    </ul>    
+                </dd>
+                <dd id="08" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/setup.png" /></span>通话管理</div>
+                    <ul class="menuson" id="A08">
+                    
+                    </ul>    
+                </dd>
+
+                <dd id="09" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/media.jpg" style="width:16px;height:16px" /></span>媒体管理</div>
+                    <ul class="menuson" id="A09">
+                   
+                    </ul>    
+                </dd>
+
+                <dd id="10" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/system.gif" /></span>知识库</div>
+                    <ul class="menuson" id="A10">
+                    
+                    </ul>    
+                </dd>
+
+                <dd id="11" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/organization.png" /></span>系统设置</div>
+                    <ul class="menuson" id="A11">
+                    
+                    </ul>    
+                </dd> 
+
+                <dd id="12" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/call.png" /></span>话务管理</div>
+                    <ul class="menuson" id="A12">
+                    
+                    </ul>    
+                </dd> 
+
+                <dd id="13" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/callmore.png" /></span>外呼管理</div>
+                    <ul class="menuson" id="A13">
+                   
+                    </ul>    
+                </dd> 
+
+                <dd id="14" style="display:none">
+                <div class="title"><span><img src="public/template/images/left/sms.png" /></span>短信平台</div>
+                    <ul class="menuson" id="A14">
+                    
+                    </ul>    
+                </dd> 
+                
+
+                </dl>
+            </div>
+    
+</body>
+
+</html>

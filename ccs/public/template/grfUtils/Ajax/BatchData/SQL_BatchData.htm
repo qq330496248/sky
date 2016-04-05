@@ -1,0 +1,47 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 分批次获取报表数据，适合于大树据量报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+function window_onload() 
+{
+    ReportViewer.Start();
+}
+
+function OnBatchFetchRecord()
+{
+    //在 GRDisplayViewer 的 BatchFetchRecord 事件上向服务器请求每一批次的数据
+    
+    //找出已取数据最后一条记录的关键字段值，作为下一批取数的筛选条件
+    var OrderID = 0;
+    if ( !ReportViewer.Report.DetailGrid.Recordset.Eof() )
+    {
+        ReportViewer.Report.DetailGrid.Recordset.Last();
+        OrderID = ReportViewer.Report.FieldByName("OrderID").AsInteger;
+    }
+    
+    //BatchStartRecNo指定本批次数据的起始记录号
+    //BatchWantRecords指定一个批次希望获取的记录数
+    //用 Ajax 载入分批载入报表数据必须用 HTTP 同步数据请求
+	//ReportViewer.Report.LoadDataFromURL("../../11.BatchData/SQL_BatchDataXml.php?StartNo=" + ReportViewer.BatchStartRecNo + "&WantRecords=" + ReportViewer.BatchWantRecords + "&OrderID=" + OrderID);
+    AjaxSyncLoadReportData(ReportViewer.Report, "../../11.BatchData/SQL_BatchDataXml.php?StartNo=" + ReportViewer.BatchStartRecNo + "&WantRecords=" + ReportViewer.BatchWantRecords + "&OrderID=" + OrderID);
+}
+    </script>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    //参数 BatchGetRecord 为 true，指定报表数据分批次读取
+	    //参数 BatchWantRecords 指定每批次希望获取的记录数
+	    
+	    //注意：第5个参数必须为false，让插件不要自动运行，而是在网页的 onload 事件上调用 Start 方法启动插件运行。
+	    //不然在 FireFox 中运行会出错， 在 OnBatchFetchRecord 中不能获取到 ReportViewer 引用，可能是网页内部关联顺序原因
+        CreateDisplayViewerEx("100%", "100%", "../../11.BatchData/SQL_BatchData.grf", "", false, 
+          "<param name=RowsPerPage value=20>" +
+          "<param name=BatchGetRecord value=true>" +
+          "<param name=BatchWantRecords value=40>" +
+          "<param name=OnBatchFetchRecord value='OnBatchFetchRecord'>");
+	</script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>财务审核详情</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">财务审核详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+ 
+    <div class="formtitle" id="ddxx"><span>财务审核详情</span></div>
+    
+    <ul class="forminfo" id="ddxxxx">
+		<table class="imgtable">
+			<tr>
+				<th colspan="8">财务审核</th>
+			</tr>
+			<input id="ordernum" type="hidden" value="{{$orderno.xsaa01}}"/>
+			<tr>
+				<td style="text-align:right">	
+					订单编号：
+				</td>
+				<td style="text-align:left">	
+					<font id="orderno">{{$orderno.xsaa02}}</font>
+				</td>
+				<td style="text-align:right">	
+					下单时间：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa23}}</font>
+				</td>
+				<td style="text-align:right">	
+					客户编号：
+				</td>
+				<td style="text-align:left">	
+					<font id="clientno">{{$orderno.xsaa04}}</font>
+				</td>
+				<td style="text-align:right">	
+					订单状态：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa29}}</font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right">	
+					快递公司：
+				</td>
+				<td style="text-align:left">	
+					<select class="dfinput" style="width:100px">
+						<option name='ddkdgs' value="">--</option>
+					     {{foreach from=$DeliveryCompanyOptions key=value item=name}}
+					     <option name='ddkdgs' checked="checked" value="{{$name}}" {{if ($orderno.xsaa41 == $name) }}selected{{/if}}>{{$name}}</option>
+					     {{/foreach}}
+					</select>
+				</td>
+				<td style="text-align:right">	
+					业绩工号：
+				</td>
+				<td style="text-align:left">	
+					<font id="yjgh">{{$orderno.xsaa33}}</font>
+				</td>
+				<td style="text-align:right">	
+					支付方式：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa13}}</font>
+				</td>
+				<td style="text-align:right">	
+					订单来源：
+				</td>
+				<td style="text-align:left">	
+					<font></font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right">
+					订单备注：
+				</td>
+				<td colspan="5" style="text-align:left">
+					<input id="khddbz" name="" type="text" class="dfinput" style="width:300px;" value="{{$orderno.xsaa36}}" />
+				</td>
+				<td style="text-align:right">	
+					下单人：
+				</td>
+				<td style="text-align:left">	
+					<font id="xdr">{{$orderno.xsaa48}}</font>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="8">收货联系信息</th>
+			</tr>
+			<tr>
+				<td style="text-align:right">	
+					姓名：
+				</td>
+				<td style="text-align:left">	
+					<input id="khname" name="" type="text" class="dfinput" style="width:200px;" value="{{$orderno.xsaa05}}" />
+				</td>
+				<td style="text-align:right">	
+					邮编：
+				</td>
+				<td style="text-align:left">	
+					<input id="postcode" name="" type="text" class="dfinput" style="width:200px;" value="{{$orderno.xsaa10}}" />
+				</td>
+				<td style="text-align:right">	
+					电话：
+				</td>
+				<td style="text-align:left">	
+					<input id="telphone" name="" type="text" class="dfinput" style="width:200px;" value="{{$orderno.xsaa07}}" />
+					<img class="dial" sign="2" src="public/template/images/calling/call_1.png" style="cursor:pointer;width:20px;height:20px;margin:0;" title="直接拨打" alt="直接拨打">
+				</td>
+				<td style="text-align:right">	
+					手机：
+				</td>
+				<td style="text-align:left">
+					<input id="khphone" type="hidden" value="{{$orderno.xsaa06}}" />
+					<input id="fieldDial" type="hidden" value="{{$DialPhone}}" />
+					<input id="mobilePhone" name="" type="text" class="dfinput" style="width:200px;" value="{{$mobile}}" />
+					<img class="dial" sign="1" src="public/template/images/calling/call_1.png" style="cursor:pointer;width:20px;height:20px;margin:0;" title="直接拨打" alt="直接拨打">
+					<img id="overseasCall" src="public/template/images/calling/call_2.png" style="cursor:pointer;width:20px;height:20px;margin:0;" title="外地加{{$DialPhone}}拨打" alt="外地加{{$DialPhone}}拨打">
+					<img src="public/template/images/calling/sms.png" style="cursor:pointer;width:20px;height:20px;margin:0;" title="发送短信" alt="发送短信">
+				</td>
+			</tr>
+			<tr>
+				<td>地区：</td>
+				<td colspan="7" style="text-align:left">
+					<select id="province" class="dfinput" style="width:100px">
+					<option value="">选择省</option>
+					{{foreach from=$appprovinceOptions key=value item=name}}
+					<option name="province" {{if $value == $orderno.provinceid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+					{{/foreach}}
+					</select>
+					<select id="city" class="dfinput" style="width:100px">
+					<option value="">选择市</option>
+					{{foreach from=$appcityOptions key=value item=name}}
+					<option name="city" {{if $value == $orderno.cityid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+					{{/foreach}}
+					</select>
+					<select id="area" class="dfinput" style="width:100px">
+					<option value="">选择区/县</option>
+					{{foreach from=$appareaOptions key=value item=name}}
+					<option name="area" {{if $value == $orderno.areaid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+					{{/foreach}}
+					</select>
+					详细地址：
+					{{if $orderno.province}}
+					<font>{{$orderno.province}}-{{$orderno.city}}-{{$orderno.area}}</font>
+					{{/if}}
+					<input id="deaddress" name="" type="text" class="dfinput" style="width:300px;" value="{{$orderno.addrdetail}}" />
+					<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="复制地址"/>
+					发票：
+					<select class="dfinput" style="width:100px">
+						{{foreach from=$InvoiceTypeOptions key=value item=name}}
+						<option name='khfplx' checked="checked" value="{{$name}}" {{if ($orderno.xsaa14 == $name) }}selected{{/if}}>{{$name}}</option>
+						{{/foreach}}
+					</select>
+				</td>
+			</tr>
+		</table>
+		<li></li>
+		<li>
+			<input id="saveOrder" name="" type="button" class="btn" style="margin-left:670px;width:150px;color:#C0C0C0;background:#999999;cursor:not-allowed;" disabled="disabled" value="确认修改收货人信息"/>
+		</li>
+
+		<table class="imgtable">
+		
+			<thead>
+				<tr>
+					<th>款号</th>
+					<th>商品名称</th>
+					<th>价格</th>
+					<th>原价</th>
+					<th>优惠</th>
+					<th>数量</th>
+					<th>小计</th>
+					<th>库存</th>
+					<th>已订</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr id="orderTotalNum">
+					<td colspan="9">
+						商品数量：<font id="goodsTotalNum" color="#FF0000">  </font>
+						商品总价：<font id="goodsTotalPrice" color="#FF0000">  </font>
+						商品总原价：<font id="goodsTotalOriginalPrice" color="#FF0000">  </font>
+						订单运费：<font id="orderShipment" color="#FF0000">  </font>
+						订单总价：<font id="orderTotalPrice" color="#FF0000">  </font>
+						已收定金：<font id="gotEarnestMoney" color="#FF0000">  </font>
+						代收金额：<font id="collectionMoney" color="#FF0000">  </font>
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		<li style="padding-top:4px;padding-left:440px;">
+			<input id="backToUnconfirmed" {{if $orderno.xsaa29 == '已发货' || $orderno.xsaa29 == '已作废' || $orderno.xsaa29 == '交易成功' || $orderno.xsaa29 == '拒收'}}style="cursor:not-allowed;color:#C0C0C0;" disabled="disabled"{{/if}} name="" type="button" class="btn" value="打回修改"/>
+			<input id="changeOrder" name="" type="button" class="btn" style="cursor:not-allowed;color:#C0C0C0;" disabled="disabled" value="改单"/>
+			<input id="checkedOrder" name="" type="button" class="btn" {{if $orderno.xsaa29 == '待发货' || $orderno.xsaa29 == '已发货' || $orderno.xsaa29 == '已作废' || $orderno.xsaa29 == '交易成功' || $orderno.xsaa29 == '拒收'}}style="cursor:not-allowed;color:#C0C0C0;" disabled="disabled"{{/if}} style="width:110px" value="财务审核"/>
+			<a id="before" {{if $orderno.minorder == $orderno.xsaa01}}style="display:none;"{{/if}} href="index.php?r=cwgl/OrderFinanceCheckDetails&orderno={{$orderno.xsaa02}}&ordernum={{$orderno.xsaa01}}&symbol=before"><input name="" type="button" class="btn" value="上一单"/></a>
+			<a id="next" {{if $orderno.maxorder == $orderno.xsaa01}}style="display:none;"{{/if}} href="index.php?r=cwgl/OrderFinanceCheckDetails&orderno={{$orderno.xsaa02}}&ordernum={{$orderno.xsaa01}}&symbol=next"><input name="" type="button" class="btn" value="下一单"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			订单类型：
+			<select class="dfinput" style="width:100px">
+			     {{foreach from=$OrderTypeOptions key=value item=name}}
+			     <option name='ddlx' checked="checked" value="{{$name}}" {{if ($orderno.xsaa11 == $name) }}selected{{/if}}>{{$name}}</option>
+			     {{/foreach}}
+			</select>
+			<input id="saveOrderType" name="" type="button" class="btn" style="cursor:not-allowed;color:#C0C0C0;" disabled="disabled" value="保存"/>
+		</li>
+		<!--商品详情弹窗 start-->
+		<div class="TCGB TC600 mydetTC" id="goodDetilDiv">
+			<div class="TCBox" style="width:500px;">
+				<h2><span title="TCtitle">商品详细--网页对话框<a><img id="closeDetail" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></a></span></h2>
+				<div class="TCBody">
+					<!-- <ul class="keyVal">
+						
+					</ul> -->
+					<table>
+						<tr>
+							<td>商品款号：<font id="spkh"></font> </td>
+							<td style="padding-left:180px;">规格：<font id="spgg"></font> </td>
+						</tr>
+						<tr>
+							<td>商品名称：<font id="spmc"></font> </td>
+							<td style="padding-left:180px;">销售价：<font id="xsj"></font> </td>
+						</tr>
+						<tr>
+							<td colspan="2">商品图片：<img style="width:150px;height:100px;" id="sptp" src="" alt="" /> </td>
+						</tr>
+						<tr>
+							<td colspan="2">详细描述：<font id="xxms"></font> </td>
+						</tr>
+						<tr>
+							<td colspan="2" style="padding-top:30px;padding-left:165px;"><input id="closeDetail" name="" type="button" class="btn" value="关闭"/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--商品详情弹窗 end-->
+
+		<!--改单弹窗 start-->
+		<div class="TCGB TC600 mydetTC" id="changeOrderGoods">
+			<div class="TCBox">
+				<h2><span title="TCtitle">商品详细--网页对话框</span><i class="TCClose" id="closeDetil"></i></h2>
+				<div class="TCBody">
+					<!-- <ul class="keyVal">
+						
+					</ul> -->
+				<ul class="forminfo">
+				<table class="imgtable">
+					<thead>
+						<tr>
+							<th colspan="6s">
+								订单编号：
+								支付方式：
+								订单运费：
+								订单总价：
+							</th>
+						</tr>
+						<tr>
+							<th width="5%"></th>
+							<th width="10%">款号</th>
+							<th width="30%">商品名称</th>
+							<th>商品单价</th>
+							<th>商品数量</th>
+							<th width="20%">小计</th>
+						</tr>
+					</thead>
+						<tr>
+							<td colspan="6" style="text-align:left">
+								<font color="#FF0000">请在要删除的商品前面打勾！</font>
+							</td>
+						</tr>
+					<tbody>
+						<td colspan="6">
+								<input type="checkbox" />全选
+								<input name="" type="button" class="btn" value="批量审单"/>&nbsp;&nbsp;&nbsp;<input name="" type="button" class="btn" value="导出到Excel"/>
+							</td>
+						
+						<tr>
+							
+							<td colspan="6">
+								金额总计： 元 共 条记录
+							</td>
+						</tr>
+					</tbody>
+						<tr>
+							<td colspan="6" style="text-align:left">
+								<font color="#FF0000">在下面可以添加新商品</font>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<input name="" type="text" class="dfinput" style="width:100px" />
+							</td>
+							<td>
+								<input name="" type="text" class="dfinput" style="width:400px" />
+							</td>
+							<td>
+								<input name="" type="text" class="dfinput" style="width:200px" />
+							</td>
+							<td>
+								<input name="" type="text" class="dfinput" style="width:200px" />
+							</td>
+						</tr>
+						<tr style="text-align:left">
+							<td colspan="3"><input name="" type="button" class="btn" value="增加商品行"/></td>
+							<td colspan="3">
+								新增商品数量：<font color="#FF0000">0</font>
+								新增商品总价：<font color="#FF0000">0</font>
+							</td>
+						</tr>
+			    </table>
+			    <li></li>
+				<li>
+					<font color="#FF0000">订单实收总价：</font>
+					<input name="" type="text" class="dfinput" style="width:100px" />
+				</li>
+				<li>
+					<input name="" type="button" class="btn" value="提交保存"/>
+					<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="关闭"/>
+				</li>
+			    </ul>
+				</div>
+			</div>
+		</div>
+		<!--改单弹窗 end-->
+		
+		<!-- 跟进记录start -->
+		<div class="formtitle" id="gjjl"><span style="cursor:pointer;">>>隐藏跟进记录</span></div>
+			<ul class="forminfo gjjlxx" style="float:left;">
+				<li>
+					<table id="tableFollow" style="width:1000px;" class="imgtable">
+						<thead>
+							<tr>
+								<th width="3%">编号</th>
+								<th width="8%">工号</th>
+								<th width="8%">姓名</th>
+								<th width="10%">时间</th>
+								<th width="20%">备注</th>
+								<th width="4%">操作</th>
+							</tr>
+						</thead>
+						<tbody id="tbody2">
+						</tbody>
+						<tfoot>
+			                <tr><td colspan="15" class="page"></td></tr>				
+		                </tfoot>
+					</table>
+					
+				</li>
+				
+			</ul>
+			<ul class="gjjlxx" style="float:left;padding-left:10px;">
+			<li>内容：</li>
+			<li>
+				<textarea class="textinput" id="content"></textarea>
+			</li>
+			<li style="padding-top:4px;">
+				<input id="szdbsx" name="" type="checkbox" value="保存"/>需要设置待办事项
+			</li>
+			<li class="dbsx" style="display:none;">
+				待办时间：
+				<input id="dbsj" name="" type="text" class="dfinput" style="width:180px;" value="" onClick="WdatePicker()"/>
+			</li>
+			<li class="dbsx" style="padding-top:4px;padding-bottom:10px;display:none;">
+				跟 进 人 ：
+				<select  id="khgsgh" class="dfinput" style="width:100px">
+					{{foreach from=$WorkNumberOptions key=value item=name}}
+					<option name="khgsgh" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+					{{/foreach}}
+				</select>
+				分组：
+				<select class="dfinput" style="width:100px">
+					{{foreach from=$GroupsTypeOptions key=value item=name}}
+					<option name="khszz"  value="{{$name}}">{{$name}}</option>
+					{{/foreach}}
+				</select>
+			</li>
+			<li>
+				<input id="addToDo" name="" type="button" class="btn" value="保存"/>
+			</li>
+				
+		</ul>
+		<div style="clear:both;"></div>
+		<!-- 跟进记录end -->
+	</div>
+			
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/cwshxq_cw.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_dd.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+</html>

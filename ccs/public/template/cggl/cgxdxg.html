@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>采购下单修改</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">采购下单修改</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>采购下单修改</span></div>
+    
+    <ul class="forminfo">
+    <li>
+        <input id="clientno" type="hidden" value="{{$clientno.cgaa02}}"/>
+		供应商：
+		<select class="dfinput" style="width:100px">
+           <option value="{{$clientno.cgaa13}}">{{$clientno.cgaa13}}</option>
+           <option value="">全部</option>
+           {{foreach from=$SuppliersOptions key=value item=name}}
+           <option name="gys" checked="checked" value="{{$name.cgab02}}">{{$name.cgab02}}</option>
+           {{/foreach}}
+		</select>
+
+		预计到货时间<input id="yjdhsj" value="{{$clientno.cgaa14}}" name="" onClick="WdatePicker()" type="text" class="dfinput" style="width:100px" />
+	</li>
+  	<li>
+		<input id="Preservation" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" value="返回" onclick="history.go(-1);"/>
+	</li>
+    </ul>
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script> 
+<script type="text/javascript" src="public/template/js/xcgdxg_cg.js"></script>
+
+</html>

@@ -1,0 +1,273 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 用程序定义报表模板</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+var Report;
+
+function window_onload() {
+    Report = ReportViewer.Report;
+    
+    //通过程序代码定义报表模板
+    //<<
+	Report.Clear();
+
+	//定义报表主对象的属性
+	Report.Font.Point = 9;
+
+	//定义页眉
+	DefinePageHeader();
+
+	//定义页脚
+	DefinePageFooter();
+
+	//定义报表头
+	DefineReportHeader();
+
+	//定义报表尾
+	DefineReportFooter();
+
+	//定义明细网格
+	DefineDetailGrid();
+    //>>
+    
+    //如果要检查定义的模板，可以保存到文件，然后用报表设计器打开查看
+    //Report.SaveToFile("c:\\Program.grf");
+        
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function DefinePageHeader() {
+	Report.InsertPageHeader();
+	Report.PageHeader.Height = 0.58;
+
+	//插入一个部件框
+	var StaticBox = Report.PageHeader.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "欢迎访问：www.GridppReport.com，了解最新产品信息";
+	StaticBox.ForeColor = ColorFromRGB(0, 0, 255); //Red = 0, Green = 0, Blue = 255
+	StaticBox.Left = 0;
+	StaticBox.Top = 0;
+	StaticBox.Width = 8.20;
+	StaticBox.Height = 0.58;
+
+	//插入另一个部件框
+	StaticBox = Report.PageHeader.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "Grid++Report 示例";
+	StaticBox.Font.Point = 11;
+	StaticBox.Font.Bold = true;
+	StaticBox.Dock = 3; //GRDockStyle.grdsRight 使其锚定到页眉的右端
+	StaticBox.TextFormat.TextAlign = 36; //GRTextAlign.grtaMiddleRight 使文本对齐到右端
+	StaticBox.Width = 6;
+}
+
+function DefinePageFooter()
+{
+	Report.InsertPageFooter();
+	Report.PageFooter.Height = 0.58;
+
+	//插入一个系统变量框,显示页号
+	var PageNoBox = Report.PageFooter.Controls.Add(3).AsSystemVarBox; //GRControlType.grctSystemVarBox
+	PageNoBox.SystemVar = 3; //GRSystemVarType.grsvPageNumber
+	PageNoBox.TextFormat.TextAlign = 36; //GRTextAlign.grtaMiddleRight
+	PageNoBox.Left = 12.78;
+	PageNoBox.Top = 0;
+	PageNoBox.Width = 1.40;
+	PageNoBox.Height = 0.40;
+
+	//插入一个静态文本框,显示页号与总页数中间的分隔斜线字符'/'
+	var StaticBox = Report.PageFooter.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "/";
+	StaticBox.TextFormat.TextAlign = 36; //GRTextAlign.grtaMiddleCenter
+	StaticBox.Left = 14.18;
+	StaticBox.Top = 0;
+	StaticBox.Width = 0.40;
+	StaticBox.Height = 0.40;
+
+	//插入另一个系统变量框,显示页数
+	var PageCountBox = Report.PageFooter.Controls.Add(3).AsSystemVarBox; //GRControlType.grctSystemVarBox
+	PageCountBox.SystemVar = 2; //GRSystemVarType.grsvPageCount
+	PageCountBox.Left = 14.58;
+	PageCountBox.Top = 0;
+	PageCountBox.Width = 1.40;
+	PageCountBox.Height = 0.40;
+}
+
+function DefineReportHeader()
+{
+	var Reportheader = Report.ReportHeaders.Add();
+	Reportheader.Height = 1.38;
+
+	//插入一个静态文本框,显示报表标题文字
+	var StaticBox = Reportheader.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "按单统计销售明细报表";
+	StaticBox.Center = 1; //GRCenterStyle.grcsHorizontal 使部件框在节中水平方向上居中对齐
+	StaticBox.Font.Point = 15;
+	StaticBox.Font.Bold = true;
+	StaticBox.Top = 0.40;
+	StaticBox.Width = 5.64;
+	StaticBox.Height = 0.58;
+}
+
+function DefineReportFooter()
+{
+}
+
+function DefineDetailGrid()
+{
+	Report.InsertDetailGrid();
+	Report.DetailGrid.ColumnTitle.Height = 0.58*2;
+	Report.DetailGrid.ColumnContent.Height = 0.58;
+	Report.DetailGrid.ColumnContent.AlternatingBackColor = ColorFromRGB(196, 196, 255); //Red = 255, Green = 196, Blue = 196
+
+	//定义数据集的各个字段
+	var RecordSet = Report.DetailGrid.Recordset;
+	RecordSet.AddField("OrderID", 2); //GRFieldType.grftInteger
+	RecordSet.AddField("CustomerID", 1); //GRFieldType.grftString
+	RecordSet.AddField("CompanyName", 1); //GRFieldType.grftString
+	RecordSet.AddField("OrderDate", 6).Format = "yyyy年MM月dd日"; //GRFieldType.grftDateTime
+	RecordSet.AddField("Freight", 3).Format = "$#,##0.00"; //GRFieldType.grftFloat
+	RecordSet.AddField("ProductID", 2); //GRFieldType.grftInteger
+	RecordSet.AddField("ProductName", 1); //GRFieldType.grftString
+	RecordSet.AddField("UnitPrice", 3).Format = "#,##0.##"; //GRFieldType.grftFloat
+	RecordSet.AddField("Quantity", 2).Format = "#,##0.##"; //GRFieldType.grftInteger
+	RecordSet.AddField("Discount", 3).Format = "0.00%"; //GRFieldType.grftFloat
+	RecordSet.AddField("Amount", 3).Format = "$#,##0.00"; //GRFieldType.grftFloat
+	RecordSet.AddField("DiscountAmt", 3).Format = "$#,##0.00"; //GRFieldType.grftFloat
+	RecordSet.AddField("NetAmount", 3).Format = "$#,##0.00"; //GRFieldType.grftFloat
+
+	//定义列
+	Report.DetailGrid.AddColumn("ProductName", "产品名称", "ProductName", 2.78);
+	Report.DetailGrid.AddColumn("UnitPrice", "单价", "UnitPrice", 1.98);
+	Report.DetailGrid.AddColumn("Quantity", "数量", "Quantity", 1.59);
+	Report.DetailGrid.AddColumn("Discount", "折扣", "Discount", 1.80);
+	Report.DetailGrid.AddColumn("Amount", "折扣前金额", "Amount", 2.38);
+	Report.DetailGrid.AddColumn("DiscountAmt", "折扣金额", "DiscountAmt", 2.38);
+	Report.DetailGrid.AddColumn("NetAmount", "折扣后金额", "NetAmount", 2.38);
+
+	//<<定义双层表头
+	//定义第一个标题组，包括列ProductName、UnitPrice
+	var ColumnTitleCell1 = Report.DetailGrid.AddGroupTitle("ProductTitleGroup", "产品信息");
+	ColumnTitleCell1.TextFormat.TextAlign = 34; //GRTextAlign.grtaMiddleCenter
+	ColumnTitleCell1.EncloseColumn("ProductName");
+	ColumnTitleCell1.EncloseColumn("UnitPrice");
+
+	//这两个列不在标题组中，将其顺序移到最后
+	Report.DetailGrid.ColumnMoveToEnd("Quantity");
+	Report.DetailGrid.ColumnMoveToEnd("Discount");
+
+	//定义第二个标题组，包括列Amount、DiscountAmt、NetAmount
+	var ColumnTitleCell2 = Report.DetailGrid.AddGroupTitle("AmtTitleGroup", "金额信息");
+	ColumnTitleCell2.TextFormat.TextAlign = 34; //GRTextAlign.grtaMiddleCenter
+	ColumnTitleCell2.EncloseColumn("Amount");
+	ColumnTitleCell2.EncloseColumn("DiscountAmt");
+	ColumnTitleCell2.EncloseColumn("NetAmount");
+	//>>定义双层表头
+
+	//定义分组
+	var Group = Report.DetailGrid.Groups.Add();
+	Group.ByFields = "OrderID";
+
+	//<<定义分组头
+	Group.Header.Height = 0.79;
+
+	//定义分组头的缺省字体为粗体，其拥有的部件框如没有显示定义字体，则将应用缺省字体
+	Group.Header.Font.Bold = true;
+
+	//定义一个字段框，显示字段OrderID的值
+	var FieldBox = Group.Header.Controls.Add(4).AsFieldBox; //GRControlType.grctFieldBox
+	FieldBox.DataField = "OrderID";
+	FieldBox.Left = 0.40;
+	FieldBox.Top = 0.19;
+	FieldBox.Width = 1.59;
+	FieldBox.Height = 0.40;
+	//FieldBox.BorderStyles = 1 + 4; //(GRBorderStyles)((int)GRBorderStyles.grbsDrawLeft + (int)GRBorderStyles.grbsDrawRight);
+
+	//定义一个字段框，显示字段CompanyName的值
+	FieldBox = Group.Header.Controls.Add(4).AsFieldBox; //GRControlType.grctFieldBox
+	FieldBox.DataField = "CompanyName";
+	FieldBox.Left = 2.59;
+	FieldBox.Top = 0.19;
+	FieldBox.Width = 3.60;
+	FieldBox.Height = 0.40;
+
+	//定义一个字段框，显示字段OrderDate的值
+	FieldBox = Group.Header.Controls.Add(4).AsFieldBox; //GRControlType.grctFieldBox
+	FieldBox.DataField = "OrderDate";
+	FieldBox.Left = 7.20;
+	FieldBox.Top = 0.19;
+	FieldBox.Width = 2.99;
+	FieldBox.Height = 0.40;
+
+	//定义一个静态文本框
+	var StaticBox = Group.Header.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "运费：";
+	StaticBox.Left = 11.19;
+	StaticBox.Top = 0.19;
+	StaticBox.Width = 1.01;
+	StaticBox.Height = 0.40;
+
+	//定义一个字段框，显示字段Freight的值
+	FieldBox = Group.Header.Controls.Add(4).AsFieldBox; //GRControlType.grctFieldBox
+	FieldBox.DataField = "Freight";
+	FieldBox.Left = 12.38;
+	FieldBox.Top = 0.19;
+	FieldBox.Width = 2.41;
+	FieldBox.Height = 0.40;
+	//>>定义分组头
+
+	//<<定义分组尾
+	Group.Footer.Height = 0.98;
+
+	//定义分组尾的缺省字体为粗体，其拥有的部件框如没有显示定义字体，则将应用缺省字体
+	Group.Footer.Font.Bold = true;
+
+	StaticBox = Group.Footer.Controls.Add(1).AsStaticBox; //GRControlType.grctStaticBox
+	StaticBox.Text = "本单小计";
+	StaticBox.Left = 0.40;
+	StaticBox.Top = 0.19;
+	StaticBox.Width = 2.59;
+	StaticBox.Height = 0.40;
+
+	var SummaryBox = Group.Footer.Controls.Add(5).AsSummaryBox; //GRControlType.grctSummaryBox
+	SummaryBox.SummaryFun = 1; //GRSummaryFun.grsfSum
+	SummaryBox.Format = "$#,##0.00";
+	SummaryBox.DataField = "Amount";
+	SummaryBox.AlignColumn = "Amount"; //通过对齐到列确定部件框的左边位置与宽度
+	SummaryBox.Top = 0.19;
+	SummaryBox.Height = 0.40;
+
+	SummaryBox = Group.Footer.Controls.Add(5).AsSummaryBox; //GRControlType.grctSummaryBox
+	SummaryBox.SummaryFun = 1; //GRSummaryFun.grsfSum
+	SummaryBox.Format = "$#,##0.00";
+	SummaryBox.DataField = "DiscountAmt";
+	SummaryBox.AlignColumn = "DiscountAmt"; //通过对齐到列确定部件框的左边位置与宽度
+	SummaryBox.Top = 0.19;
+	SummaryBox.Height = 0.40;
+
+	SummaryBox = Group.Footer.Controls.Add(5).AsSummaryBox; //GRControlType.grctSummaryBox
+	SummaryBox.SummaryFun = 1; //GRSummaryFun.grsfSum
+	SummaryBox.Format = "$#,##0.00";
+	SummaryBox.DataField = "NetAmount";
+	SummaryBox.AlignColumn = "NetAmount"; //通过对齐到列确定部件框的左边位置与宽度
+	SummaryBox.Top = 0.19;
+	SummaryBox.Height = 0.40;
+	//>>定义分组尾 
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "", "../../data/xmlSaleDetail.php", false, "");
+	</script>
+</body>
+</html>

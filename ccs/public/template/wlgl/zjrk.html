@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>直接入库</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">产品入库</a></li>
+	<li><a href="#">直接入库</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>产品入库</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		<a href="index.php?r=wlgl/GetCprkHtml"><input name="" type="button" class="btn" value="采购单入库"/></a>
+		<a href="index.php?r=wlgl/GetCpzjrkHtml"><input name=""  style="color:#000000; background:#999999;" type="button" class="btn" value="直接入库"/></a>
+	</li>
+	
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="5%"></th>
+				<th width="6%">款号</th>
+				<th width="6%">产品名</th>
+				<th width="6%">生产日期</th>
+				<th width="6%">到期时间</th>
+				<th width="6%">正品入库</th>
+				<th width="6%">次品入库</th>
+				<th width="6%">进货单价</th>
+				<th width="25%">库位</th>
+			</tr>
+		</thead>
+		
+		<tbody id="tbody1">
+			<tr style="height:30px;line-height:30px;" class="goodline">
+				<td><img src="public/img/del.png"  border="0" style="width:17%;cursor:pointer" title="删除该行" class="delgoodline"/></td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput styleNum" style="width:70px" value="" />
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput goodName" style="width:200px" value="" />
+					<div class="goodList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:260px;height:342px;">
+						<table style="width:260px;" class="table5">
+							<tr>
+								<td class="closeGoodList" style="cursor:pointer;">关闭</td>
+							</tr>
+						</table> 
+					</div>
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput productionDate" style="width:140px" value="" onClick="WdatePicker()"/>
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput maturityDate" style="width:140px" value="" onClick="WdatePicker()"/>
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput productStorage" style="width:70px" value="" />
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput defectiveStorage" style="width:70px" value="" />
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput price" style="width:70px" value="" />
+				</td>
+				<td>
+					<input name="goodNumber" type="text" class="dfinput location" style="width:100px" value="" />
+					<div class="localList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:220px;height:342px;">
+						<table style="width:220px;" class="table8">
+							<tr>
+								<td class="closeLocalList" style="cursor:pointer;">关闭</td>
+							</tr>
+						</table> 
+					</div>
+				</td>
+				<!-- <td><span class="attributes"></span></td> -->
+			</tr>	
+		</tbody>
+    </table>
+    <div style="width:100%;border:solid 1px rgb(139,181,217);margin-top:4px;">
+	    <ul>
+	    	<li style="margin-bottom:2px;">
+	    	<input id="addGoodsLine" style="margin-top:3px;margin-right:60px;" name="" type="button" class="btn" value="增加产品行"/>
+	    	<span style="display:inline;">
+	    	&nbsp;&nbsp;&nbsp;&nbsp;
+		    	供应商：
+					<select class="dfinput" style="width:140px">
+			            <option name="gys" value="">---</option>
+			            {{foreach from=$SupplierOptions key=value item=name}}
+			            <option name="gys" value="{{$name.cgab01}}:{{$name.cgab02}}">{{$name.cgab02}}</option>
+			            {{/foreach}}
+		            </select>
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+				运费：<input id="fare" style="width:50px;" name="" type="text" class="dfinput" value="0" />
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				备注：<input id="remark" style="width:400px;" name="" type="text" class="dfinput" value="" />
+			</span>
+			</li>
+	    </ul>
+   </div>
+	<!-- <li>
+		<font color="#FF0000">提示：点击产品名输入框即可选择产品。需要注意的是：要先点击"提交保存"，待审核入库单后；再点击"直接入库"，库存才会真正生效。</font>
+	</li> -->
+   
+    </ul>
+    <ul class="forminfo" style="padding-top:8px;">
+    	<!-- <input id="submitSave" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp; -->
+    	<input id="addGood" name="" type="button" class="btn" value="直接入库"/>&nbsp;&nbsp;&nbsp;<input id="cancel" name="" type="button" class="btn" style="color:#000000; background:#999999" onclick="history.go(-1)" value="返回"/>
+    	<li id="tips" style="color:#ff0000;"></li>
+    </ul>
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/zjrk_wl.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>	
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+</html>

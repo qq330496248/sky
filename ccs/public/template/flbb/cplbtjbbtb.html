@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{$cplb}}地区统计报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+   .grey{
+    color:#000000; 
+    background:#999999;
+   }
+</style>
+</head>
+
+
+<body>
+    <div class="leftinfo">
+    <div class="listtitle">{{$cplb}} 地区统计报表</div>
+    <div class="listtitle" style="height:40px">
+        <div id="daysBtn">
+            <input name="" id="lastFifteenDays" onclick="getChart('lastFifteenDays')" type="button" style="" class="btn grey" value="<<前15天"/>
+            <input name="" id="nextFifteenDays" onclick="getChart('nextFifteenDays')" type="button" style="" class="btn grey" value="后15天>>"/>
+            <input name="" id="days2" onclick="getChart('days')" type="button" style="" class="btn grey" value="最近15天"/>
+        </div>
+        <div id="weeksBtn" style="display:none">
+            <input name="" id="lastFifteenWeeks" onclick="getChart('lastFifteenWeeks')" type="button" style="" class="btn grey" value="<<前15周"/>
+            <input name="" id="nextFifteenWeeks" onclick="getChart('nextFifteenWeeks')" type="button" style="" class="btn grey" value="后15周>>"/>
+            <input name="" id="weeks2" onclick="getChart('weeks')" type="button" style="" class="btn grey" value="最近15周"/>
+        </div>
+        <div id="monthsBtn" style="display:none">
+            <input name="" id="lastFifteenMonths" onclick="getChart('lastFifteenMonths')" type="button" style="" class="btn grey" value="<<前15月"/>
+            <input name="" id="nextFifteenMonths" onclick="getChart('nextFifteenMonths')" type="button" style="" class="btn grey" value="后15月>>"/>
+            <input name="" id="months2" onclick="getChart('months')" type="button" style="" class="btn grey" value="最近15月"/>
+        </div>
+       <!--  <div>
+           开始时间：<font></font>
+           结束时间：<font></font>
+       </div> -->
+    </div>
+    <input type="hidden" value="{{$cplb}}" id="cplb" />
+    <input type="hidden" value="{{$hol}}" id="hol" />
+    <input type="hidden" value="" id="date" />
+        <div style="text-align:center;" id="imgTable">
+           <table id='myTable5'>
+            <!-- 通过js，这个table成为一个线状图 -->
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th id="day15"></th>
+                    <th id="day14"></th>
+                    <th id="day13"></th>
+                    <th id="day12"></th>
+                    <th id="day11"></th>
+                    <th id="day10"></th>
+                    <th id="day9"></th>
+                    <th id="day8"></th>
+                    <th id="day7"></th>
+                    <th id="day6"></th>
+                    <th id="day5"></th>
+                    <th id="day4"></th>
+                    <th id="day3"></th>
+                    <th id="day2"></th>
+                    <th id="day1"></th>
+                    <!-- <th id="day16">16</th>
+                    <th id="day17">17</th>
+                    <th id="day18">18</th>
+                    <th id="day19">19</th>
+                    <th id="day20">20</th>
+                    <th id="day21">21</th>
+                    <th id="day22">22</th>
+                    <th id="day23">23</th>
+                    <th id="day24">24</th>
+                    <th id="day25">25</th>
+                    <th id="day26">26</th>
+                    <th id="day27">27</th>
+                    <th id="day28">28</th>
+                    <th id="day29">29</th>
+                    <th id="day30">30</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>下单数</th>
+                    <td id="xd15"></td>
+                    <td id="xd14"></td>
+                    <td id="xd13"></td>
+                    <td id="xd12"></td>
+                    <td id="xd11"></td>
+                    <td id="xd10"></td>
+                    <td id="xd9"></td>
+                    <td id="xd8"></td>
+                    <td id="xd7"></td>
+                    <td id="xd6"></td>
+                    <td id="xd5"></td>
+                    <td id="xd4"></td>
+                    <td id="xd3"></td>
+                    <td id="xd2"></td>
+                    <td id="xd1"></td>
+                    <!-- <td id="xd16"></td>
+                    <td id="xd17"></td>
+                    <td id="xd18"></td>
+                    <td id="xd19"></td>
+                    <td id="xd20"></td>
+                    <td id="xd21"></td>
+                    <td id="xd22"></td>
+                    <td id="xd23"></td>
+                    <td id="xd24"></td>
+                    <td id="xd25"></td>
+                    <td id="xd26"></td>
+                    <td id="xd27"></td>
+                    <td id="xd28"></td>
+                    <td id="xd29"></td>
+                    <td id="xd30"></td> -->
+                </tr>
+                <tr>
+                    <th>确认数</th>
+                    <td id="sd15"></td>
+                    <td id="sd14"></td>
+                    <td id="sd13"></td>
+                    <td id="sd12"></td>
+                    <td id="sd11"></td>
+                    <td id="sd10"></td>
+                    <td id="sd9"></td>
+                    <td id="sd8"></td>
+                    <td id="sd7"></td>
+                    <td id="sd6"></td>
+                    <td id="sd5"></td>
+                    <td id="sd4"></td>
+                    <td id="sd3"></td>
+                    <td id="sd2"></td>
+                    <td id="sd1"></td>
+                </tr>
+                <tr>
+                    <th>发货数</th>
+                    <td id="fh15"></td>
+                    <td id="fh14"></td>
+                    <td id="fh13"></td>
+                    <td id="fh12"></td>
+                    <td id="fh11"></td>
+                    <td id="fh10"></td>
+                    <td id="fh9"></td>
+                    <td id="fh8"></td>
+                    <td id="fh7"></td>
+                    <td id="fh6"></td>
+                    <td id="fh5"></td>
+                    <td id="fh4"></td>
+                    <td id="fh3"></td>
+                    <td id="fh2"></td>
+                    <td id="fh1"></td>
+                </tr>
+                <tr>
+                    <th>拒收数</th>
+                    <td id="js15"></td>
+                    <td id="js14"></td>
+                    <td id="js13"></td>
+                    <td id="js12"></td>
+                    <td id="js11"></td>
+                    <td id="js10"></td>
+                    <td id="js9"></td>
+                    <td id="js8"></td>
+                    <td id="js7"></td>
+                    <td id="js6"></td>
+                    <td id="js5"></td>
+                    <td id="js4"></td>
+                    <td id="js3"></td>
+                    <td id="js2"></td>
+                    <td id="js1"></td>
+                </tr>
+                <tr>
+                    <th>签收数</th>
+                    <td id="qs15"></td>
+                    <td id="qs14"></td>
+                    <td id="qs13"></td>
+                    <td id="qs12"></td>
+                    <td id="qs11"></td>
+                    <td id="qs10"></td>
+                    <td id="qs9"></td>
+                    <td id="qs8"></td>
+                    <td id="qs7"></td>
+                    <td id="qs6"></td>
+                    <td id="qs5"></td>
+                    <td id="qs4"></td>
+                    <td id="qs3"></td>
+                    <td id="qs2"></td>
+                    <td id="qs1"></td>
+                </tr>
+            </tbody>
+        </table> 
+        </div>
+        
+    </div>
+
+    </div>
+    
+    
+    </div>
+    <div style="text-align:center;padding-top:45px;">
+        <input name="" id="days" onclick="getChart('days')" type="button" class="btn" disabled="disabled" style="color:#999999;cursor:not-allowed;" value="按日统计"/>
+        <input name="" id="weeks" onclick="getChart('weeks')" type="button" class="btn" value="按周统计"/>
+        <input name="" id="months" onclick="getChart('months')" type="button" class="btn" value="按月统计"/>
+    </div>
+
+    <div style="padding-top:10px;">
+        <table class="imgtable">
+    
+        <thead>
+            <tr>
+                <th width="16%">日期</th>
+                <th width="16%">下单/金额</th>
+                <th width="16%">确认/金额</th>
+                <th width="16%">发货/金额</th>
+                <th width="16%">拒收/金额</th>
+                <th>签收/金额</th>
+            </tr>
+        </thead>
+        
+        <tbody id="ygyjtjbb">
+                
+        </tbody>
+        <tfoot id="tfoot">
+            <tr>
+                <td>
+                    总计：
+                </td>
+                <td>
+                    <font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+                </td>
+                <td>
+                    <font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+                </td>
+                <td>
+                    <font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+                </td>
+                <td>
+                    <font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+                </td>
+                <td>
+                    <font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+                </td>
+            </tr>
+        </tfoot>
+        <input id="url" type="hidden" value=""/>
+    </table>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/jsapi.js"></script>
+<script type="text/javascript" src="public/template/js/format+zh_CN,default,corechart.I.js"></script>        
+<script type="text/javascript" src="public/template/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.ba-resize.min.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+
+<script language="JavaScript" src="public/template/js/flbb/cplbtjbbtb.js"></script>
+<script type="text/javascript">
+//绘图
+/*gvChartInit();
+jQuery(document).ready(function(){
+    var width = document.body.clientWidth; 
+    jQuery('#myTable5').gvChart({
+        chartType: 'LineChart',
+        gvSettings: {
+            vAxis: {title: '签单数'},
+            hAxis: {title: '日期'},
+            width: width,
+            height: 250
+        }
+    });
+});*/
+
+</script>
+</html>

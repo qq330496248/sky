@@ -1,0 +1,93 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>改单</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">
+    <input id="id" type="hidden" value="{{$orderno.xsaa02}}" />
+    <input id="ordernum" type="hidden" value="{{$orderno.xsaa01}}"/>
+    <li style="margin:0;text-align:center;">
+        订单编号:<font color="#FF0000">{{$orderno.xsaa02}}</font>&nbsp;&nbsp;
+        支付方式:<font color="#FF0000">{{$orderno.xsaa13}}</font>&nbsp;&nbsp;
+        订单运费:<font color="#FF0000">{{$orderno.xsaa16}}</font>&nbsp;&nbsp;
+        订单总价:<font color="#FF0000">{{$goodprice}}</font>&nbsp;&nbsp;
+    </li>
+    <li><font color="#FF0000">选中可删除商品</font></li>
+    <li>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="8%"></th>
+                    <th><font >款号</font></th>
+                    <th><font >商品名称</font></th>
+                    <th><font >商品价格</font></th>
+                    <th><font >商品数量</font></th>
+                    <th><font >小计</font></th>
+                </tr>  
+            </thead>
+                <tbody id="Commoditydetails">
+                </tbody>
+        </table>
+    </li>   
+    <li><input id="deletecomm" name="" type="button" class="btn-danger" style="width:50px;" value="删除"/></li>
+    <li><font  color="#FF0000">在下面可以添加新产品</font></li>
+    <li id="required"> </li>
+    <li>
+   <table class="imgtable">
+    <thead>
+        <tr>
+            <th width="5%"></th>
+            <th>款号</th>
+            <th>商品名称</th>
+            <th>商品单价</th>
+            <th>数量</th>
+            <th>小计</th>
+        </tr>
+    </thead>
+    <input type="hidden" id="goodid" />
+    <tbody id="tbody1">
+        <tr class="goodline">
+            <td><img src="public/img/del.png"  border="0" style="width:17%;cursor:pointer" title="删除该行" class="delgoodline"/></td>
+            <td><input name="goodInfo" class="styleNum" style="border:1px solid #000;text-align:center;" type="text" value="" /></td>
+            <td style="position:relative;">
+                <input name="goodInfo" class="goodName" style="border:1px solid #000;text-align:center;" type="text" value="" />
+                <div class="goodList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:474px;height:200px;z-index:5;">
+                    <table style="width:474px;" class="table5">
+                        <tr>
+                            <td colspan="5" class="closeGoodList" style="cursor:pointer;">关闭</td>
+                        </tr>
+                    </table> 
+                </div>
+            </td>
+            <td class="unitPrice"><input name="goodInfo" style="border:1px solid #000;text-align:center;" type="text" value="" class="goodPrice"/></td>
+            <td><input id="spsl" name="goodInfo" style="border:1px solid #000;text-align:center;" type="text" value="1" class="goodNum"/></td>
+            <td class="little"><input name="goodInfo" type="text" value="" style="text-align:center;" readonly="readonly" class="subtotal"/><input class="stock" name="goodInfo" type="hidden" value="" /></td>
+        </tr>
+    </tbody>
+</table>
+    </li>
+    <li>
+        <input id="addGoodsLine" style="margin-top:3px;" name="" type="button" class="btn-info" value="增加商品行"/>
+    </li>
+    <li>
+        <span>新加商品总价：￥<font id="goodTotalPrice">0</font></span>
+        <span>新加商品总数：<font id="goodTotalNum">0</font>件</span>
+        <input id="addOrder" name="" type="button" class="btn-info delgoodline" value="提交保存"/></td>
+       <!--  <input id="guanbi" onclick="closeDialog()" name="" style="color:#000000; background:#999999;" type="button" class="btn delgoodline" value="关闭"/></td> -->
+    </li>
+
+    </ul>
+    </div>
+</div>
+	
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script> 
+<script type="text/javascript" src="public/template/js/common.js"></script>	
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/dialog/ddgd.js"></script> 
+<script type="text/javascript">
+	
+</script>
+
+</html>

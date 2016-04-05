@@ -1,0 +1,97 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>修改默认省市区信息</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>省份：</label>
+	    <select id="province" class="dfinput" style="width:100px">
+		<option name="province" value="">选择省</option>
+		{{foreach from=$appprovinceOptions key=value item=name}}
+		<option name="province" {{if $value == $deafultAddr.provinceID}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+		{{/foreach}}
+		</select>
+    </li>
+	<li><label>城市：</label>
+		<select id="city" class="dfinput" style="width:100px">
+		<option name="city" value="">选择市</option>
+		{{foreach from=$appcityOptions key=value item=name}}
+		<option name="city" {{if $value == $deafultAddr.cityID}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+		{{/foreach}}
+		</select>
+	</li>
+	<li><label>区名（县名）：</label>
+		<select id="area" class="dfinput" style="width:100px">
+		<option name="area" value="">选择区/县</option>
+		{{foreach from=$appareaOptions key=value item=name}}
+		<option name="area" {{if $value == $deafultAddr.areaID}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+		{{/foreach}}
+		</select>
+	</li>
+	<li><input name="" type="button" class="btn-info" onclick="updateDeafultAddr()" value="提交保存"/></li>
+	<li>
+		<font style="color:#FF0000">提交保存后，默认开关会开启，请注意修改</font>
+	</li>
+	<li><label>默认开关：</label>
+		<input type="hidden" id="ooc" value="{{$deafultAddr.openOrClose}}" />
+		<input name="switch" type="button" class="btn-info" id="open" onclick="openOrClose('开')" onclick="" value="开" />
+		<input name="switch" type="button" class="btn-info" id="close" onclick="openOrClose('关')" value="关" />
+	</li>
+	<li>
+		<font style="color:#FF0000">默认开关为【开】时，下单时会默认选择以上信息</font>
+	</li>
+	</ul>
+	</div>
+</div>
+	
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/ssqld_dd.js"></script>
+<script type="text/javascript">
+$(function(){
+	var openOrClose = $("#ooc").val();
+	if(openOrClose == '开'){
+		$("#open").attr('style','width:50px;color:#000000; background:#999999;');
+	}else{
+		$("#close").attr('style','width:50px;color:#000000; background:#999999;');
+	}
+
+});
+
+	//修改下单的默认地址
+	function updateDeafultAddr(){
+		var province = $("#province option:selected").val() + '.' + $("#province option:selected").html();
+		var city =  $("#city option:selected").val() + '.' + $("#city option:selected").html();
+		var area =  $("#area option:selected").val() + '.' + $("#area option:selected").html();
+		var str = province + '-' + city + '-' + area;
+		var ensure = confirm('确定要修改下单的默认地址吗？');
+		if(ensure){
+			$.post("index.php?r=xtsz/UpdateDeafultAddr",{str:str},function(data){
+				if(!data){
+					alert('修改失败');
+					return;
+				}
+				if(data){
+					if(data.res == 'success'){
+						alert(data.msg);
+						window.location.href = "index.php?r=dialog/GetDeafultAddrHtml";
+						parentDialog.close();
+					}
+				}
+			},"json");
+		}
+	}
+
+	//启用或禁用默认地址
+	function openOrClose(str){
+		$.post("index.php?r=xtsz/OpenOrCloseDeafultAddr",{str:str},function(data){
+			if(data.res == 'success'){
+				alert(data.msg);
+				window.location.href = "index.php?r=dialog/GetDeafultAddrHtml";
+				parentDialog.close();
+			}
+		},"json");
+	}
+</script>
+
+</html>

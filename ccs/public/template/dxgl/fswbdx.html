@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发送外部短信</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">短信平台</a></li>
+    <li><a href="#">发送外部短信</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>发送外部短信</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+		<a href="index.php?r=dxgl/GetFswbdxHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="发送外部短信"/></a>
+		<a href="index.php?r=dxgl/GetYfwbdxHtml"><input name="" type="button" class="btn" value="已发外部短信"/></a>
+		<a href="index.php?r=dxgl/GetYswbdxHtml"><input name="" type="button" class="btn" value="已收外部短信"/></a>
+		<a href="index.php?r=dxgl/GetWbhfcxHtml"><input name="" type="button" class="btn" value="回复查询"/></a>
+	</li>
+
+	<li>
+		选择账号：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		账号余额：
+		<input id="sxyh" name="" type="text" class="dfinput" />
+		元，剩余
+		<input id="sxyh" name="" type="text" class="dfinput" />条
+	</li>
+	<li>
+		短信内容：
+		<textarea id="dxnr" class="textinput"></textarea>
+	</li>
+	<li>
+		发送号码：<input type="file" name="image" id="image" />
+		</label><input name="" type="submit" class="btn" value="导入"/>
+		<font color="#ff0000">支持Txt文件上传号码，文件中每个号码占一行</font>
+	</li>
+	<li>
+		
+		<textarea id="dxnr" class="textinput"></textarea>
+	</li>
+	<li>
+		<b color="#000000">发送须知</b>
+		<font color="#ff0000">因系统处理速度、网络速度等原因，强烈建议用户一次性发送短信的电话号码不超过30条。 </font>
+	</li>
+	<li>
+		<input id="SendOut" name="" type="button" class="btn" value="确定发送"/>
+	</li>
+
+
+<div class="TCGB TC600 mydetTC" id="WorkNumber">
+<div class="TCBox" style="width:500px;left:38%;height:430px;top:50px;">
+
+	<!-- <h2><span title="TCtitle">选择接收短信的工号--网页对话框</span></h2> -->
+
+	<h2><span title="TCtitle">查询接收短信的工号--网页对话框
+	<a><img id="CloseCommit" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></a></span></h2>
+	<div class="TCBody">
+		<table id="table8">
+			<!-- <tr class="JnLine ">
+				<td>请输入查询条件
+				    <input id="keyword" name="" type="text" class="dfinput" style="width:100px" value=""/>
+				    <input type="radio" name="search" value="1" checked />工号
+			                    <input type="radio" name="search" value="2" />姓名
+			                    <input id="searchgonghao" name="" type="button" class="btn" value="查询"/>
+				 </td>
+			</tr>
+			<tr>
+				<td>查询结果：
+					<font id="cxjg"></font>&nbsp;&nbsp;&nbsp;
+				</td>
+			</tr> -->
+			<tr>
+				<!-- <input id="queding" name="" type="button" class="btn" value="确定"/> -->
+			</tr>
+		</table>
+	<table class="imgtable">
+			    <thead>
+			            <tr>
+			            	<th width="10%"></th>
+			            	<th><font >工号</font></th>
+			            	<th><font >姓名</font></th>
+			            </tr>  
+		        </thead>
+		            <tbody id="tbody2">
+		            </tbody>
+		            	<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>
+		</tfoot>
+	</table>
+	<li><input id="SelectUser" name="" type="button" class="btn" value="确定"/></li>
+
+	</div>	
+</div>   
+</div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script type="text/javascript" src="public/template/js/fsnbdx_kh.js"></script>
+
+
+</html>

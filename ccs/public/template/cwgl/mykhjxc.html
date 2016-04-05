@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>款号进销存报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">款号进销存报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>款号进销存报表</span></div>
+    
+    <ul class="forminfo">
+	<li>
+		<a href="index.php?r=cwgl/GetKhjxcHtml"><input name="" type="button" class="btn" style="width:120px" value="款号进销存"/></a>
+		<a href="index.php?r=cwgl/GetMyjxcHtml"><input name="" type="button" class="btn" style="width:120px;color:#000000; background:#999999" value="每月款号进销存"/></a>
+	</li>
+    <li>
+    分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：
+		<select id="cpfl" class="dfinput" onchange="getCpzfl()" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$cpfl key=value item=name}}
+			<option name="" value="{{$name.cpab01}}">{{$name.cpab02}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款&nbsp;&nbsp;&nbsp;&nbsp;号：<input id="cpkh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		统计时间：
+		<select id="time" class="dfinput" style="width:100px">
+			<option value=""></option>
+		</select>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="上个月"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="下个月"/>
+	</li>
+	<li>
+		供应商ID：<input id="gysID" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：<input id="gysName" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		采购人员：
+		<select id="cgwy" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			{{foreach from=$cgwy key=value item=name}}
+			<option name="" value="{{$name.id}}">{{$name.personname}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		结款方式：
+		<select id="jkfs" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			<option value="现金可退">现金可退</option>
+			<option value="现金不可退">现金不可退</option>
+			<option value="月结">月结</option>
+		</select>
+		&nbsp;&nbsp;<input name="" onclick="getKhjxc()" type="button" class="btn" value="查询"/>
+	</li>
+  	<table class="imgtable" style="width:150%">
+    
+		<thead>
+			<tr>
+				<th colspan="18"><font id="year">{{$year}}</font>年<font id="month">{{$month}}</font>月款号进销存报表</th>
+			</tr>
+			<tr>
+				<th>款号</th>
+				<th>产品名</th>
+				<!-- <th>上月库存数量/单价/金额</th>
+				<th>上月发货在途数量/单价/金额/成本</th>
+				<th>上月退货在途数量/单价/金额/成本</th> -->
+				<th>进货数量/金额/单价</th>
+				<th>发货数量/金额/成本</th>
+				<th>收货数量/金额/成本</th>
+				<th>退货数量/金额/成本</th>
+				<th>在途发货数量/单价/金额/成本</th>
+				<th>在途退货数量/单价/金额/成本</th>
+				<th>毛利</th>
+				<th>毛利率</th>
+				<th>库存/库存金额</th>
+				<th>盘差/盘差金额</th>
+				<th>供应商</th>
+				<th>采购人员</th>
+				<th>创建时间</th>
+			</tr>
+		</thead>
+		<tbody id="mykhjxc">
+			
+		</tbody>
+		<tbody id="foot">
+			<td colspan="2">总计</td>
+			<!-- <td>//</td>
+			<td>///</td>
+			<td>///</td> -->
+			<td>//</td>
+			<td>//</td>
+			<td>//</td>
+			<td>//</td>
+			<td>///</td>
+			<td>///</td>
+			<td></td>
+			<td>
+				<font color="#0000FF">0%</font>
+			</td>
+			<td>/</td>
+			<td>/</td>
+			<td colspan="3"></td>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="18" id="page">
+					
+				</td>
+			</tr>
+		</tfoot>
+    
+    </table>
+    <li></li>
+    <li>
+    	<input name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/mykhjxc.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function getSjsjEnd(){
+		var begindate = $("#sjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

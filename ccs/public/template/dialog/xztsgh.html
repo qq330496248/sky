@@ -1,0 +1,46 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>查询接收短信的工号</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">   
+    <li>
+        部门：
+        <select id="dept" class="dfinput">
+            <option value="">全部组别</option>
+            {{foreach from=$dept key=value item=name}}
+            <option value="{{$name.deptname}}">{{$name.deptname}}</option>
+            {{/foreach}}
+        </select>
+        工号：
+        <input type="text" class="dfinput" id="gh" />
+
+        <input type="button" class="btn-info" value="查询" onclick="selectGH()" />
+    </li>
+    <li>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="10%"> </th>
+                    <th width="45%">工号</th>
+                    <th width="40%">姓名</th>
+                </tr>
+            </thead>
+            <tbody id="ghTable">
+                
+            </tbody>
+            <tfoot>
+                <tr><td colspan="3" class="page"></td></tr>
+            </tfoot>
+        </table>
+    </li>
+    <li><input id="SelectUser" name="" type="button" class="btn-info" onclick="" value="确定"/></li></ul>
+    </div>
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/dialog/xztsgh.js"></script>	
+<script type="text/javascript">
+	
+</script>
+
+</html>

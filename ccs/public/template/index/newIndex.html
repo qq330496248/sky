@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .imgbtn{
+         border:dotted 1px rgb(255,255,255);
+    }
+    .imgbtn:hover{
+        border:solid 1px rgb(139,181,217);
+    }
+</style>
+
+
+
+</head>
+
+<body style="background:url(../images/topbg.png) repeat-x;">
+
+    <div class="topleft">
+    <a href="../../../index.php?r=login/GetIndexHtml" target="_parent"><img src="../images/logo.png" title="系统首页" /></a>
+    </div>
+        
+    <ul class="nav">
+    <li>
+    <a href="../../../index.php?r=login/GetIndexHtml" target="_parent" class="selected"><img src="../images/icon01.png" title="工作台" />
+    <h2>工作台</h2></a>
+    </li>
+    <li></li>
+    <li style="position:absolute;left:780px;top:45px;"><input id="secondPhone" class="dfinput" style="width:180px;" value=""/></li>
+    <li style="position:absolute;left:760px;top:20px;width:690px;float:left;height:0;">
+        <img id="phonecall" src="../images/calling/yd_a.png" class="imgbtn" title="快速呼叫" style="cursor:pointer;" />
+        <img id="keep" src="../images/calling/keep.png" class="imgbtn" title="通话保持" style="cursor:pointer;" />
+        <img id="showShift" src="../images/calling/zj.png" class="imgbtn" title="电话转移" style="cursor:pointer;" />
+        <img id="" src="../images/calling/jj.png" class="imgbtn" title="客户评价" style="cursor:pointer;" />
+        <img id="hangup" src="../images/calling/gd.png" class="imgbtn" title="挂断" style="cursor:pointer;" />
+        <img id="" src="../images/calling/hy.png" class="imgbtn" title="语音会议室" style="cursor:pointer;" />
+
+    </ul>
+            
+    <div class="topright">    
+    <ul>
+    <li><span><img src="../images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
+    <li><a href="#">关于</a></li>
+    <li><a style="cursor:pointer;" onclick="LogOut()" target="_parent">注销退出</a></li>
+    </ul>
+ 
+    <div class="user">
+    <span id="gh"></span><!-- 工号:{$sessioninfo.account} -->
+    <i id="name"></i><!-- 姓名:{$sessioninfo.name} -->
+    <i id="fenji"></i>
+    </div>      
+    <!--电话转移弹框 start-->
+    <div class="TCGB TC600 mydetTC" id="goodDetilDiv" style="position:absolute;">
+        <div class="TCBox" style="width:500px;position:absolute;top:-1px;">
+            <h2><span>电话转移<a><img id="closeDetail" src="../images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute;top:6px;right:10px;"></a></span></i></h2>
+            <div class="TCBody">
+                <table>
+                    <tr>
+                        <td>转移的分机号码：<input name="" type="text" class="dfinput" style="width:100px" /></td>
+                        <td style="padding-left:10px;"><input name="" type="button" class="btn" value="分机选择"/></td>
+                    </tr>
+                    <tr>
+                        <td>转接的目标号码：<input name="" type="text" class="dfinput" style="width:100px" /></td>
+                        <td style="padding-left:10px;"><input name="" type="button" class="btn" value="分机选择"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding-top:30px;padding-left:165px;"><input id="closeDetail" name="" type="button" class="btn" value="关闭"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--电话转移弹框 end-->
+    </div>
+    <iframe src="../../index.html" style="position:absolute;left:0px;top:88px;width:100%"></iframe>
+</body>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/common/validate.js"></script>
+<script language="JavaScript" src="../js/zDialog.js"></script>
+<script language="JavaScript" src="../js/zDrag.js"></script>
+<script type="text/javascript">
+    function LogOut(){
+        var con = confirm("确认要退出吗？");
+        if(con){
+            $.post("../../../index.php?r=login/LogOut",function(data){
+                parent.location.href="../../../index.php?r=login/Index";
+            });
+        }
+    }
+
+    //分机呼叫手机或电话
+    $('#phonecall').on('click',function(){
+        var secondPhone = $('#secondPhone').val();
+        if(!$.trim(secondPhone)){
+            alert('被叫号码不能为空！')
+            return;
+        }
+        if(!isNum(secondPhone)){
+            alert('呼叫的号码只能是数字');
+            return;
+        }
+        jsonp('../../../index.php?r=ShjApi/ExtensionNumberToMbPhoneApi&secondPhone='+secondPhone,function(data){
+            //var data = JSON.parse(data); //将data格式(非对象)变成js对象
+            if(data.result == 1){
+                alert('拨打成功');
+            }else{
+                alert('拨打失败');
+            }  
+        });
+    });
+
+    //通话保持
+    $('#keep').on('click',function(){
+        jsonp('../../../index.php?r=ShjApi/CallOnHoldApi',function(data){
+            if(data.result == 1){
+                alert('操作成功');
+            }else{
+                alert('操作失败');
+            }  
+        });
+    });showShift
+
+    //电话转移
+    /*$('#shift').on('click',function(){
+        var firstPhone = $('#firstPhone').val();
+        var secondPhone = $('#secondPhone').val();
+        jsonp('index.php?r=ShjApi/PhoneTransferApi&firstPhone=' + firstPhone+'&secondPhone='+secondPhone,function(data){
+            //var data = JSON.parse(data); //将data格式(非对象)变成js对象
+            if(data.result == 1){
+                alert('转移成功');
+            }else{
+                alert('转移失败');
+            }
+            
+        });
+    });*/
+
+    //电话挂断
+    $('#hangup').on('click',function(){
+        jsonp('../../../index.php?r=ShjApi/PhoneHangUpApi',function(data){
+            if(data.result == 1){
+                alert('挂断成功');
+            }else{
+                alert('挂断失败');
+            }
+            
+        });
+    });
+
+    //点击详情按钮
+    $('#showShift').on('click',function(){
+        $('#goodDetilDiv').show();
+    });
+
+    //点击关闭商品信息
+    $('#closeDetail').on('click',function(){
+        $('#goodDetilDiv').hide();
+    }); 
+</script>
+<script type="text/javascript">
+$(function(){   
+    //顶部导航切换
+    $(".nav li a").click(function(){
+        $(".nav li a.selected").removeClass("selected")
+        $(this).addClass("selected");
+    })  
+
+    $.post("../../../index.php?r=xtsz/GetSess",function(data){
+        $("#gh").html("工号："+data.gh);
+        $("#name").html("姓名："+data.name+"&nbsp;");
+        $("#fenji").html("分机："+data.fenji+"&nbsp;&nbsp;&nbsp;");
+    });
+
+
+});  
+
+
+
+
+
+</script>
+
+<script language="JavaScript" src="../js/zDialog.js"></script>
+<script language="JavaScript" src="../js/zDrag.js"></script>
+<script type="text/javascript">
+function LogOut(){
+    var con = confirm("确认要退出吗？");
+    if(con){
+        $.post("../../../index.php?r=login/LogOut",function(data){
+            parent.location.href="../../../index.php?r=login/Index";
+        });
+    }
+}
+$(function(){   
+    //顶部导航切换
+    $(".nav li a").click(function(){
+        $(".nav li a.selected").removeClass("selected")
+        $(this).addClass("selected");
+    })  
+
+    $.post("../../../index.php?r=xtsz/GetSess",function(data){
+        $("#gh").html("工号："+data.gh);
+        $("#name").html("姓名："+data.name+"&nbsp;&nbsp;&nbsp;");
+    }); 
+});
+
+function showDiv(){
+    alert(1);
+}
+</script>
+</html>
+
+
+  <!-- <li><a href="imgtable.html" target="rightFrame"><img src="../images/icon02.png" title="模型管理" /><h2>模型管理</h2></a></li>
+    <li><a href="imglist.html"  target="rightFrame"><img src="../images/icon03.png" title="模块设计" /><h2>模块设计</h2></a></li>
+    <li><a href="tools.html"  target="rightFrame"><img src="../images/icon04.png" title="常用工具" /><h2>常用工具</h2></a></li>
+    <li><a href="computer.html" target="rightFrame"><img src="../images/icon05.png" title="文件管理" /><h2>文件管理</h2></a></li>
+    <li><a href="tab.html"  target="rightFrame"><img src="../images/icon06.png" title="系统设置" /><h2>系统设置</h2></a></li> -->

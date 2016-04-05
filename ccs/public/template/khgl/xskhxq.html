@@ -1,0 +1,507 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>客户资料详情</title>
+	<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+	<div class="place">
+	<span>位置：</span>
+	<ul class="placeul">
+	<li><a href="#">客户管理</a></li>
+	<li><a href="#">下属客户资料详情</a></li>
+	</ul>
+	</div>
+	<input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+	<div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+	<div class="formtitle"><span>客户信息</span></div>
+
+	<ul class="forminfo">
+	<li>
+	&nbsp;&nbsp;客户ID：<font color="#FF0000">{{$clientno.khaa02}}</font>&nbsp;&nbsp;
+	消费总额：<font color="#FF0000">{{$clientno.khaa28}}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+	成交：<font color="#FF0000">{{$clientno.khaa38}}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+	注册时间：<font color="#FF0000">{{$clientno.khaa30}}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+	</li>
+	<li>
+	&nbsp;&nbsp;最新跟进：<font color="#FF0000">{{if ($clientno.khaa18 > '1940-10-01 10:00:00') }}{{$clientno.khaa18}}{{/if}}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+	跟进标签：<font color="#FF0000">{{$clientno.khaa43}}</font>&nbsp;&nbsp;
+	最新签收：<font color="#FF0000">{{if ($clientno.khaa20 > '1940-10-01 10:00:00') }}{{$clientno.khaa20}}{{/if}}</font>&nbsp;&nbsp;&nbsp;&nbsp;
+	</li>
+	<li>
+	<input id="clientno" type="hidden" value="{{$clientno.khaa02}}"/>
+	<input type="hidden" id="clientFont" value="{{$clientno.khaa02}},{{$clientno.khaa03}}" >
+	<font style="color:red;">*</font>真实姓名：<input id="khname" name="" type="text" class="dfinput" style="width:100px" value="{{$clientno.khaa03}}"/>
+	&nbsp;&nbsp;&nbsp;
+	性别：
+	<input id="male" type="radio" value="男"  name="sex" {{if $clientno.khaa04 == '男'}}checked="checked"{{/if}} /> 男 <input id="female" type="radio" value="女" name="sex" {{if $clientno.khaa04 == '女'}}checked="checked"{{/if}} /> 女
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	归属工号： 
+	<select id="khgsgh" class="dfinput" style="width:140px">
+	{{foreach from=$WorkNumberOptions key=value item=name}}
+	<option name="khgsgh" value="{{$name}}" {{if ($clientno.gonghao == $name) }}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<select class="dfinput" style="width:140px">
+	{{foreach from=$SuborWorkNumberOptions key=value item=name}}
+	<option id="szz" name="khszz"  checked="checked" value="{{$name}}" {{if ($clientno.khaa40 == $name) }}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;
+	<input id="TurnCustomer" name="" type="button" class="btn" value="转"/>
+	&nbsp;&nbsp;
+	创建工号：<font id="cjgh">{{$clientno.khaa32}}</font>
+	</li>
+	<li>
+	<!-- <input ="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="省内拨打"/>
+	<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="省外拨打"/>
+	<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="发短信"/> -->
+	<font style="color:red;">*</font>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：<input id="mobilePhone" value="{{$mobile}}" name="" type="text" class="dfinput" style="width:100px" />
+	<input id="khphone" type="hidden" value="{{$clientno.khaa06}}" />
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$PhoneTypeOptions key=value item=name}}
+	<option  id="kehusj" name="phonetype" checked="checked" value="{{$name}}" {{if ($clientno.khaa31 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<input id="fieldDial" type="hidden" value="{{$DialPhone}}" />
+	<img class="dial" sign="1" src="public/template/images/calling/call_1.png" style="cursor:pointer;width:20px;height:20px" title="直接拨打" alt="直接拨打">
+	<img id="overseasCall" src="public/template/images/calling/call_2.png" style="cursor:pointer;width:20px;height:20px" title="外地加{{$DialPhone}}拨打" alt="外地加{{$DialPhone}}拨打">
+	<img src="public/template/images/calling/sms.png" style="cursor:pointer;width:20px;height:20px" title="发送短信" alt="发送短信">
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	电话2：<input id="khTelephone2" value="{{$clientno.khaa07}}" name="" type="text" class="dfinput" style="width:100px" />
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$PhoneTypeOptions key=value item=name}}
+	<option name="telphonetype" checked="checked" value="{{$name}}" {{if ($clientno.khaa41 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<img class="dial" sign="2" src="public/template/images/calling/call_1.png" style="cursor:pointer;width:20px;height:20px" title="直接拨打" alt="直接拨打">
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	电话3：<input id="khTelephone3" value="{{$clientno.khaa08}}" name="" type="text" class="dfinput" style="width:100px" />
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$PhoneTypeOptions key=value item=name}}
+	<option id="kehudh" name="teltype" checked="checked" value="{{$name}}" {{if ($clientno.khaa42 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<img class="dial" sign="3" src="public/template/images/calling/call_1.png" style="cursor:pointer;width:20px;height:20px" title="直接拨打" alt="直接拨打">
+	</li>
+	<li>
+	&nbsp;客户等级：
+	<select  class="dfinput" style="width:140px">
+	<option value="">---</option>
+	{{foreach from=$CustomerLevelOptions key=value item=name}}
+	<option id="kehudj" name="khdj" checked="checked" value="{{$name}}" {{if ($clientno.khaa23 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	意向：
+	<select class="dfinput" style="width:140px">
+	<option value="">---</option>
+	{{foreach from=$CustomerIntentionOptions key=value item=name}}
+	<option  id="khyx" name="kehuyx" checked="checked" value="{{$name}}" {{if ($clientno.khaa25 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	进线方式：
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$IntoLineOptions key=value item=name}}
+	<option id="khjxfs" name="jxfs" checked="checked" value="{{$name}}" {{if ($clientno.khaa24 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	来源：
+	<select class="dfinput" style="width:140px">
+	<option value="">---</option>
+	{{foreach from=$ClientSourceOptions key=value item=name}}
+	<option  id="kehuly" name="khly" checked="checked" value="{{$name}}" {{if ($clientno.khaa22 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<!-- 关键字：<input  id="Keyword1111" style="width:100px" value="" name="" type="text" class="dfinput" /> -->
+	</li>
+	<li>
+	地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+	<select id="province" class="dfinput" style="width:100px">
+	{{if $clientno.province}}
+	<option name="province" value="{{$clientno.provinceid}}">{{$clientno.province}}</option>
+	{{else}}
+	<option value="">选择省</option>
+	{{/if}}
+	{{foreach from=$appprovinceOptions key=value item=name}}
+	<option name="province" checked="checked" value="{{$value}}">{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<select id="city" class="dfinput" style="width:100px">
+	{{if $clientno.city}}
+	<option name="city" value="{{$clientno.cityid}}">{{$clientno.city}}</option>
+	{{else}}
+	<option value="">选择市</option>
+	{{/if}}
+	</select>
+	<select id="area" class="dfinput" style="width:100px">
+	{{if $clientno.area}}
+	<option name="area" value="{{$clientno.areaid}}">{{$clientno.area}}</option>
+	{{else}}
+	<option value="">选择区/县</option>
+	{{/if}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	邮政编码：<input id="postcode" style="width:100px" name="" type="text" class="dfinput" value="{{$clientno.postcode}}" />
+	&nbsp;&nbsp;&nbsp;&nbsp;详细地址：&nbsp;<input id="deaddress" name="" type="text" class="dfinput" style="width:250px;margin-bottom:4px;" value="{{$clientno.addrdetail}}" />
+	</li>
+	<li></li>
+	<li>
+	
+	 <input id="sxss" value="显示更多资料" name="" type="button" class="btn" style="display:block;"/> 
+	 <input id="yinc" value="隐藏更多资料" name="" type="button" class="btn" style="display:none;"/>
+	</li>
+
+	<ul id="sssss" class="xsgdzl" style="display:none;">
+	<li>
+	&nbsp;出生日期：
+	{{if $clientno.khaa05 < '1940-10-01 10:00:00'}} 
+	<input id="csrq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value=""/>
+	{{/if}}
+	{{if $clientno.khaa05 > '1940-10-01 10:00:00'}} 
+	<input id="csrq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()" value="{{$clientno.khaa05}}"/>
+	{{/if}}
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	身高(cm)：
+	{{if $clientno.khaa36  =='0.00'}} 
+	<input id="sglm" name="" type="text" class="dfinput" style="width:100px" value=""/>
+	{{/if}}
+	{{if $clientno.khaa36 > '0.00'}} 
+	<input id="sglm" name="" type="text" class="dfinput" style="width:100px" value="{{$clientno.khaa36}}"/>
+	{{/if}}
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	体重(kg)：
+	{{if $clientno.khaa37  =='0.00'}} 
+	<input id="tzqk" name="" type="text" class="dfinput" style="width:100px" value=""/>
+	{{/if}}
+	{{if $clientno.khaa37 > '0.00'}} 
+	<input id="tzqk" name="" type="text" class="dfinput" style="width:100px" value="{{$clientno.khaa37}}"/>
+	{{/if}}
+	&nbsp;&nbsp;&nbsp;&nbsp;电子邮箱：&nbsp;<input id="dzyxhm" name="" type="text" class="dfinput" style="width:100px" value="{{$clientno.khaa11}}"/>
+	</li>
+	<li>
+	&nbsp;
+	Q&nbsp;Q号码：<input id="khqqhm" name="" type="text" class="dfinput" style="width:100px" value="{{$clientno.khaa09}}"/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年 收 入：
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$IncomeOptions key=value item=name}}
+	<option  name="khnsr" checked="checked" value="{{$name}}" {{if ($clientno.khaa27 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：
+	<select class="dfinput" style="width:100px">
+	<option value="">---</option>
+	{{foreach from=$EducationOptions key=value item=name}}
+	<option  name="khzgxl" checked="checked" value="{{$name}}" {{if ($clientno.khaa26 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	职业：
+	<select class="dfinput" style="width:140px">
+	<option value="">---</option>
+	{{foreach from=$OccupationOptions key=value item=name}}
+	<option name="cshy" checked="checked" value="{{$name}}" {{if ($clientno.khaa16 == $name)}}selected{{/if}}>{{$name}}</option>
+	{{/foreach}}
+	</select>
+	</li>
+	</ul>
+	<li>
+	&nbsp;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
+	<textarea id="khbz" name="khbzxx" cols="" rows="" class="textinput">{{$clientno.khaa39}}</textarea>
+	</li>
+	<li></li>
+	<li><label>&nbsp;</label>
+	<input id="save" name="" type="button" class="btn" value="保存资料"/>&nbsp;&nbsp;&nbsp;
+	<input id="" name="" type="button" onclick="showTjgjjl()" class="btn-info" value="添加跟进记录"/>&nbsp;&nbsp;&nbsp;
+	<a href="index.php?r=ddgl/GetTjddHtml&clientno={{$clientno.khaa02}}&sign=1"><input name="" type="button" class="btn" value="给客户下单"/></a>&nbsp;&nbsp;&nbsp;
+	<input id="delete" name="" type="button" class="btn" value="删除资料"/>&nbsp;&nbsp;&nbsp;
+	<input id="" name="" onclick="showHbkhzl()" type="button" class="btn-info" value="合并资料"/>&nbsp;&nbsp;&nbsp;
+	    <a id="before" {{if $clientno.minorder == $clientno.khaa02}}style="display:none;"{{/if}} href="index.php?r=khgl/NewClientData&clientno={{$clientno.khaa02}}&symbol=before"><input name="" type="button" class="btn" value="上一个"/></a>
+		<a id="next" {{if $clientno.maxorder == $clientno.khaa02}}style="display:none;"{{/if}} href="index.php?r=khgl/NewClientData&clientno={{$clientno.khaa02}}&symbol=next"><input name="" type="button" class="btn" value="下一个"/></a>
+	</li>
+	<li></li>
+	<!-- 跟进记录start -->
+	<div class="formtitle" id="gjjl"><span style="cursor:pointer;">>>更多详情</span></div>
+	<ul class="forminfo gjjlxx" style="float:left;">
+	    <li>
+	        <input id="getgjjl" name="" type="button" class="btn" value="跟进记录"/>&nbsp;&nbsp;&nbsp; 
+	        <input id="getddjl" name="" type="button" class="btn" value="订单记录"/>&nbsp;&nbsp;&nbsp; 
+	        <input id="tjtsbtn" name="" type="button" class="btn" value="提交投诉"/>&nbsp;&nbsp;&nbsp;
+	        <input id="CallRecords" name="" type="button" class="btn" value="通话记录"/>&nbsp;&nbsp;&nbsp; 
+		    <input  id="ShortmesRecords" name="" type="button" class="btn" value="短信记录"/>&nbsp;&nbsp;&nbsp;  
+		    <!-- <input  name="" type="button" class="btn" value="K币记录"/>&nbsp;&nbsp;&nbsp;   -->
+	    <li>
+			<table id="table1" style="width:1000px;" class="imgtable">
+				<thead>
+					<tr>
+						<th>主题</th>
+						<th>内容</th>
+						<th>安排人</th>
+						<th>跟进人</th>
+						<th>记录时间</th>
+						<th>待办时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody2">
+				
+				</tbody>
+			</table>
+
+			<table id="table2" style="width:1000px;display:none;" class="imgtable">
+				<thead>
+					<tr>
+						<!-- <th width="8%"></th> -->
+						<th>订单id</th>
+						<th>订单状态</th>
+						<th>付款方式</th>
+						<th>订单金额</th>
+						<th>下单时间</th>
+						<th>签收时间</th>
+						<th>业绩工号</th>
+						<!-- <th>订单产品</th> -->
+					</tr>
+				</thead>
+			    <tbody id="tbody3">
+				
+				</tbody>
+			</table>
+
+
+		<table id="table3" style="width:1000px;display:none;">
+		    <thead>
+		    <tr style="height:30px;line-height:30px;">
+		        <td><label>客户问题：</label>
+			    <select class="dfinput" style="width:103px">
+				    <option value="">---</option>
+				    {{foreach from=$TypecomOptions key=value item=name}}
+				    <option name="khwt" checked="checked" value="{{$name}}">{{$name}}</option>
+				    {{/foreach}}
+			    </select>
+			    </td>
+			</tr>
+			<tr style="height:30px;line-height:30px;">
+			    <td>
+			        <label>投诉工号：</label>
+			        <input id="khtsgh" name="" type="text" class="dfinput" style="width:100px"/>
+		            <img id="xztsgh" src="public/img/1.png" border="0" title="查找投诉工号"  style="width:2%;cursor:pointer"/>
+			     
+
+			  <!--   <select class="dfinput" style="width:100px">
+			  				    <option value="">---</option>
+			  				    {{foreach from=$WorkNumberOptions key=value item=name}}
+			  				    <option name="khtsgh" checked="checked" value="{{$name}}">{{$name}}</option>
+			  				    {{/foreach}}
+			  </select> -->
+			    </td>
+			</tr>
+		    <tr style="height:30px;line-height:30px;">
+		        <td>
+			         <label>订单ID：</label>
+	                <select class="dfinput" style="width:100px">
+	                    <option value="">---</option>
+	                    {{foreach from=$OrderOptions key=value item=name}}
+	                    <option   name="ddbh" checked="checked" value="{{$name}}" {{if ($clientno.xsaa02 == $name)}}selected{{/if}}>{{$name}}</option>
+	                    {{/foreach}}
+	                </select>
+
+		        </td>
+		    </tr>
+		 <input type="hidden" id="goodid" />
+		 	        	<tbody id="tbody1">
+		 	        		<tr style="height:30px;line-height:30px;" class="goodline">
+		 	        		    <td style="position:relative;">
+		 	        			<label>投诉产品：</label>
+		 	        				<!-- <input name="tscp" class="goodName" style="border:1px solid #000;text-align:center;" type="text" value="" /> -->
+		 	        			<input id="tscp" name="" type="text" class="dfinput" style="width:140px"/>
+        			            <img id="xztscp" src="public/img/1.png" border="0" title="查找投诉产品"  style="width:2%;cursor:pointer"/>
+
+		 	        			<!-- 	<div class="goodList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:200px;left:85px;height:342px;z-index:5;">
+		 	        				<table style="width:200px;" class="table5">
+		 	        					<tr>
+		 	        						<td colspan="5" class="closeGoodList" style="cursor:pointer;">关闭</td>
+		 	        					</tr>
+		 	        				</table> 
+		 	        			</div> -->
+		 	        			</td>
+		 	        		</tr>
+		 	        	</tbody>
+		    <tr>
+			    <td>
+					<label>备注：</label>
+				    <textarea  id="tsbz" class="textinput"></textarea>
+			    </td>
+		    </tr>
+		    <tr>
+			    <td>
+			    	<li><label>&nbsp;</label><input id="Complaint" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+			    </td>
+		    </tr>
+				<tbody id="tjts">
+				
+				</tbody>
+			</thead>
+		</table>
+
+		<table id="Calltable" style="width:1000px;display:none;" class="imgtable">
+				<thead>
+					<tr>
+						<th>被叫号码</th>
+						<th>呼叫状态</th>
+						<th>呼叫时间</th>
+						<th>通话时长</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+			    <tbody id="Calltbody">
+				
+				</tbody>
+			</table>
+
+		<table id="ShortmesTable" style="width:1000px;display:none;" class="imgtable">
+			<thead>
+				<tr>
+					<th>类型</th>
+					<th>操作工号</th>
+					<th>手机号码</th>
+					<th>短信内容</th>
+					<th>短信时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		    <tbody id="Shortmestbody">
+			
+			</tbody>
+		</table>
+			
+		</li>
+		
+	</ul>
+	<!-- <ul class="gjjlxx" style="float:left;padding-left:10px;">
+	</ul>
+	<div style="clear:both;"></div> -->
+	<!-- 更多详情end -->
+
+	<!--添加跟进记录弹窗 start-->
+	<div class="TCGB TC600 mydetTC" id="Achievement">
+	<div class="TCBox" style="height:400px;top:10px;">
+		<h2>
+			<span title="TCtitle">添加跟进记录--网页对话框</span>
+			<a><img id="CancelFollow" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:570px; top:6px;"></a>
+		</h2>
+		<div class="TCBody">
+			<table id="table8">
+				跟进标签：
+	   <select class="dfinput">
+		     <option value="">全部</option>
+		     {{foreach from=$FollowLabelOptions key=value item=name}}
+		     <option name="gjbq" checked="checked" value="{{$name}}">{{$name}}</option>
+		     {{/foreach}}
+	   </select>
+		<li>内容：</li>
+		<li>
+			<textarea id="gjnr" name="jlnr"  cols="" rows="" class="textinput"></textarea>
+		</li>
+		<li style="padding-top:4px;">
+			<input id="szdbsx" name="" type="checkbox" value="保存"/>需要设置待办事项
+		</li>
+		<li class="dbsx" style="display:none;">
+			待办时间：
+			<input id="dbsj" name="" type="text" class="dfinput" onClick="WdatePicker()" style="width:200px;" value="" />
+		<!-- </li>
+		<li style="padding-top:4px;padding-bottom:10px;"> -->
+		<br>
+		<br>
+		    跟进人： 
+	        <select id="gjr" class="dfinput" style="width:100px">
+	        {{foreach from=$WorkNumberOptions key=value item=name}}
+	        <option name="gjr" value="{{$name}}" {{if ($clientno.gonghao == $name) }}selected{{/if}}>{{$name}}</option>
+	        {{/foreach}}
+	        </select>
+			分组：
+			<select class="dfinput" style="width:100px">
+			<option value="">全部</option>
+	        {{foreach from=$GroupsTypeOptions key=value item=name}}
+	        <option id="szz" name="gjfz"  checked="checked" value="{{$name}}">{{$name}}</option>
+	        {{/foreach}}
+	     </select>
+		</li>
+		
+		<li>
+			<input id="SaveFollow" name="" type="button" class="btn" style="width:105px" value="保存"/>
+			<!-- <input id="CancelFollow" name="" type="button" class="btn" style="width:105px" value="取消"/> -->
+		</li>	
+			</table>
+		</div>
+	</div>
+	</div>
+
+	<!--合并客户资料弹窗 start-->
+	<div class="TCGB TC600 mydetTC" id="orderSeparateAchievement">
+	<div class="TCBox">
+		<h2>
+			<span title="TCtitle">合并客户资料--网页对话框</span>
+			<a><img id="CloseCommit" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:570px; top:6px;"></a>
+		</h2>
+		<div class="TCBody">
+			<table id="table8">
+				<tr class="JnLine ">
+					<td>客户资料1:&nbsp;&nbsp;
+					  <!--   <input id="khzl1" name="" type="text" class="dfinput" style="width:150px" value="{{$clientno.khaa02}}:{{$clientno.khaa03}}"/> -->
+					    <font id="khzl1">{{$clientno.khaa02}},{{$clientno.khaa03}}</font>
+					</td>
+				</tr>	
+				<tr "JnLine ">
+				   <td>客户资料2:&nbsp;&nbsp;
+				       <!-- <input id="khzl2" name="" type="text" class="dfinput" style="width:150px" value=""/> -->
+				        <font id="khzl2"></font>
+				   </td>
+				</tr>	
+				<tr class="JnLine ">
+					<td>输入客户2的资料查询
+					    <input id="keyword" name="" type="text" class="dfinput" style="width:100px" value=""/>
+					    <input type="radio" name="search" value="1" checked />客户ID
+	                    <input type="radio" name="search" value="2" />电话
+	                    <input type="radio" name="search" value="3" />姓名
+	                    <input id="searchClient" name="" type="button" class="btn" value="查询"/>
+	                    <br>
+					 </td>
+				</tr>
+				<tr>
+					<td>
+					    <input type="radio" name="retain" value="1" checked />保留客户1
+	                    <input type="radio" name="retain" value="2" />保留客户2
+					 </td>
+				</tr>
+				<tr>
+					<td>
+						<input id="getCommitMerger" name="" type="button" class="btn" value="提交合并"/>&nbsp;&nbsp;&nbsp;
+					</td>
+				<!-- 	<td>
+					<input id="CloseCommit" name="" type="button" class="btn" value="关闭"/>
+				</td> -->
+				</tr>					
+			</table>
+		</div>
+	</div>
+	</div>
+	</body>
+	<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+	<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+	<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+	<script type="text/javascript" src="public/template/js/common.js"></script>
+	<script type="text/javascript" src="public/template/js/khgl/xskhzlxq_kh.js"></script>
+	<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+	<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+	</html>

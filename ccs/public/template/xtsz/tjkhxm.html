@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加考核项目</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>添加考核项目</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加考核项目</span></div>
+    
+    <ul class="forminfo">
+    <form action="index.php?r=xtsz/AddKhxm" method="post" onsubmit="return checkValue();">
+    	<li>
+			<input name="khxm" id="khxm" type="text" class="dfinput" style="color:#999" value="输入项目名称" onfocus="checkKhxm1();" onblur="checkKhxm2();" />
+			<select class="dfinput" name="type" id="type" style="width:100px">
+				<option value="F">扣分（罚）</option>
+				<option value="T">加分（奖）</option>
+			</select>
+			分数：<input name="score" id="score" type="text" class="dfinput" style="width:100px" value="" />
+			<font color="red">注：如为扣分，请输入“-”号</font>
+			<input type="button" onclick="addXm()" class="btn" value="添加" />
+			<input type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1);"/>
+		</li>
+    </form>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th width="50%">项目名称</th>
+				<th>类型</th>
+				<th>分数</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="khxmTable">
+		</tbody>
+    
+    </table>
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/khxm_xtsz.js"></script>
+</html>

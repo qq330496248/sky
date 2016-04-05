@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户短信</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">客户短信</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>客户短信</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+		工号：<input id="gsgh" name="" type="text" class="dfinput" style="width:100px" value="" />
+		客户手机：<input id="khphone" name="" type="text" class="dfinput" style="width:100px" value="" />
+		开始日期：<input id="kssj" name='' type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setSjBegin})"/>
+		结束日期：<input id="jssj" name="" type="text" class="dfinput" style="width:140px" onClick="getSjEnd()"/>
+		<select class="dfinput" style="width:100px">
+		    <option value="">全部</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="khszz"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<input id="SMSQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li></li>
+    <li></li>
+	<li>
+		<a class="selected" href="index.php?r=khgl/GetKhdxHtml&status=0"><input id="btn_1" type="button" class="btn" value="已收短信"/></a>
+		<a class="selected" href="index.php?r=khgl/GetKhdxHtml&status=1"><input id="btn_2" type="button" class="btn" value="已发短信"/></a>
+		<a class="selected" href="index.php?r=khgl/GetKhdxHtml&status=2"><input id="btn_3" type="button" class="btn" value="发送统计"/></a>
+	</li> 
+	<input id="orderstatus" type="hidden" value="{{$status}}"/>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>客户ID</th>
+				<th>客户姓名</th>
+				<th>客户手机</th>
+				<th>归属工号</th>
+				<th>短信内容</th>
+				<th>短信时间</th>
+				<th>端口</th>
+				<th width="15%"></th>
+			</tr>
+		</thead>
+		
+		<tbody id="CustomerMessage">
+			<tr>
+				
+			</tr>
+		</tbody>
+    
+    </table>
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/khdx_kh.js"></script>
+
+<script type="text/javascript">
+	function setSjBegin(){
+		$("#kssj").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getSjEnd(){
+		var begindate = $("#kssj").val();
+		WdatePicker({minDate:begindate,onpicked:setSjEnd});
+	}
+	function setSjEnd(){
+		$("#jssj").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+</html>

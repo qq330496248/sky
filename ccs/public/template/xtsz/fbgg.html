@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>发布公告</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>发布公告</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>发布公告</span></div>
+    
+    <ul class="forminfo">
+	<li>
+		公告类型：
+		<select class="dfinput" id="anntype" style="width:100px">
+			<option value="">请选择类型</option>
+			<option value="接线">接线</option>
+			<option value="销售">销售</option>
+			<option value="客服">客服</option>
+			<option value="财务">财务</option>
+			<option value="物流">物流</option>
+			<option value="数据">数据</option>
+			<option value="其它">其它</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		添加时间：<input id="begindate" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input id="enddate" type="text" class="dfinput" style="width:100px" onClick="getEnddate()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;<input id="" type="button" class="btn" onclick="getAnn();" value="查询"/>
+		&nbsp;&nbsp;<a href="index.php?r=xtsz/GetFbxggHtml"><input name="" type="button" class="btn" value="发布新公告"/></a>
+	</li>
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="40%">标题</th>
+				<th width="10%">类型</th>
+				<th>发布人</th>
+				<th>添加时间</th>
+				<th width="10%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="annTable">
+			<tr>
+				
+			</tr>
+		</tbody>
+    
+    </table>
+	<li></li>
+   
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/fbgg.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	/*function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+
+</html>

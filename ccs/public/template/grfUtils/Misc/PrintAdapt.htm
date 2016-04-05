@@ -1,0 +1,98 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 演示打印适应策略功能，同一报表用不同的适应策略会得到不一样打印结果</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+CreateReport("Report");
+
+//在网页初始加载时向报表提供数据
+function window_onload() {
+    Report.LoadFromURL("../grf/1c.grf");
+    
+    rbDiscard_onclick();
+}
+
+function btnPreview_onclick() {
+    Report.LoadDataFromURL("../data/xmlCustomer.php");
+    
+    Report.PrintPreview(true);
+}
+
+function btnPrint_onclick() {
+    Report.LoadDataFromURL("../data/xmlCustomer.php");
+    
+    Report.Print(true);
+}
+
+function rbDiscard_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 1;
+}
+
+function rbWrap_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 2;
+}
+
+function rbResize_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 3;
+}
+
+function rbShrinkToFit_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 4;
+}
+
+function rbToNewPage_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 5;
+}
+
+function rbToNewPageEx_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 6;
+}
+
+function rbToNewPageRFC_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 7;
+}
+
+function rbToNewPageRFCEx_onclick() {
+    Report.DetailGrid.PrintAdaptMethod = 8;
+}
+
+function btnDesignReport_onclick() {
+    window.open("../General/DesignReport.php?report=1c.grf&data=data/xmlCustomer.php");
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body onload="window_onload()">
+	<p>
+        请选择一种打印适应策略：</p>
+    <p>
+        <input id="rbDiscard" name="AdaptMethod" type="radio" onclick="return rbDiscard_onclick()" checked="CHECKED" />
+        超过页面输出范围列内容被丢弃<br />
+        <input id="rbWrap" name="AdaptMethod" type="radio" onclick="return rbWrap_onclick()" />
+        超过页面输出范围列内容绕行输出<br />
+        <input id="rbResize" name="AdaptMethod" type="radio" onclick="return rbResize_onclick()" />
+        根据页面输出宽度自动伸缩列<br />
+        <input id="rbShrinkToFit" name="AdaptMethod" type="radio" onclick="return rbShrinkToFit_onclick()" />
+        按需缩小适应<br />
+        <input id="rbToNewPage" name="AdaptMethod" type="radio" onclick="return rbToNewPage_onclick()" />
+        超过输出范围列内容另起新页打印(先从上到下)<br />
+        <input id="rbToNewPageEx" name="AdaptMethod" type="radio" onclick="return rbToNewPageEx_onclick()"  />
+        超过输出范围列内容另起新页打印(先从左到右)<br />
+        <input id="rbToNewPageRFC" name="AdaptMethod" type="radio" onclick="return rbToNewPageRFC_onclick()" />
+        超过输出范围列内容另起新页打印并重复锁定列(先从上到下)<br />
+        <input id="rbToNewPageRFCEx" name="AdaptMethod" type="radio" onclick="return rbToNewPageRFCEx_onclick()" />
+        超过输出范围列内容另起新页打印并重复锁定列(先从左到右)</p>
+    <p>
+        <input id="btnPreview" onclick="return btnPreview_onclick()" type="button" value="打印预览"
+			name="btnPreview"/>&nbsp;<input id="btnPrint" onclick="return btnPrint_onclick()" type="button" value="直接打印" name="btnPrint"/>&nbsp;
+        <input id="btnDesignReport" type="button" value="查看报表模板" onclick="return btnDesignReport_onclick()" /></p>
+    <p style="color: red">
+        说明：实际使用中在设计报表时，直接设定明细网格的“打印策略”属性即可指定要用的打印适应策略。</p>
+</body>
+</html>

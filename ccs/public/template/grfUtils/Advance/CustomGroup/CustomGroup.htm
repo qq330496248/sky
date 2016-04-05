@@ -1,0 +1,106 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 自定义分组报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+var CurCatalog;
+var GroupFooter;
+var YellowShapeBox;
+var RedShapeBox;
+var GroupFooter;
+
+var Report;
+
+function window_onload() 
+{
+    ReportViewer.Stop();
+    
+    Report = ReportViewer.Report;
+    
+    //关联报表事件
+    Report.OnSectionFormat = OnSectionFormat;
+    Report.OnProcessRecord = OnProcessRecord;
+    Report.OnGroupBegin = OnGroupBegin;
+        
+    //记录下报表内部子对象的引用
+	GreenShapeBox = Report.ControlByName("GreenShapeBox").AsShapeBox;
+	YellowShapeBox = Report.ControlByName("YellowShapeBox").AsShapeBox;
+	RedShapeBox = Report.ControlByName("RedShapeBox").AsShapeBox;
+	GroupFooter = Report.DetailGrid.Groups.Item(1).Footer;
+
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function FindCatalogByAmount(Amount)
+{
+	var Catalog = 1;
+	if (Amount < 5000)
+		Catalog = 1;
+	else if (Amount < 20000)
+		Catalog = 2;
+	else
+		Catalog = 3;
+	return Catalog;
+}
+
+function OnGroupBegin(Sender)
+{
+	var Amount = Report.FieldByDBName("Amount").AsFloat;
+	CurCatalog = FindCatalogByAmount(Amount);
+	var Text;
+	if (CurCatalog == 1)
+		Text = "滞销";
+	else if (CurCatalog == 2)
+		Text = "一般";
+	else
+		Text = "畅销";
+	Report.Parameters.Item("Catalog").AsString = Text;
+}
+
+function OnProcessRecord()
+{
+	var Amount = Report.FieldByDBName("Amount").AsFloat;
+	var NewCatalog = FindCatalogByAmount(Amount);
+	if (CurCatalog != NewCatalog)
+	{
+		Report.DetailGrid.StartNewGroup(1);
+	}
+}
+
+function OnSectionFormat(Sender)
+{
+	if (Sender == GroupFooter)
+	{
+		//运行时按条件确定部件框的隐藏与显示
+		GreenShapeBox.Visible = false;
+		YellowShapeBox.Visible = false;
+		RedShapeBox.Visible = false;
+
+		var Amount = Report.FieldByDBName("Amount").AsFloat;
+		var CurCatalog = FindCatalogByAmount(Amount);
+		if (CurCatalog == 1)
+			RedShapeBox.Visible = true;
+		else if (CurCatalog == 2)
+			YellowShapeBox.Visible =true;
+		else
+			GreenShapeBox.Visible = true;
+	}
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    //CreatePrintViewerEx("100%", "100%", "CustomGroup.grf", "xmlCustomGroup.php", false, "");
+	    CreateDisplayViewerEx("100%", "100%", "CustomGroup.grf", "xmlCustomGroup.php", false, "");
+	</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改工号</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>修改工号</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改工号</span></div>
+    <form action="index.php?r=xtsz/UpdateRylist" method="post" onsubmit="return checkValue()">
+    <input type="hidden" name="id" id="id" value="{{$id}}" />
+    <input type="hidden" id="post" value="{{$post}}" />
+    <input type="hidden" id="dept" value="{{$department}}" />
+    <ul class="forminfo">
+    <li>
+		<label>工号：</label><font id="hqgh" style="color:#ff0000">{{$username}}</font>
+		
+	</li>
+	<li>
+		<label>姓名：</label><input name="personname" id="personname" value="{{$personname}}" onblur="personnameCheck();" type="text" class="dfinput" />
+		<font id="personnameCheck"></font>
+	</li>
+	<li>
+		<label>密码：</label>
+		<input name="oldpwd" id="oldpwd" value="{{$pwd}}" type="hidden"/>
+		<input name="pwd" id="pwd" value="" type="password" onblur="pwdCheck();" class="dfinput"/>
+		<font id="pwdCheck" color="#797979">密码长度在6~12之间</font>
+	</li>
+	<li>
+		<label>确认密码：</label><input name="conpwd" id="conpwd" type="password" onblur="conpwdCheck();" class="dfinput" />
+		<font id="conpwdCheck">修改用户时如果无需修改密码，密码框为空即可。</font>
+	</li>
+	<li>
+		<label>手机号码：</label><input name="telephone" id="telephone" value="{{$telephone}}" type="text" class="dfinput" />
+	</li>
+	<li>
+		<label>座机号码：</label><input name="phone" id="phone" value="{{$phone}}" type="text" class="dfinput" />
+		<font id="newpwdfont" color="#797979">工号所对应的座机长号，没有可为空。</font>
+	</li>
+	<li>
+		<label>分机：</label><input name="fenji" id="fenji" value="{{$fenji}}" type="text" onblur="fenjiCheck();" value="" class="dfinput" />
+		<font id="newFenjiFont" color="#797979">工号所对应的座机短号，没有可为空。</font>
+	</li>
+	<li>
+		<label>权限：</label>
+		<select name="groupbh" id="groupbh" class="dfinput" style="width:138px">
+			{{foreach from=$role key=value item=name}}
+			<option id="qxjs" name="qxjs" value="{{$name.groupbh}}:{{$name.groupname}}">{{$name.groupname}}</option>
+			{{/foreach}}
+		</select>
+		<a href="index.php?r=xtsz/GetQxjsHtml" style="color:#0000FF">查看/设置角色权限</a>
+	</li>
+	<li>
+		<label>部门：</label>
+		<select name="department" id="department" class="dfinput" style="width:138px">
+			{{foreach from=$dept key=value item=name}}
+			<option id="" name="" value="{{$name.deptname}}">{{$name.deptname}}</option>
+			{{/foreach}}
+		</select>
+		<a href="index.php?r=xtsz/GetBmglHtml" style="color:#0000FF">查看/设置部门</a>
+	</li>
+	<li>
+		<label>上级：</label>
+		<input type="hidden" id="level" value="{{$higherlevel}}" />
+		<select name="higherlevel" id="higherlevel" class="dfinput" style="width:138px">
+			<option value="0">-</option>
+			{{foreach from=$rylist key=value item=name}}
+			<option id="" name="" value="{{$name.id}}">{{$name.personname}}</option>
+			{{/foreach}}
+		</select>
+		<font id="levelFont" color="#797979">当前添加员工的直属上级，没有可为空。</font>
+	</li>
+	<li>
+		<label>可看组别：</label><input name="" value="" type="text" class="dfinput" />
+		<font id="newpwdfont" color="#797979">多个用逗号分开，如11,12，一般不需要填写。非销售工号为空可看所有资料，销售工号为空只看自己资料。</font>
+	</li>
+	<li>
+		<label>IP限制：</label><input name="limitIp" id="IPlimit" value="{{$limitIp}}" type="text" class="dfinput" />
+		<font id="newpwdfont" color="#797979">只允许这里设定的IP（段）才能登陆，为空不限制。</font>
+	</li>
+	<li>
+		<label>MAC限制：</label><input name="limitMAC" id="MAClimit" value="{{$limitMAC}}" type="text" class="dfinput" />
+		<font id="newpwdfont" color="#797979">只允许这里设定的MAC地址才能登陆，为空不限制。</font>
+	</li>
+	<li>
+		<input type="hidden" id="enabled" value="{{$enabled}}" />
+		<label>是否禁止：</label><input name="ban" id="ban" value="F" type="radio" />是 <input name="ban" id="ban" value="T" type="radio" />否
+	</li>
+	
+	<li></li>
+	 
+	 
+    <li><label>&nbsp;</label>
+		<input name="" type="button" onclick="updateRylist()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1);"/>
+	</li>
+    </ul>	
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xggh_xtsz.js"></script>
+</html>

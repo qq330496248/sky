@@ -1,0 +1,3 @@
+<xml>
+<Table><cpaa01>34</cpaa01><cpaa02>筷子</cpaa02><cpaa10></cpaa10><cpae06>日用品仓位</cpae06><cpae03>50.00</cpae03><cpae04>0.00</cpae04><cpae09>0.00</cpae09><cpae07>10.00</cpae07><cpae13>500.00</cpae13><cgab02></cgab02><cpad03></cpad03></Table>
+</xml>

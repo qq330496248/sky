@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据库备份与还原</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>数据库备份与还原</a></li>
+    </ul>
+    </div>
+    <div class="formbody">
+	<div class="formtitle"><span>数据库备份</span></div>
+    <ul class="forminfo">
+		<li>
+			<input id="dataBcakup" name="" type="button" class="btn" value="数据库备份"/> &nbsp;&nbsp;
+		</li>
+	</ul>
+    <div class="formtitle"><span>数据库还原</span></div>
+    <ul class="forminfo">
+        <form action="index.php?r=DataBack/Recover" onsubmit="return checkExist('wckdd')" method="post" enctype="multipart/form-data">
+            <li>
+                <input type="file" name="file" />
+                <input name="" type="submit" class="btn" value="数据库还原"/>
+            </li>
+        </form>
+    </ul>
+    <div class="formtitle"><span>数据库清理    <font style="color:#ff0000;">*注意：数据库清理前要先把数据库备份好再操作，以免造成数据丢失。</font></span></div>
+
+    <ul class="forminfo">
+        <li>
+            <input id="delDataBcak" name="" type="button" class="btn" value="数据库清理"/> &nbsp;&nbsp;
+        </li>
+    </ul>
+    
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/sjbfyhy.js"></script>
+
+</html>

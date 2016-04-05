@@ -1,0 +1,21 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 在报表的生成过程中显示进度条</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0">
+	<script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "../grf/1a.grf", "../data/xmlCustomer.php", true, "");
+		
+		//设置报表的ShowProgressUI属性，开启报表生成进度条显示
+		ReportViewer.Report.ShowProgressUI = true;
+	</script>
+</body>
+</html>

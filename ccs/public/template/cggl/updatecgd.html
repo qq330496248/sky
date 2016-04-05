@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改采购单内容</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">修改采购单内容</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改采购单内容</span></div>
+    
+    <ul class="forminfo">
+    
+  	<table class="imgtable">
+		<thead>
+			<tr>
+				<th colspan="4">采购下单修改</th>
+			</tr>
+		</thead>
+		<tbody id="xcgdTable">
+		<tr>
+			<input type="hidden" id="id" value="{{$id}}" />
+			<input type="hidden" id="count" value="{{$count}}" />
+			<td style="text-align:right">款号：</td>
+			<td style="text-align:left">{{$cgkh}}</td>
+			<td style="text-align:right">产品名称：</td>
+			<td style="text-align:left">{{$cgmc}}</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				进货价：
+			</td>
+			<td style="text-align:left">
+				<input id="cgjhj" name="" type="text" class="dfinput" style="width:90px" value="{{$jhj}}" />元
+			</td>
+			<td style="text-align:right">
+				采购数量：
+			</td>
+			<td style="text-align:left">
+				<input id="cgsl" name="" type="text" class="dfinput" value="{{$cgsl}}" style="width:100px" />
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:right">
+				属性：
+			</td>
+			<td style="text-align:left">{{$cgsx}}</td>
+			<td style="text-align:right"> </td>
+			<td style="text-align:left"> </td>
+		</tr>
+		</tbody>
+	    
+	</table>
+	</ul>
+    <ul class="forminfo">
+    <li> </li>
+    	<li>
+			<input id="Preservation" name="" type="button" onclick="updateCgd()" class="btn" value="确认保存"/>&nbsp;&nbsp;&nbsp;
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1)"/>
+		</li>
+	</ul>
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/cggl/updatecgd.js"></script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>操作记录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>操作记录</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>操作记录</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+		操作类型：
+		<select class="dfinput" name="type" style="width:100px">
+			<option value="">请选择</option>
+			<option value="删除短信">删除短信</option>
+			<option value="删除角色">删除角色</option>
+			<option value="删除工号">删除工号</option>
+			<option value="删除产品">删除产品</option>
+			<option value="删除产品分类">删除产品分类</option>
+			<option value="删除供应商">删除供应商</option>
+			<option value="删除产品品牌">删除产品品牌</option>
+			<option value="修改库户资料">修改客户资料</option>
+			<option value="删除跟进记录">删除跟进记录</option>
+			<option value="删除客户">删除客户</option>
+			<option value="删除订单">删除订单</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		操作员：
+		<select class="dfinput" name="ry" style="width:100px">
+			<option value="0">请选择</option>
+			{{foreach from=$rylist key=value item=name}}
+			<option value="{{$name.username}}:{{$name.personname}}">{{$name.personname}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		资料ID：<input name="thingid" type="text" class="dfinput" style="width:80px" />
+		&nbsp;&nbsp;&nbsp;
+		资料名称：<input name="difference" type="text" class="dfinput" style="width:80px"  />
+		&nbsp;&nbsp;
+		<input type="hidden" id="hiddenBeginDate" />
+    	<input type="hidden" id="hiddenEndDate" />
+    	操作时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;
+		<input name="" type="button" onclick="getCzjl()" class="btn" value="查询"/>
+	</li>
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				
+				<th width="5%">序号</th>
+				<th width="10%">操作类型</th>
+				<th width="15%">资料ID</th>
+				<th>资料名称</th>
+				<th width="14%">操作员</th>
+				<th width="10%">操作时间</th>
+			</tr>
+		</thead>
+		
+		<tbody id="czjlTable">
+		</tbody>
+    	<tfoot>
+    		<tr>
+    			<td colspan="6" id="page"></td>
+    		</tr>
+    	</tfoot>
+    </table>
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/czjl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

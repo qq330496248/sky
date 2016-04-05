@@ -1,0 +1,63 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 数据重排序重分组</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+var Report;
+
+function window_onload() 
+{
+    ReportViewer.Stop();
+    
+    Report = ReportViewer.Report
+    
+    //关联报表事件
+    Report.OnBeforePostRecord = OnBeforePostRecord;
+    Report.OnBeforeSort = OnBeforeSort;
+        
+    //启动报表运行
+    ReportViewer.Start();
+}
+                
+function OnBeforePostRecord()
+{
+	//Report.FieldByName("CalcAmount").AsFloat = Report.FieldByName("UnitPrice").AsFloat * Report.FieldByName("Quantity").AsFloat;
+}
+
+function OnBeforeSort(SortFields)
+{
+	//SortFields中可能包含有多个字段，也有可能包含有DESC与ASC顺序属性
+	//具体的字段名称应该抽取出来，如：Field1 DESC;Field2
+	var splitItems = SortFields.split(" "); //SortFields.Split(new Char [] {' ', ';'});
+	var splitItems = splitItems[0].split(";"); 
+	var FirstSortField = splitItems[0];
+
+	if (FirstSortField == "OrderDate")
+		Report.DetailGrid.Groups.Item(1).ByFields = FirstSortField;
+	else if ((FirstSortField == "CustomerID") || (FirstSortField == "CompanyName"))
+		Report.DetailGrid.Groups.Item(1).ByFields = "CustomerID";
+	else if (FirstSortField == "ProductName")
+		Report.DetailGrid.Groups.Item(1).ByFields = FirstSortField;
+	else if (FirstSortField == "EmployeeName")
+		Report.DetailGrid.Groups.Item(1).ByFields = FirstSortField;
+	else if (FirstSortField == "OrderID")
+		Report.DetailGrid.Groups.Item(1).ByFields = FirstSortField;
+	else
+		Report.DetailGrid.Groups.Item(1).ByFields = "";
+
+	//首先根据排序字段找到对应的列标题格,然后根据标题格文字设置付标题文字
+	var SubTitleBox =  Report.ControlByName("SubTitleBox").AsStaticBox;
+	SubTitleBox.Text = "按" + Report.ColumnByName(FirstSortField).TitleCell.Text + "排序分组统计";
+	ReportViewer.UpdateControl(SubTitleBox);
+}
+        </script>
+
+    </head>
+	<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+		CreateDisplayViewerEx("100%", "100%", "ResortRegroup.grf", "xmlResortRegroup.php", false, "<param name=Resortable value=true>");
+	</script>
+	</body>
+</html>

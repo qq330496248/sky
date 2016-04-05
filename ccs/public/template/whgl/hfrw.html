@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>回访任务</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">外呼管理</a></li>
+    <li><a href="#">回访任务</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>回访任务</span></div>
+    
+    <ul class="forminfo">
+    <li>	
+    	电话号码：<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+    	&nbsp;&nbsp;&nbsp;&nbsp;
+    	回访状态：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			<option value="">未回访</option>
+			<option value="">已回访</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		部门/座席：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			<option value="">未回访</option>
+			<option value="">已回访</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			<option value="">未回访</option>
+			<option value="">已回访</option>
+		</select>
+
+	</li>
+	<li>
+		创建时间：<input id="cjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input id="cjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getCjsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;<input type="checkbox" value="" />只显示我的任务
+		&nbsp;&nbsp;<input type="text" class="dfinput" />条/页
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="搜索"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th><input type="checkbox" value="" /></th>
+				<th>电话号码</th>
+				<th>所属座席</th>
+				<th>回访座席</th>
+				<th>回访时间</th>
+				<th>备注</th>
+				<th>创建用户</th>
+				<th>创建时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

@@ -1,0 +1,15 @@
+﻿#各个例子目录简单说明：
+CalcField\：示范计算字段
+CustomCrosstab\：自定义交叉报表，不用 Grid++ 本身的交叉表功能，用代码产生交叉表，实现一些特殊的交叉功能。
+CustomGroup\：自定义分组，不能通过设置依据字段直接产生分组，按照特殊的条件产生分组。
+CustomSummary\：自定义统计计算。
+DynamicColumn\：动态控制列的显示与隐藏。
+ListCheckBox\：在明细网格中实现选取框，实现数据选中功能。
+Master\：演示报表母板页，仅 asp.net 例子提供。  
+Oracle\：演示数据来自 Oracle 数据库。
+Program\：用程序代码定义出报表模板。
+RedNegativeText\：负数红字显示，相应功能也可以用报表脚本实现。
+ReportInDB\：报表模板保存至数库，并从数据库读出。
+ResortRegroup\：实现数据重排序并从重新产生分组。
+SectionFormat\：文字与背景按条件突出显示，相应功能也可以用报表脚本实现。
+StoreProcedure\：演示数据来自存储过程。

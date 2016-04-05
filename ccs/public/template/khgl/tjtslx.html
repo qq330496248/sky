@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加投诉类型</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">添加投诉类型</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>空闲</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+		<select  id="khgsgh" class="dfinput" style="width:100px">
+		    <option>上级分类</option>
+			{{foreach from=$TypeComplaintOptions key=value item=name}}
+			<option name="tssjfl" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		类型名称：<input id="lxmc" name="" type="text" class="dfinput" style="width:100px"/>
+		<input id="TypeComplaint" name="" type="button" class="btn" value="添加"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="返回"  onclick="history.go(-1);"/>
+	</li>
+	<li></li>
+	<table id="table4" class="imgtable">
+		<thead>
+			<tr>
+			    <th width="8%">序号</th>
+				<th>投诉编号</th>
+				<th>投诉内容</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+			<tr>
+				
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>				
+		</tfoot>
+    
+    </table>
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/tjtslx.js"></script>
+</html>

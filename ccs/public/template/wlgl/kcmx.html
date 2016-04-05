@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>库存明细</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">库存明细</a></li>
+    </ul>
+    </div>
+    
+<div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="formtitle"><span>库存明细</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<!-- 产品分类：
+    			<select class="dfinput" style="width:100px">
+    				<option name="cpfl1" value="">请选择</option>
+    				{{foreach from=$CustomerIntentionOptions key=value item=name}}
+    				<option name="cpfl1" checked="checked" value="{{$name}}">{{$name}}</option>
+    				{{/foreach}}
+    			</select>
+    			&nbsp;&nbsp;&nbsp;&nbsp; -->
+		名称：<input id="cpmc" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input id="cpkh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	 	库位：<input id="location" name="" type="text" class="dfinput" style="width:100px" />
+		<!-- &nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" /> 次品 -->
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		价格：
+		<select class="dfinput" style="width:50px">
+			<option name="cpjj" value="">--</option>
+			{{foreach from=$InventoryNumberOptions key=value item=name}}
+			<option name="cpjj" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<input id="price" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		是否上架：
+		<select class="dfinput" style="width:100px">
+			<option name="cpsxj" value="">不限</option>
+			{{foreach from=$UpperLowerFrameOptions key=value item=name}}
+			<option name="cpsxj" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	 	&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="stock" type="checkbox" checked="checked" /> 库存大于0
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="QueryStock" name="" type="button" class="btn" value="查询"/>
+	</li>
+	 <li>
+	 	
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="13" style="text-align:center">
+					库存列表
+				</th>
+			</tr>
+			<tr>
+				<th width="7%">批次</th>
+				<th width="4%">款号</th>
+				<th width="9%">商品名称</th>
+				<th width="7%">规格</th>
+				<th width="6%">库位</th>
+				<th width="7%">库存（正/次）</th>
+				<th width="7%">预警</th>
+				<th width="6%">价格</th>
+				<th width="6%">总额</th>
+				<th width="11%">条码</th>
+				<th width="4%">上架</th>
+				<th width="11%">供应商</th>
+				<th width="9%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="13" class="page"></td>
+			</tr>
+		</tfoot>
+    
+    </table>
+    <li style="margin-top:2px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/> 
+		
+	</li>	
+    </ul>
+    <!-- <li style="padding-left:22px;padding-top:2px;"><font color="blue">提示：</font>库存预警的计算方式是以最近20天的平均销量算出还可以销售多少天，如果小于设定的预警天数就显示预警。</li> -->
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/kcmx_wl.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//最后入库时间
+	/*function setZhrksjBegin(){
+		$("#zhrksjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getZhrksjEnd(){
+		var begindate = $("#zhrksjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZhrksjEnd(){
+		$("#zhrksjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	/*//最后出货时间
+	function setZhchsjBegin(){
+		$("#zhchsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getZhchsjEnd(){
+		var begindate = $("#zhchsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZhchsjEnd(){
+		$("#zhchsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

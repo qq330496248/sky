@@ -1,0 +1,26 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 查询报表数据的SQL语句取自报表模板</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../CreateControl.js" type="text/javascript"></script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0">
+    <script type="text/javascript"> 
+	    CreatePrintViewerEx("100%", "100%", "../grf/1a.grf", "", true, "");
+    	
+        //这样写是为了让模板中有正确的SQL语句，为保证例子正常运行，实际中应不需这样
+        //实际中模板中应该保存有正确的SQL语句
+	    ReportViewer.Report.DetailGrid.Recordset.QuerySQL = "select * from Customers order by Region,City";
+	    
+	    //从报表模板中获取到查询SQL，并作为DataURL(xmlSQLParam)的参数
+	    var QuerySQL = ReportViewer.Report.DetailGrid.Recordset.QuerySQL;
+	    ReportViewer.DataURL = encodeURI("POST::../data/xmlSQLParam.php?QuerySQL=" + QuerySQL);
+    </script>
+</body>
+</html>

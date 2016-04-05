@@ -1,0 +1,61 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<title>查询采购单号</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">  
+    <li>
+        供应商：
+        <select class="dfinput" style="width:100px">
+            <option name="gys" value="">---</option>
+            {{foreach from=$SupplierOptions key=value item=name}}
+            <option name="gys" checked="checked" value="{{$name}}">{{$name}}</option>
+            {{/foreach}}
+        </select>
+        &nbsp;&nbsp;
+       下采购单时间：
+        <input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+        至<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()" value="{{$defaultCurrentTime}}" />
+        &nbsp;&nbsp;
+        <input id="failed" type="checkbox"> 直接入库失败的采购单&nbsp;&nbsp;
+        <input id="inquire" style="width:60px" name="" type="button" class="btn-info" value="查 询"/>
+    </li>
+    <li>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="5%"> </th>
+                    <th width="10%">采购单号</th>
+                    <th width="14%">供应商</th>
+                    <th width="9%">采购总数</th>
+                    <th width="9%">采购总额</th>
+                    <th width="9%">运费</th>
+                    <th width="12%">下单人</th>
+                    <th width="14%">下采购单时间</th>
+                </tr>
+            </thead>
+            <tbody id="tbody2">
+                
+            </tbody>
+            <tfoot>
+                <tr><td colspan="9" class="page"></td></tr>                
+            </tfoot>
+        </table>
+    </li>
+    
+    <li><input id="SelectUser" name="" type="button" style="width:80px;" class="btn-info" value="确 定"/></li>  
+    </ul></div>
+</div>	
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>		
+<script type="text/javascript" src="public/template/js/dialog/czcgdrkdh.js"></script> 
+<script type="text/javascript">
+	//下单时间
+    function getXdsjEnd(){
+        var begindate = $("#xdsjq").val();
+        WdatePicker({minDate:begindate});
+    }
+</script>
+
+</html>

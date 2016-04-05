@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web报表(B/S报表)演示 - 根据页面设置动态调整部件框的输出位置</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+    <script src="../../js/grid/CreateControl.js" type="text/javascript"></script>
+    <script type="text/javascript">
+var Report;
+
+function window_onload() {
+    //报表显示器与外部的报表对象关联。定义外部的报表对象，可以处理报表事件
+    Report = ReportViewer.Report;
+    Report.OnGeneratePagesBegin = OnGeneratePagesBegin;
+
+    ReportViewer.Start();
+}
+
+function OnGeneratePagesBegin()
+{
+    //预览中如果修改了页面设置，报表的 GeneratePagesBegin 事件就会触发，并重新生成打印页面
+    //根据页面设置的右边距动态设置浮动部件框的左边位置，让其始终显示在明细网格的右侧 
+    var mbFloat = Report.ControlByName("mbFloat");
+    var Printer = Report.Printer;
+    mbFloat.Left = Printer.PaperWidth - Printer.RightMargin + 0.1;
+}
+    </script>
+</head>
+<body style="margin:0" onLoad="window_onload()">
+    <script type="text/javascript"> 
+        CreatePrintViewerEx("100%", "100%", "../../grf/rkd.grf", "../data/testRKD.txt", false, "");
+    </script>
+</body>
+</html>

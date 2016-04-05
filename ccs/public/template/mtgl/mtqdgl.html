@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>媒体渠道管理</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">媒体管理</a></li>
+    <li><a href="#">媒体渠道管理</a></li>
+    </ul>
+    </div>
+    
+<div class="formbody">
+    
+    <div class="formtitle"><span>媒体渠道管理</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		类型：<select class="dfinput" id="type" style="width:70px">
+			<option value="0">--</option>
+			<option value="网络">网络</option>
+			<option value="电视">电视</option>
+			<option value="杂志">杂志</option>
+			<option value="其他">其他</option>
+		</select>
+		&nbsp;&nbsp;
+		<select class="dfinput" id="display" style="width:70px">
+			<option value="0">--</option>
+			<option value="显示">在用</option>
+			<option value="隐藏">隐藏</option
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		关键字：<input name="" id="keyword" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;
+		<input name="" type="button" class="btn" onclick="getMedia()" value="查询"/>
+		<font color="#FF0000">注：推广电话可以为多个，用逗号隔开。这里的电话为实际号码，不是400号码。设了推广电话可以根据来电号码自动选中来源。</font>
+	</li>
+	 
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="7%">序号</th>
+				<th width="7%">ID</th>
+				<th width="10%">来源</th>
+				<th width="10%">类型</th>
+				<th width="10%">对应意向</th>
+				<th>推广电话</th>
+				<th width="7%">排序</th>
+				<th width="20%">显示/隐藏</th>
+				<th width="10%"></th>
+			</tr>
+		</thead>
+		
+		<tbody id="mediaTable">
+			
+		</tbody>
+    
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/mtgl/mtqdgl.js"></script>
+</html>

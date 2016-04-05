@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>已收内部短信</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">短信平台</a></li>
+    <li><a href="#">已收内部短信</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+     <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="formtitle"><span>已收内部短信</span></div>
+    
+    <ul class="forminfo">
+    
+    <li>
+		<a href="index.php?r=dxgl/GetFsnbdxHtml"><input name="" type="button" class="btn" value="发送内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYfnbdxHtml"><input name="" type="button" class="btn" value="已发内部短信"/></a>
+		<a href="index.php?r=dxgl/GetYsnbdxHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="已收内部短信"/></a>
+		<!-- <a href="index.php?r=dxgl/GetNbhfcxHtml"><input name="" type="button" class="btn" value="回复查询"/></a> -->
+	</li>
+
+	<li>
+		发送日期：<input id="fssjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		至：<input id="fssjz" name="" type="text" class="dfinput" style="width:100px" onClick="getFssjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		发送工号：
+		<input id="jsgh" name="" type="text" class="dfinput" style="width:140px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		标题：
+		<input id="dxbt" name="" type="text" class="dfinput" style="width:140px" />
+		&nbsp;&nbsp;<input id="QuerySentMess" name="" type="button" class="btn" value="查询"/>
+	</li>
+	
+
+	<li> </li>
+  	<table id="table4" class="imgtable">
+		<thead>
+			<tr>
+			    <th width="8%">序号</th>
+				<th>发送工号</th>
+				<th>标题</th>
+				<th>发送时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/dxgl/ysnbdx_dx.js"></script>
+
+<script type="text/javascript">
+	/*function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getFssjEnd(){
+		var begindate = $("#fssjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+
+
+</html>

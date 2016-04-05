@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>外呼明细</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">外呼管理</a></li>
+    <li><a href="#">外呼明细</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>外呼明细</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<a href="index.php?r=whgl/GetWhbbHtml"><input name="" type="button" class="btn" value="外呼统计"/></a>
+		<a href="index.php?r=whgl/GetWhmxHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="外呼明细"/></a>
+		<a href="index.php?r=whgl/GetWjtjHtml"><input name="" type="button" class="btn" value="问卷统计"/></a>
+    </li>
+    <li>	
+    	任务名称：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		执行座席：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		问卷：
+		&nbsp;&nbsp;<input type="radio" value="" />按任务统计
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+	</li>
+	<li>
+		执行时间：<input id="cjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input id="cjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getCjsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="搜索"/>
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="导出"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>执行座席</th>
+				<th>部门</th>
+				<th>电话号码</th>
+				<th>任务名称</th>
+				<th>执行时间</th>
+				<th>通话时长</th>
+				<th>问卷</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

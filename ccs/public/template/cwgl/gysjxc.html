@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>供应商进销存报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">供应商进销存报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>供应商进销存报表</span></div>
+    
+    <ul class="forminfo">
+	<li>
+		<a href="index.php?r=cwgl/GetGysjxcHtml"><input name="" type="button" class="btn" style="width:120px;color:#000000; background:#999999" value="供应商进销存"/></a>
+		<a href="index.php?r=cwgl/GetMygysjxcHtml"><input name="" type="button" class="btn" style="width:120px" value="每月供应商进销存"/></a>
+	</li>
+    <li>
+		供应商ID：<input name="" id="gysID" type="text" class="dfinput" style="width:100px" />
+		 &nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：<input name="" id="gysName" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		对应分类：
+		<select id="gysfl" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			{{foreach from=$cpfl key=value item=name}}
+			<option name="" value="{{$name.cpab01}}">{{$name.cpab02}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		采购文员：
+		<select id="cgwy" class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$cgwy key=value item=name}}
+			<option name="" value="{{$name.id}}">{{$name.personname}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+		结款方式：
+		<select id="jkfs" class="dfinput" style="width:100px">
+			<option value="">--</option>
+			<option value="现金可退">现金可退</option>
+			<option value="现金不可退">现金不可退</option>
+			<option value="月结">月结</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		开始时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;
+		<input name="" type="button" class="btn" onclick="getGysjxc()" value="查询"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="18"><font id="year">供应商进销存报表</th>
+			</tr>
+			<tr>
+				<th>供应商ID</th>
+				<th>供应商名称</th>
+				<th>结款方式</th>
+				<th>采购文员</th>
+				<th>采购专员</th>
+				<th>进货数量</th>
+				<th>进货金额</th>
+				<th>库存量</th>
+				<th>库存金额</th>
+				<th>款号数量</th>
+				<th>发货量</th>
+				<th>发货金额</th>
+				<th>收货量</th>
+				<th>收货金额</th>
+				<th>收货成本</th>
+				<th>毛利</th>
+				<th>毛利率</th>
+				<th>加入时间</th>
+			</tr>
+		</thead>
+		<tbody id="mygysjxc">
+			
+		</tbody>
+		<tbody id="total">
+			<td colspan="5">总计</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<font color="#0000FF">0%</font>
+			</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="18" id="page">
+					暂时没有记录！
+				</td>
+			</tr>
+		</tfoot>
+    
+    </table>
+    <li></li>
+    <li>
+    	<input name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/gysjxc.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

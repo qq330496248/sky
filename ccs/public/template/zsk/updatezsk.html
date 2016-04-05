@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改知识库</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+</style>
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>知识库</a></li>
+    <li><a>修改知识库</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改知识库</span></div>
+    
+    <ul class="forminfo">
+    
+	<li></li>
+	<form action="index.php?r=zsk/UpdateZsk" method="post" enctype="multipart/form-data" onsubmit="return checkValue()">
+	<font color="#FF0000">带 * 号的为必填项目</font>
+		<table class="imgtable">
+			<tbody>
+				<tr>
+					<input type="hidden" name="id" id="id" value="{{$id}}" />
+					<input type="hidden" id="oldtype" value="{{$type}}" />
+					<td style="text-align:right"><font color="#FF0000">*</font>类型：</td>
+					<td style="text-align:left">
+						<select class="dfinput" id="zsktype" style="width:190px" onblur="checkType()" name="zsktype">
+							<option value="0">请选择类型</option>
+						</select>
+						<input type="hidden" id="oldprivate" value="{{$private}}" />
+						<input type="checkbox" name="ifprivate" id="ifprivate" value="是" />私有
+						<font id="typeFont"></font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;" width="25%"><font color="#FF0000">*</font>标题：</td>
+					<td style="text-align:left">
+						<input type="text" class="dfinput" style="width:190px" value="{{$title}}" onblur="checkTitle()" id="title" name="title"/>
+						<font id="titleFont"></font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;" width="25%">标签：</td>
+					<td style="text-align:left">
+						<input type="text" class="dfinput" style="width:190px" value="{{$tag}}" id="tag" name="tag"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;" width="25%">来源：</td>
+					<td style="text-align:left">
+						<input type="text" class="dfinput" value="{{$source}}" id="source" name="source"/>
+					</td>
+				</tr>
+				<tr>
+				<input type="hidden" id="oldtop" value="{{$iftop}}" />
+					<td style="text-align:right">置顶：</td>
+					<td style="text-align:left">
+						<input type="radio" name="iftop" value="是" />是
+						<input type="radio" name="iftop" value="否" checked="" />否
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="text-align:right"><font color="#FF0000">*</font>详细内容：</td>
+					<td style="text-align:left">
+						<textarea class="textinput" id="text" onblur="checkText()" name="text">{{$text}}</textarea>
+						<font id="textFont"></font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right">附件：</td>
+					<td style="text-align:left">
+					<input type="hidden" id="file" value="{{$file}}" >
+						<a><font>{{$attachment}}</font></a>&nbsp;
+						{{if $attachment}}
+						<input name="" type="button" class="btn" style="color:#000000; background:#999999" onclick="delFile()" value="删除"/>
+						{{/if}}
+						<br/>
+						<input type="file" name="attachment" id="attachment" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="text-align:left">
+						<input type="submit" class="btn" value="提交保存" />
+						<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)"/>
+					</td>
+				</tr>
+			</tbody>
+	    
+	    </table>
+	</form>
+		
+	<li></li>
+   
+    </ul>
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/zsk/updatezsk.js"></script>
+</html>

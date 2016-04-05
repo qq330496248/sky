@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>添加城市以及区号</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>省份：</label>
+		<select class="dfinput" id="province" style="width:100px">
+			<option name="province" value="0">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="province" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+    </li>
+	<li><label>城市名：</label><input name="" id="newName" type="text" class="dfinput" /></li>
+	<li><label>区号：</label><input name="" id="newCode" type="text" class="dfinput" /></li>
+	<li><input name="" type="button" class="btn-info" onclick="addCityAndCode()" value="添加"/></li></ul></div>
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	//添加城市以及区号
+	function addCityAndCode(){
+		var pid = $("#province").val();
+		var name = $("#newName").val();
+		var code = $("#newCode").val();
+		if(name == "" || code == "" || pid == 0){
+			alert("省份，城市名和区号都不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/AddCode",{pid:pid,name:name,code:code},function(data){
+				alert(data.mes);
+				if(data.res == "success"){
+					parent.location.href = "index.php?r=xtsz/GetDqqhHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

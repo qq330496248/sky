@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>增加采购单内容</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">增加采购单内容</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>增加采购单内容</span></div>
+    
+    <ul class="forminfo">
+    
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="7%"> </th>
+				<th width="7%">款号</th>
+				<th width="13%">产品名</th>
+				<th width="8%">厂家货号</th>
+				<th width="8%">进货价</th>
+				<th width="8%">采购量</th>
+				<th>属性</th>
+			</tr>
+		</thead>
+		<input type="hidden" id="number" value="1" />
+			<tbody id="xcgdTable">
+			<tr>
+				<td><img src="public/img/del.png"  border="0" style="width:11%;cursor:pointer" title="删除该行" class="delgoodline"/></td>
+				<td>
+					<input id="cgkh_1" name="cgkh" type="text" class="dfinput" onblur="checkAndGetCp(1)" style="width:90px" />
+				</td>
+				<td>
+					<input id="cgmc_1" name="cgmc" type="text" class="dfinput" onfocus="getAllCpList(1)" onkeyup="getCpList(1)" style="width:200px" />
+					<div class="goodList_1" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:241px;height:200px;">
+						<table style="width:241px;" class="table5_1">
+							<tr>
+								<td class="closeGoodList" style="cursor:pointer;">关闭</td>
+							</tr>
+						</table> 
+					</div>
+				</td>
+					<td>
+						<input id="cghh_1" name="cghh" type="text" class="dfinput" style="width:100px" />
+					</td>
+					<td>
+						<input id="cgjhj_1" name="cgjhj" type="text" class="dfinput" style="width:100px" />
+					</td>
+					<td>
+						<input id="cgsl_1" name="cgsl" type="text" class="dfinput" style="width:100px" />
+					</td>
+					<td id="sx_1" style="text-align:left">
+						
+					</td>
+			</tr>
+			</tbody>
+		</table>
+		    </ul>
+			<ul class="forminfo">
+			<li></li>
+		    	<li>
+					<input name="" onclick="addTable()" type="button" class="btn" style="width:140px;color:#000000; background:#999999" value="增加商品行"/>
+					<input type="hidden" id="id" value="{{$id}}" />
+					<input type="hidden" id="count" value="{{$count}}" />
+					当前采购单号为：{{$id}}
+				</li>
+		    </ul>
+		    <ul class="forminfo">
+		    	<li>
+					<input id="Preservation" name="" type="button" onclick="addCgd()" class="btn" value="确认保存"/>&nbsp;&nbsp;&nbsp;
+					<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1)"/>
+				</li>
+				<font style="color:#FF0000" id="alertFont"> </font>
+			</ul>
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/cggl/addcgd.js"></script>
+</html>

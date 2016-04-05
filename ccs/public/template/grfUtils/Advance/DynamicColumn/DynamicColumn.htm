@@ -1,0 +1,59 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web报表插件(B/S报表插件)演示 - 动态设定表格列的可见性</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../../CreateControl.js" type="text/javascript"></script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+    <script type="text/javascript">
+//在网页初始加载时向报表提供数据
+function window_onload() 
+{
+}
+
+function btnRefresh_onclick() 
+{
+	var Report = ReportViewer.Report;
+
+    Report.ColumnByName("ContactName").Visible = document.getElementById("cbContactName").checked;
+    Report.ColumnByName("ContactTitle").Visible = document.getElementById("cbContactTitle").checked;
+    Report.ColumnByName("Address").Visible = document.getElementById("cbAddress").checked;
+    Report.ColumnByName("City").Visible = document.getElementById("cbCity").checked;
+    Report.ColumnByName("Region").Visible = document.getElementById("cbRegion").checked;
+    Report.ColumnByName("PostalCode").Visible = document.getElementById("cbPostalCode").checked;
+    Report.ColumnByName("Country").Visible = document.getElementById("cbCountry").checked;
+    Report.ColumnByName("Phone").Visible = document.getElementById("cbPhone").checked;
+    Report.ColumnByName("Fax").Visible = document.getElementById("cbFax").checked;
+    
+    //ReportViewer.Start();
+    ReportViewer.QuickRefresh();
+}
+    </script>
+</head>
+<body onload="return window_onload()">
+    <table border="1" width="100%" height="100%">
+      <tr height="100%">
+        <td width="16%" valign="top">
+          <input type="checkbox" id="cbContactName" value="ON" checked="CHECKED">联系人<br>
+          <input type="checkbox" id="cbContactTitle" value="ON" checked="CHECKED">联系人称谓<br>
+          <input type="checkbox" id="cbAddress" value="ON" checked="CHECKED">地址<br>
+          <input type="checkbox" id="cbCity" value="ON" checked="CHECKED">城市<br>
+          <input type="checkbox" id="cbRegion" value="ON" checked="CHECKED">地区<br>
+          <input type="checkbox" id="cbPostalCode" value="ON" checked="CHECKED">邮编<br>
+          <input type="checkbox" id="cbCountry" value="ON" checked="CHECKED">国家<br>
+          <input type="checkbox" id="cbPhone" value="ON" checked="CHECKED">电话<br>
+          <input type="checkbox" id="cbFax" value="ON" checked="CHECKED">传真<br>
+          <p align="center"><input type="button" value="刷新显示" id="btnRefresh" onclick="return btnRefresh_onclick()"></td>
+        <td width="84%">		
+	    <script type="text/javascript"> 
+	        CreateDisplayViewerEx("100%", "100%", "../../grf/1c.grf", "../../data/xmlCustomer.php", true, "");
+	    </script>
+　      </td>
+      </tr>
+    </table>
+</body>
+</html>

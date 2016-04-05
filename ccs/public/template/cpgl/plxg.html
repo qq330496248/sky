@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批量修改</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+	#one{width:200px; height:180px; float:left}
+	#two{width:50px; height:180px; float:left}
+	#three{width:200px; height:180px; float:left}
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+	.imgtable td{border-right: 0px; border-bottom: 0px}
+	.imgtable th{border: 0px;}
+	.imgtable th:hover{border: 0px;}
+</style>
+
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">批量修改</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+	
+	<div class="formtitle" id="khcz"><span>批量修改</span></div>
+	<form action="index.php?r=cpgl/GetPlxgMess" method="post" onsubmit="return getSelect()">
+		<ul class="forminfo" id="khczxx">
+			 <li>
+				商品大类：
+				<select class="dfinput" id="cpfl" name="cpfl" onchange="getCpzfl()" style="width:100px">
+					<option value="0">--</option>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				商品小类：
+				<select class="dfinput" id="cpzfl" name="cpzfl" style="width:100px">
+					<option value="0">--</option>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				品牌：
+				<select class="dfinput" id="cppp" name="cppp" style="width:190px">
+					<option value="0">--</option>
+				</select>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				产品ID：<input name="cpid" id="cpid" type="text" class="dfinput" style="width:140px" />
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				关键字：<input id="cpmc" name="cpmc" type="text" class="dfinput" style="width:100px" />
+				&nbsp;&nbsp;<input id="" type="button" class="btn" onclick="getCp()" value="搜索"/>
+			</li>
+			 <li>
+				
+				
+			</li>
+		
+		<input type="hidden" name="allCp" id="allCp" value="" />
+		<input type="hidden" name="allSx" id="allSx" value="" />
+			<li>
+				<table align="center" width="900" align="center" border="0" cellpcp_adding="0" cellspacing="0" class="imgtable">
+				    <tr>
+				    	<th>
+				        	<font>待选列表</font>
+				        </th>
+				        <th> </th>
+				        <th>
+				        	<font>选定列表</font>
+				        </th>
+				    </tr>
+				  <tr>
+				    <td>
+				        <div>
+				          <select multiple="multiple" id="select1_left" style="width:300px;height:240px; border:4px #A0A0A4 outset; pcp_adding:4px; ">
+				            
+				          </select>
+				        </div>
+				    </td>
+			        <td>
+			        	<div> 
+			        	  <span id="cp_add">
+				          <input type="button" class="btn" value="添加"/>
+				          </span><br />
+				          <span id="cp_add_all">
+				          <input type="button" class="btn" value="全部添加"/>
+				          </span> <br />
+				          <span id="cp_remove">
+				          <input type="button" class="btn" value="移除"/>
+				          </span><br />
+				          <span id="cp_remove_all">
+				          <input type="button" class="btn" value="全部移除"/>
+				          </span>
+				        </div>
+			        </td>
+				    <td>
+				      	<div>
+				          <select multiple="multiple" id="select1_right" style="width: 300px;height:240px; border:4px #A0A0A4 outset; pcp_adding:4px;">
+				          </select>
+				        </div>
+				    </td>
+				  </tr>
+				</table>
+			</li>
+<li></li>
+			<li>
+				<table align="center" width="900" align="center" border="0" cellpcp_adding="0" cellspacing="0" class="imgtable">
+				    <tr>
+				    	<th>
+				        	<font>选址属性</font>
+				        </th>
+				        <th> </th>
+				        <th>
+				        	<font>属性列表</font>
+				        </th>
+				    </tr>
+				  <tr>
+				    <td>
+				        <div>
+				          <select multiple="multiple" id="select2_left" style="width:300px;height:240px; border:4px #A0A0A4 outset; pcp_adding:4px; ">
+				            <option value="cpfl">产品分类</option>
+				            <option value="gg">规格</option>
+				            <option value="cppp">产品品牌</option>
+				            <option value="xsj">销售价</option>
+				            <option value="ms">描述</option>
+				            <option value="ifon">是否上架</option>
+				            <option value="cjhh">厂家货号</option>
+				            <option value="gys">供应商</option>
+				          </select>
+				        </div>
+				    </td>
+			        <td>
+			        	<div> 
+			        	  <span id="sx_add">
+				          <input type="button" class="btn" value="添加"/>
+				          </span><br />
+				          <span id="sx_add_all">
+				          <input type="button" class="btn" value="全部添加"/>
+				          </span> <br />
+				          <span id="sx_remove">
+				          <input type="button" class="btn" value="移除"/>
+				          </span><br />
+				          <span id="sx_remove_all">
+				          <input type="button" class="btn" value="全部移除"/>
+				          </span>
+				        </div>
+			        </td>
+				    <td>
+				      	<div>
+				          <select multiple="multiple" id="select2_right" style="width: 300px;height:240px; border:4px #A0A0A4 outset; pcp_adding:4px;">
+				          </select>
+				        </div>
+				    </td>
+				  </tr>
+				</table>
+			</li>
+			<li>
+				<input type="radio" name="method" value="single" checked=""  />逐个编辑
+				<input type="radio" name="method" value="unity" />统一编辑
+			</li>
+			<li>
+				<input type="submit" class="btn" value="开始修改" onclick="" />
+			</li>
+		</form>
+			
+		</ul>
+   </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cpgl/plxg.js"></script>
+<script type="text/javascript" src="public/template/js/selected/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="public/template/js/selected/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+//下拉框交换JQuery
+$(function(){
+	//产品方
+    //移到右边
+    $('#cp_add').click(function() {
+    //获取选中的选项，删除并追加给对方
+        $('#select1_left option:selected').appendTo('#select1_right');
+    });
+    //移到左边
+    $('#cp_remove').click(function() {
+        $('#select1_right option:selected').appendTo('#select1_left');
+    });
+    //全部移到右边
+    $('#cp_add_all').click(function() {
+        //获取全部的选项,删除并追加给对方
+        $('#select1_left option').appendTo('#select1_right');
+    });
+    //全部移到左边
+    $('#cp_remove_all').click(function() {
+        $('#select1_right option').appendTo('#select1_left');
+    });
+    //双击选项
+    $('#select1_left').dblclick(function(){ //绑定双击事件
+        //获取全部的选项,删除并追加给对方
+        $("option:selected",this).appendTo('#select1_right'); //追加给对方
+    });
+    //双击选项
+    $('#select1_right').dblclick(function(){
+       $("option:selected",this).appendTo('#select1_left');
+    });
+
+    //属性方
+    //移到右边
+    $('#sx_add').click(function() {
+    //获取选中的选项，删除并追加给对方
+        $('#select2_left option:selected').appendTo('#select2_right');
+    });
+    //移到左边
+    $('#sx_remove').click(function() {
+        $('#select2_right option:selected').appendTo('#select2_left');
+    });
+    //全部移到右边
+    $('#sx_add_all').click(function() {
+        //获取全部的选项,删除并追加给对方
+        $('#select2_left option').appendTo('#select2_right');
+    });
+    //全部移到左边
+    $('#sx_remove_all').click(function() {
+        $('#select2_right option').appendTo('#select2_left');
+    });
+    //双击选项
+    $('#select2_left').dblclick(function(){ //绑定双击事件
+        //获取全部的选项,删除并追加给对方
+        $("option:selected",this).appendTo('#select2_right'); //追加给对方
+    });
+    //双击选项
+    $('#select2_right').dblclick(function(){
+       $("option:selected",this).appendTo('#select2_left');
+    });
+});
+
+</script>
+<script type="text/javascript">
+	function selectAll(){
+		var selectedComs = document.getElementById("select1_right"); 
+		if(selectedComs.length==0){
+			alert("请选择角色");
+			return false;
+		}else{
+			for(var i=0;i<selectedComs.length;i++){  
+				selectedComs.options[i].selected = true; 
+				alert(selectedComs.options[i].value); 
+			} 
+			//表单提交操作 
+		} 
+		
+		
+		return true;  
+	}
+
+</script>
+
+
+
+</html>

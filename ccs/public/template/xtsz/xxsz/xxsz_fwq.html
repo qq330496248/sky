@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选项设置</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">选项设置</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>服务器设置</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+	<li>
+		<a href="index.php?r=xtsz/GetKdgsHtml">
+			<input name="" type="button" class="btn" value="快递公司设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetKhyxHtml">
+			<input name="" type="button" class="btn" value="客户意向设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetHydjHtml">
+			<input name="" type="button" class="btn" value="客户等级设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDjgsHtml">
+			<input name="" type="button" class="btn" value="单据格式设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDhhmdHtml">
+			<input name="" type="button" class="btn" value="电话黑名单"/>
+		</a>
+		<a href="index.php?r=xtsz/GetZyHtml">
+			<input name="" type="button" class="btn" value="职业设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDqHtml">
+			<input name="" type="button" class="btn" value="地区设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetHmpbHtml">
+			<input name="" type="button" class="btn" value="号码屏蔽设置"/>
+		</a>
+	</li>
+	<li>
+		<a href="index.php?r=xtsz/GetDqqhHtml">
+			<input name="" type="button" class="btn" value="区号设置"/>
+		</a>
+		<a href="index.php?r=xtsz/Get400dhHtml">
+			<input name="" type="button" class="btn" value="400电话设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetFwqHtml">
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999;" value="服务器设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDxgjzpbHtml">
+			<input name="" type="button" class="btn" value="短信关键字屏蔽"/>
+		</a>
+		<a href="index.php?r=xtsz/GetKhgjbqHtml">
+			<input name="" type="button" class="btn" value="客户跟进标签"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDhjbHtml">
+			<input name="" type="button" class="btn" value="电话加拨"/>
+		</a>
+		<a href="index.php?r=xtsz/GetQtHtml">
+			<input name="" type="button" class="btn" value="其他设置"/>
+		</a>
+	</li>
+   
+    </ul>
+	<ul class="forminfo">
+		<li>
+			<input name="" type="button" class="btn" onclick="showTj()" value="添加服务器"/>
+		</li>
+		<li>
+			<table class="imgtable" style="width:49%">
+				<thead>
+					<tr>
+						<th width="25%">引用标识</th>
+						<th width="25%">服务器ip</th>
+						<th width="25%">数据库名</th>
+						<th width="25%">操作</th>
+					</tr>
+				</thead>
+				<tbody id="fwqTable">
+					
+				</tbody>
+				<tfoot>
+					<tr><td colspan="13" class="page"></td></tr>				
+				</tfoot>
+			</table>
+			
+		</li>
+		
+	</ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/index.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xxsz/fwq.js"></script>
+</html>

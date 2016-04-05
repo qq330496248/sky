@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>库位管理</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">库位管理</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+	
+	<div class="formtitle" id="khcz"><span>库位管理</span></div>
+		<ul class="forminfo" id="">
+			<li>
+				 <input name="" onclick="showDiv('add')" type="button" class="btn" value="添加库位信息"/>
+			</li>
+			<li>
+				<table class="imgtable">
+					<thead>
+						<tr>
+							<th width="10%">序号</th>
+							<th>库名</th>
+							<th width="30%">位置</th>
+							<th width="10%">是否使用</th>
+							<th width="20%">操作</th>
+						</tr>
+					</thead>
+					<tbody id="kwTable">
+						
+					</tbody>
+					<tfoot>
+						<tr><td colspan="5" id="page"> </td></tr>
+					</tfoot>
+				</table>
+			</li>
+		</ul>
+	</div>
+
+	<!-- 添加库位信息 -->
+<div class="TCGB TC600 mydetTC" id="add">
+	<div class="TCBox" style="width:40%;left:45%;height:530px;top:30%;">
+		<h2><span title="TCtitle">添加库位信息
+		<a><img onclick="closeDiv('add')" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:96%; top:6px;"></a></span></h2>
+		<div class="TCBody">
+			<font color="#FF0000">带有 * 号的必须填写</font>
+			<table class="imgtable">
+			<thead> 
+
+			</thead>
+			<tbody id="tbody2">
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>库名：</th>
+					<th style="text-align:left">
+						<input type="text" id="name" class="dfinput" onblur="checkName()" style="width:200px" />
+						<font id="nameFont"></font>
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>位置：</th>
+					<th style="text-align:left">
+						<textarea id="place" class="textinput" onblur="checkPlace()"> </textarea>
+						<font id="placeFont"></font>
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">是否使用：</th>
+					<th style="text-align:left">
+						<input type="radio" id="ifuse" name="ifuse" checked="" value="是" />是
+						<input type="radio" id="ifuse" name="ifuse" value="否" />否
+					</th>
+				</tr>
+			</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
+			<li></li><br/>
+			<li>
+				<input id="" onclick="addKw()" name="" type="button" class="btn" value="确定"/>
+				<input id="" onclick="closeDiv('add')" name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"/>
+			</li>
+		</div>	
+	</div>   
+</div> 
+
+<!-- 修改库位信息 -->
+<div class="TCGB TC600 mydetTC" id="update">
+	<div class="TCBox" style="width:40%;left:45%;height:530px;top:30%;">
+		<h2><span title="TCtitle">修改库位信息
+		<a><img onclick="closeDiv('update')" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:96%; top:6px;"></a></span></h2>
+		<div class="TCBody">
+			<font color="#FF0000">带有 * 号的必须填写</font>
+			<table class="imgtable">
+			<thead> 
+				<input type="hidden" id="updateID" >
+			</thead>
+			<tbody id="tbody2">
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>库名：</th>
+					<th style="text-align:left">
+						<input type="text" id="updateName" class="dfinput" onblur="checkUpdateName()" style="width:200px" />
+						<font id="updateNameFont"></font>
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>位置：</th>
+					<th style="text-align:left">
+						<textarea id="updatePlace" class="textinput" onblur="checkUpdatePlace()"> </textarea>
+						<font id="UpdatePlacelaceFont"></font>
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">是否使用：</th>
+					<th style="text-align:left">
+						<input type="radio" id="updateIfuse" name="updateIfuse" checked="" value="是" />是
+						<input type="radio" id="updateIfuse" name="updateIfuse" value="否" />否
+					</th>
+				</tr>
+			</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
+			<li></li><br/>
+			<li>
+				<input id="" onclick="updateKw()" name="" type="button" class="btn" value="确定"/>
+				<input id="" onclick="closeDiv('update')" name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"/>
+			</li>
+		</div>	
+	</div>   
+</div>
+		
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/kwgl.js"></script>
+</html>

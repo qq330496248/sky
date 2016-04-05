@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>通讯录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	font:hover{
+		color:rgb(139, 181, 217);
+		cursor:pointer;
+	}
+	.leftmenu{
+		background: #FFFFFF; 
+	}
+</style>
+</head>
+<div style="width:100%">
+    <div class="formbody">
+	<input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <ul class="forminfo">
+    <li>	
+    	
+    	部门：
+		<select id="dept" class="dfinput" style="width:200px">
+			<option value="0">全部</option>
+		</select>
+
+		关键字：<input id="keyword" name="" type="text" class="dfinput" style="width:200px" />
+
+		
+	</li>
+	<li>
+		<input name="" type="button" class="btn-info" value="搜索"/>
+	</li>
+	<li>
+		<input id="" onclick="showDiv('add')"  name="" type="button" class="btn-info" value="新建联系人"/>
+		<!-- <input name="" type="button" class="btn" value="导入联系人"/>
+		<input name="" type="button" class="btn" value="导出联系人"/> -->
+		<input name="" type="button" class="btn-info" value="刷新" onclick="getRefrash()" />
+	</li>
+	<li>
+		<div style="width:100%;">
+	        <dl class="leftmenu" id="leftmenu" style="width:100%;background-color:#FFFFFF">
+	        	
+	        </dl>
+	    </div>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<!-- <tr>
+				<th colspan="11" style="text-align:left">
+					
+				</th>
+			</tr> -->
+			<input type="hidden" id="length" />
+			<!-- <tr>
+				<th width="2%"><input type="checkbox" id="all" onclick="changeAll(this)" /></th>
+				<th width="8%">联系人</th>
+				<th width="3%">性别</th>
+				<th width="8%">所在部门</th>
+				<th width="8%">职位角色</th>
+				<th width="8%">固定电话（分机）</th>
+				<th width="8%">手机号码</th>
+				<th width="8%">其他号码</th>
+				<th width="10%">传真号</th>
+				<th>邮箱地址</th>
+				<th width="10%">操作</th>
+			</tr> -->
+		</thead>
+		
+		<tbody id="txlTable">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    <li></li>
+    <li>
+    	<!-- <input id="" onclick="deleteMoreUser()" type="button" class="btn" style="color:#000000; background:#999999" value="删除所选"/> -->
+    </li>
+    </ul>
+    </div>
+<!-- 添加联系人 -->
+<div class="TCGB TC600 mydetTC" id="add">
+	<div class="TCBox" style="position:absolute;left:55%;top:14%;width:500px;height:550px">
+		<h2><span title="TCtitle">添加
+		<a><img id="UpdateClose" onclick="closeDiv('add')" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:94%; top:6px;"></a></span></h2>
+		<div class="TCBody">
+			<font color="#FF0000">带有 * 号的必须填写</font>
+			<table class="imgtable">
+			<tbody id="tbody2">
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>姓名：</th>
+					<th style="text-align:left"><input type="text" id="addName" class="dfinput" style="width:200px" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">性别：</th>
+					<th style="text-align:left">
+						<input type="radio" name="addSex" id="addSex" checked="" value="男" />男
+						<input type="radio" name="addSex" id="addSex" value="女" />女
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">固话：</th>
+					<th style="text-align:left">
+						<input type="text" id="addPhone" class="dfinput" style="width:140px" />-<input type="text" id="addFenji" class="dfinput" style="width:40px" />
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>手机：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="addTelephone" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">其他号码：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="addOtherphone" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">传真号码：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="addFaxnumber" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">邮箱地址：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="addEmail" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">地址：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="addAddress" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>所在部门：</th>
+					<th style="text-align:left">
+						<select class="dfinput" style="width:230px" id="addDepartment">
+							<option value="0">请选择</option>
+						</select>
+					</th>
+				</tr>
+				 <tr>
+                    <th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>角色：</th>
+                    <th style="text-align:left">
+                        <select class="dfinput" style="width:230px" id="addRole">
+                            <option value="">请选择</option>
+                        </select>
+                    </th>
+                </tr>
+				<tr>
+					<th style="text-align:right;width:20%">备注：</th>
+					<th style="text-align:left">
+						<textarea id="addBz" class="textinput"> </textarea>
+					</th>
+				</tr>
+			</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
+			<li></li><br/>
+			<li>
+				<input id="" onclick="addUser()" name="" type="button" class="btn-info" value="确定"/>
+				<input id="" onclick="closeDiv('add')" name="" type="button" class="btn-info" style="color:#000000; background:#999999" value="取消"/>
+			</li>
+		</div>	
+	</div>   
+</div> 
+
+
+<!-- 修改联系人 -->
+<div class="TCGB TC600 mydetTC" id="update">
+	<div class="TCBox" style="position:absolute;left:55%;top:14%;width:500px;height:550px">
+		<h2><span title="TCtitle">编辑
+		<a><img id="UpdateClose" onclick="closeDiv('update')" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:94%; top:6px;"></a></span></h2>
+		<div class="TCBody">
+			<font color="#FF0000">带有 * 号的必须填写</font>
+			<table class="imgtable">
+			<thead> 
+				<input type="hidden" id="updateID" value="">
+			</thead>
+			<tbody id="tbody2">
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>姓名：</th>
+					<th style="text-align:left"><input type="text" id="updateName" class="dfinput" style="width:200px" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">性别：</th>
+					<th style="text-align:left">
+						<input type="radio" name="updateSex" id="updateSex" checked="" value="男" />男
+						<input type="radio" name="updateSex" id="updateSex" value="女" />女
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">固话：</th>
+					<th style="text-align:left">
+						<input type="text" id="updatePhone" class="dfinput" style="width:140px" />-<input type="text" id="updateFenji" class="dfinput" style="width:40px" />
+					</th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>手机：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="updateTelephone" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">其他号码：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="updateOtherphone" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">传真号码：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="updateFaxnumber" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">邮箱地址：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="updateEmail" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%">地址：</th>
+					<th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="updateAddress" /></th>
+				</tr>
+				<tr>
+					<th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>所在部门：</th>
+					<th style="text-align:left">
+						<select class="dfinput" style="width:230px" id="updateDepartment">
+							<option value="0">请选择</option>
+						</select>
+					</th>
+				</tr>
+				 <tr>
+                    <th style="text-align:right;width:20%"><font style="color:#FF0000">*</font>角色：</th>
+                    <th style="text-align:left">
+                        <select class="dfinput" style="width:230px" id="updateRole">
+                            <option value="">请选择</option>
+                        </select>
+                    </th>
+                </tr>
+				<tr>
+					<th style="text-align:right;width:20%">备注：</th>
+					<th style="text-align:left">
+						<textarea id="updateBz" class="textinput"> </textarea>
+					</th>
+				</tr>
+			</tbody>
+				<tfoot>
+				</tfoot>
+			</table>
+			<li></li><br/>
+			<li>
+				<input id="" onclick="updateUser()" name="" type="button" class="btn-info" value="确定"/>
+				<input id="" onclick="closeDiv('update')" name="" type="button" class="btn-info" style="color:#000000; background:#999999" value="取消"/>
+			</li>
+		</div>	
+	</div>   
+</div> 
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/dialog/txl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate,onpicked:setCjsjEnd});
+	}
+	function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+</html>

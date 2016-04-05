@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批量修改商品（逐个）</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+</style>
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">批量修改商品（逐个）</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+	
+	<div class="formtitle" id="khcz"><span>批量修改商品（逐个）</span></div>
+	<form action="index.php?r=cpgl/PlxgSingle" method="post">
+	<input type="hidden" id="allCp" name="allCp" value="{{$allCp}}" />
+	<input type="hidden" id="allSx" name="allSx" value="{{$allSx}}" />
+	<input type="hidden" id="cpfl" name="cpfl" value="{{$cpfl}}" />
+		<ul class="forminfo" id="khczxx">
+			<li>
+				<table class="imgtable" id="singleTable">
+					<thead>
+						<tr>
+							<th style="text-align:center" colspan="2">分类名称</th>
+							
+						</tr>
+					</thead>
+					<tbody id="cpflTable">
+						
+					</tbody>
+				</table>
+			</li>
+			<li></li>
+			<li>
+				<input type="submit" class="btn" value="提交" onclick="" />
+			</li>
+		</ul>
+	</form>
+   </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cpgl/plxg_single.js"></script>
+</html>

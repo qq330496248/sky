@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加订单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">订单管理</a></li>
+    <li><a href="#">交易记录</a></li>
+    </ul>
+    </div>
+	<table id="toptable">
+		<thead>
+			<td colspan="5"><span id="notice" style="color:red;display:none;">注意：客户ID {{$clientData.khaa02}} 在3天内已有如下订单，请注意是否重复下单。</span></td>
+		</thead>
+		<tbody id="tbody5">
+			
+		</tbody>
+	</table>
+<div class="formtitle" id="ddxx"><span>订单信息</span></div>
+<input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+<ul class="forminfo" id="ddxxxx">
+<li>
+	客户ID：<font id="clientno">{{$clientData.khaa02}} </font>&nbsp;&nbsp;&nbsp;&nbsp;
+	归属工号：<font id="gsgh" user="{{$clientData.khaa33}}">{{$clientData.khaa32}} </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<font style="color:red;">*</font>收货人姓名：<input id="khname" name="" type="text" class="dfinput" value="{{$clientData.khaa03}} " />&nbsp;&nbsp;&nbsp;&nbsp;
+	联系电话：<input id="telphone" name="" type="text" class="dfinput" value="{{$clientData.khaa07}} " />&nbsp;&nbsp;&nbsp;&nbsp;
+	<font style="color:red;">*</font>手机：<input id="khphone" name="" type="text" class="dfinput" value="{{$clientData.khaa06}}" />
+</li>
+<li></li>
+<li>
+	<font style="color:red;">*</font>地区：
+	<select id="province" class="dfinput" style="width:100px">
+	<option value="">选择省</option>
+	{{foreach from=$appprovinceOptions key=value item=name}}
+	<option name="province" {{if $value == $clientData.provinceid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+	{{/foreach}}
+	</select>
+	<select id="city" class="dfinput" style="width:100px">
+	<option value="">选择市</option>
+	{{if $appcityOptions}}
+	{{foreach from=$appcityOptions key=value item=name}}
+	<option name="city" {{if $value == $clientData.cityid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+	{{/foreach}}
+	{{/if}}
+	</select>
+	<select id="area" class="dfinput" style="width:100px">
+	<option value="">选择区/县</option>
+	{{if $appareaOptions}}
+	{{foreach from=$appareaOptions key=value item=name}}
+	<option name="area" {{if $value == $clientData.areaid}}selected{{/if}} value="{{$value}}">{{$name}}</option>
+	{{/foreach}}
+	{{/if}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<font style="color:red;">*</font>详细地址：<input  id="deaddress" value="{{$clientData.addrdetail}}" name="" class="dfinput" type="text"  />
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	邮政编码：<input id="postcode" value="{{$clientData.postcode}}" name=""  type="text" class="dfinput" />
+</li>
+ <li id="required"> </li>
+<table class="imgtable">
+	<thead>
+		<tr>
+			<th width="5%"></th>
+			<th>款号</th>
+			<th>商品名称</th>
+			<th>商品单价</th>
+			<th>数量</th>
+			<th>小计</th>
+		</tr>
+	</thead>
+	<input type="hidden" id="goodid" />
+	<tbody id="tbody1">
+		<tr class="goodline">
+			<td><img src="public/img/del.png"  border="0" style="width:17%;cursor:pointer" title="删除该行" class="delgoodline"/></td>
+			<td><input name="goodInfo" class="styleNum" style="border:1px solid #000;text-align:center;" type="text" value="" /></td>
+			<td style="position:relative;">
+				<input name="goodInfo" class="goodName" style="border:1px solid #000;text-align:center;" type="text" value="" />
+				<div class="goodList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:550px;height:342px;z-index:5;">
+					<table style="width:550px;" class="table5">
+						<tr>
+							<td colspan="5" class="closeGoodList" style="cursor:pointer;">关闭</td>
+						</tr>
+					</table> 
+				</div>
+			</td>
+			<td class="unitPrice"><input name="goodInfo" style="border:1px solid #000;text-align:center;" type="text" value="" class="goodPrice"/></td>
+			<td><input id="spsl" name="goodInfo" style="border:1px solid #000;text-align:center;" type="text" value="1" class="goodNum"/></td>
+			<td class="little"><input name="goodInfo" type="text" value="" style="text-align:center;" readonly="readonly" class="subtotal"/><input class="stock" name="goodInfo" type="hidden" value="" /></td>
+		</tr>
+	</tbody>
+</table>
+
+<li>
+	<input id="addGoodsLine" style="margin-top:3px;" name="" type="button" class="btn" value="增加商品行"/>
+	<span>商品总价：￥<font id="goodTotalPrice">0</font></span>
+	<span>商品总数：<font id="goodTotalNum">0</font>件</span>
+</li>
+
+<!--商品详情弹窗 start-->
+<div class="TCGB TC600 mydetTC" id="goodDetilDiv">
+	<div class="TCBox" style="width:500px;">
+		<h2><span title="TCtitle">商品详细--网页对话框<a><img id="closeDetail" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></a></span></h2>
+		<div class="TCBody">
+			<table>
+				<tr>
+					<td>商品款号：<font id="spkh"></font> </td>
+					<td style="padding-left:180px;">规格：<font id="spgg"></font> </td>
+				</tr>
+				<tr>
+					<td>商品名称：<font id="spmc"></font> </td>
+					<td style="padding-left:180px;">销售价：<font id="xsj"></font> </td>
+				</tr>
+				<tr>
+					<td colspan="2">商品图片：<img style="width:150px;height:100px;" id="sptp" src="" alt="" /> </td>
+				</tr>
+				<tr>
+					<td colspan="2">详细描述：<font id="xxms"></font> </td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<!--商品详情弹窗 end-->
+
+<!--订单分业绩弹窗 start-->
+<input type="hidden" id="currentNum" value="{{$sessioninfo.account}}:{{$sessioninfo.name}}"/>
+<div class="TCGB TC600 mydetTC" id="orderSeparateAchievement">
+	<div class="TCBox" style="width:500px;">
+		<h2><span title="TCtitle">订单分业绩--网页对话框<img id="cancelJobNum" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></span></h2>
+		<div class="TCBody">
+			<table id="table8">
+				<tr>
+					<td style="font-size:15px;font-weight:bold;" colspan="2">请选择工号及业绩比例。</td>
+				</tr>
+				<tr class="JnLine">
+					<td>工号1：
+						<input class="showNumber" style="border:1px solid #000;" type="text" name="" value="{{$sessioninfo.account}}:{{$sessioninfo.name}}"/>
+						<div class="workNumberList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:200px;height:150px;z-index:5;">
+						<table style="width:400px;" class="table3">
+							<tr>
+								<td class="closeNumberList" style="cursor:pointer;">关闭</td>
+							</tr>
+						</table> 
+						</div>
+					</td>
+					<td style="padding-left:30px;">业绩比例：
+						<select style="width:57px;height:20px;" name="" id="" >
+							<option name="yjbl" value="1">1</option>
+							<option name="yjbl" value="0.9">0.9</option>
+							<option name="yjbl" value="0.8">0.8</option>
+							<option name="yjbl" value="0.7">0.7</option>
+							<option name="yjbl" value="0.6">0.6</option>
+							<option name="yjbl" value="0.5">0.5</option>
+							<option name="yjbl" value="0.4">0.4</option>
+							<option name="yjbl" value="0.3">0.3</option>
+							<option name="yjbl" value="0.2">0.2</option>
+							<option name="yjbl" value="0.1">0.1</option>
+						</select>
+					</td>
+				</tr>						
+			</table>
+			<div>
+				<li>
+					<input id="addJobNum" style="margin-top:15px;margin-bottom:15px;" name="" type="button" class="btn" value="增加工号"/>
+				</li>
+				<li>
+					<input id="saveJobNum" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+					<input id="cancelJobNum" name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"/>
+					<font id="showRatio" style="color:#f00;"></font>
+				</li>
+			</div>
+		</div>
+	</div>
+</div>
+<!--订单分业绩弹窗 end-->
+
+<li>
+	订单类型：
+	<select class="dfinput" style="width:100px">
+	     {{foreach from=$OrderTypeOptions key=value item=name}}
+	     <option name="ddlx" checked="checked" value="{{$name}}">{{$name}}</option>
+	     {{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	支付方式：
+	<select class="dfinput" style="width:100px">
+	     {{foreach from=$PaymentMethodOptions key=value item=name}}
+	     <option name="zffs" checked="checked" value="{{$name}}" {{if $name== '货到付款'}}selected{{/if}}>{{$name}}</option>
+	     {{/foreach}}
+	</select>
+	
+	<font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;订单实收总价：</font><input id="ddsszj" value="0" name="" type="text" class="dfinput" style="width:100px" />
+	&nbsp;&nbsp;&nbsp;&nbsp;已收（定金）：<input id="ysdj" value="0" name="" type="text" class="dfinput" style="width:60px" />元
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	订单运费：<input  id="ddyf" value="0" name="" type="text" class="dfinput" style="width:40px" />
+	</li>
+	<li>
+	快递公司：
+	<select class="dfinput" style="width:100px">
+		<option value="">---</option>
+	     {{foreach from=$DeliveryCompanyOptions key=value item=name}}
+	     <option name="kdgs" checked="checked" value="{{$name}}">{{$name}}</option>
+	     {{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：
+	<select class="dfinput" style="width:100px">
+	     {{foreach from=$InvoiceTypeOptions key=value item=name}}
+	     <option name="fplx" checked="checked" value="{{$name}}">{{$name}}</option>
+	     {{/foreach}}
+	</select>
+	&nbsp;&nbsp;&nbsp;
+	订单业绩：<font id="orderPerformance" style="color:#f00;">{{$sessioninfo.account}}</font>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<input id="MinPerformance" name="" type="button" class="btn-info"  value="分业绩"/>
+	<li id="tips">
+	
+	</li>	
+	</li>
+		<li>
+			备注：
+			<textarea id="khbz" name="khbzxx"  cols="" rows="" class="textinput"></textarea>
+		</li>
+    </ul>
+	<ul class="forminfo">
+    	<input id="addOrder" name="" type="button" class="btn" value="保存订单"/>&nbsp;&nbsp;&nbsp;<input id="cancel" name="" type="button" class="btn" style="color:#000000; background:#999999" onclick="history.go(-1)" value="取消"/>
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/ddgl/tjdd_dd.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_dd.js"></script>
+</html>

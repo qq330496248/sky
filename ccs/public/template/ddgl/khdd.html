@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户订单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+</head>
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">订单管理</a></li>
+    <li><a href="#">客户订单</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle" id="ddcx"><span>客户订单</span></div>
+    <ul class="forminfo" id="ddcxtj">
+	<li>
+		<a href="index.php?r=ddgl/GetKhddHtml"><input name="" type="button" class="btn" value="订单查询"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=3"><input name="" type="button" class="btn" value="未确认订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=4"><input name="" type="button" class="btn" value="等待支付订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=5"><input name="" type="button" class="btn" value="已确认订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=6"><input name="" type="button" class="btn" value="已支付订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=7"><input name="" type="button" class="btn" value="待发货订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=8"><input name="" type="button" class="btn" value="已发货订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=10"><input name="" type="button" class="btn" value="已作废订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=9"><input name="" type="button" class="btn" value="拒收订单"/></a>
+		<a href="index.php?r=ddgl/GetKhztddHtml&status=2"><input name="" type="button" class="btn" value="交易成功订单"/></a>
+
+	</li>
+    <li>
+		订单状态：
+		<select class="dfinput" style="width:100px">
+			 <option value="">--</option>
+			     {{foreach from=$OrderStatusOptions key=value item=name}}
+			     <option name="ddzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			     {{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		进线方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			     {{foreach from=$IntoLineOptions key=value item=name}}
+			     <option name="jxfs" checked="checked" value="{{$name}}">{{$name}}</option>
+			     {{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select class="dfinput" style="width:100px">
+			<option value="">不限</option>
+			     {{foreach from=$GroupsTypeOptions key=value item=name}}
+			     <option name="khfz" checked="checked" value="{{$name}}">{{$name}}</option>
+			     {{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		工号：
+		<select class="dfinput" style="width:100px">
+		    <option>全部</option>>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="ddgsgh" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		支付方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			     {{foreach from=$PaymentMethodOptions key=value item=name}}
+			     <option name="zffs" checked="checked" value="{{$name}}">{{$name}}</option>
+			     {{/foreach}}
+		</select>
+	</li>
+    <li>
+    订单类型：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$OrderTypeOptions key=value item=name}}
+			<option name="ddlx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		金额范围：
+		大于<input id="jefwd" name="" type="text" class="dfinput" style="width:100px" />
+		小于<input id="jefwx" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		地区：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="khsf" checked="checked" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select id="city" class="dfinput" style="width:100px">
+			<option>选择市</option>
+		</select>
+	</li>
+    <li>
+		下单时间：
+		<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		至<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()" value="{{$defaultCurrentTime}}" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		审单时间：
+		<input id="sdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="sdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getSdsjEnd()"/>
+	</li>
+	<li>
+		发货时间：
+		<input id="fhsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="fhsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getFhsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		签收时间：
+		<input id="qssjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="qssjz" name="" type="text" class="dfinput" style="width:100px" onClick="getQssjEnd()"/>
+	</li>
+    <li>
+		订单ID&nbsp;&nbsp;&nbsp;：
+		<input id="ddid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：
+		<input id="ddkh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		产品名称：
+		<input id="cpmc" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		审&nbsp;&nbsp;&nbsp;&nbsp;核：
+		<select class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			{{foreach from=$AuditStatusOptions key=value item=name}}
+			<option name="shzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		审核工号：
+		<input id="shgh" name="" type="text" class="dfinput" style="width:100px" />
+	</li>
+	<li>
+		客户&nbsp;&nbsp;&nbsp;ID：
+		<input id="khid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
+		<input id="khxm" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		手机电话：
+		<input id="phone" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		来&nbsp;&nbsp;&nbsp;&nbsp;源：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$ClientSourceOptions key=value item=name}}
+			<option name="khly" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		记账：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$WhetherAccountingOptions key=value item=name}}
+			<option name="sfjz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+	客户意向：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$CustomerIntentionOptions key=value item=name}}
+			<option name="khyx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		快递公司：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$DeliveryCompanyOptions key=value item=name}}
+			<option name="kdgs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		快递单号 ：
+		<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		未签收：
+		<input id="ddwqs" name="" type="text" class="dfinput" style="width:100px" value="0" />天
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input name="" type="checkbox"/>有分业绩
+	</li>
+	<input type="hidden" id="sequence" value="DESC" />
+	<input type="hidden" id="order" value="xsaa23" />
+    <li><input id="ddQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+    </ul>
+	<ul class="forminfo">
+		<li>
+			<table class="imgtable">
+				<thead>
+					<tr>
+						<th width="6%" onclick="changeStr('ddid');"><font id="ddid">订单ID</font></th>
+						<th width="6%" onclick="changeStr('khid');"><font id="khid">客户ID</font></th>
+						<th width="5%" onclick="changeStr('name');"><font id="name">姓名</font></th>
+						<th width="5%" onclick="changeStr('fkfs');"><font id="fkfs">付款方式</font></th>
+						<th width="5%" onclick="changeStr('zje');"><font id="zje">总金额</font></th>
+						<th width="5%" onclick="changeStr('ys');"><font id="ys">已收</font></th>
+						<th width="10%" onclick="changeStr('xdsj');"><font id="xdsj">下单时间</font></th>
+						<th width="6%" onclick="changeStr('xdr');"><font id="xdr">下单人</font></th>
+						<th width="10%" onclick="changeStr('yjfp');"><font id="yjfp">业绩分配</font></th>
+						<th width="6%" onclick="changeStr('ddzt');"><font id="ddzt">订单状态</font></th>
+						<th width="6%" onclick="changeStr('khyx');"><font id="khyx">客户意向</font></th>
+						<th width="15%" onclick="changeStr('last');"><font id="last">最新跟进/备注</font></th>
+						<th width="15%" onclick="changeStr('kd');"><font id="kd">快递/单号</font></th>
+					</tr>
+				</thead>
+				<tbody id="getCheckeboxId">
+
+				</tbody>
+				<tfoot>
+					<tr><td colspan="13" class="page"></td></tr>				
+				</tfoot>
+			</table>
+			<input id="exportExcel" style="margin-top:2px;" name="" type="button" class="btn-excel" value="导出Excel" />
+		</li>
+		<input id="url" type="hidden" value=""/>
+		<li>
+		</li>
+	</ul>
+    </div>
+
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/ddgl/khdd_dd.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_dd.js"></script>
+
+<script type="text/javascript">
+	//审单时间
+	
+	function getSdsjEnd(){
+		var begindate = $("#sdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setSdsjEnd(){
+		$("#sdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//下单时间
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setXdsjEnd(){
+		$("#xdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//发货时间
+	function getFhsjEnd(){
+		var begindate = $("#fhsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setFhsjEnd(){
+		$("#fhsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//签收时间
+	function getQssjEnd(){
+		var begindate = $("#qssjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setQssjEnd(){
+		$("#qssjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+</script>
+</html>

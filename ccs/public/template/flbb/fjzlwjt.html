@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分机振铃未接听</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">分机振铃未接听</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>分机振铃未接听</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<a href="index.php?r=flbb/GetWjldbHtml"><input name="" type="button" class="btn" value="未接来电"/></a>
+		<a href="index.php?r=flbb/GetYylyHtml"><input name="" type="button" class="btn" value="语音留言"/></a>
+		<a href="index.php?r=flbb/GetThjlHtml"><input name="" type="button" class="btn" value="通话记录"/></a>
+		<a href="index.php?r=flbb/GetDhjtbbHtml"><input name="" type="button" class="btn" value="电话监听报表"/></a>
+		<a href="index.php?r=flbb/GetFjzlwjtHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="分机振铃未接听"/></a>
+		<a href="index.php?r=flbb/GetFjzjwjtHtml"><input name="" type="button" class="btn" value="分机摘机未接听"/></a>
+    </li>
+    <li>	
+    	部门：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		被监听座席：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		座席工号：<input id="" name="" type="text" class="dfinput" style="width:140px" />
+		队列：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+		未接听原因：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+		</select>
+
+	</li>
+	<li>
+		日期：<input id="cjsjq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setCjsjBegin})"/>
+		到<input id="cjsjz" name="" type="text" class="dfinput" style="width:140px" onClick="getCjsjEnd()"/>
+
+		振铃时长：<input id="" name="" type="text" class="dfinput" style="width:140px"/>
+		至<input id="" name="" type="text" class="dfinput" style="width:140px"/>秒
+
+		<input name="" type="button" class="btn" value="搜索"/>
+		<input name="" type="button" class="btn" value="导出"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>通话时间</th>
+				<th>座席</th>
+				<th>主叫号码</th>
+				<th>队列</th>
+				<th>未接听原因</th>
+				<th>振铃时长</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate,onpicked:setCjsjEnd});
+	}
+	function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+</html>

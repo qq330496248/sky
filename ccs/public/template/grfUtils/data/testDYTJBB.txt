@@ -1,0 +1,7 @@
+<xml>
+<row><me>下单</me><xsaa61>2016-03-23</xsaa61><money>278.00</money></row>
+<row><me>下单</me><xsaa61>2016-03-24</xsaa61><money>222.00</money></row>
+<row><me>审单</me><xsaa61>2016-03-23</xsaa61><money>278.00</money></row>
+<row><me>发货</me><xsaa61>2016-03-23</xsaa61><money>278.00</money></row>
+<row><me>拒收</me><xsaa61>2016-03-23</xsaa61><money>278.00</money></row>
+</xml>

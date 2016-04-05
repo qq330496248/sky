@@ -1,0 +1,38 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 计算字段</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+function window_onload() 
+{
+    ReportViewer.Stop();
+    
+    var Report = ReportViewer.Report;
+    
+    //关联报表事件
+    Report.OnBeforePostRecord = OnBeforePostRecord;
+        
+    //启动报表运行
+    ReportViewer.Start();
+}
+                
+function OnBeforePostRecord()
+{
+    var Report = ReportViewer.Report;
+	Report.FieldByName("CalcAmount").AsFloat = Report.FieldByName("UnitPrice").AsFloat * Report.FieldByName("Quantity").AsFloat;
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    CreateDisplayViewerEx("100%", "100%", "CalcField.grf", "xmlCalcField.php", false, "");
+	</script>
+</body>
+</html>

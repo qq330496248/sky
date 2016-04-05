@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据清理</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>数据清理</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <font color="#FF0000">注意：删除历史数据一定要慎重操作，这里删除后的数据无法恢复</font>&nbsp;&nbsp;
+    <div class="formtitle"><span>删除客户订单</span></div>
+    <ul class="forminfo">
+		<li>
+			下单时间：
+			<input id="xdsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="xdsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getXdsjEnd()"/>
+			&nbsp;<input type="radio" name="search" value="1" checked />作废订单
+            &nbsp;<input type="radio" name="search" value="2" />未确认订单
+            &nbsp;<input type="radio" name="search" value="3" />所有订单
+			&nbsp;&nbsp;<input id="DelCustomerOrder" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	
+	<div class="formtitle"><span>删除通话记录（不能删除60天内的）</span></div>
+    <ul class="forminfo">
+		<li>
+			通话时间：
+			<input id="thsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="thsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getThsjEnd()"/>
+			&nbsp;&nbsp;<input id="DelCallRecord"  name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	 
+	 <div class="formtitle"><span>删除出入库记录（不能删除60天内的）</span></div>
+    <ul class="forminfo">
+		<li>
+			类型：
+			<select class="dfinput" style="width:100px">
+		    	<option value="">---</option>
+		    	{{foreach from=$Thelibrary key=value item=name}}
+		    	<option name="crklx" checked="checked" value="{{$name}}">{{$name}}</option>
+		    	{{/foreach}}
+		    </select>
+		    &nbsp;&nbsp;&nbsp;&nbsp;
+			时间：
+			<input id="jlsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="jlsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getJlsjEnd()"/>
+			&nbsp;&nbsp;<input id="DelStorageRecords" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	 
+	 <div class="formtitle"><span>删除客户跟进记录（不能删除60天内的）</span></div>
+    <ul class="forminfo">
+		<li>
+			跟进时间：
+			<input id="gjsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="gjsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getGjsjqEnd()"/>
+			&nbsp;&nbsp;<input id="DelFollowRecord" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	 
+	 <div class="formtitle"><span>删除订单跟进记录（不能删除60天内的）</span></div>
+    <ul class="forminfo">
+		<li>
+			记录时间：
+			<input id="ddsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="ddsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getDdsjEnd()"/>
+			&nbsp;&nbsp;<input id="DelOrderFollowRecords" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+
+	  <div class="formtitle"><span>删除库存盘点记录（不能删除60天内的）</span></div>
+    <ul class="forminfo">
+		<li>
+			盘点时间：
+			<input id="pdsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="pdsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getPdsjEnd()"/>
+			&nbsp;&nbsp;<input id="DelStockInventory" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	 
+	 <div class="formtitle"><span>数据资料转移</span></div>
+    <ul class="forminfo">
+		<li>
+			工号1&nbsp;&nbsp;&nbsp;
+			<input id="khgh1" name="" type="text" class="dfinput" />
+			的客户和订单全部转移到工号2&nbsp;&nbsp;&nbsp;<input id="khgh2" name="" type="text" class="dfinput" />
+			<input id="DataTransfer" name="" type="button" class="btn" value="转移"/>
+		</li>
+	 </ul>
+	 
+	 <!-- <div class="formtitle"><span>数据修复</span></div>
+	     <ul class="forminfo">
+	 		<li>
+	 			选择数据库：
+	 			<select class="dfinput">
+	 				<option>uud</option>
+	 			</select>
+	 			要修复的表：
+	 			<input name="" type="text" class="dfinput" />
+	 			<input name="" type="button" class="btn" value="修复数据"/>
+	 		</li>
+	 </ul> -->
+
+	<div class="formtitle"><span>删除客户资料</span></div>
+    <ul class="forminfo">
+		<li>
+			注册时间：
+			<input id="zcsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="zcsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getZcsjEnd()"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			跟进时间
+			<input id="scgjsjq" name="" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()"/>
+			到&nbsp;<input id="scgjsjz" name="" type="text" class="dfinput"  style="width:100px" onClick="getScgjsjEnd()"/>
+			</li>
+			<li>
+			客户等级：<!-- <input  type="text" class="dfinput" /> -->
+		    <select class="dfinput" style="width:100px">
+		    	<option value="">---</option>
+		    	{{foreach from=$CustomerLevelOptions key=value item=name}}
+		    	<option  name="khdj" checked="checked" value="{{$name}}">{{$name}}</option>
+		    	{{/foreach}}
+		    </select>
+		    &nbsp;&nbsp;&nbsp;&nbsp;
+		    意向：
+		    <select class="dfinput" style="width:100px">
+		    	<option value="">---</option>
+		    	{{foreach from=$CustomerIntentionOptions key=value item=name}}
+		    	<option name="kehuyx" checked="checked" value="{{$name}}">{{$name}}</option>
+		    	{{/foreach}}
+		    </select>
+		    &nbsp;&nbsp;&nbsp;
+		    工号：<input  id="khgh" value="" class="dfinput" type="text"  />
+			&nbsp;&nbsp;<input id="DelCustomerClient" name="" type="button" class="btn" value="删除"/>
+		</li>
+	 </ul>
+	 
+	<div class="formtitle"></div>
+    <ul class="forminfo">
+		<li>
+			<textarea class="textinput">
+				
+			</textarea>
+		</li>
+	 </ul>
+	</div>
+</body>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/sjql_xtsz.js"></script>
+
+<script type="text/javascript">
+
+    //下单时间
+    function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	
+	//通话时间
+	function getThsjEnd(){
+		var begindate = $("#thsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	
+	//出入库时间
+	function getJlsjEnd(){
+		var begindate = $("#jlsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+
+	//删除客户跟进记录 跟进时间
+	function getGjsjqEnd(){
+		var begindate = $("#gjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	
+	//盘点时间
+	function getPdsjEnd(){
+		var begindate = $("#pdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	//删除客户跟进时间
+	function getScgjsjEnd(){
+		var begindate = $("#scgjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	//删除客户注册时间
+	function getZcsjEnd(){
+		var begindate = $("#zcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	//删除订单跟进时间
+	function getDdsjEnd(){
+		var begindate = $("#ddsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

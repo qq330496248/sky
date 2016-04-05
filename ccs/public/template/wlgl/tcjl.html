@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>调仓记录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">调仓记录</a></li>
+    </ul>
+    </div>
+    
+<div class="formbody">
+    
+    <div class="formtitle"><span>调仓记录</span></div>
+    
+    <ul class="forminfo">
+   
+	<li>
+		<select class="dfinput" style="width:100px">
+			<option>请选择</option>
+			<option>丰胸</option>
+		</select>
+		<select class="dfinput" style="width:100px">
+			<option>所有分类</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		名称：<input name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		调仓时间：<input name="" id="tcsjq" type="text" class="dfinput"  style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input name="" id="tcsjz" type="text" class="dfinput"  style="width:100px" onClick="getTcsjEnd()" value="{{$defaultCurrentTime}}" />
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="9" style="text-align:center">调仓记录</th>
+				
+			</tr>
+			<tr>
+				<th>款号</th>
+				<th>产品名</th>
+				<th>属性</th>
+				<th>正库存</th>
+				<th>次库存</th>
+				<th>进货价格</th>
+				<th>调仓时间</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<th colspan="9" style="border-bottom: 0px; text-align:center">
+					暂时没有记录
+					<input name="" type="button" class="btn-excel" value="导出到Excel"/>
+					全部总金额：
+				</th>
+			</tr>
+		</tbody>
+    
+    </table>
+	
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setTcsjBegin(){
+		$("#tcsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getTcsjEnd(){
+		var begindate = $("#tcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setTcsjEnd(){
+		$("#tcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

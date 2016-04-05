@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加新产品</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+</style>
+</head>
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">添加新产品</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加新产品</span></div>
+    <form action="index.php?r=cpgl/AddCp" method="post" enctype="multipart/form-data" onsubmit="return checkValue();">
+    	<font color="#FF0000">带 * 的为必填项目</font>
+    	<table class="imgtable">
+			<tbody>
+				<th colspan="4"><font id="check"></font></th>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						商品名称：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="cpmc" id="cpmc" type="text" onblur="cpmcCheck();" class="dfinput" style="width:300px" />
+						<font color="#FF0000" style="font-size:16px">*</font>
+						规格：
+						<input name="gg" id="gg" type="text" class="dfinput" style="width:100px" />
+					</td>
+					<td style="text-align:right" width="15%">
+						厂家货号：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="cjhh" id="cjhh" type="text" class="dfinput" style="width:100px" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						商品分类：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" id="cpfl" name="cpfl" onchange="getCpzfl()" onblur="cpflCheck();" style="width:150px">
+							<option value="0">请选择</option>
+						</select>
+						<select class="dfinput" id="cpzfl" name="cpzfl" style="width:100px">
+							<option value="0">请选择</option>
+						</select>
+						<font color="#FF0000" style="font-size:16px">*</font>
+					</td>
+					<td style="text-align:right" width="15%">
+						商家品牌：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" id="sjpp" name="sjpp" onblur="sjppCheck();" style="width:200px">
+							<option value="0">请选择</option>
+						</select>
+						<font color="#FF0000" style="font-size:16px">*</font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						是否上架：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="radio" name="ifon" value="上架" checked="checked" />是
+						<input type="radio" name="ifon" value="下架" />否
+						<font color="#FF0000">如果下架，无法下单</font>
+					</td>
+					<td style="text-align:right" width="15%">
+						销售价：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="xsj" id="xsj" type="text" class="dfinput" onblur="xsjCheck();" style="width:100px" />
+						<font color="#FF0000" style="font-size:16px">*</font>
+						<input name="cx" id="cx" type="checkbox" value="是" />是否促销
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						供应商：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" name="gys" id="gys" style="width:200px">
+							<option value="0">--</option>
+						</select>
+					</td>
+					<td style="text-align:right" width="15%">
+						部门标示：<br><font color="#FF0000">（如果选择共用，其他不可选）</font>
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="bmbsAll" id="bmbsAll" type="checkbox" onclick="ifAllSelected()" value="共用" />共用
+						{{foreach from=$dept key=value item=name}}
+						<input name="bmbs[]" type="checkbox" value="{{$name.deptID}}:{{$name.depttext}}" />{{$name.depttext}}
+						{{/foreach}}
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						商品描述：
+					</td>
+					<td style="text-align:left" width="35%">
+						<textarea class="textinput" name="spms"></textarea>
+					</td>
+					<td style="text-align:right" width="15%">
+						预警数量：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="yjsl" type="text" class="dfinput" style="width:100px" />
+						<font color="#FF0000">如果此处为空，则数量默认为20</font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						上传图片：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="file" name="image" accept=".jpg,.gif,.png,.jpeg" id="image"  onchange = "PreviewImage(this, 'imgHeadPhoto', 'divPreview')" />
+						<font color="#FF0000">注意：格式必需为jpg，gif，png，jpeg，大小不超过10M </font>
+					</td>
+					<td colspan="2" height="150px">
+						<div id="divPreview">
+					     	<img id="imgHeadPhoto" src="Images/Headphoto/noperson.jpg" style="width: 200px; height: 150px;border: solid 1px #d2e2e2;" alt="" />
+						</div>
+					</td>
+				</tr>
+			</tbody>
+	    
+	    </table>
+		
+   		 <div class="formtitle" id="sxpj"><span>属性配件</span></div>
+   		   <ul class="forminfo" id="sxpjxx">
+   		   		<table class="imgtable">
+		   		   	<thead>
+		   		   		<tr>
+							<td style="text-align:right" width="15%">属性分类：</td>
+							<td style="text-align:left">
+								<select id="cpsx" class="dfinput" onchange="getCpsx();" name="cpsx">
+									<option value="0">请选择</option>
+								</select>
+							</td>
+						</tr>
+		   		   	</thead>	
+					<tbody id="cpsxTable">
+						
+					</tbody>
+			    
+			    </table>
+   		   </ul>
+   		   <ul class="forminfo">
+	    
+			<li></li>
+			 
+			 
+		    <li><input name="" type="submit" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)" /></li>
+	   		</ul>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/upload.js"></script>
+<script type="text/javascript" src="public/template/js/imgUpload/jquery.uploadify-3.1.min.js"></script>
+
+<script type="text/javascript" src="public/template/js/cpgl/tjcp_cpgl.js"></script>
+
+ <script type="text/javascript">  
+ 	function addCp(){
+ 		alert(1);
+ 		$('#image').uploadify({
+			'auto': true, //打开自动上传
+			'removeTimeout': 0, //文件队列上传完成1秒后删除
+			'width':80,
+			'height':25,
+			'swf': 'public/template/swf/uploadify.swf',
+			//'cancelImg': 'public/template/img/uploadify-cancel.png', 
+			'uploader': '?r=cpgl/Upload', //;
+			'method': 'post', //方法，服务端可以用$_POST数组获取数据
+			'buttonText': '选择图片', //设置按钮文本
+			'multi': true, //允许同时上传多张图片
+			'uploadLimit':  5, //一次最多只允许上传5张图片
+			'fileTypeDesc': 'Image Files', //只允许上传图像
+			'fileTypeExts': '*.gif;*.jpg;*.png', //限制允许上传的图片后缀
+			'fileSizeLimit': '1MB', //限制上传的图片不得超过4M 
+			'onUploadSuccess': function(file, data, response) { //每次成功上传后执行的回调函数，从服务端返回数据到前端
+				alert(data);
+			},
+			'onQueueComplete': function(queueData) { //上传队列全部完成后执行的回调函数
+				alert('complete');
+			}
+		});
+ 	}
+ </script> 
+
+</html>

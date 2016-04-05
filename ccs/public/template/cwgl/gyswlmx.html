@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>供应商往来明细</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">供应商往来明细</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>供应商往来明细</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		供应商ID：<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		记录时间：<input name="" type="text" class="dfinput" style="width:100px" />
+		到&nbsp;<input name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="查询"/>
+		<a href="index.php?r=cwgl/GetTjgyswlmxjlHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999; width:190px" value="手动添加供应商往来明细"/></a>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="6%">ID</th>
+				<th width="16%">供应商名称</th>
+				<th width="8%">进货</th>
+				<th width="8%">付款</th>
+				<th width="8%">退货</th>
+				<th width="8%">运费</th>
+				<th width="8%">余额</th>
+				<th>备注</th>
+				<th width="6%">操作人</th>
+				<th width="8%">添加时间</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td colspan="10" style="text-align:center">
+					暂时没有记录！
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10" style="text-align:center">
+					本页进货汇总： <font color="#FF0000">0</font>&nbsp;
+					本页付款汇总： <font color="#FF0000">0</font>&nbsp;
+					本页退货汇总： <font color="#FF0000">0</font>&nbsp;
+					本页进货运费汇总： <font color="#FF0000">0</font>&nbsp;
+					本页出去运费汇总： <font color="#FF0000">0</font>&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10" style="text-align:center">
+					累计进货汇总： <font color="#FF0000">0</font>&nbsp;
+					累计付款汇总： <font color="#FF0000">0</font>&nbsp;
+					累计退货汇总： <font color="#FF0000">0</font>&nbsp;
+					累计进货运费汇总： <font color="#FF0000">0</font>&nbsp;
+					累计出去运费汇总： <font color="#FF0000">0</font>&nbsp;
+				</td>
+			</tr>
+		</tbody>
+    </table>
+    <li style="padding-top:3px;">
+    	<input name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+</html>

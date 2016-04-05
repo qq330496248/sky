@@ -1,0 +1,4 @@
+<xml>
+<Table><xsaa02>XS16030004</xsaa02><xsaa05>意向客户4号</xsaa05><xsaa09>河北省,唐山市,开平区,123</xsaa09><xsaa06>13214311204</xsaa06><xsaa07></xsaa07><xsaa23>2016-03-22 14:07:32</xsaa23><xsab01>XS16030004</xsab01><xsab02>dadas12321</xsab02><xsab04>1.00</xsab04><xsab06>100.00</xsab06><xsab08>100.00</xsab08><xsaa36></xsaa36></Table>
+<Table><xsaa02>XS16030004</xsaa02><xsaa05>意向客户4号</xsaa05><xsaa09>河北省,唐山市,开平区,123</xsaa09><xsaa06>13214311204</xsaa06><xsaa07></xsaa07><xsaa23>2016-03-22 14:07:32</xsaa23><xsab01>XS16030004</xsab01><xsab02>玛莎玻尿酸原液250ml</xsab02><xsab04>1.00</xsab04><xsab06>80.00</xsab06><xsab08>80.00</xsab08><xsaa36></xsaa36></Table>
+</xml>

@@ -1,0 +1,307 @@
+﻿Object Report
+	Version='6.0.0.6'
+	Object Font
+		Name='宋体'
+		Size=105000,0
+		Weight=400
+		Charset=134
+	End
+	Object Printer
+		Height=29.7
+		Oriention=Landscape
+	End
+	Object DetailGrid
+		ShowColLine=F
+		ShowRowLine=F
+		Object Border
+			Object Pen
+				Width=0
+			End
+		End
+		Object Recordset
+			Items Field
+				Item
+					Name='cgac01'
+					Type=Integer
+				End
+				Item
+					Name='cgac03'
+				End
+				Item
+					Name='cgac04'
+				End
+				Item
+					Name='cgac08'
+				End
+				Item
+					Name='cgac05'
+					Type=Float
+				End
+				Item
+					Name='cgac06'
+					Type=Float
+				End
+				Item
+					Name='cgac07'
+					Type=Float
+				End
+				Item
+					Name='cgaa10'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='cgac01'
+				Width=1.69333
+			End
+			Item
+				Name='cgac03'
+				Width=1.87854
+			End
+			Item
+				Name='cgac04'
+				Width=3.81
+			End
+			Item
+				Name='cgac08'
+				Width=5.42396
+			End
+			Item
+				Name='cgac05'
+				Width=2.59292
+			End
+			Item
+				Name='cgac06'
+				Width=2.61938
+			End
+			Item
+				Name='cgac07'
+				Width=2.59292
+			End
+			Item
+				Name='cgaa10'
+				Width=4.15396
+			End
+		End
+		Object ColumnContent
+			Height=0.608542
+			Items ColumnContentCell
+				Item
+					Column='cgac01'
+					TextAlign=MiddleCenter
+					DataField='cgac01'
+				End
+				Item
+					Column='cgac03'
+					TextAlign=MiddleCenter
+					DataField='cgac03'
+				End
+				Item
+					Column='cgac04'
+					TextAlign=MiddleCenter
+					DataField='cgac04'
+				End
+				Item
+					Column='cgac08'
+					TextAlign=MiddleCenter
+					DataField='cgac08'
+				End
+				Item
+					Column='cgac05'
+					TextAlign=MiddleCenter
+					DataField='cgac05'
+				End
+				Item
+					Column='cgac06'
+					TextAlign=MiddleCenter
+					DataField='cgac06'
+				End
+				Item
+					Column='cgac07'
+					TextAlign=MiddleCenter
+					DataField='cgac07'
+				End
+				Item
+					Column='cgaa10'
+					TextAlign=MiddleCenter
+					DataField='cgaa10'
+				End
+			End
+		End
+		Object ColumnTitle
+			Height=0.608542
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='cgac01'
+					TextAlign=MiddleCenter
+					Text='项次'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac03'
+					TextAlign=MiddleCenter
+					Text='产品号'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac04'
+					TextAlign=MiddleCenter
+					Text='产品名称'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac08'
+					TextAlign=MiddleCenter
+					Text='规格'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac05'
+					TextAlign=MiddleCenter
+					Text='数量'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac06'
+					TextAlign=MiddleCenter
+					Text='单价'
+				End
+				Item
+					GroupTitle=F
+					Column='cgac07'
+					TextAlign=MiddleCenter
+					Text='小计'
+				End
+				Item
+					GroupTitle=F
+					Column='cgaa10'
+					TextAlign=MiddleCenter
+					Text='备注'
+				End
+			End
+		End
+	End
+	Object PageHeader
+		Height=1.32292
+		Items Control
+			Item
+				Type=StaticBox
+				Name='StaticBox1'
+				Left=10.3981
+				Top=0.396875
+				Width=2.59292
+				Height=0.608542
+				Object Font
+					Name='宋体'
+					Size=157500,0
+					Bold=T
+					Charset=134
+				End
+				TextAlign=MiddleCenter
+				Text='入库单'
+			End
+		End
+	End
+	Items ReportHeader
+		Item
+			Name='ReportHeader1'
+			Height=0.555625
+			Items Control
+				Item
+					Type=FreeGrid
+					Name='FreeGrid1'
+					Left=0.0264583
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+						Object Pen
+							Width=0
+						End
+					End
+					RowCount=1
+					ShowColLine=F
+					Items FreeGridColumn
+						Item[1]
+							Width=2.67229
+						End
+						Item[2]
+							Width=6.21771
+						End
+						Item[3]
+							Width=7.17021
+						End
+						Item[4]
+							Width=3.51896
+						End
+						Item[5]
+							Width=4.78896
+						End
+					End
+					Items FreeGridRow
+					End
+					Items FreeGridCell
+						Item[1,1]
+							Text='项目名称：'
+						End
+						Item[1,4]
+							Text='入库日期：'
+						End
+					End
+				End
+			End
+		End
+	End
+	Items ReportFooter
+		Item
+			Name='ReportFooter1'
+			Height=1.19063
+			Items Control
+				Item
+					Type=FreeGrid
+					Name='FreeGrid2'
+					Object Border
+						Styles=[DrawLeft|DrawTop|DrawRight|DrawBottom]
+						Object Pen
+							Width=0
+						End
+					End
+					ColumnCount=6
+					RowCount=2
+					ShowColLine=F
+					ShowRowLine=F
+					Items FreeGridColumn
+						Item[2]
+							Width=5.02708
+						End
+						Item[4]
+							Width=5.42396
+						End
+						Item[6]
+							Width=5.26521
+						End
+					End
+					Items FreeGridRow
+					End
+					Items FreeGridCell
+						Item[1,1]
+							Text='合计：'
+						End
+						Item[1,2]
+							ColSpan=5
+						End
+						Item[2,1]
+							Text='审核：'
+						End
+						Item[2,3]
+							Text='检查：'
+						End
+						Item[2,5]
+							Text='入库：'
+						End
+					End
+				End
+			End
+		End
+	End
+End

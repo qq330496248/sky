@@ -1,0 +1,53 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>修改区号</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>省份：</label>
+    <input type="hidden" id="cid" value="{{$city.cid}}" />
+    <input type="hidden" id="pid" value="{{$city.pid}}" />
+		<select class="dfinput" id="province" style="width:100px">
+			<option name="province" value="0">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="province" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<font style="color:#FF0000">不可随意修改</font>
+    </li>
+	<li><label>城市名：</label><input id="updateName" value="{{$city.cname}}" type="text" class="dfinput" /></li>
+	<li><label>区号：</label><input name="" id="updateCode" value="{{$city.areaCode}}" type="text" class="dfinput" /></li>
+	<li><input name="" type="button" class="btn-info" onclick="updateCityAndCode()" value="修改"/></li></ul></div>
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	$(function(){
+		var pid = $("#pid").val();
+		$("option").each(function(){
+			if($(this).val() == pid){
+				$(this).attr('selected','selected');
+			}
+		});
+	});
+	//修改城市以及区号
+	function updateCityAndCode(){
+		var cid = $("#cid").val();
+		var pid = $("#province").val();
+		var name = $("#updateName").val();
+		var code = $("#updateCode").val();
+		if(code == ""){
+			alert("区号不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/UpdateCode",{cid:cid,pid:pid,name:name,code:code},function(data){
+				alert(data.mes);
+				if(data.res == "success"){
+					parent.location.href = "index.php?r=xtsz/GetDqqhHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选项设置</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">选项设置</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>自定义字段</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+	<li>
+		<a href="index.php?r=xtsz/GetKdgsHtml">
+			<input name="" type="button" class="btn" value="快递公司设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetKhyxHtml">
+			<input name="" type="button" class="btn" value="客户意向设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetHydjHtml">
+			<input name="" type="button" class="btn" value="客户等级设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDjgsHtml">
+			<input name="" type="button" class="btn" value="单据格式设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDhhmdHtml">
+			<input name="" type="button" class="btn" value="电话黑名单"/>
+		</a>
+		<a href="index.php?r=xtsz/GetZyHtml">
+			<input name="" type="button" class="btn" value="职业设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDqHtml">
+			<input name="" type="button" class="btn" value="地区设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetHmpbHtml">
+			<input name="" type="button" class="btn" value="号码屏蔽设置"/>
+		</a>
+	</li>
+	<li>
+		<a href="index.php?r=xtsz/GetDqqhHtml">
+			<input name="" type="button" class="btn" value="区号设置"/>
+		</a>
+		<a href="index.php?r=xtsz/Get400dhHtml">
+			<input name="" type="button" class="btn" value="400电话设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetFwqHtml">
+			<input name="" type="button" class="btn" value="服务器设置"/>
+		</a>
+		<a href="index.php?r=xtsz/GetDxgjzpbHtml">
+			<input name="" type="button" class="btn" value="短信关键字屏蔽"/>
+		</a>
+		<a href="index.php?r=xtsz/GetKhgjbqHtml">
+			<input name="" type="button" class="btn" value="客户跟进标签"/>
+		</a>
+		<a href="index.php?r=xtsz/GetZdyzdHtml">
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999;" value="自定义字段"/>
+		</a>
+		<a href="index.php?r=xtsz/GetQtHtml">
+			<input name="" type="button" class="btn" value="其他设置"/>
+		</a>
+	</li>
+    <li>
+		订单状态：
+		<select class="dfinput" style="width:100px">
+			 <option value="">--</option>
+			     {foreach from=$OrderStatusOptions key=value item=name}
+			     <option name="ddzt" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		进线方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			     {foreach from=$IntoLineOptions key=value item=name}
+			     <option name="jxfs" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		分组：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			     {foreach from=$GroupsTypeOptions key=value item=name}
+			     <option name="khfz" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		工号：
+		<select class="dfinput" style="width:100px">
+			<option>不限</option>
+		</select>
+		支付方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			     {foreach from=$PaymentMethodOptions key=value item=name}
+			     <option name="zffs" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$OrderTypeOptions key=value item=name}
+			     <option name="ddlx" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+	</li>
+    <li>
+		金额范围：
+		大于<input name="" type="text" class="dfinput" style="width:100px" />
+		小于<input name="" type="text" class="dfinput" style="width:100px" />
+		地区：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">选择省</option>
+			{foreach from=$appprovinceOptions key=value item=name}
+			<option name="khly" checked="checked" value="{$value}">{$name}</option>
+			{/foreach}
+		</select>
+		<select id="city" class="dfinput" style="width:100px">
+			<option>选择市</option>
+		</select>
+		审单时间：
+		<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		至<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+	</li>
+    <li>
+		下单时间：
+		<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		至<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		发货时间：
+		<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		至<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+	</li>
+    <li>
+		订单ID：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		款号：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		产品名称：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		签收时间：
+		<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		至<input name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+	</li>
+	<li>
+		客户ID：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		姓名：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		手机电话：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		来源：
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$ClientSourceOptions key=value item=name}
+			     <option name="khly" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		客户意向：
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$CustomerIntentionOptions key=value item=name}
+			     <option name="khyx" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+			<input name="" type="checkbox"/>有分业绩
+	</li>
+	<li>
+		快递公司：
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$DeliveryCompanyOptions key=value item=name}
+			     <option name="kdgs" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		快递单号：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		未签收：
+		<input name="" type="text" class="dfinput" style="width:100px" value="0" />天
+		审核：
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$AuditStatusOptions key=value item=name}
+			     <option name="kdgs" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+		审核工号：
+		<input name="" type="text" class="dfinput" style="width:100px" />
+		<select class="dfinput" style="width:100px">
+			option value="">--</option>
+			     {foreach from=$WhetherAccountingOptions key=value item=name}
+			     <option name="kdgs" checked="checked" value="{$name}">{$name}</option>
+			     {/foreach}
+		</select>
+			<input name="" type="checkbox"/>有分业绩
+	</li>
+    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="查询"/></li>
+    </ul>
+	<ul class="forminfo">
+		<li>
+				<table class="imgtable">
+					<thead>
+						<tr>
+							<th>订单ID</th>
+							<th>客户ID</th>
+							<th>姓名</th>
+							<th>付款方式</th>
+							<th>总金额</th>
+							<th>已收</th>
+							<th>下单时间</th>
+							<th>下单人</th>
+							<th>业绩分配</th>
+							<th>订单状态</th>
+							<th>客户意向</th>
+							<th>最新跟进/备注</th>
+							<th>快递/单号</th>
+						</tr>
+					</thead>
+					<tbody id="getCheckeboxId">
+					</tbody>
+					<tfoot>
+						<tr><td colspan="13" class="page"></td></tr>				
+					</tfoot>
+				</table>
+			</li>
+	</ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/index.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+</html>

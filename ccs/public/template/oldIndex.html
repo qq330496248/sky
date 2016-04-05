@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息管理系统界面</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .imgbtn{
+         border:dotted 1px rgb(255,255,255);
+    }
+    .imgbtn:hover{
+        border:solid 1px rgb(139,181,217);
+    }
+</style>
+
+</head>
+<frameset rows="88,*,31" cols="*" frameborder="no" border="0" framespacing="0">
+	  <frame src="public/template/index/top.html" name="top" />	
+
+	  <frameset cols="187,*" frameborder="no" border="0" framespacing="0">
+		<frame src="public/template/index/left.html" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
+		<frame src="public/template/index/welcome.html" name="rightFrame" id="rightFrame" title="rightFrame" />
+	  </frameset>
+	  <div id="testdiv" style="display:none;postion;absolute;width:400px;height:200px;background-color:#FF0000">123123</div>
+
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/index.js"></script>
+
+<script language="JavaScript" src="../js/jquery.js"></script>
+<script language="JavaScript" src="../js/zDialog.js"></script>
+<script language="JavaScript" src="../js/zDrag.js"></script>
+<script type="text/javascript">
+function LogOut(){
+    var con = confirm("确认要退出吗？");
+    if(con){
+        $.post("../../../index.php?r=login/LogOut",function(data){
+            parent.location.href="../../../index.php?r=login/Index";
+        });
+    }
+}
+$(function(){   
+    //顶部导航切换
+    $(".nav li a").click(function(){
+        $(".nav li a.selected").removeClass("selected")
+        $(this).addClass("selected");
+    })  
+
+    $.post("../../../index.php?r=xtsz/GetSess",function(data){
+        $("#gh").html("工号："+data.gh);
+        $("#name").html("姓名："+data.name+"&nbsp;&nbsp;&nbsp;");
+    });	
+});
+
+function showDiv(){
+	alert(1);
+}
+</script>
+
+
+
+</html>
+
+
+<!-- src="public/template/index/top.html" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" -->

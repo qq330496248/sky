@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>物流发货</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">物流发货</a></li>
+    </ul>
+    </div>
+    <input id="historyPages" type="hidden" page="{{$page}}" psize="{{$psize}}"/>
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>物流发货</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		订&nbsp;单&nbsp;号&nbsp;：<input id="wlddh" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		快递公司：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$DeliveryCompanyOptions key=value item=name}}
+			<option  name="kdgs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		订单状态：
+		<select class="dfinput" style="width:100px">
+			{{foreach from=$OrderStatus key=value item=name}}
+			<option  name="ddfhzt" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		支付方式
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$PaymentMethodOptions key=value item=name}}
+			<option  name="zffs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option  name="szz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		</li>
+		<li>
+		客户意向：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$CustomerIntentionOptions key=value item=name}}
+			<option  name="khyx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		订单类型：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$OrderTypeOptions key=value item=name}}
+			<option  name="ddlx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		下单时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		快递单号：<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+		
+	</li>
+	 <li>
+		客&nbsp;户&nbsp;I&nbsp;D：<input id="khid" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		客户姓名：<input id="khname" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		备注：<input id="wlfhbz" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;
+		<input id="LogisticsQuery" name="" type="button" class="btn" value="查询"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		刷新时间：<font id="refurbishTime" color="#FF0000">不刷新</font>
+		<input name="" type="button" class="btn" id="120" onclick="refurbish(120)" value="120秒"/>
+		<input name="" type="button" class="btn" id="300" onclick="refurbish(300)" value="300秒"/>
+		<input name="" type="button" class="btn" id="0" style="color:#000000; background:#999999" onclick="refurbish(0)" value="不刷新"/>
+	</li>
+  	<table id="table5" class="imgtable" style="margin-bottom:3px;">
+    
+		<thead>
+			<tr>
+				<th width="7%" onclick="changeStr('ddid')"><font id="ddid">订单ID</font></th>
+				<th width="7%" onclick="changeStr('name')"><font id="name">姓名</font></th>
+				<th width="10%" onclick="changeStr('ddsj')"><font id="ddsj">订单时间</font></th>
+				<th width="10%" onclick="changeStr('sdsj')"><font id="sdsj">审单时间</font></th>
+				<th width="5%" onclick="changeStr('zt')"><font id="zt">状态</font></th>
+				<th width="7%" onclick="changeStr('kdgs')"><font id="kdgs">快递公司</font></th>
+				<th width="9%" onclick="changeStr('kddh')"><font id="kddh">快递单号</font></th>
+				<th width="5%">打印</th>
+				<th width="7%" onclick="changeStr('fkfs')"><font id="fkfs">付款方式</font></th>
+				<th width="10%" onclick="changeStr('zje')"><font id="zje">总金额</font></th>
+				<th>备注</th>
+				<th width="7%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				<td colspan="11" class="page rightLine"></td>
+				<!-- <td colspan="1"></td> -->
+			</tr>
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+    <table>
+		<tr>
+		   <!--  <td class="rightLine"> -->
+					<input type="checkbox" id="checkall"/>全选
+			<!-- </td> -->
+			&nbsp;&nbsp;
+			<input id="batchArragin" name="" type="button" class="btn" value="批量发货"/>&nbsp;<!-- 
+			<input name="" type="button" class="btn" value="批量打出货单"/>&nbsp;
+			<input name="" type="button" class="btn" value="批量打快递单"/>&nbsp;
+			<input name="" type="button" class="btn" value="批量打热敏单"/>&nbsp;
+			<input name="" type="button" class="btn" value="匹配快递单号"/>&nbsp; -->
+			<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/>
+			
+		</tr>				
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/wlfh_wl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setXdsjBegin(){
+		$("#xdsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setXdsjEnd(){
+		$("#xdsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

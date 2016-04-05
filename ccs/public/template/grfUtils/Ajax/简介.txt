@@ -1,0 +1,15 @@
+﻿概述：
+用 XMLHttpReuest 对象向WEB服务器请求数据，然后将得到的数据载入到报表中。
+如果报表数据网页中存在 Session 或 Cookie 参数，在非 IE 内核的浏览器
+中，Session 或 Cookie 参数不会传递给WEB服务器，从而导致请求报表数据失败，
+采用这里 Ajax 的方式，就可以避免这样的问题，从而让报表能更完美的支持在多
+种浏览器下使用。
+
+1、DisplayViewReport.htm：查询显示方式展现报表
+2、PrintViewReport.htm：打印显示方式展现报表
+3、PrintDirect.htm：直接用 CreateReport 函数创建报表对象，报表在网页中不直接展现出来，而是调用报表对象的相关方法实现各种功能，如打印、数据导出等。
+
+4、SubReport目录：用 Ajax 载入子报表数据，必须用 HTTP 同步请求
+5、SummaryToDetail目录：用 Ajax 载入有过滤条件的报表数据
+6、Designer目录：报表设计器用 Ajax 传输数据
+7、BothAjax目录：报表模板与报表数据都用 Ajax 载入，用 HTTPS 访问的网站必须采用此方式

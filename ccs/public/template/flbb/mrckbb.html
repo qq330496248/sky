@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>每日出库报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">每日出库报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>每日出库报表</span></div>
+    
+    <ul class="forminfo">
+    
+    <li>	
+		名称：<input id="cpmc" name="" type="text" class="dfinput" style="width:100px"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input id="cpkh" name="" type="text" class="dfinput" style="width:100px"/>
+		&nbsp;&nbsp;
+		<input id="" name="" type="checkbox" />次品库存
+		&nbsp;&nbsp;&nbsp;&nbsp;
+    	出库时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;<input name="" type="button" onclick="getMrckbb(0)" class="btn" value="查询"/>	
+	</li>
+	
+	<li> </li>
+  	<li>
+		<table class="imgtable">
+	    
+			<thead>
+				<tr>
+					<th width="14%">款号</th>
+					<th width="14%">产品名</th>
+					<th width="14%">库位</th>
+					<th width="14%">进货数</th>
+					<th width="14%">出货数</th>
+					<th width="14%">正库存</th>
+					<th width="">次库存</th>
+				</tr>
+			</thead>
+			
+			<tbody id="mrckbb">
+				
+			</tbody>
+			<tfoot id="tfoot">
+				
+			</tfoot>
+	    	<input id="url" type="hidden" value=""/>
+	    </table>
+	</li>
+	<li style="padding-top:3px;">
+	 	<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/>
+	 </li>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/flbb/mrckbb.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

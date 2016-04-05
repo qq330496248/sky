@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>未接来电</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">未接来电</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>未接来电</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<a href="index.php?r=flbb/GetWjldbHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="未接来电"/></a>
+		<a href="index.php?r=flbb/GetYylyHtml"><input name="" type="button" class="btn" value="语音留言"/></a>
+		<a href="index.php?r=flbb/GetThjlHtml"><input name="" type="button" class="btn" value="通话记录"/></a>
+		<a href="index.php?r=flbb/GetDhjtbbHtml"><input name="" type="button" class="btn" value="电话监听报表"/></a>
+		<a href="index.php?r=flbb/GetFjzlwjtHtml"><input name="" type="button" class="btn" value="分机振铃未接听"/></a>
+		<a href="index.php?r=flbb/GetFjzjwjtHtml"><input name="" type="button" class="btn" value="分机摘机未接听"/></a>
+    </li>
+    <li>	
+    	是否回复：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			<option value="">未回复</option>
+			<option value="">已回复</option>
+			<option value="">需回复</option>
+		</select>
+		是否成功回复：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			<option value="">成功</option>
+			<option value="">失败</option>
+		</select>
+		日期：<input id="cjsjq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker({onpicked:setCjsjBegin})"/>
+		到<input id="cjsjz" name="" type="text" class="dfinput" style="width:140px" onClick="getCjsjEnd()"/>
+
+	</li>
+	<li>
+		主叫号码：<input id="" name="" type="text" class="dfinput" style="width:100px"/>
+		查询方式：
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">明细</option>
+			<option value="">筛选</option>
+		</select>
+
+		呼叫时长：<input id="" name="" type="text" class="dfinput" style="width:40px"/>~
+		<input id="" name="" type="text" class="dfinput" style="width:40px"/>秒
+		<input name="" type="button" class="btn" value="搜索"/>
+		<input name="" type="button" class="btn-excel" value="导出Excel"/>
+	</li>
+	<li> </li>
+	<li>
+		<b>回访分配：</b>
+		分配数量：<input id="" name="" type="text" class="dfinput" style="width:100px"/>
+		&nbsp;&nbsp;&nbsp;<input id="" name="" type="text" class="dfinput" style="width:300px"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="请选择座席"/>
+		<input name="" type="button" class="btn" value="分配回访"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th><input type="checkbox" /></th>
+				<th>通话时间</th>
+				<th>主叫号码</th>
+				<th>被叫号码</th>
+				<th>呼叫时长</th>
+				<th>是否回复</th>
+				<th>是否成功</th>
+				<th>回复人</th>
+				<th>回访分配</th>
+				<th>回访者</th>
+				<th>备注</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate,onpicked:setCjsjEnd});
+	}
+	function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}
+
+</script>
+</html>

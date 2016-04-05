@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改权限角色</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>修改权限角色</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改权限角色</span></div>
+    
+    
+	<form action="index.php?r=xtsz/UpdateGroupRight" method="post" onsubmit="return checkValue()">
+	
+	<input type="hidden" name="groupbh" id="groupbh" value="{{$groupbh}}" />
+	<ul class="forminfo">
+	<li></li>
+		<table class="imgtable">
+		<tbody>
+			<tr style="font-size:14px;">
+				<th style="width:20%; text-align:right; ">权限角色：</th>
+				<td style="text-align:left; text-indent:5px;">
+					<input type="text" class="dfinput" name="groupname" id="groupname" value="{{$groupname}}" onblur="qxjsCheck()" style="width:200px"  />
+					<font id="qxjsCheck">十个字以内</font>
+				</td>
+			</tr>
+			<tr>
+				<th style="text-align:right;">限定产品：</th>
+				<td style="text-align:left; text-indent:5px;">
+					<input type="radio" name="xdcp" />不限
+					<input type="radio" name="xdcp" />一线产品
+					<input type="radio" name="xdcp" />二线产品
+				</td>
+			</tr>
+		</tbody>
+		<tbody id="menuTable">
+		</tbody>
+    
+    </table>
+    <li></li>
+   <li><label>&nbsp;</label><input type="button" onclick="updateQxjs()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+	<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"  onclick="history.go(-1);" /></li>
+    </ul>
+	</form>
+	
+	
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgqxjs_xtsz.js"></script>
+
+<script type="text/javascript">
+	var groupbh = $("#groupbh").val();
+	$.post('index.php?r=xtsz/GetSingleAppRightList',{groupbh:groupbh},function(data){
+
+		if(data.result == 'success'){
+			var length = data.list.length;
+			for(var i = 0; i < length; i++){
+				$("input:checkbox").each(function(){
+					if(data.list[i]['rightbh'] == $(this).val()){
+						$(this).attr("checked","checked");
+					}
+				});
+			}
+		}
+	},'json');
+</script>
+</html>

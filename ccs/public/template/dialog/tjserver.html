@@ -1,0 +1,54 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>添加服务器</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">	
+	<li>
+		<label>引用标识：</label>
+		<input name="" id="refSigns" type="text" class="dfinput" />
+	</li>
+	<li>
+		<label>服务器ip：</label>
+		<input name="" id="serverIp" type="text" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库名：</label>
+		<input name="" id="dbName" type="text" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库账号：</label>
+		<input name="" id="dbAccount" type="text" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库密码：</label>
+		<input name="" id="dbPwd" type="text" class="dfinput" />
+	</li>
+	<li><input name="" type="button" class="btn-info" onclick="addServer()" value="添加"/></li></ul></div>
+	
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	//添加城市以及区号
+	function addServer(){
+		var refSigns = $("#refSigns").val();
+		var serverIp = $("#serverIp").val();
+		var dbName = $("#dbName").val();
+		var dbAccount = $("#dbAccount").val();
+		var dbPwd = $("#dbPwd").val();
+		if(refSigns == '' || serverIp == '' || dbName == '' || dbAccount == '' || dbPwd == ''){
+			alert("所有信息不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/AddServer",{refSigns:refSigns,serverIp:serverIp,dbName:dbName,dbAccount:dbAccount,dbPwd:dbPwd},function(data){
+				alert(data.msg);
+				if(data.mes == "success"){
+					parent.location.href = "index.php?r=xtsz/GetFwqHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

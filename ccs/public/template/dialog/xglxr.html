@@ -1,0 +1,93 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>添加新联系人</title>
+<div style="width:100%">
+    <div class="formbody">
+   
+    <ul class="forminfo">  
+        <font color="#FF0000">带有 * 号的必须填写</font>
+            <table class="imgtable" style="width:550px">
+            <thead> 
+
+            </thead>
+            <tbody id="tbody2">
+                <tr>
+                    <th style="text-align:right;width:20%">姓名：</th>
+                    <th style="text-align:left"><input type="text" id="name" class="dfinput" style="width:200px" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">性别：</th>
+                    <th style="text-align:left">
+                        <input type="radio" name="sex" id="sex" checked="" value="男" />男
+                        <input type="radio" name="sex" id="sex" value="女" />女
+                    </th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">固话：</th>
+                    <th style="text-align:left">
+                        <input type="text" id="phone" class="dfinput" style="width:140px" />-<input type="text" id="fenji" class="dfinput" style="width:40px" />
+                    </th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">手机：</th>
+                    <th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="telephone" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">其他号码：</th>
+                    <th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="otherphone" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">传真号码：</th>
+                    <th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="faxnumber" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">邮箱地址：</th>
+                    <th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="email" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">地址：</th>
+                    <th style="text-align:left"><input type="text" class="dfinput" style="width:200px" id="address" /></th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">所在部门：</th>
+                    <th style="text-align:left">
+                        <select class="dfinput" style="width:230px" id="department">
+                            <option value="">请选择</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">角色：</th>
+                    <th style="text-align:left">
+                        <select class="dfinput" style="width:230px" id="role">
+                            <option value="">请选择</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="text-align:right;width:20%">备注：</th>
+                    <th style="text-align:left">
+                        <textarea id="bz" class="textinput"> </textarea>
+                    </th>
+                </tr>
+            </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+            <li></li><br/>
+            <li>
+                <input id="" onclick="addUser()" name="" type="button" class="btn-info" value="确定"/>
+              <!--   <input id="" onclick="parentDialog.close();" name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"/> -->
+            </li>
+    </ul>
+    </div>
+</div>	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>		
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/dialog/tjlxr.js"></script>     
+<script type="text/javascript">
+	
+</script>
+
+</html>

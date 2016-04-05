@@ -1,0 +1,57 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 不用报表插件展现报表而是直接输出(AJAX方式)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+CreateReport("Report");
+
+//在网页初始加载时向报表提供数据
+function window_onload() {
+    //Report.LoadFromURL("../grf/1a.grf");
+    AjaxReportLoad(Report, "../../grf/1a.grf", "GET");
+}
+
+function btnPreview_onclick() {
+    AjaxReportRun(Report, "../../data/xmlCustomer.php", ReportPrintPreview);
+}
+
+function btnPrint_onclick() {
+    AjaxReportRun(Report, "../../data/xmlCustomer.php", ReportPrint);
+}
+
+function btnExportXls1_onclick() {
+    AjaxReportRun(Report, "../../data/xmlCustomer.php", ReportExport);
+}
+
+function ReportPrintPreview()
+{
+    Report.PrintPreview(true);
+}
+
+function ReportPrint()
+{
+    Report.Print(true);
+}
+
+function ReportExport()
+{
+    //要改变导出默认选项参数，响应IGridppReport.ExportBegin 事件，在事件函数中设置选项参数属性，具体参考例子03.Export
+    Report.ExportDirect(1, "MyReport.xls", true,  true); //gretXLS = 1, 
+}
+	</script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body onload="window_onload()">
+	<p><input id="btnPreview" onclick="return btnPreview_onclick()" type="button" value="打印预览"
+			name="btnPreview">&nbsp;<input id="btnPrint" onclick="return btnPrint_onclick()" type="button" value="直接打印" name="btnPrint">
+        <input id="btnExportXls1" name="btnExportXls1" onclick="return btnExportXls1_onclick()"
+            type="button" value="导出为Excel" />
+</body>
+</html>

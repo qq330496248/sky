@@ -1,0 +1,139 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 自定义交叉报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+var Report;
+
+function window_onload() 
+{
+    ReportViewer.Stop();
+
+    Report = ReportViewer.Report;
+    
+    //动态定义报表模板
+    ReportDefine();
+    //Report.SaveToFile("d:\\crosstab.grf");
+    
+    //从网上取XML数据并转存到一个动态创建的记录集中
+    var varRecordset = Report.Utility.CreateRecordset();
+    var fldProductID = varRecordset.AddField("ProductID", 2/*整数类型*/); 
+    var fldProductName = varRecordset.AddField("ProductName", 1/*字符串类型*/); 
+    var fldMonth = varRecordset.AddField("MonthNo", 2/*整数类型*/);
+    var fldQuantity = varRecordset.AddField("Quantity", 3/*浮点数字类型*/);
+    var fldAmount = varRecordset.AddField("Amount", 3/*浮点数字类型*/);
+    varRecordset.LoadData("xmlCustomCrossTab.php");
+    
+    //首先用变量记录下各个字段的引用
+	var DataGroupCount = 12;
+	var ProductIDField = Report.FieldByName("ProductID");
+	var ProductNameField = Report.FieldByName("ProductName");
+    
+	var Recordset = Report.DetailGrid.Recordset; //报表记录集对象
+	Report.PrepareLoadData(); //在 FetchRecord 事件之外填充报表记录集数据，一定要先调用PrepareLoadData
+   
+    //将动态创建的记录集中的数据根据交叉情况赋值到报表中对应的字段上,即将varRecordset中数据转换填入到Recordset
+	var PrevProductID = -1;
+	varRecordset.First();
+	while ( !varRecordset.Eof() )
+	{
+		var ProductID = fldProductID.AsInteger;
+		var ProductName = fldProductName.AsString;
+		var OrderMonth = fldMonth.AsInteger;
+		var Quantity = fldQuantity.AsFloat;
+		var Amount = fldAmount.AsFloat;
+		
+		if (PrevProductID != ProductID)
+		{
+			//提交上一笔数据
+			if (PrevProductID > 0)
+				Recordset.Post();
+				
+			Recordset.Append();
+
+			//设初值
+			for (Month=1; Month<=DataGroupCount; ++Month)
+			{
+		        Report.FieldByName("Qty" + Month).AsFloat = 0;
+		        Report.FieldByName("Amt" + Month).AsFloat = 0;
+			}
+
+			ProductIDField.AsInteger = ProductID;
+			ProductNameField.AsString = ProductName;
+
+			PrevProductID = ProductID;
+		}
+
+		var QtyFieldName = "Qty" + OrderMonth;
+		var AmtFieldName = "Amt" + OrderMonth;
+		Report.FieldByName(QtyFieldName).AsFloat = Report.FieldByName(QtyFieldName).AsFloat + Quantity;
+		Report.FieldByName(AmtFieldName).AsFloat = Report.FieldByName(AmtFieldName).AsFloat + Amount;
+		
+	    varRecordset.Next();
+	}
+    
+	//提交最后一笔数据
+	Recordset.Post();
+    
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function ReportDefine()
+{
+	Report.DetailGrid.FixCols = 1;
+	Report.DetailGrid.ColumnTitle.RepeatStyle = 2; //GRRepeatStyle.grrsOnPage;
+	Report.DetailGrid.PrintAdaptMethod = 7; //GRColumnPrintAdaptMethod.grcpamToNewPageRFC;
+
+	var DataGroupCount = 12;
+
+	//根据统计方式定义字段
+	Report.DetailGrid.Recordset.RemoveAllFields();
+	Report.DetailGrid.Recordset.AddField("ProductID", 2); //GRFieldType.grftInteger
+	Report.DetailGrid.Recordset.AddField("ProductName", 1); //GRFieldType.grftString
+	for (i=0; i<DataGroupCount; ++i)
+	{
+		var AmtFieldName = "Amt" + (i+1);
+		var QtyFieldName = "Qty" + (i+1);
+		var QtyFld = Report.DetailGrid.Recordset.AddField(QtyFieldName, 3); //GRFieldType.grftFloat
+	    var AmtFld = Report.DetailGrid.Recordset.AddField(AmtFieldName, 3); //GRFieldType.grftFloat
+		QtyFld.Format = "#,##0;;#";
+		AmtFld.Format = "#,##0.00;;#";
+	}
+
+	//定义明细区域的列
+	Report.DetailGrid.Columns.RemoveAll();
+	var NewColumn = Report.DetailGrid.AddColumn("ProductName", "产品名称", "ProductName", 3);
+	for (i=0; i<DataGroupCount; ++i)
+	{
+		var AmtFieldName = "Amt" + (i+1);
+		var QtyFieldName = "Qty" + (i+1);
+		var AmtTitle = (i+1) + "月金额";
+		var QtyTitle = (i+1) + "月数量";
+
+		NewColumn = Report.DetailGrid.AddColumn(QtyFieldName, QtyTitle, QtyFieldName, 2.0);
+		NewColumn.TitleCell.TextAlign = 34; //GRTextAlign.grtaMiddleCenter;
+		NewColumn.ContentCell.TextAlign = 36; //GRTextAlign.grtaMiddleRight;
+		
+		NewColumn = Report.DetailGrid.AddColumn(AmtFieldName, AmtTitle, AmtFieldName, 2.0);
+		NewColumn.TitleCell.TextAlign = 34; //GRTextAlign.grtaMiddleCenter;
+		NewColumn.ContentCell.TextAlign = 36; //GRTextAlign.grtaMiddleRight;
+	}
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    //CreatePrintViewerEx("100%", "100%", "CustomCrosstab.grf", "", false, "");
+	    CreateDisplayViewerEx("100%", "100%", "CustomCrosstab.grf", "", false, "");
+	</script>
+</body>
+</html>

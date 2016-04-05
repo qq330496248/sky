@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改考核记录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>修改考核记录</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改考核记录</span></div>
+    <form action="index.php?r=xtsz/UpdateKhjl" method="post" onsubmit="return checkValue()">
+    	<input type="hidden" name="id" id="id" value="{{$id}}" />
+    	 <ul class="forminfo">
+    	  <li> <font color="#FF0000">带 * 号的为必填项目</font></li>
+		<li>
+			<input type="hidden" name="xmid" id="xmid" value="{{$xmid}}" />
+			<label><font color="#FF0000">*</font>考核项目：</label>
+			<select class="dfinput" id="khxm" name="khxm" onblur="checkXm()">
+				<option value="0">---</option>
+			</select>
+			<font id="xmfont" color="#FF0000"></font>
+		</li>
+	    <li>
+	    	<input type="hidden" name="ry" id="ry" value="{{$ryid}}" />
+			<label><font color="#FF0000">*</font>工号：</label>
+			<select class="dfinput" id="ryid" name="ryid" onblur="checkGh()">
+				<option value="0">---</option>
+			</select>
+			<font id="ghfont" color="#FF0000"></font>
+		</li>
+		<li>
+			<label><font color="#FF0000">*</font>考核时间：</label>
+			<input name="khdate" id="khdate" value="{{$khdate}}" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()" onblur="checkKhdate()"/>
+			<font id="khdatefont" color="#FF0000"></font>
+		</li>
+		<li>
+			<label>备注：</label>
+			<textarea  class="textinput" name="bz" id="bz">{{$bz}}</textarea>
+		</li>
+		
+		<li></li>
+		 
+		 
+	    <li><label>&nbsp;</label>
+		<input name="" type="button" onclick="updateJl()" class="btn" value="提交保存" />&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消"  onclick="history.go(-1);" /></li>
+	    </ul>
+    </form>
+	   
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgkhjl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+</html>

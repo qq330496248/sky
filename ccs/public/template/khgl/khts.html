@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户投诉</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">客户投诉</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>客户投诉</span></div>
+    
+    <ul class="forminfo">
+    
+	<li>
+	投诉类型:
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$TypecomOptions key=value item=name}}
+			<option name="khtslx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input id="tsxm" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		投诉工号：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khtsgh" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		跟进工号：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khgjgh" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+		处&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理：<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$IsFinishingOptions key=value item=name}}
+			<option name="sfcl" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		提交时间：<input id="tssjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到 <input id="tssjz" name="" type="text" class="dfinput" style="width:100px" onClick="getTssjEnd()" value="{{$defaultCurrentTime}}" />
+		&nbsp;&nbsp;
+		<input id="Complaint" name="" type="button" class="btn" value="查询"/>
+		&nbsp;&nbsp;&nbsp;
+		<!-- <a href="../khgl/tjtslx.html"><input name="" type="button" class="btn" value="添加投诉类型"/></a> -->
+		<a href="index.php?r=khgl/GettjKhtsHtml"><input name="" type="button" class="btn" value="添加投诉类型"/></a>&nbsp;&nbsp;&nbsp;
+		<a href="index.php?r=khgl/GettjKhtsymxsHtml"><input name="" type="button" class="btn" value="添加投诉"/></a>&nbsp;&nbsp;&nbsp;
+	</li>
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="3%"></th>
+				<th width="6%">客户姓名</th>
+				<th width="6%">投诉类型</th>
+				<th width="7%">订单ID</th>
+				<th width="7%">投诉产品</th>
+				<th width="8%">投诉工号</th>
+				<th width="6%">提交工号</th>
+				<th width="8%">跟进工号</th>
+				<th width="8%">提交时间</th>
+				<th width="8%">处理时间</th>
+				<th width="7%">处理结果</th>
+				<th width="12%">备注</th>
+				<th width="7%">操作</th>
+				</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				
+				<td colspan="15" class="page"></td>
+			</tr>				
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+
+	<li style="margin-top:3px;">
+		<input type="checkbox" id="checkall"/>全选&nbsp;&nbsp;
+		<input id="batchArragin" name="" type="button" class="btn" value="批量转给"/>&nbsp;&nbsp;
+		跟进工号：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="zgtsgh" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		 </select>
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+				
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/khts_kh.js"></script>
+
+<script type="text/javascript">
+	/*function setTssjBegin(){
+		$("#tssjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getTssjEnd(){
+		var begindate = $("#tssjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setTssjEnd(){
+		$("#tssjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加供应商</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">添加供应商</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加供应商</span></div>
+    <form action="index.php?r=cggl/AddGys" method="post" onsubmit="return checkValue()">
+    	<ul class="forminfo">
+    	 <li> <font color="#FF0000">带 * 号的为必填项目</font></li>
+	    <li>
+			<label><font color="#FF0000" style="font-size:16px">*</font>供应商名称：</label>
+			<input name="name" id="name" type="text" onblur="checkName()" class="dfinput" style="width:400px" />
+			<font id="nameFont"></font>
+		</li>
+	    <li>
+			<label><font color="#FF0000" style="font-size:16px">*</font>地址：</label>
+			<input name="address" id="address" type="text" onblur="checkAddress()" class="dfinput" style="width:400px" />
+			<font id="addressFont"></font>
+		</li>
+	    <li>
+			<label>供应商类型：</label>
+			<input name="type" id="type" type="radio" value="批发商" checked="" />批发商 
+			<input name="type" id="type" type="radio" value="工厂" />工厂
+
+		</li>
+		<li>
+			<label><font color="#FF0000" style="font-size:16px">*</font>供应商账户：</label>
+			<input name="zh" id="zh" type="text" class="dfinput" onblur="checkAccount()" style="width:400px" />格式（工行：***************************）
+			<font id="zhFont"></font>
+			
+		</li>
+		<li>
+			<label>采购人员： </label>
+			<select id="cgwy" class="dfinput" style="width:200px">
+				<option>--</option>
+				{{foreach from=$cgwy key=value item=name}}
+				<option value="{{$name.id}}-{{$name.username}}:{{$name.personname}}">{{$name.personname}}</option>
+				{{/foreach}}
+			</select>
+		</li>
+		<li>
+			<label>结款方式：</label>
+			<input name="jkfs" id="jkfs" type="radio" value="现金可退" checked="" />现金可退 
+			<input name="jkfs" id="jkfs" type="radio" value="现金不可退" />现金不可退 
+			<input name="jkfs" id="jkfs" type="radio" value="月结" />月结
+		</li>
+		<li>
+			<label>对应分类：</label>
+			<select class="dfinput" id="gysfl" name="gysfl" style="width:200px">
+				<option value="0">--</option>
+			</select>
+		</li>
+		<li>
+			<label>备注：</label>
+			<textarea class="textinput" name="bz" id="bz"></textarea>
+		</li>
+		
+		<li></li>
+		 
+		 
+	    <li><label>&nbsp;</label>
+			<input name="" type="button" onclick="addGys()" class="btn" value="提交"/>&nbsp;&nbsp;&nbsp;
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1);"/>
+			<input name="" type="reset" class="btn" style="color:#000000; background:#999999" value="重写"/>
+		</li>
+
+    </form>
+	    	
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cggl/tjgys.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品销售统计</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">产品销售统计</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>产品销售统计</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" style="color:#000000; background:#999999" class="btn" value="今日"/></a>
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="昨日"/></a>
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="最近7天"/></a>
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="最近30天"/></a>
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="本月"/></a>
+
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="前一天"/></a>
+		<a href="index.php?r=flbb/GetYxtjbbHtml"><input name="" type="button" class="btn" value="后一天"/></a>
+    </li>  
+    <li>	
+    	款号：<input id="" name="" type="text" class="dfinput" style="width:140px"/>
+    	开始：<input id="xdsjq" name="" type="text" class="dfinput" style="width:140px" onClick="WdatePicker()"/>
+		结束：<input id="xdsjz" name="" type="text" class="dfinput" style="width:140px" onClick="getXdsjEnd()"/>
+		品牌名称：<input id="" name="" type="text" class="dfinput" style="width:140px"/>
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">所有组</option>
+		</select>
+		<select id="" class="dfinput" style="width:100px">
+			<option value="">所有来源</option>
+		</select>
+		<input name="" type="button" class="btn" value="查询"/>	
+	</li>
+	<li>
+		<font style="color:#FF0000"> 注意：这里统计的数量是产品件数，而不是订单数量，签收数排除了退换货数量。 </font>
+	</li>
+	<li> </li>
+  	<li>
+		<table class="imgtable">
+	    
+			<thead>
+				<tr>
+					<th>款号</th>
+					<th width="">产品名</th>
+					<th>确认/金额</th>
+					<th>发货/金额</th>
+					<th>收货/金额</th>
+					<th>供应商</th>
+					<th>上架时间</th>
+				</tr>
+			</thead>
+			
+			<tbody id="">
+				
+			</tbody>
+			<tfoot id="tfoot">
+				<tr>
+			
+				</tr>
+			</tfoot>
+	    	<input id="url" type="hidden" value=""/>
+	    </table>
+	</li>
+	<li> </li>
+	<li>
+	 	<input name="" type="button" style="color:#000000; background:#999999" class="btn-excel" value="导出到Excel"/>
+	 </li>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

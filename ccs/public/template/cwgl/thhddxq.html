@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单详情</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">财务管理</a></li>
+    <li><a href="#">订单详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+ 
+    <div class="formtitle" id="ddxx"><span>订单详情</span></div>
+    
+    <ul class="forminfo" id="ddxxxx">
+		<table class="imgtable">
+			<tr>
+				<th colspan="8">订单详情</th>
+			</tr>
+			<input type="hidden" value="{{$orderno.xsaa04}}" id="clientno"/>
+			<tr>
+				<td style="text-align:right">	
+					订单编号：
+				</td>
+				<td style="text-align:left">	
+					<font id="orderno">{{$orderno.xsaa02}}</font>
+				</td>
+				<td style="text-align:right">	
+					支付方式：
+				</td>
+				<td style="text-align:left">	
+					<font color="#FF0000">{{$orderno.xsaa13}}</font>
+				</td>
+				<td style="text-align:right">	
+					销售工号：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa48}}</font>
+				</td>
+				<td style="text-align:right">	
+					来源：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa60}}</font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right">	
+					下单时间：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa23}}</font>
+				</td>
+				<td style="text-align:right">	
+					发货时间：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa27}}</font>
+				</td>
+				<td style="text-align:right">	
+					快递公司：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa41}}</font>
+				</td>
+				<td style="text-align:right">	
+					快递单号：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa03}}</font>
+				</td>
+			</tr>
+			<input id="oldOrderMoney" type="hidden" value="{{$orderno.xsaa19}}"/>
+			<input id="oldReceivedMoney" type="hidden" value="{{$orderno.xsaa20}}"/>
+			<tr>
+				<td style="text-align:right">	
+					订单金额：
+				</td>
+				<td style="text-align:left">	
+					<input id="orderMoney" name="" type="text" class="dfinput" style="width:200px;" value="{{$orderno.xsaa19}}" />
+					<input id="changeOrderMoney" name="" type="button" class="btn" style="width:50px" value="改"/>
+				</td>
+				<td style="text-align:right">	
+					已收金额：
+				</td>
+				<td style="text-align:left">	
+					<input id="receivedMoney" name="" type="text" class="dfinput" style="width:200px;" value="{{$orderno.xsaa20}}" />
+					<input id="changeReceivedMoney" name="" type="button" class="btn" style="width:50px" value="改"/>
+				</td>
+				<td style="text-align:right">	
+					代收金额：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa21}}</font>
+				</td>
+				<td style="text-align:right">	
+					订单运费：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa16}}</font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right">	
+					签收时间：
+				</td>
+				<td style="text-align:left">
+					{{if $orderno.xsaa28 > '1950-10-01 10:00:00'}}	
+					<font>{{$orderno.xsaa28}}</font>
+					{{/if}}
+				</td>
+				<td style="text-align:right">	
+					订单状态：
+				</td>
+				<td style="text-align:left">	
+					<font>{{$orderno.xsaa29}}</font>
+				</td>
+				<td style="text-align:right">	
+					订单备注：
+				</td>
+				<td style="text-align:left" colspan="3">	
+					<font>{{$orderno.xsaa36}}</font>
+				</td>
+			</tr>
+			</table>
+		<li></li>
+		<table class="imgtable">
+			<tr>
+				<th colspan="6">订单商品</th>
+			</tr>
+			<tr>
+				<th>款号</th>
+				<th>商品名称</th>
+				<th>销售价格</th>
+				<th>商品原价</th>
+				<th>优惠</th>
+				<th>商品数量</th>
+			</tr>
+			<tbody>
+				<tr id="orderTotalNum">
+					<td colspan="6">
+						商品总价：<font id="goodsTotalPrice" color="#FF0000">  </font>
+						订单运费：<font id="orderShipment" color="#FF0000">  </font>
+						订单金额：<font id="orderTotalPrice" color="#FF0000">  </font>
+						已收定金：<font id="gotEarnestMoney" color="#FF0000">  </font>
+						代收金额：<font id="collectionMoney" color="#FF0000">  </font>
+						{{if $orderno.xsaa54 == '是' && $orderno.xsaa55 == '是'}} 
+						<font color="#00C78C"> 已记账1 </font>
+						<font color="#00C78C"> 已记账2 </font>
+						{{/if}}
+						{{if $orderno.xsaa54 == '是' && $orderno.xsaa55 == '否'}} 
+						<font color="#00C78C"> 已记账1 </font>
+						<font color="#f00"> 未记账2 </font>
+						{{/if}}
+						{{if $orderno.xsaa54 == '否' && $orderno.xsaa55 == '是'}} 
+						<font color="#f00"> 未记账1 </font>
+						<font color="#00C78C"> 已记账2 </font>
+						{{/if}}
+						{{if $orderno.xsaa54 == '否' && $orderno.xsaa55 == '否'}} 
+						<font color="#f00"> 未记账1 </font>
+						<font color="#f00"> 未记账2 </font>
+						{{/if}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<li></li>
+		
+		
+    </ul>
+	<!-- 跟进记录start -->
+	<div class="formtitle" id="gjjl"><span style="cursor:pointer;">>>隐藏跟进记录</span></div>
+		<ul class="forminfo gjjlxx" style="float:left;">
+			<li>
+				<table style="width:1000px;" class="imgtable">
+					<thead>
+						<tr>
+							<th width="3%">编号</th>
+							<th width="8%">工号</th>
+							<th width="8%">姓名</th>
+							<th width="10%">时间</th>
+							<th width="20%">备注</th>
+							<th width="4%">操作</th>
+						</tr>
+					</thead>
+					<tbody id="tbody2">
+						
+					</tbody>
+				</table>
+				
+			</li>
+			
+		</ul>
+		<ul class="gjjlxx" style="float:left;padding-left:10px;">
+		<li>内容：</li>
+		<li>
+			<textarea class="textinput" id="content"></textarea>
+		</li>
+		<li style="padding-top:4px;">
+			<input id="szdbsx" name="" type="checkbox" value="保存"/>需要设置待办事项
+		</li>
+		<li class="dbsx" style="display:none;">
+			待办时间：
+			<input id="dbsj" name="" type="text" class="dfinput" style="width:180px;" value="" onClick="WdatePicker()"/>
+		</li>
+		<li class="dbsx" style="padding-top:4px;padding-bottom:10px;display:none;">
+			跟 进 人 ：
+			<select  id="khgsgh" class="dfinput" style="width:100px">
+				{{foreach from=$WorkNumberOptions key=value item=name}}
+				<option name="khgsgh" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+				{{/foreach}}
+			</select>
+		</li>
+		<li>
+			<input id="addToDo" name="" type="button" class="btn" value="保存"/>
+		</li>
+			
+	</ul>
+	<div style="clear:both;"></div>
+	<!-- 跟进记录end -->
+	</div>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cwgl/thhddxq_dd.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+</html>

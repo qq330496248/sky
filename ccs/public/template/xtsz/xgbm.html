@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改部门</title>
+<link href="public/template/css/cp_tj.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">修改部门</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改部门</span></div>
+    <form action="index.php?r=xtsz/UpdateDept" method="post" onsubmit="return checkValue()">
+    <input type="hidden" name="id" id="deptid" value="{{$deptid}}" />
+    	<font color="#FF0000">带 * 号的为必填项目</font>
+    	<table class="imgtable" style="background-color:#FFFFFF">
+			<tbody>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						上级部门：
+					</td>
+					<input type="hidden" id="parentid" value="{{$higherlevel}}" />
+					<td style="text-align:left" width="70%">
+						<select class="dfinput" style="width:200px" id="higherlevel" name="higherlevel">
+							<option level="-1" value="0">请选择</option>
+						</select>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						<font color="#FF0000" style="font-size:16px">*</font>部门名称：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input name="depttext" id="depttext" type="text" class="dfinput" value="{{$depttext}}" style="width:200px"onblur="checkBmmc()" />
+						<font id="bmmcFont"></font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						是否销售部门：
+					</td>
+					<input type="hidden" id="ismarket" value="{{$ifmarket}}" />
+					<td style="text-align:left" width="70%">
+						<input type="radio" name="ifmarket" id="ifmarket" value="是" />是
+						<input type="radio" name="ifmarket" id="ifmarket" value="否" checked="checked" />否
+					</td>
+					
+				</tr>
+			</tbody>
+	    </table>
+	     <ul class="forminfo">
+		<li></li>
+		 <li><label>&nbsp;</label><input name="" type="button" onclick="updateDept()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)"/></li>
+	    </ul>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgbm.js"></script>
+</html>

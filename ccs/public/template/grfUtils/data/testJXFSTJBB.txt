@@ -1,0 +1,13 @@
+<xml>
+<row><me>下单</me><xsaa61>2016-02-17</xsaa61><money>400.00</money></row>
+<row><me>下单</me><xsaa61>2016-02-18</xsaa61><money>80.00</money></row>
+<row><me>下单</me><xsaa61>2016-02-23</xsaa61><money>80.00</money></row>
+<row><me>审单</me><xsaa61>2016-02-17</xsaa61><money>400.00</money></row>
+<row><me>审单</me><xsaa61>2016-02-18</xsaa61><money>80.00</money></row>
+<row><me>审单</me><xsaa61>2016-02-23</xsaa61><money>80.00</money></row>
+<row><me>发货</me><xsaa61>2016-02-17</xsaa61><money>400.00</money></row>
+<row><me>发货</me><xsaa61>2016-02-18</xsaa61><money>80.00</money></row>
+<row><me>发货</me><xsaa61>2016-02-23</xsaa61><money>80.00</money></row>
+<row><me>拒收</me><xsaa61>2016-02-18</xsaa61><money>80.00</money></row>
+<row><me>签收</me><xsaa61>2016-02-17</xsaa61><money>400.00</money></row>
+</xml>

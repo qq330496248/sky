@@ -1,0 +1,58 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>添加跟进记录</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo">
+    <li>
+        <select class="dfinput">
+             <option value="">全部</option>
+             {{foreach from=$FollowLabelOptions key=value item=name}}
+             <option name="gjbq" checked="checked" value="{{$name}}">{{$name}}</option>
+             {{/foreach}}
+       </select>
+    </li>	
+    <li>内容：</li>
+    <li>
+        <textarea id="gjnr" name="jlnr"  cols="" rows="" class="textinput"></textarea>
+    </li>
+    <li style="padding-top:4px;">
+        <input id="szdbsx" name="" type="checkbox" value="保存"/>需要设置待办事项
+    </li>
+    <li class="dbsx" style="display:none;">
+        待办时间：
+        <input id="dbsj" name="" type="text" class="dfinput" onClick="WdatePicker()" style="width:100px;" value="" />
+    <!-- </li>
+    <li style="padding-top:4px;padding-bottom:10px;"> -->
+    <br>
+    <br>
+        跟进人： 
+        <select id="gjr" class="dfinput" style="width:100px">
+        {{foreach from=$WorkNumberOptions key=value item=name}}
+        <option name="gjr" value="{{$name}}" {{if ($clientno.gonghao == $name) }}selected{{/if}}>{{$name}}</option>
+        {{/foreach}}
+        </select>
+        分组：
+        <select class="dfinput" style="width:100px">
+        <option value="">全部</option>
+        {{foreach from=$GroupsTypeOptions key=value item=name}}
+        <option id="szz" name="gjfz"  checked="checked" value="{{$name}}">{{$name}}</option>
+        {{/foreach}}
+     </select>
+    </li>
+    
+    <li>
+        <input id="SaveFollow" name="" type="button" class="btn-info" style="width:105px" value="保存"/>
+        <!-- <input id="CancelFollow" name="" type="button" class="btn" style="width:105px" value="取消"/> -->
+    </li>   
+    </ul></div>
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>		
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/dialog/tjgjjl.js"></script> 
+<script type="text/javascript">
+	
+</script>
+
+</html>

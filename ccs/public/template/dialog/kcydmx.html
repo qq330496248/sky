@@ -1,0 +1,59 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<title>库存异动明细</title>
+<div style="width:100%">
+    <div class="formbody">
+    <ul class="forminfo"> 
+    <li>
+       <input id="batch" name="" type="text" value="{{$batch}}" style="display:none;"/>
+       <input id="styleNum"name="" type="text"  value="{{$styleNum}}" style="display:none;"/>
+    </li>
+    <li>
+       异动时间：
+      <input id="ydsjq" name='' type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+        至<input id="ydsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()" value="{{$defaultCurrentTime}}" />
+        异动类型：
+        <select class="dfinput" style="width:100px">
+          <option name="ydlx" value="">---</option>
+          {{foreach from=$ReasonOptions key=value item=name}}
+          <option name="ydlx" value="{{$name}}">{{$name}}</option>
+          {{/foreach}}
+      </select>
+        <input id="inquire" style="width:60px" name="" type="button" class="btn-info" value="查 询"/>
+    </li>
+    <li>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="4%"> </th>
+                    <th width="10%">批次</th>
+                    <th width="6%">款号</th>
+                    <th width="9%">仓位</th>
+                    <th width="12%">异动时间</th>
+                    <th width="9%">异动类型</th>
+                    <th width="12%">异动原因</th>
+                    <th width="12%">运费</th>
+                </tr>
+            </thead>
+            <tbody id="tbody2">
+                
+            </tbody>
+             <tfoot>
+                <tr><td colspan="15" class="page"></td></tr>                
+            </tfoot>
+        </table>
+    </li>
+    </ul></div>
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/dialog/kcydmx.js"></script> 
+<script type="text/javascript">
+	//异动时间
+    function getXdsjEnd(){
+        var begindate = $("#ydsjq").val();
+        WdatePicker({minDate:begindate});
+    }
+</script>
+
+</html>

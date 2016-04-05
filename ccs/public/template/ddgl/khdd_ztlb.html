@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户订单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">订单管理</a></li>
+    <li><a href="#">客户订单</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>客户订单</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+	<li>
+		<a href="index.php?r=ddgl/GetKhddHtml"><input name="" type="button" class="btn" value="订单查询"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=3"><input id="btn_3" type="button" class="btn" value="未确认订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=4"><input id="btn_4" type="button" class="btn" value="等待支付订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=5"><input id="btn_5" type="button" class="btn" value="已确认订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=6"><input id="btn_6" type="button" class="btn" value="已支付订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=7"><input id="btn_7" type="button" class="btn" value="待发货订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=8"><input id="btn_8" type="button" class="btn" value="已发货订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=10"><input id="btn_10" type="button" class="btn" value="已作废订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=9"><input id="btn_9" type="button" class="btn" value="拒收订单"/></a>
+		<a class="selected" href="index.php?r=ddgl/GetKhztddHtml&status=2"><input id="btn_2" type="button" class="btn" value="交易成功订单"/></a>
+	</li>
+	<input id="orderstatus" type="hidden" value="{{$status}}"/>
+    </ul>
+	<ul class="forminfo">
+		<li>
+				<table class="imgtable">
+					<thead>
+						<tr>
+							<th width="5%"></th>
+							<th width="6%" onclick="changeStr('ddid');"><font id="ddid">订单ID</font></th>
+							<th width="6%" onclick="changeStr('khid');"><font id="khid">客户ID</font></th>
+							<th width="5%" onclick="changeStr('name');"><font id="name">姓名</font></th>
+							<th width="5%" onclick="changeStr('fkfs');"><font id="fkfs">付款方式</font></th>
+							<th width="5%" onclick="changeStr('zje');"><font id="zje">总金额</font></th>
+							<th width="5%" onclick="changeStr('ys');"><font id="ys">已收</font></th>
+							<th width="10%" onclick="changeStr('xdsj');"><font id="xdsj">下单时间</font></th>
+							<th width="6%" onclick="changeStr('xdr');"><font id="xdr">下单人</font></th>
+							<th width="10%" onclick="changeStr('yjfp');"><font id="yjfp">业绩分配</font></th>
+							<th width="6%" onclick="changeStr('khyx');"><font id="khyx">客户意向</font></th>
+							<th width="15%" onclick="changeStr('last');"><font id="last">最新跟进/备注</font></th>
+						</tr>
+					</thead>
+					<tbody id="getCheckeboxId">
+					</tbody>
+					<tfoot id="tfoot">
+						<tr>
+						{{if $status == 3 || $status == 6}}
+						<td colspan="2">
+							<input type="checkbox" id="checkall"/>全选&nbsp;&nbsp;
+							<input id="confirmToCheck" name="" type="button" class="btn" value="批量确认到审单"/>
+						</td>
+						<td colspan="10" class="page"></td>
+						</tr>
+						{{else}}
+						<tr>
+						<td colspan="12" class="page"></td>
+						</tr>
+						{{/if}}				
+					</tfoot>
+				</table>
+			</li>
+	</ul>
+    </div>
+
+			
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/ddgl/khdd_ztlb.js"></script>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加客户资料</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">添加客户资料</a></li>
+    </ul>
+    </div>
+    <div class="formbody">
+    <div class="formtitle"><span>客户信息</span></div>
+    <ul class="forminfo">
+    <li>
+		<font style="color:red;">*</font>真实姓名：<input id="khname" style="width:100px;" name="" value=""  type="text" class="dfinput" />
+		&nbsp;&nbsp;&nbsp;
+		性别：
+		<input id="male" type="radio" value="男"  name="sex"  checked="checked"/>男 <input id="female" type="radio" value="女" name="sex" />女&nbsp;&nbsp;&nbsp;&nbsp;
+		归属工号： 
+		<select  id="khgsgh" class="dfinput" style="width:140px">
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khgsgh" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select class="dfinput" style="width:100px">
+		<option value="">---</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="khszz"  value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+    <li>
+		<font style="color:red;">*</font>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：<input id="khphone"  value="{{$callerId}}" name="" type="text" class="dfinput" style="width:100px" />
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$PhoneTypeOptions key=value item=name}}
+			<option name="phonetype" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		电话2：<input id="khTelephone2" value="{{$phone}}" name="" type="text" class="dfinput" style="width:100px" />
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$PhoneTypeOptions key=value item=name}}
+			<option  name="telphonetype" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		电话3：<input id="khTelephone3" value="" name="" type="text" class="dfinput" style="width:100px" />
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$PhoneTypeOptions key=value item=name}}
+			<option name="teltype" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+    <li>
+		&nbsp;客户等级：
+		<select  class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$CustomerLevelOptions key=value item=name}}
+			<option name="khdj" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		意向：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$CustomerIntentionOptions key=value item=name}}
+			<option name="kehuyx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		进线方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$IntoLineOptions key=value item=name}}
+			<option name="jxfs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		来源：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$ClientSourceOptions key=value item=name}}
+			<option name="khly" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<!-- 关键字：<input  id="Keyword" value="" name="" type="text" class="dfinput" /> -->
+	</li>
+	<li>
+		&nbsp;地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="province" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select id="city" class="dfinput" style="width:100px">
+			<option>选择市</option>
+		</select>
+		<select id="area" class="dfinput" style="width:100px">
+			<option>选择区/县</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		邮政编码：<input id="postcode" style="width:100px" value="" name="" type="text" class="dfinput" value="" />
+	</li>
+	<li>&nbsp;详细地址：&nbsp;<input  id="deaddress" value="" class="dfinput" type="text"  style="width:325px;margin-bottom:4px;" />
+	    <input id="sxss" value="显示更多资料" name="" type="button" class="btn" style="display:block;"/> 
+        <input id="yinc" value="隐藏更多资料" name="" type="button" class="btn" style="display:none;"/> </li>
+	<ul id="sssss" class="xsgdzl" style="display:none;">
+	<li>
+		&nbsp;出生日期：
+		<input id="csrq" value="" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker({onpicked:setBegindate})"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		身高(cm)：<input id="sglm" value="" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		体重(kg)：<input id="tzqk" value="" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		电子邮箱：&nbsp;<input id="dzyxhm" value="" name="" type="text" class="dfinput"style="width:100px" />
+		
+	</li>
+	<li>
+		QQ 号码 ：<input id="khqqhm" value="" name="" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		年 收 入：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$IncomeOptions key=value item=name}}
+			<option name="khnsr" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		学历：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$EducationOptions key=value item=name}}
+			<option name="khzgxl" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		职业：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$OccupationOptions key=value item=name}}
+			<option name="cshy" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	<li>
+	</ul>
+		&nbsp;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：
+		<textarea id="khbz" name="khbzxx"  cols="" rows="" class="textinput"></textarea>
+	</li>
+	
+	<li></li><!-- style="color:#000000; background:#999999" -->
+    <li><label>&nbsp;</label><input id="addClient" name="" type="button" class="btn" value="保存资料"/>&nbsp;&nbsp;&nbsp;<input id="addingClient" name="" type="button" class="btn" value="保存继续添加"/></li>
+    </ul>
+
+    </div>				
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/tjkhzl_kh.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}
+</script>
+</html>

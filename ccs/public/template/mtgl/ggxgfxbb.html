@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广告效果分析报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">媒体管理</a></li>
+    <li><a href="#">广告效果分析报表</a></li>
+    </ul>
+    </div>
+    
+<div class="formbody">
+    
+    <div class="formtitle"><span>广告效果分析报表</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<input id="today" type="button" onclick="selectDay('today')" class="btn" value="今日"/>
+		<input id="yesterday" type="button" onclick="selectDay('yesterday')" class="btn" value="昨日"/>
+		<input id="seven" type="button" onclick="selectDay('seven')" class="btn" value="最近7天"/>
+		<input id="thirty" type="button" onclick="selectDay('thirty')" class="btn" value="最近30天"/>
+		<input id="month" type="button" onclick="selectDay('month')" class="btn" value="本月"/>
+    </li> 
+    <li>
+	    <div id="todayDiv" style="display:block">
+	    	<input id="lastDay" type="button" onclick="changeDay('lastDay')" class="btn" value="前一天"/>
+			<input id="nextDay" type="button" onclick="changeDay('nextDay')" disabled="disabled" style="background:#999999" class="btn" value="后一天"/>
+	    </div>
+	    <div id="sevenDiv" style="display:none">
+	    	<input id="lastSeven" type="button" onclick="changeDay('lastSeven')" class="btn" value="前7天"/>
+			<input id="nextSeven" type="button" onclick="changeDay('nextSeven')" disabled="disabled" class="btn" value="后7天"/>
+	    </div>
+	    <div id="thirtyDiv" style="display:none">
+	    	<input id="lastThirty" type="button" onclick="changeDay('lastThirty')" class="btn" value="前30天"/>
+			<input id="nextThirty" type="button" onclick="changeDay('nextThirty')" disabled="disabled" class="btn" value="后30天"/>
+	    </div>
+	    <div id="monthDiv" style="display:none">
+	    	<input id="lastMonth" type="button" onclick="changeDay('lastMonth')" class="btn" value="上个月"/>
+			<input id="nextMonth" type="button" onclick="changeDay('nextMonth')" disabled="disabled" class="btn" value="下个月"/>
+	    </div>
+    </li> 
+    <li>	
+   	 	<input type="hidden" id="hiddenBeginDate" />
+    	<input type="hidden" id="hiddenEndDate" />
+    	发货日期：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+    	&nbsp;&nbsp;&nbsp;&nbsp;
+		结束日期：<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getZxgjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<select id="dept" class="dfinput">
+			<option value="">所有组</option>
+			{{foreach from=$dept key=value item=name}}
+			<option value="{{$name.depttext}}">{{$name.depttext}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;
+		<input type="checkbox" />排除二线业绩
+		<input name="" type="button" onclick="getGgxgfxbb()" class="btn" value="查询"/>
+	</li>
+	<li>
+		<input type="hidden" id="type" />
+		<input id="ope" type="button" onclick="changeType('ope')" class="btn" value="以操作时间统计"/>
+		<input id="xd" type="button" onclick="changeType('xd')" class="btn" value="以下单时间统计"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>媒体名称</th>
+				<th>广告费</th>
+				<th>客户数</th>
+				<th>单客成本</th>
+				<th>下单/金额</th>
+				<th>成交率</th>
+				<th>投产比</th>
+				<th>确认/金额</th>
+				<th>核单率</th>
+				<th>每单均价</th>
+				<th>每单成本</th>
+				<th>发货/金额</th>
+				<th>签收/金额</th>
+				<th>拒收/金额</th>
+				<th>报表查询</th>
+			</tr>
+		</thead>
+		
+		<tbody id="ggxgfxbb">
+			
+		</tbody>
+    	<tfoot id="tfoot">
+    		<tr>
+				<td>总计</td>
+				<td>
+					0
+				</td>
+				<td>
+					0
+				</td>
+				<td>
+					0
+				</td>
+				<td>
+					<font color="#0000FF">0</font>/<font color="#FF0000">0</font>
+				</td>
+				<td>
+					0%
+				</td>
+				<td>-</td>
+				<td>
+					<font color="#0000FF">0</font>/<font color="#FF0000">0</font>
+				</td>
+				<td>
+					0
+				</td>
+				<td>
+					0
+				</td>
+				<td>
+					0
+				</td>
+				<td>
+					<font color="#0000FF">0</font>/<font color="#FF0000">0</font>
+				</td>
+				<td>
+					<font color="#0000FF">0</font>/<font color="#FF0000">0</font>
+				</td>
+				<td>
+					<font color="#0000FF">0</font>/<font color="#FF0000">0</font>
+				</td>
+				<td>
+					<a href="index.php?r=mtgl/GetDdjelsqsxqHtml">历史</a>
+				</td>
+			</tr>
+    	</tfoot>
+    </table>
+    <li style="padding-top:3px;">
+    	<input name="" type="button" class="btn-excel" value="导出Excel"/>
+    </li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/mtgl/ggxgfxbb.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	//发货时间
+	function getZxgjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+</script>
+</html>

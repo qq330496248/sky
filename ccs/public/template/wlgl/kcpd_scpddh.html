@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>生成盘点单号</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">库存盘点</a></li>
+	<li><a href="#">生成盘点单号</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>生成盘点单号</span></div>
+    
+    <ul class="forminfo">
+	<li>
+		<a href="index.php?r=wlgl/GetScpddhHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="生成盘点单号"/></a>
+		<a href="index.php?r=wlgl/GetPddhlbHtml"><input name="" type="button" class="btn" value="盘点明细"/></a>
+		<a href="index.php?r=wlgl/GetLrpdslHtml"><input name="" type="button" class="btn" value="录入盘点数量"/></a>
+		<a href="index.php?r=wlgl/GetScpcbbHtml"><input name="" type="button" class="btn" value="生成盘差报表"/></a>
+		<!-- <a href="index.php?r=wlgl/GetCshpdHtml"><input name="" type="button" class="btn" value="初始化盘点"/></a> -->
+	</li>
+	<li>
+		<font color="#0000FF">
+			盘点流程：1.生成盘点单号   2.导出盘点明细  3.录入盘点数量  4.生成盘差报表  5.入账(盘盈/盘亏)
+		</font>
+		<font color="#FF0000">
+			[注：必须完成整个盘点流程才能生成新的盘点单号]
+		</font>
+	</li>
+	<li>
+		<table class="imgtable">
+			<thead>
+				<tr>
+					<th width="5%">批次</th>
+					<th width="5%">款号</th>
+					<th width="7%">商品名称</th>
+					<th width="7%">规格</th>
+					<th width="7%">单位</th>
+					<th width="9%">库存（正/次）</th>
+					<th width="7%">库位</th>
+				</tr>
+			</thead>
+			<tbody id="getCheckeboxId">
+
+			</tbody>
+			<tfoot>
+			</tfoot>
+    	</table>
+	
+		<input style="margin-top:2px;" id="generateInventoryOrder" name="" type="button" class="btn" value="生成盘点单号"/>
+	</li>
+	
+	<li>
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/kcpd_scpddh_wl.js"></script>
+</html>

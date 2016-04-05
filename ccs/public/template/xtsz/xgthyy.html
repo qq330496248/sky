@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>修改退货原因</title>
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">修改退货原因</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改退货原因</span></div>
+    	<font color="#FF0000">带 * 号的为必填项目</font>
+    	<table class="imgtable" style="background-color:#FFFFFF">
+    		<input type="hidden" id="id" value="{{$id}}" />
+			<tbody>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						上级分类：
+					</td>
+					<input type="hidden" id="parentID" value="{{$parent}}" />
+					<td style="text-align:left" width="70%">
+						<select class="dfinput" style="width:200px" id="parent" name="parent">
+							<option value="0">请选择</option>
+							{{foreach from=$thyy key=value item=name}}
+							<option name="" checked="checked" value="{{$name.xsae01}}">{{$name.xsae02}}</option>
+							{{/foreach}}
+						</select>
+						<font>一级分类无需选择</font>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						<font color="#FF0000" style="font-size:16px">*</font>退货原因名称：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input id="thyy" type="text" class="dfinput" value="{{$thname}}" style="width:200px" onblur="checkName()" />
+						<font id="yyfont">10个汉字以内</font>
+					</td>
+					
+				</tr>
+			</tbody>
+	    </table>
+	     <ul class="forminfo">
+		<li></li>
+		 <li><label>&nbsp;</label><input name="" type="button" onclick="updateThyy()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)"/></li>
+	    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/index.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgthyy.js"></script>
+</html>

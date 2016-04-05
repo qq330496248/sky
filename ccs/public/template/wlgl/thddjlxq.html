@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货供应商记录详情</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">退货供应商记录详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>退货供应商记录详情</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		<a href="index.php?r=wlgl/GetThrcHtml"><input name="" type="button" class="btn" value="退货订单记录"/></a>
+		<a href="index.php?r=wlgl/GetThkhhzHtml"><input name="" type="button" class="btn" value="退货款号汇总"/></a>
+	</li>
+	<input id="orderno" type="hidden" value="{{$orderno}}"/>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>款号</th>
+				<th>产品名</th>
+				<th>属性</th>
+				<th>入库数</th>
+				<th>价格</th>
+				<th>备注</th>
+				<th>操作时间</th>
+			</tr>
+		</thead>
+    	<tbody id="getCheckeboxId">
+
+		</tbody>
+		<tfoot id="tfoot">
+			
+		</tfoot>
+    </table>
+					   
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thddjlxq_wl.js"></script>
+</html>

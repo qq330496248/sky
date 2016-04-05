@@ -1,0 +1,47 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 用子报表实现表中表，子报表模板集成定义</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+//var srLevel1;
+//var srLevel2;
+
+//在网页初始加载时向报表提供数据
+function window_onload() 
+{
+//    //关联子报表部件框的报表对象
+//    srLevel1 = ReportViewer.Report.ControlByName("srLevel1").AsSubReport.Report;
+//    srLevel2 = srLevel1.ControlByName("srLevel2").AsSubReport.Report;
+    
+    //关联报表事件
+    //srLevel1.OnInitialize = OnLevel1Initialize;
+    //srLevel2.OnInitialize = OnLevel2Initialize;
+    
+	//开启报表生成进度条显示
+	ReportViewer.Report.ShowProgressUI = true;
+	
+    //启动运行
+    ReportViewer.Start();
+}
+		
+//function OnLevel1Initialize()
+//{
+//	//将主报表的当前行的“CustomerID”字段值作为子报表的取数参数
+//	srLevel1.LoadDataFromURL( encodeURI("xmlSRLevel1.php?CustomerID=" + ReportViewer.Report.FieldByName("CustomerID").AsString) );
+//}
+
+//function OnLevel2Initialize()
+//{
+//	//将主报表的当前行的“ShipCity”字段值作为子报表的取数参数
+//	srLevel2.LoadDataFromURL( encodeURI("xmlSRLevel2.php?OrderID=" + srLevel1.FieldByName("OrderID").AsInteger) );
+//}
+	</script>
+</head>
+<body style="margin:0" onload="window_onload()">
+	<script type="text/javascript"> 
+        CreatePrintViewerEx("100%", "100%", "SubReportDeep.grf", "xmlSubReportDeep.php", false, "");
+	</script>
+</body>
+</html>

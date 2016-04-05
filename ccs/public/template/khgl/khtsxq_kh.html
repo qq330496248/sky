@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加投诉</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">修改客户投诉</a></li>
+    </ul>
+    </div>
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="formbody">
+    
+    <div class="formtitle"><span>空闲</span></div>
+    
+    <ul class="forminfo">
+    <li>
+        <font color="#FF0000">*&nbsp;订单ID不能修改</font>
+    </li>
+     <li>
+     <input id="clientno" type="hidden" value="{{$khid.khac14}}"/>
+        <label>客户姓名：</label><input id="khxm" name="" type="text" class="dfinput" style="width:100px" value="{{$khid.khac13}}"/>
+        <!-- <input id="" name="" type="button" class="btn" onclick="showCzKhxm()" style="width:60px" value="查找"/> -->
+        <img onclick="showCzKhxm()" src="public/img/1.png" border="0" title="查找客户姓名"  style="width:1.1%;cursor:pointer"/>
+    </li> 
+    
+    <div class="TCGB TC600 mydetTC" id="WorkNumber">
+    <div class="TCBox" style="width:500px;left:38%;height:430px;top:50px;">
+    <h2><span title="TCtitle">查找客户--网页对话框
+    <a><img id="CloseCommit" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></a></span></h2>
+    <div class="TCBody">
+        <table id="table8">
+            <tr class="JnLine ">
+                <td>请输入查询条件
+                    <input id="keyword" name="" type="text" class="dfinput" style="width:100px" value=""/>
+                    <input type="radio" name="search" value="1" checked />客户id
+                        <input type="radio" name="search" value="2" />姓名
+                        <input id="searchgonghao" name="" type="button" class="btn" value="查询"/>
+                 </td>
+            </tr>
+
+        </table>
+        <br>
+        <table class="imgtable">
+            <thead>
+                <tr>
+                    <th width="10%"></th>
+                    <th><font >客户id</font></th>
+                    <th><font >姓名</font></th>
+                </tr>  
+            </thead>
+            <tbody id="tbody2">
+
+            </tbody>
+            <tfoot>
+                <tr><td colspan="15" class="page"></td></tr>                
+            </tfoot>
+            <input id="url" type="hidden" value=""/>
+       
+        </table>
+        <br>
+    <li><input id="SelectUser" name="" type="button" style="width:100px;margin-left:170px;" class="btn" value="确定"/></li>
+
+    </div>  
+    </div>   
+    </div>
+	<li>
+		<label>客户问题：</label>
+        <select  class="dfinput" style="width:100px">
+            <option value="">---</option>
+            {{foreach from=$TypecomOptions key=value item=name}}
+            <option name="khwt" checked="checked" value="{{$name}}" {{if ($khid.khac02 == $name)}}selected{{/if}}>{{$name}}</option>
+            {{/foreach}}
+         </select>
+
+	</li>
+	<li>
+		<label>投诉工号：</label>
+        <input id="khtsgh" name="" type="text" class="dfinput" style="width:100px" value="{{$khid.khac03}}"/>
+        <img id="xztsgh" src="public/img/1.png" border="0" title="查找投诉工号"  style="width:1.1%;cursor:pointer"/>
+		<!-- <select  class="dfinput" style="width:100px">
+            <option value="">---</option>
+            {{foreach from=$WorkNumberOptions key=value item=name}}
+            <option name="khtsgh" checked="checked" value="{{$name}}" {{if ($khid.khac03 == $name)}}selected{{/if}}>{{$name}}</option>
+            {{/foreach}}
+         </select> -->
+	</li>
+	<li>
+		<label>跟进工号：</label>
+        <input id="tsgjgh" name="" type="text" class="dfinput" style="width:100px" value="{{$khid.khac04}}"/>
+        <img id="xzgjgh" src="public/img/1.png" border="0" title="查找跟进工号"  style="width:1.1%;cursor:pointer"/>
+	<!--     <select  class="dfinput" style="width:100px">
+                <option value="">---</option>
+                {{foreach from=$WorkNumberOptions key=value item=name}}
+                <option name="tsgjgh" checked="checked" value="{{$name}}" {{if ($khid.khac04 == $name)}}selected{{/if}}>{{$name}}</option>
+                {{/foreach}}
+             </select> -->
+	</li>
+	<li>
+		<label>订单ID：</label><input id="ddbh" disabled="disabled" name="" type="text" class="dfinput" style="width:100px" value="{{$khid.khac05}}" />
+	</li>
+	<li>
+		<table >
+        	<tbody id="tbody1">
+        		<tr style="height:30px;line-height:30px;" class="goodline">
+        			<td style="position:relative;">
+        			<label>投诉产品：</label>
+                    <input id="tscp" name="" type="text" class="dfinput" style="width:140px" value="{{$khid.khac06}}"/>
+                    <img id="xztscp" src="public/img/1.png" border="0" title="查找投诉产品"  style="width:5%;cursor:pointer"/>
+
+        				<!-- <input id="tscp" class="goodName" style="border:1px solid #000;text-align:center;" type="text" value="" /> -->
+                       <!--  <div class="goodList" style="display:none;background-color:#D3D3D3;position:absolute;overflow:auto;width:200px;left:85px;height:342px;z-index:5;">
+                           <table style="width:200px;" class="table5">
+                               <tr>
+                                   <td colspan="5" class="closeGoodList" style="cursor:pointer;">关闭</td>
+                               </tr>
+                           </table> 
+                       </div> -->
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+	</li>
+	<li>
+		<label>备注：</label>
+		<textarea  id="tsbz" class="textinput">{{$khid.khac07}}</textarea>
+	</li>
+	<li>
+		<label>处理结果：</label>
+		<select  class="dfinput" style="width:100px">
+            <option value="">---</option>
+            {{foreach from=$ProcessingOptions key=value item=name}}
+            <option name="tscljg" checked="checked" value="{{$name}}" {{if ($khid.khac08 == $name)}}selected{{/if}}>{{$name}}</option>
+            {{/foreach}}
+         </select>
+	</li>
+	
+	<li></li>
+	 
+    <li><label>&nbsp;</label><input id="UpdateCom" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+	<input name="" type="button" class="btn" value="返回"  onclick="history.go(-1);" /></li>
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/khtsxq.js"></script>
+
+</html>

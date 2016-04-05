@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加知识分类</title>
+<link href="public/template/css/cp_tj.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">知识库</a></li>
+    <li><a href="#">添加知识分类</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>添加知识分类</span></div>
+    	<font color="#FF0000">带 * 号的为必填项目</font>
+    	<table class="imgtable" style="background-color:#FFFFFF">
+			<tbody>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						上级分类：
+					</td>
+					<input type="hidden" id="parentid" value="{{$parent}}" />
+					<td style="text-align:left" width="70%">
+						<select class="dfinput" style="width:200px" id="parent" name="parent">
+							<option value="0" level = "-1">请选择</option>
+						</select>
+						<font>一级分类无需选择</font>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						<font color="#FF0000" style="font-size:16px">*</font>分类名称：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input name="flmc" id="flmc" type="text" class="dfinput" style="width:200px"onblur="checkFlmc()" />
+						<font id="flfont">10个汉字以内</font>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						分类描述：
+					</td>
+					<td style="text-align:left" width="70%">
+						<textarea class="textinput" name="flms" id="flms"></textarea>
+						<font>200个汉字以内（不需要就留空）</font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						管理工号：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input name="opeid" id="opeid" type="text" class="dfinput" style="width:200px" /><br/>
+						<font>管理工号可以编辑或者删除该分类下的任何文章，类似论坛版主，多个工号用逗号(,)隔开。超级管理员无需设置。</font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="30%">
+						浏览工号：
+					</td>
+					<td style="text-align:left" width="70%">
+						<input name="viewid" id="viewid" type="text" class="dfinput" style="width:200px" /><br/>
+						<font>可以浏览该分类文章的工号段，为空则所有人可以浏览。超级管理员无需设置。</font>
+					</td>
+				</tr>
+			</tbody>
+	    </table>
+	     <ul class="forminfo">
+		<li></li>
+		 <li><label>&nbsp;</label><input name="" type="button" onclick="addZsfl()" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1);"/></li>
+	    </ul>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/zsk/tjzsfl.js"></script>
+</html>

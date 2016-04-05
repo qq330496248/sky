@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>部分退换货</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="right" name="right" title="right" style="float:left; width:90%">
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">订单管理</a></li>
+    <li><a href="#">部分退换货</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+ 
+    <div class="formtitle" id="ddxx"><span>部分退换货</span></div>
+    
+    <ul class="forminfo" id="ddxxxx">
+		<table class="imgtable">
+			<tr>
+				<th colspan="4">订单退换货处理</th>
+			</tr>
+			<tr>
+				<td style="text-align:left">	
+					订单编号：<font id="orderno">{{$orderno.xsaa02}}</font>
+				</td>
+				<td style="text-align:left">	
+					客户ID：<font>{{$orderno.xsaa04}}</font>
+				</td>
+				<td style="text-align:left">	
+					运费：<font color="#FF000">{{$orderno.xsaa16}}</font>
+				</td>
+				<td style="text-align:left">	
+					订单总价：<font color="#FF0000">{{$orderno.xsaa19}}</font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:left">	
+					支付方式：<font>{{$orderno.xsaa13}}</font>
+				</td>
+				<td style="text-align:left">	
+					订单状态：<font color="#FF0000">{{$orderno.xsaa29}}</font>
+				</td>
+				<td style="text-align:left">	
+					下单时间：<font>{{$orderno.xsaa23}}</font>
+				</td>
+				<td style="text-align:left">	
+					发货时间：<font>{{$orderno.xsaa27}}</font>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:left" colspan="2">	
+					备注：<font>{{$orderno.xsaa36}}</font>
+				</td>
+				<td style="text-align:left">	
+					销售工号：<font color="#FF0000">{{$orderno.xsaa48}}</font>
+				</td>
+				<td style="text-align:left">	
+					签收时间：<font>{{$orderno.xsaa28}}</font>
+				</td>
+			</tr>
+		</table>
+		<li></li>
+		<table class="imgtable" id="table5">
+			<tr>
+				<th width="10%"></th>
+				<th>款号</th>
+				<th>产品名称</th>
+				<th>产品价格</th>
+				<th>产品数量</th>
+				<th>小计</th>
+			</tr>
+			<tr id="barcode">
+				<td style="text-align:left" colspan="6">	
+					<font color="#FF0000">请在退货的商品前面打勾！如果只退款不退产品则不用勾选产品。</font>
+				</td>
+			</tr>
+			
+		</table>
+		<li></li>
+		<!--退换货原因显示 start-->
+		<div id="jsyyxs" style="padding-left:10px;padding-top:3px;">
+			<li style="margin:0 0;"><b style="color:#000000; font-size:15px">退换货原因选择和备注填写</b></li>
+			<li style="padding-left:110px;padding-top:6px;">
+				<ul style="float:left;">
+					{{foreach from=$RejectReasons key=value item=name}}
+					<li style="height:5px;line-height:5px;text-align:right;">{{$name.xsae02}}<input class="rejectId" name="rejectid" value="{{$name.xsae01}}" type="radio" {{if $name.xsae01 == 1}}checked{{/if}}/></li>
+					{{/foreach}}
+				</ul>
+				<ul id="rejectcontent" style="float:left;padding-left:50px;">
+					{{foreach from=$RejectContent key=value item=name}}
+					<li class="chageReject" style="height:5px;line-height:5px;"><input name="jsyynr" {{if $name.xsaf02 == '快递人员服务差'}}checked{{/if}} type="radio" value="{{$name.xsaf02}}"/>{{$name.xsaf02}}</li>
+					{{/foreach}}
+				</ul>
+			</li>
+		</div>
+		<!--退换货原因显示 end-->
+		<li>
+			备注：<textarea style="width:450px;height:70px;" class="textinput" id="remark"></textarea>
+		</li>
+		<li>
+			退换金额：<input id="refundAmount" name="" type="text" class="dfinput" style="width:100px;" value="0" />
+			<input id="confirmReturn" name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="确定退货"/>
+			<input id="confirmExchange" name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" value="确定换货"/>
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999; width:70px" onclick="history.go(-1)" value="返回"/>
+		</li>
+		<li><b style="color:#000000;">订单跟进记录</b></li>
+		<table class="imgtable">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>工号</th>
+					<th>姓名</th>
+					<th>时间</th>
+					<th width="50%">备注</th>
+				</tr>
+			</thead>
+			<tbody id="tbody2">
+				
+			</tbody>
+		
+		</table>
+		<li></li>
+		
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/ddgl/bfthh_dd.js"></script>
+</html>

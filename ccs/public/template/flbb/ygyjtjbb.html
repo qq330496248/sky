@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>员工业绩统计报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">员工业绩统计报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>员工业绩统计报表</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	下单时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+		签收时间：<input id="cjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		到<input id="cjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getCjsjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		来源：
+		<select id="media" class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$media key=value item=name}}
+			<option value="{{$name.mediatext}}">{{$name.mediatext}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组：
+		<select id="dept" class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$dept key=value item=name}}
+			<option value="{{$name.depttext}}">{{$name.depttext}}</option>
+			{{/foreach}}
+		</select>
+        &nbsp;&nbsp;
+		<!-- <input type="checkbox" id="pcyf" />排除运费 -->
+		<input name="" type="button" class="btn" onclick="getBB(0)" value="查询"/>
+		
+	</li>
+	<li>
+		<font style="color:#0000FF">提示：签收时间的查询条件只针对签收金额的数据。 </font>
+	</li>
+	<li> </li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="9%"> </th>
+				<th width="5%">新进客户</th>
+				<th width="12%">下单/金额</th>
+				<th width="5%">成交率</th>
+				<th width="12%">审单/金额</th>
+				<th width="5%">核单率</th>
+				<th width="12%">发货/金额</th>
+				<th width="12%">拒收/金额</th>
+				<th>签收/金额</th>
+				<th width="5%">签收率</th>
+				<th width="9%">报表查询</th>
+			</tr>
+		</thead>
+		
+		<tbody id="ygyjtjbb">
+				
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				<td>
+					总计：<font style="color:#FF0000">0</font>人
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+				</td>
+				<td>
+					<font>-</font>
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+				</td>
+				<td>
+					<font>-</font>
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+				</td>
+				<td>
+					<font style="color:#FF0000">0</font>/<font style="color:#0000FF">0</font>
+				</td>
+				<td>
+					<font>-</font>
+				</td>
+				<td></td>
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    <li style="padding-top:3px;">
+    	<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/>
+    </li>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/flbb/ygyjtjbb.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	
+
+</script>
+</html>

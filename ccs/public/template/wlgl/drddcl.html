@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导入订单处理</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">导入订单处理</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>导入快递单号</span></div>
+    <ul class="forminfo">
+    <form action="index.php?r=excel/UploadExcel&type=drkdd" onsubmit="return checkExist('drkdd')" method="post" enctype="multipart/form-data">
+    	<li>
+			<input type="file" id="drkdd" name="file" /><input name="" type="submit" class="btn" value="上传导入"/>
+		</li>
+    </form>
+   <li>
+   	注意：<br />
+	1.导入前请按按照规定格式编辑好Excel文档。<a href="http://localhost/ccs/template/importExpress.xls" style="color:#0000FF">点击这里</a>下载范例文档格式。 <br /> 
+	<font color="#FF0000">
+	2.如果一次导入的数据过多（几千条以上），请先把Excel文档另存为CSV格式再导入，这样保证导入成功。<br />
+	</font> 
+   </li>
+    </ul>
+    </div>
+
+	<div class="formbody">
+	<div class="formtitle"><span>导入签收/拒收</span></div>	
+    <ul class="forminfo">
+    <form action="index.php?r=excel/UploadExcel&type=wckdd" onsubmit="return checkExist('wckdd')" method="post" enctype="multipart/form-data">
+    	<li>
+			<input type="file" id="wckdd" name="file" /><input name="" type="submit" class="btn" value="上传导入"/>
+		</li>
+    </form>
+	
+   <li>
+   	注意：<br />
+	1.导入前请按按照规定格式编辑好Excel文档。<a href="http://localhost/ccs/template/importSuccess.xls" style="color:#0000FF">点击这里</a>下载范例文档格式。 <br /> 
+	<font color="#FF0000">
+	2.如果一次导入的数据过多（几千条以上），请先把Excel文档另存为CSV格式再导入，这样保证导入成功。<br />
+	3.签收时间为空，则以当前导入时间作为签收时间。
+	</font> 
+   </li>
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript">
+  function checkExist(str){
+    var s = $("#"+str).val();
+    if(s == ''){
+      alert("上传内容不能为空");
+      return false;
+    }
+    return true;
+  }
+</script>
+</html>

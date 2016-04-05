@@ -1,0 +1,11 @@
+﻿#各个例子简单说明：
+FillRecords.aspx(jsp/php/asp): 在服务器端根据数据产生填充报表数据的 javascript 代码。 
+LinkReport.htm: 演示用CreateReport创建报表对象，并在参数中指定要响应的事件函数；建立报表对象与报表查看器之间的关联。
+Multilanguage.htm: 演示多语言集成功能，并实时改变插件当前的界面语言。 
+PageDisplay.htm: 报表查询显示器按分页方式展现数据。 
+PrintAdapt.htm: 演示报表表格的多种自适应打印策略。
+PrintTable.htm：打印 HTML table 中的数据。 
+QuerySQLFromReport.htm：实现应用报表模板中查询SQL获取报表数据的功能，这样每个报表就不用单独编写报表数据提供网页程序。 
+ResortableDisplayViewer.htm：设置 GRDisplayViewer 的 Resortable 属性，开启点击列标题排序功能。 
+ShowProgress.htm：设置报表的 ShowProgressUI 属性，开启报表生成中显示进度指示条。 
+SQLDataParam.htm：演示超过URL长度限制的参数如何传递给报表服务器，在客户端根据配置参数产生报表数据查询SQL，并用此查询SQL获取报表数据。 

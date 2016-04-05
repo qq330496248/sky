@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加广告投放计划</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">媒体管理</a></li>
+    <li><a href="#">添加广告投放计划</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+	<div class="formtitle" id="khcz"><span>添加广告投放计划</span></div>
+	<ul class="forminfo" id="khczxx">
+		<li>
+			<font color="#FF0000">*</font>媒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体：
+			<select name="media" id="media" class="dfinput" style="width:294px" onblur="checkMedia()">
+				<option value="-">--</option>
+				{{foreach from=$mediaList key=value item=name}}
+				<option value="{{$name.mediatext}}">{{$name.mediatext}}</option>
+				{{/foreach}}
+			</select>
+			<font id="mediaFont"></font>		
+		</li>
+		<li>
+			<font color="#FF0000">*</font>广告日期：
+			<input name="begindate" id="begindate" type="text" class="dfinput" onblur="checkDate()" value="" onClick="WdatePicker()" />
+			到
+			<input name="enddate" id="enddate" type="text" class="dfinput" onblur="checkDate()" value="" onClick="WdatePicker()" />
+			<font id="dateFont"></font>	
+		</li>
+		<li>
+			<font color="#FF0000">*</font>开始时间：
+			<input name="time" id="time" type="text" class="dfinput" style="width:291px" onblur="checkTime()" />
+			<font id="timeFont" color="#FF0000">格式：09:00:00</font>
+		</li>
+		<li>
+			广告时长：
+			<input name="duration" id="duration" type="text" class="dfinput" style="width:291px" />
+			秒
+		</li>
+		<li>
+			广告费用：
+			<input name="cost" id="cost" type="text" class="dfinput" style="width:291px" />
+			元
+		</li>
+		<li>
+			进线意向：
+			<select name="type" id="type" class="dfinput" style="width:294px">
+				<option value="-">--</option>
+				{{foreach from=$khyxList key=value item=name}}
+				<option value="{{$name}}">{{$name}}</option>
+				{{/foreach}}
+			</select>	
+		</li>
+		<li>
+			<input name="" type="button" onclick="addAd()" class="btn" value="确认保存"/>&nbsp;&nbsp;&nbsp;
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1);"/>
+		</li>
+	</ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript" src="public/template/js/mtgl/tjggtfjh.js"></script>
+</html>

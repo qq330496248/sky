@@ -1,0 +1,60 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>添加区/县</title>
+<div style="width:100%">
+
+    <div class="formbody">
+    <ul class="forminfo">	
+    <li><label>省份：</label>
+		<select class="dfinput" id="province" onchange="getCity()" style="width:100px">
+			<option name="province" value="0">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="province" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+    </li>
+	<li><label>城市：</label>
+		<select class="dfinput" id="city" style="width:100px">
+			<option name="province" value="0">选择市</option>
+		</select>
+	</li>
+	<li><label>区名（县名）：</label><input name="" id="newArea" type="text" class="dfinput" /></li>
+	<li><input name="" type="button" class="btn-info" onclick="addArea()" value="添加"/></li></ul></div>
+	
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	function getCity(){
+		var provinceID = $("#province").val();
+		$.post("index.php?r=xtsz/GetCity",{provinceID:provinceID},function(data){
+			if(data.res == "success"){
+				$("#city").empty();
+				$("#city").append('<option name="city" value="0">选择市</option>');
+				if(data.res == "success"){
+					$.each(data.list,function(i, n){
+						$("#city").append('<option name="city" value="'+ i+'">'+ n +'</option>');
+					});
+				}
+			}
+		},"json");
+	}
+	//添加城市以及区号
+	function addArea(){
+		var cid = $("#city").val();
+		var name = $("#newArea").val();
+		if(name == "" ||  cid == 0){
+			alert("城市和区名都不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/AddArea",{cid:cid,name:name},function(data){
+				alert(data.mes);
+				if(data.res == "success"){
+					parent.location.href = "index.php?r=xtsz/GetDqHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

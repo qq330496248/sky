@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>投诉统计报表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">分类报表</a></li>
+    <li><a href="#">投诉统计报表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>投诉统计报表</span></div>
+    <input id="urlRequest" type="hidden" value="" />
+    <ul class="forminfo">
+    <li>
+    	<input id="today" type="button" onclick="selectDay('today')" class="btn" value="今日"/>
+		<input id="yesterday" type="button" onclick="selectDay('yesterday')" class="btn" value="昨日"/>
+		<input id="seven" type="button" onclick="selectDay('seven')" class="btn" value="最近7天"/>
+		<input id="thirty" type="button" onclick="selectDay('thirty')" class="btn" value="最近30天"/>
+		<input id="month" type="button" onclick="selectDay('month')" class="btn" value="本月"/>
+    </li> 
+    <li>
+	    <div id="todayDiv" style="display:block">
+	    	<input id="lastDay" type="button" onclick="changeDay('lastDay')" class="btn" value="前一天"/>
+			<input id="nextDay" type="button" onclick="changeDay('nextDay')" disabled="disabled" style="background:#999999" class="btn" value="后一天"/>
+	    </div>
+	    <div id="sevenDiv" style="display:none">
+	    	<input id="lastSeven" type="button" onclick="changeDay('lastSeven')" class="btn" value="前7天"/>
+			<input id="nextSeven" type="button" onclick="changeDay('nextSeven')" disabled="disabled" class="btn" value="后7天"/>
+	    </div>
+	    <div id="thirtyDiv" style="display:none">
+	    	<input id="lastThirty" type="button" onclick="changeDay('lastThirty')" class="btn" value="前30天"/>
+			<input id="nextThirty" type="button" onclick="changeDay('nextThirty')" disabled="disabled" class="btn" value="后30天"/>
+	    </div>
+	    <div id="monthDiv" style="display:none">
+	    	<input id="lastMonth" type="button" onclick="changeDay('lastMonth')" class="btn" value="上个月"/>
+			<input id="nextMonth" type="button" onclick="changeDay('nextMonth')" disabled="disabled" class="btn" value="下个月"/>
+	    </div>
+    </li>   
+    <li>	
+    	<input type="hidden" id="hiddenBeginDate" />
+    	<input type="hidden" id="hiddenEndDate" />
+    	投诉时间：<input id="xdsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至&nbsp;<input id="xdsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getXdsjEnd()"/>
+		&nbsp;<input name="" type="button" onclick="getTstjbb()" class="btn" value="查询"/>	
+	</li>
+	<li>
+		<input id="tsgh" type="button" class="btn" onclick="changeType('tsgh')" style="color:#000000; background:#999999;" value="按投诉工号统计"/>
+		<input id="lx" type="button" class="btn" onclick="changeType('lx')" value="按类型统计"/>
+		<input id="xlx" type="button" class="btn" onclick="changeType('xlx')" value="按小类统计"/>
+		<input id="jg" type="button" class="btn" onclick="changeType('jg')" value="按结果统计"/>
+		<input id="gjgh" type="button" class="btn" onclick="changeType('gjgh')" value="按跟进工号统计"/>
+	</li>
+	<li>
+		<font style="color:#999999">说明：<br/>
+1.以操作时间统计是指发货数以发货时间，签收数以签收时间，退货数以退货时间统计；以下单时间统计是指发货，签收，退货都以下单时间统计，而不管何时签收退货。<br/>
+2.这里统计的数量是产品件数，而不是订单数量，签收数排除了退换货数量。</font>
+	</li>
+	<li> </li>
+  	<li>
+		<table class="imgtable">
+			<thead>
+				<tr>
+					<th width="10%">
+						<div id="tsghTable" style="display:block">
+							投诉工号
+						</div>
+						<div id="lxTable" style="display:none">
+							类型
+						</div>
+						<div id="jgTable" style="display:none">
+							结果
+						</div>
+						<div id="gjghTable" style="display:none">
+							跟进工号
+						</div>
+					</th>
+					<th width="10%">总数</th>
+					<th width="10%">比例</th>
+					<th width="10%">未处理</th>
+					<th width="10%">全额退款</th>
+					<th width="10%">部分退款</th>
+					<th width="">退货</th>
+					<th width="10%">换货</th>
+					<th width="10%">产品赠送</th>
+					<th width="10%">赠品赠送</th>
+				</tr>
+			</thead>
+			<tbody id="tstj">
+					
+			</tbody>
+			<tfoot id="tfoot">
+				<tr>
+			
+				</tr>
+			</tfoot>
+	    	<input id="url" type="hidden" value=""/>
+    	</table>
+	</li>
+	<li>
+	 	<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/>
+	 </li>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/flbb/tstjbb.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	function getXdsjEnd(){
+		var begindate = $("#xdsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+
+</script>
+</html>

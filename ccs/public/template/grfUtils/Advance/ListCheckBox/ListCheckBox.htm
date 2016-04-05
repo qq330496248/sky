@@ -1,0 +1,145 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 演示在表格中使用复选框</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+var Report;
+
+function window_onload() {
+    var ReportViewer = document.getElementById("ReportViewer");
+    
+	Report = ReportViewer.Report;
+	Report.OnBeforePostRecord = OnBeforePostRecord;
+	Report.OnGeneratePagesBegin = OnGeneratePagesBegin;
+	Report.OnGeneratePagesEnd = OnGeneratePagesEnd;
+
+    //改变选中设置，让选中不突出显示出来，以便更好的模拟 CheckBox 与 超链接行为
+    ReportViewer.SelectionBackColor = ColorFromRGB(255, 255, 255);
+    ReportViewer.SelectionForeColor = ColorFromRGB(0, 0, 0);
+    
+    ReportViewer.Start();
+}
+
+function btnViewSelection_onclick() {
+    var Recordset = Report.DetailGrid.Recordset;
+    var Text = "选中行：";
+    Recordset.First();
+    while ( !Recordset.Eof() )
+    {
+        if (Report.FieldByName("Checked").AsInteger == -3) //grsi3DChecked
+            Text = Text + Report.FieldByName("CustomerID").AsString + ";";
+
+        Recordset.Next();
+    }
+    
+    alert(Text);
+    
+    //在报表中的一个文字框中显示出来
+    var CheckedRowMemo = Report.ControlByName("CheckedRowMemo").AsMemoBox;
+    CheckedRowMemo.Text = Text;
+    ReportViewer.UpdateControl( CheckedRowMemo ); //更新改变了文字的综合部件框的显示
+}
+        
+function OnBeforePostRecord()
+{
+    //初始设定选中字段的值为不选中
+    //如果“Checked”字段在报表数据中有提供，这里就不用进行设初值
+    if (Report.FieldByName("Checked").IsNull)
+        Report.FieldByName("Checked").AsInteger = -4; //grsi3DUnchecked;
+}
+
+function OnGeneratePagesBegin()
+{
+    //隐藏选取列，让其在打印与导出时不输出
+	Report.ColumnByName("CheckBox").Visible = false;
+}
+
+function OnGeneratePagesEnd()
+{
+    //恢复选取列显示，以便查询显示能此列显示出来
+	Report.ColumnByName("CheckBox").Visible = true;
+}
+
+function OnReportViewerContentCellClick(Sender)
+{
+    if (Sender.Column.Name == "CheckBox")
+    {
+        //通过切换图像的序号，实现显式不同的图标（选中图标与非选中图标）
+        var Recordset = Report.DetailGrid.Recordset;
+        Recordset.Edit();
+        if (Report.FieldByName("Checked").AsInteger == -4) //grsi3DUnchecked
+            Report.FieldByName("Checked").AsInteger = -3; //grsi3DChecked;
+        else
+            Report.FieldByName("Checked").AsInteger = -4; //grsi3DUnchecked;
+        Recordset.Post();
+        
+        ReportViewer.UpdateSelCell(); //更新当前选中格的显示
+    }
+    if (Sender.Column.Name == "CompanyName")
+    {
+        //演示超链接功能，在这里做打开链接任务，这里用弹出消息框代替
+        alert(Report.FieldByName("CompanyName").AsString);
+    }
+}
+
+function OnReportViewerTitleCellClick(Sender)
+{
+    if (!Sender.GroupTitle && (Sender.Column.Name == "CheckBox"))
+    {
+        //通过切换图像的序号，实现显式不同的图标（选中图标与非选中图标）
+        var SelAllPictureBox = Report.ControlByName("PictureBox2").AsPictureBox;
+        var NewImageIndex;
+        if (SelAllPictureBox.ImageIndex == -4) //grsi3DUnchecked
+            NewImageIndex = -3; //grsi3DChecked;
+        else
+            NewImageIndex = -4; //grsi3DUnchecked;
+         SelAllPictureBox.ImageIndex = NewImageIndex; //grsi3DChecked;
+        //ReportViewer.UpdateControl(SelAllPictureBox); 
+
+        //设定所有 Checked 字段的值与标题格中的图像框序号一致       
+        var Recordset = Report.DetailGrid.Recordset;
+        var CheckedFld = Report.FieldByName("Checked");
+        Recordset.First();
+        while ( !Recordset.Eof() )
+        {
+            Recordset.Edit();
+            CheckedFld.AsInteger = NewImageIndex;
+            Recordset.Post();
+            
+            Recordset.Next();
+        }
+        
+        //更新显示
+        ReportViewer.UpdateViewer();
+    }
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+    <table height="100%" width="100%">
+        <tr>
+            <td style="font-size: 12pt; width: 100%;">
+                <input id="btnViewSelection" type="button" value="查看选中行..." type="text/javascript" onclick="return btnViewSelection_onclick()" /></td>
+        </tr>
+        <tr height="100%">
+            <td>
+    <script type="text/javascript"> 
+        CreateDisplayViewerEx("100%", "100%", "ListCheckBox.grf", "../../data/xmlCustomer.php", false
+            , "<param name=RowSelection value=false>"
+            + "<param name='OnContentCellClick' value='OnReportViewerContentCellClick'>" 
+            + "<param name='OnTitleCellClick' value='OnReportViewerTitleCellClick'>");
+    </script>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

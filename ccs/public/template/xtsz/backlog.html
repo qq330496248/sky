@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>待办事项</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">待办事项</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>客户待办事项</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<select id="clientType" class="dfinput" >
+    		<option value="未完成">我未完成的事项</option>
+    		<option value="已完成">我已完成的事项</option>
+    		<option value="安排">我安排的事项</option>
+    	</select>
+    	跟进标签：
+    	<select id="clientBacklogType" class="dfinput" >
+    		
+    	</select>
+    	客户ID：<input type="text" class="dfinput" id="clientKhid" />
+    	客户姓名：<input type="text" class="dfinput" id="clientKhxm" />
+    	<img src="public/template/images/select.png" title="查询" alt="查询" onclick="getBacklog('client')" style="width:25px;height:25px;position:relative;top:8px;cursor:pointer;" />
+    </li>
+  	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="15%">客户</th>
+				<th width="10%">跟进标签</th>
+				<th>内容</th>
+				<th width="10%">安排人</th>
+				<th width="10%">跟进人</th>
+				<th width="10%">跟进时间</th>
+				<th width="10%">记录时间</th>
+				<th width="5%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="khdbsxTable">
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<input type="checkbox" id="clientAllChecked" onclick="checkAll('client')" />全选&nbsp;&nbsp;&nbsp;
+					<font style="color:#FF0000;cursor:pointer;" onclick="backlogsFinished('clients')" >批量完成</font>
+				</td>
+				<td colspan="7" id="clientPage"> </td>
+			</tr>
+		</tfoot>
+    </table>
+    </ul>
+
+    <div class="formtitle"><span>订单待办事项</span></div>
+    
+    <ul class="forminfo">
+    <li>
+    	<select id="orderType" class="dfinput" >
+    		<option value="未完成">我未完成的事项</option>
+    		<option value="已完成">我已完成的事项</option>
+    		<option value="安排">我安排的事项</option>
+    	</select>
+    	
+    	客户ID：<input type="text" class="dfinput" id="orderKhid" />
+    	客户姓名：<input type="text" class="dfinput" id="orderKhxm" />
+    	<img src="public/template/images/select.png" title="查询" alt="查询" onclick="getBacklog('order')" style="width:25px;height:25px;position:relative;top:8px;cursor:pointer;" />
+    </li>
+  	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="15%">客户</th>
+				<th width="10%">跟进标签</th>
+				<th>内容</th>
+				<th width="10%">安排人</th>
+				<th width="10%">跟进人</th>
+				<th width="10%">跟进时间</th>
+				<th width="10%">记录时间</th>
+				<th width="5%">操作</th>
+			</tr>
+		</thead>
+		<tbody id="xsdbsxTable">
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td id="sx_1" style="text-align:left">
+					
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<input type="checkbox" id="ordersAllChecked" onclick="checkAll('order')" />全选&nbsp;&nbsp;&nbsp;
+					<font style="color:#FF0000;cursor:pointer;" onclick="backlogsFinished('orders')" >批量完成</font>
+				</td>
+				<td colspan="7" id="ordersPage"> </td>
+			</tr>
+		</tfoot>
+    </table>
+    </ul> 
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/backlog.js"></script>
+<script type="text/javascript" src="public/template/js/calendar/WdatePicker.js"></script>
+</html>

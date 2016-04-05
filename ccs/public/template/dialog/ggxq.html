@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+</style>
+</head>
+<title>公告详情</title>
+<div style="width:100%">
+    <div class="formbody">
+    
+    <div class="formtitle"><span>公告详情</span></div>
+    
+    <ul class="forminfo">
+    
+	<li></li>
+		<table class="imgtable">
+			<tbody>
+				<tr>
+					<td style="text-align:right">标题：</td>
+					<td style="text-align:left"><input type="text" class="dfinput" readonly="" value="{{$title}}" name="title"/></td>
+				</tr>
+				<tr>
+					<input type="hidden" id="anntype" value="{{$anntype}}" />
+					<td style="text-align:right">类型：</td>
+					<td style="text-align:left">
+						<select class="dfinput" name="anntype" style="color:#000" disabled="">
+							<option value="0">请选择类型</option>
+							<option value="接线">接线</option>
+							<option value="销售">销售</option>
+							<option value="客服">客服</option>
+							<option value="财务">财务</option>
+							<option value="物流">物流</option>
+							<option value="数据">数据</option>
+							<option value="其它">其它</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right">详细内容：</td>
+					<td style="text-align:left">
+						<textarea class="textinput" name="content" style="color:#000;" disabled="">{{$content}}</textarea>
+					</td>
+				</tr>
+			</tbody>
+	    
+	    </table>
+		
+	<li></li>
+   
+    </ul>
+    </div>
+</div>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var anntype = $("#anntype").val();
+		$("select option").each(function(){
+			if($(this).val() == anntype){
+				$(this).attr("selected","selected");
+			}
+		});
+	});
+</script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+</html>

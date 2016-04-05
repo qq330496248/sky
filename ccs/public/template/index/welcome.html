@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+   /* .imgtable td{
+        border: 0px;
+        text-align: left;
+        
+    }
+    .imgtable td a{
+        font-size: 15px;
+    }
+     .imgtable td:hover{
+       background:#FFFFFF;
+       font-size: 18px;
+       color: #000000;
+   } */
+</style>
+</head>
+
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="index.php?r=login/getIndexHtml" target="_top">首页</a></li>
+    </ul>
+    </div>
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="mainindex">
+    
+    <span>&nbsp;&nbsp;<img src="public/template/images/sun.png" alt="天气" /></span>
+    <div class="welinfo">
+    <b style="font-size:15px; color:rgb(46,102,149)">工号 <font id="personname" style="font-size:15px; color:black">Admin</font> 
+    <font id="hello" style="font-size:15px;">早上好</font>，欢迎登录</b>
+     <i>您上次登录的时间：<font id="time"></font></i> （不是您登录的？<a href="#" onclick="changeSelf()">请点这里</a>）<input type="hidden" id="setID" />
+    </div>
+    
+    <!-- <div class="welinfo">
+       <span><img src="public/template/images/time.png" alt="时间" /></span>
+    </div> -->
+   
+    <div class="mainbox">
+    
+    <div class="mainleft">
+    
+    <div class="leftinfo">
+    <div class="listtitle"><a href="index.php?r=xtsz/GetFbggHtml" class="more1">更多</a>最新公告</div>
+        
+    <div class=""> 
+    <ul class="newlist" id="gglist"> 
+    </ul> 
+      
+    </div>
+    
+    </div>
+    <!--leftinfo end-->
+    
+    
+    <div class="leftinfos">
+    
+   
+    <!--<div class="infoleft">
+    
+     <div class="listtitle">库存预警</div>    
+    <ul class="newlist" id="kcyj" style="">
+    </ul>  
+   
+    </div>  -->
+    
+     
+    <div class="leftinfo">
+    <div class="listtitle"><!-- <a href="#" class="more1">更多</a> -->数据统计</div>
+        <div style="text-align:center;" id="imgTable">
+           <table id='myTable5'>
+            <!-- 通过js，这个table成为一个饼状图 -->
+            <caption>最近七天业绩</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>{{$result.6.displayDate}}</th>
+                    <th>{{$result.5.displayDate}}</th>
+                    <th>{{$result.4.displayDate}}</th>
+                    <th>{{$result.3.displayDate}}</th>
+                    <th>{{$result.2.displayDate}}</th>
+                    <th>{{$result.1.displayDate}}</th>
+                    <th>{{$result.0.displayDate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>下单数</th>
+                    <td id="mon">{{$result.6.count}}</td>
+                    <td id="tue">{{$result.5.count}}</td>
+                    <td id="wed">{{$result.4.count}}</td>
+                    <td id="thu">{{$result.3.count}}</td>
+                    <td id="fri">{{$result.2.count}}</td>
+                    <td id="sat">{{$result.1.count}}</td>
+                    <td id="sun">{{$result.0.count}}</td>
+                </tr>
+            </tbody>
+        </table> 
+        </div>
+    </div>
+    </div>
+    
+    
+    </div>
+    <!--mainleft end-->
+    
+    
+    <div class="mainright">
+    
+    
+    <div class="dflist">
+    <div class="listtitle"><a href="#" class="more1"></a>工作提醒</div>    
+    <ul class="newlist" id="gztx">
+   <li><font style="">未读内部短信：</font><a href="index.php?r=dxgl/GetYsnbdxHtml"><font style="font-size:15px;" id="nbdx"></font></a></li>
+    </ul>        
+    </div>
+    
+    
+    <div class="dflist1">
+    <div class="listtitle"><a href="#" class="more1"></a>信息统计</div>    
+    <ul class="newlist">
+    <li><i>当前登录人数：</i>{{$people}} 人</li>
+    <li><i>今日下单数：</i>{{$orders}} 单</li>
+    <li><i>今日完结单数：</i>{{$finishedOrders}} 单</li>
+    </ul>        
+    </div>
+    
+    
+
+    
+    
+    </div>
+    <!--mainright end-->
+    
+    
+    </div>
+
+   
+    <ul class="infolist">
+    </ul>
+
+    
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/jsapi.js"></script>
+<script type="text/javascript" src="public/template/js/format+zh_CN,default,corechart.I.js"></script>        
+<script type="text/javascript" src="public/template/js/jquery.gvChart-1.0.1.min.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.ba-resize.min.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript">
+//绘图
+gvChartInit();
+jQuery(document).ready(function(){
+
+var width = document.body.clientWidth; 
+
+$("#kcyj").css("width",width * 0.13);
+jQuery('#myTable5').gvChart({
+        chartType: 'LineChart',
+        gvSettings: {
+            vAxis: {title: '签单数'},
+            hAxis: {title: '日期'},
+            width: width * 0.5,
+            height: 250
+            }
+    });
+});
+
+
+    $(function(){
+        //获取上一次登录的信息
+        $.post("index.php?r=login/GetTime",function(data){
+            if(data.result == "success"){
+                $("#time").html(data.list[0]["logintime"]);
+                $("#setID").val(data.list[0]["id"]);
+            }
+        });
+        //获取公告信息
+        $.post("index.php?r=xtsz/GetAnnForIndex",function(data){
+            if(data.result == "success"){
+                $("#gglist").empty();
+                var length = data.list.length;
+                if(length == 0){
+                    var ggInfo = '暂无记录';
+                    $("#gglist").append(ggInfo);
+                    return ;
+                }
+                for(var i = 0; i < 5; i ++){
+                    var ggInfo = '<li><a style="cursor:pointer;font-size: 15px;color:rgb(46,102,149)" onclick="showAnn('+ data.list[i]["id"] +')">'+ data.list[i]["title"] + '</a>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：'+ data.list[i]['anndate'] +'</li>';
+                //    var ggInfo = '<li><a style="cursor:pointer;" onclick="showAnn('+ data.list[i]["id"] +')">'+ data.list[i]["title"] + "</a></li>" ;
+                   /* var ggInfo = '<tr><td>'+(i+1)+'、<span></span><a style="cursor:pointer;" onclick="showAnn('+ data.list[i]["id"] +')">'+ data.list[i]["title"] + "</a>  <br>  发布人："+ data.list[i]['personname'] +"     发布时间："+ data.list[i]['anndate'] +"     </td></tr>" ;*/
+                    $("#gglist").append(ggInfo);
+                }
+            }else{
+                var ggInfo = '暂无记录';
+                $("#gglist").append(ggInfo);
+            }
+        });
+        //
+        $.post("index.php?r=xtsz/GetSess",function(data){
+            $("#personname").html(data.gh);
+            getOrderMessage(data.gh,data.post);
+        });
+
+        
+
+        var date = new Date();
+        //上午好
+        if(date.getHours() < 12){
+            $("#hello").html("上午好");
+        }
+        //中午好
+        if(date.getHours() >= 12 && date.getHours() <= 14){
+            $("#hello").html("中午好");
+        }
+        //下午好
+        if(date.getHours() > 14 && date.getHours() <= 18){
+            $("#hello").html("下午好");
+        }
+        //晚上好
+        if(date.getHours() > 18){
+            $("#hello").html("晚上好");
+        }
+        
+        
+    });
+    //获取工作提醒内容
+    function getOrderMessage(username,post){
+        if(post.indexOf('采购') > -1 || post.indexOf('仓库') > -1){
+            $.post("index.php?r=cpgl/GetWarningProducts",function(data){
+                if(data){
+                    var length = data.length;
+                    for(var i = 0; i < length; i ++){
+                        var listInfo = '<li><a style="font-size:15px;" href="index.php?r=cggl/GetXcgdHtml&cpkh='+ data[i]['cpaa01'] +'&cpmc='+ data[i]['cpaa02'] +'&cjhh='+ data[i]['cpaa16'] +'">'+ data[i]['cpaa01'] +':'+ data[i]['cpaa02'] +'</a><b style="color:#FF0000">库存剩余 ：'+ data[i]['sum'] +'</b></li>';
+                        $("#gztx").append(listInfo);
+                    }
+                }
+            },"json");
+        }else if(post.indexOf('财务') > -1){
+            $.post('index.php?r=xtsz/GetCwryMessage',function(data){
+                $("#gztx").append('<li><font style="">需审核订单数：</font><a href="index.php?r=cwgl/GetCwshHtml"><font style="font-size:15px;color:#FF0000">'+data.orders + "单</font></a></li>");
+            },"json");
+        }else if(post.indexOf('组长') > -1 || post.indexOf('组员') > -1){
+            $.post('index.php?r=xtsz/GetOrderMessage',{username:username},function(data){
+                $("#gztx").append('<li><font style="">我的订单数：</font><a href="index.php?r=ddgl/GetKhddHtml"><font style="font-size:15px;color:rgb(46,102,149)">'+data.xdmes.orders + '单</font></a></li>');
+                $("#gztx").append('<li><font style="">待审核订单数：</font><a href="index.php?r=ddgl/GetKhztddHtml&status=4"><font style="font-size:15px;color:#FF0000" id="ddsh">'+data.shmes.orders + "单</font></a></li>");
+            },"json");
+        }else if(post.indexOf('物流') > -1){
+            $.post('index.php?r=xtsz/GetWlryMessage',function(data){
+                $("#gztx").append('<li><font style="">需发货订单数：</font><a href="index.php?r=wlgl/GetWlfhHtml"><font style="font-size:15px;color:#FF0000">'+data.orders + "单</font></a></li>");
+            },"json");
+        }
+        $.post('index.php?r=xtsz/GetNoReadMess',{username:username},function(data){
+            $("#nbdx").html(data.num + "条");
+        },"json");
+    }
+
+    function changeSelf(){
+        var id = $("#setID").val();
+        var con = confirm("确认不是本人登录？");
+        $.post("index.php?r=login/ChangeSelf",{id:id},function(data){
+            alert(data.mes);
+        });
+    }
+
+    var httpHost = $('#httpHost').val();  //服务器地址
+    function showAnn(id){
+        var dialog = new Dialog();
+        dialog.Width=600;
+        dialog.Height=400;
+        dialog.URL="http://"+httpHost+"/index.php?r=dialog/GetAnnHtml&id="+id;
+        dialog.show();
+    }
+
+</script>
+</html>

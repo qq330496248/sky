@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>员工考核</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>员工考核</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>员工考核</span></div>
+    
+    <ul class="forminfo">
+    <form action="index.php?r=xtsz/GetKhjlByCond" method="post">
+    	<li>
+			类型：
+			<select class="dfinput" style="width:100px" id="type" name="type">
+				<option value="">全部</option>
+				<option value="F">扣分（罚）</option>
+				<option value="T">加分（奖）</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			考核项目：
+			<select class="dfinput" style="width:100px" id="xmid" name="xmid">
+				<option value="">--</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			工号：<input name="username" id="username" type="text" class="dfinput" style="width:100px" value="" />
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			考核时间：<input name="" id="begindate" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultCurrentTime}}"/>
+			到&nbsp;<input name="" id="enddate" type="text" class="dfinput" style="width:100px" onClick="getEnddate()" value="{{$defaultCurrentTime}}"/>
+			&nbsp;&nbsp;<input name="" type="button" class="btn" onclick="getKhjl();" value="查询"/>
+		</li>
+		
+    </form>
+    <li>
+		<a href="index.php?r=xtsz/GetTjkhxmHtml"><input name="" type="button" class="btn" value="添加考核项目"/></a>
+		&nbsp;&nbsp;
+		<a href="index.php?r=xtsz/GetTjkhjlHtml"><input name="" type="button" class="btn" value="添加考核记录"/></a>
+	</li>
+	<li></li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="5%"></th>
+				<th width="10%">工号</th>
+				<th width="10%">姓名</th>
+				<th width="10%">考核项目</th>
+				<th width="5%">类型</th>
+				<th width="5%">考核分数</th>
+				<th width="7%">考核时间</th>
+				<th>备注</th>
+				<th width="7%">录入工号</th>
+				<th width="7%">录入时间</th>
+				<th width="10%">操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="ygkhTable">
+
+		</tbody>
+    	<tfoot>
+    		<tr><td colspan="11" id="page"></td></tr>
+    	</tfoot>
+    </table>
+	<li></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/ygkh.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript">
+	/*function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+</html>

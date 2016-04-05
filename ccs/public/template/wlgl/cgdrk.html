@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>采购单入库</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">产品入库</a></li>
+	<li><a href="#">采购单入库</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <div class="formtitle"><span>产品入库</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		<a href="index.php?r=wlgl/GetCprkHtml"><input name="" type="button" style="color:#000000; background:#999999;" class="btn" value="采购单入库"/></a>
+		<a href="index.php?r=wlgl/GetCpzjrkHtml"><input name="" type="button" class="btn" value="直接入库"/></a>
+	</li>
+	<li>
+		采购单号：<input id="purchaseNo" name="" type="text" class="dfinput" style="width:100px" value="" />
+		<!-- <input name="" onclick="showCzCgdh()" type="button" class="btn" style="width:60px" value="查 找"/> -->
+		<img onclick="showCzCgdh()" src="public/img/1.png" border="0" style="width:1%;" value="" />
+		&nbsp;&nbsp;
+		<input id="inquire" style="width:60px" name="" type="button" class="btn" value="查 询"/>
+	</li>
+	<li><input id="purchaseStatus" type="hidden" value="" /></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="5%"></th>
+				<th width="7%">款号</th>
+				<th width="6%">产品名</th>
+				<th width="8%">生产日期</th>
+				<th width="8%">到期时间</th>
+				<th width="8%">采购量</th>
+				<th width="8%">入库数量</th>
+				<th width="8%">正品入库</th>
+				<th width="8%">次品入库</th>
+				<th width="12%">库位</th>
+				<th width="22%">条码</th>
+			</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			
+		</tfoot>
+    	
+    </table>
+    <div id="showPsg" style="width:100%;border:solid 1px rgb(139,181,217);margin-top:4px;padding:4px 0px;display:none;">
+	    <ul>
+	    	<li style="margin-bottom:2px;">
+	    	<span style="display:inline;">
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		    	供应商：
+		    	<font id="gys" gysid=""></font>
+	    		&nbsp;&nbsp;&nbsp;&nbsp;
+				下单人：
+		        <font id="xdr"></font>
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        下单时间：
+		        <font id="xdsj"></font>
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        采购总数：
+		        <font id="cgzs"></font>
+		        &nbsp;&nbsp;&nbsp;&nbsp;
+		        采购总额：
+		        <font id="cgze"></font>
+		         &nbsp;&nbsp;&nbsp;&nbsp;
+		        运费：
+		        <font id="fare"></font>
+		         &nbsp;&nbsp;&nbsp;&nbsp;
+		        备注：
+		        <font id="remark"></font>
+			</span>
+			</li>
+	    </ul>
+	</div>
+	<!-- <li>
+		<font color="#FF0000">注意：要先点击"提交保存"，待审核入库单后；再点击"采购单入库"，库存才会真正生效。</font>
+	</li> -->
+	<li style="padding-top:8px;">
+		<!-- <input id="submitSave" name="" type="button" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp; -->
+		<input id="addGood" name="" type="button" class="btn" value="采购单入库"/>&nbsp;&nbsp;&nbsp;
+		<input id="cancel" name="" type="button" class="btn" style="color:#000000; background:#999999" onclick="history.go(-1)" value="返回"/>
+	</li>
+	<li id="tips" style="color:#ff0000;"></li>
+   
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>	
+<script type="text/javascript" src="public/template/js/wlgl/cgdrk_wl.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户黑名单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+	<span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">添加客户黑名单</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>客户黑名单</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+    <li><font style="color:#FF0000;font-size:14px; ">添加客户时，如果所填写的手机号与黑名单中的手机号相同，则不允许保存</font></li>
+	<li>
+	<a class="selected" href="index.php?r=khgl/GetkhhmdHtml&status=0"><input id="btn_1" type="button" style="color:#000000; background:#999999" class="btn" value="黑名单"/></a>
+		<a class="selected" href="index.php?r=khgl/GethmddrHtml&status=1"><input id="btn_2" type="button" class="btn" value="黑名单导入"/></a>
+	</li>
+    <li>
+    手机号码：
+		<input id="phone" value="请输入手机号" type="text" class="dfinput" value="请输入手机号"onfocus="if (value =='请输入手机号'){value =''}" style="color:#9D9D9D;width:150px"/>
+		<input id="AddBlacklist" value="添加到黑名单" type="button" class="btn" style="font-size:14px;width:120px;"/>
+		<input name="" type="button" class="btn" value="返回" style="font-size:14px;width:70px;"  onclick="history.go(-1)" />
+	</li>
+    </ul>
+	
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/tjhmd_kh.js"></script>
+</html>

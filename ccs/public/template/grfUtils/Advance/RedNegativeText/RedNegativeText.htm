@@ -1,0 +1,116 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 实现报表中负数的特殊显示</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+var ColumnContent;
+var NetAmtContentCell;
+var NetAmtField;
+var NetAmtSummaryBox;
+var GroupFooter;
+
+var Report;
+var ColumnContent;
+var NetAmtContentCell;
+var NetAmtField;
+var NetAmtSummaryBox;
+var GroupFooter;
+
+function window_onload() 
+{
+    ReportViewer.Stop();
+    
+    Report = ReportViewer.Report;
+    
+    //关联报表事件
+    Report.OnSectionFormat = OnSectionFormat;
+    Report.OnBeforePostRecord = OnBeforePostRecord;
+    Report.OnFieldGetDisplayText = OnFieldGetDisplayText;
+    Report.OnTextBoxGetDisplayText = OnTextBoxGetDisplayText;
+        
+    //Report.LoadFromURL("RedNegativeText.grf");
+
+    //为了提高运行效率，在此记录下在响应事件中用到的报表对象的接口指针。
+    ColumnContent = Report.DetailGrid.ColumnContent;
+    NetAmtContentCell = ColumnContent.ContentCells.Item("NetAmount");
+    NetAmtField = Report.FieldByName("NetAmount");
+    NetAmtSummaryBox = Report.ControlByName("NetAmountSummaryBox").AsSummaryBox;
+    GroupFooter = Report.DetailGrid.Groups.Item(1).Footer;
+    
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function OnSectionFormat(Sender)
+{
+    //<<为了实现列负数红字显示>>
+    if ( Sender.EqualTo(ColumnContent) ) //if (Sender == ColumnContent)
+    {
+	    //当字段的值为负数时且在屏幕查询显示报表时，改变内容格的文字显示颜色为红色
+	    var TextColor = 0; //Black
+	    if ((Report.DisplayMode == 1) && (NetAmtField.AsFloat < 0)) //GRReportDisplayMode.grrdmScreenView
+		    TextColor = ColorFromRGB(255, 0, 0); //Red = 255, Green = 0, Blue = 0
+	    NetAmtContentCell.ForeColor = TextColor; 
+    }
+
+	//<<为了实现分组统计负数红字显示>>
+    else if ( Sender.EqualTo(GroupFooter) )
+    {
+	    //当统计值为负数时且在屏幕查询显示报表时，改变显示统计值绝对值得静态框的
+	    //文字显示颜色为红色
+	    var TextColor = 0; //Black;
+	    if ((Report.DisplayMode == 1) && (NetAmtSummaryBox.Value < 0)) //GRReportDisplayMode.grrdmScreenView
+		    TextColor = ColorFromRGB(255, 0, 0); //Red = 255, Green = 0, Blue = 0
+	    NetAmtSummaryBox.ForeColor = TextColor;
+    }
+}
+
+function OnBeforePostRecord()
+{
+    NetAmtField.AsFloat = NetAmtField.AsFloat - 500;
+}
+
+function OnFieldGetDisplayText(Sender)
+{
+    //<<为了实现列负数红字显示>>
+    //当报表在查询显示时，如果字段值为负数，去掉其显示文字前面的负号
+    if ((Report.DisplayMode == 1) && (Sender.EqualTo(NetAmtField))) //GRReportDisplayMode.grrdmScreenView
+    {
+	    if (NetAmtField.AsFloat < 0)
+	    {
+		    var Text = NetAmtField.DisplayText;
+		    NetAmtField.DisplayText = Text.substr(1);
+	    }
+    }
+}
+
+function OnTextBoxGetDisplayText(Sender)
+{
+    //<<为了实现列负数红字显示>>
+    //当报表在查询显示时，如果字段值为负数，去掉其显示文字前面的负号
+    if ((Report.DisplayMode == 1) && (Sender.EqualTo(NetAmtSummaryBox))) //GRReportDisplayMode.grrdmScreenView
+    {
+	    if (NetAmtSummaryBox.Value < 0)
+	    {
+		    var Text = NetAmtSummaryBox.DisplayText;
+		    NetAmtSummaryBox.DisplayText = Text.substr(1);
+	    }
+    }
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+		//CreatePrintViewerEx("100%", "100%", "RedNegativeText.grf", "xmlRedNegativeText.php", false);
+		CreateDisplayViewerEx("100%", "100%", "RedNegativeText.grf", "xmlRedNegativeText.php", false);
+	</script>
+</body>
+</html>

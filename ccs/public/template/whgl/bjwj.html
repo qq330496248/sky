@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑问卷</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">外呼管理</a></li>
+    <li><a href="#">编辑问卷</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>编辑问卷</span></div>
+    
+    <ul class="forminfo">
+    <li>	
+    	问卷名称：
+        <input id="bookName" name="" type="text" class="dfinput" style="width:100px" value="{{$bookDetails.whaa02}}" />
+		<font id="pwdCheck" color="#FF0000">*(20个中文字符以内)</font>
+	</li>
+	<li>
+        问卷介绍：
+		<textarea id="bookIntroduce" class="textinput" name="">{{$bookDetails.whaa03}}</textarea>
+		<font id="pwdCheck" color="#797979">(可以输入200个字)</font>
+	</li>
+	<li>
+        <input type="hidden" id="bookId" value="{{$bookDetails.whaa01}}"/>
+		<input id="editBook" name="" type="button" class="btn" value="保存"/>
+		<input name="" onclick="history.go(-1)" type="button" class="btn" style="color:#000000; background:#999999" value="返回"/>
+	</li>
+    </ul>
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/whgl/bjwj_wh.js"></script>
+
+</html>

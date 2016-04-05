@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户跟进记录</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">客户跟进记录</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>客户跟进记录</span></div>
+    
+    <ul class="forminfo">
+	<li>
+		分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：
+		<select class="dfinput" style="width:100px">
+		    <option value="">---</option> 
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="khszz"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		安排人： 
+		<select class="dfinput" style="width:100px">
+		    <option value="">---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khapr"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		跟进人： 
+        <select class="dfinput" style="width:100px">
+		    <option value="">---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khgjr"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		跟进标签：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$FollowLabelOptions key=value item=name}}
+			<option name="gjbq" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		</li>
+		<li>
+		客户&nbsp;I&nbsp;D：<input id="khid" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		记录时间：<input id="gjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		至&nbsp;<input id="gjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getGjsjEnd()" value="{{$defaultCurrentTime}}" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		完成：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$IsCompleteOptions key=value item=name}}
+			<option name="sfwc" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;
+		<input id="getFollowQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li></li>
+	<table id="table4" class="imgtable">
+		<thead>
+			<tr>
+				<th width="2%">序号</th>
+				<th width="8%">客户ID</th>
+				<th width="8%">跟进标签</th>
+				<th width="8%">内容</th>
+				<th width="8%">安排人</th>
+				<th width="8%">跟进人</th>
+				<th width="8%">记录时间</th>
+				<th width="8%">待办时间</th>
+				<th width="8%">完成</th>
+				<th width="5%">操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="FollowRecord">
+			<tr>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+	<li style="margin-top:3px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+	</li>
+   
+    </ul>
+
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/khgjjl_kh.js"></script>
+<script type="text/javascript">
+	function getGjsjEnd(){
+		var begindate = $("#gjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setGjsjEnd(){
+		$("#gjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+</script>
+</html>

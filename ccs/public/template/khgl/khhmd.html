@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>客户黑名单</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+	<span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">客户黑名单</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle" id="ddcx"><span>客户黑名单</span></div>
+    
+    <ul class="forminfo" id="ddcxtj">
+    <li><font style="color:#FF0000;font-size:14px; ">添加客户时，如果所填写的手机号与黑名单中的手机号相同，则不允许保存</font></li>
+	<li>
+	<a class="selected" href="index.php?r=khgl/GetkhhmdHtml&status=0"><input id="btn_1" type="button" style="color:#000000; background:#999999" class="btn" value="黑名单"/></a>
+		<a class="selected" href="index.php?r=khgl/GethmddrHtml&status=1"><input id="btn_2" type="button" class="btn" value="黑名单导入"/></a>
+	</li>
+
+    <li>
+    	<!-- <font id="add">添加</font> -->
+    	<font id="edit" style="display:none;color:#f00;">修改号码</font>
+    	手机号码：
+		<input id="phone"  type="text" class="dfinput" onfocus="if (value =='请输入手机号'){value =''}" style="color:#9D9D9D;width:150px"/>
+		<input id="QueryBlackList" value="查询" type="button" class="btn" style="font-size:14px;width:60px;"/>
+		<input id="editBlacklist" value="提交修改" type="button" class="btn" style="display:none;font-size:14px;width:80px;"/>
+		<a href="index.php?r=khgl/GettjhmdHtml"><input id="AddBlacklist" name="" type="button" class="btn" value="添加黑名单"/></a>&nbsp;&nbsp;&nbsp;
+		
+	</li>
+	<li>
+		<!-- <input id="editBlacklist" value="修改" type="button" class="btn" style="display:none;font-size:12px;width:60px;">
+		<a class="btn" href="index.php?r=khgl/GettjhmdHtml"><input name="" type="button" class="btn" value="添加黑名单"/></a>&nbsp;&nbsp;&nbsp; -->
+	</li>
+    </ul>
+	<ul class="forminfo">
+		<li>
+			<table id="table4" class="imgtable">
+				<thead>
+					<tr>
+						<th width="3%">序号</th>
+						<th width="25%">电话</th>
+						<th width="10%">操作</th>
+					</tr>
+				</thead>
+				<tbody id="dhhmdTable">
+				</tbody>
+				<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>				
+		</tfoot>
+			</table>
+		</li>
+	</ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common/validate.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/khhmd_kh.js"></script>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公司信息</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.imgtable tbody tr:hover{background-color:#FFFFFF;}
+</style>
+</head>
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">系统设置</a></li>
+    <li><a href="#">公司信息</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>公司信息</span></div>
+    
+    <form action="index.php?r=xtsz/UpdateGsxx" method="post" enctype="multipart/form-data" onsubmit="return checkValue();">
+    <input type="hidden" id="id" name="id" value="{{$companyInfo.id}}" />
+    	<table class="imgtable">
+			<tbody>
+				<th colspan="4">基本信息</th>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						公司编号：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="number" id="number" value="{{$companyInfo.number}}" type="text" class="dfinput" style="width:300px" />
+					</td>
+					<td style="text-align:right" width="15%">
+						公司名称：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="name" id="name" type="text" value="{{$companyInfo.name}}" class="dfinput" style="width:300px" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						公司地址：
+					</td>
+					<td style="text-align:left" width="35%">
+<!-- 						<select class="dfinput" id="cpfl" name="cpfl" onchange="getCpzfl()" onblur="cpflCheck();" style="width:100px">
+	<option value="0">省</option>
+</select>
+<select class="dfinput" id="cpzfl" name="cpzfl" style="width:100px">
+	<option value="0">市</option>
+</select>
+<select class="dfinput" id="cpzfl" name="cpzfl" style="width:100px">
+	<option value="0">区/县</option>
+</select> -->
+						<input name="address" id="address" value="{{$companyInfo.address}}" type="text" class="dfinput" style="width:300px" />
+					</td>
+					<td style="text-align:right" width="15%">
+						公司类型：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="hidden" id="oldtype" value="{{$companyInfo.type}}" />
+						<select class="dfinput" id="type" name="type" style="width:200px">
+							<option value="0">请选择</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right" width="15%">
+						公司电子邮箱：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="email" id="email" type="text" value="{{$companyInfo.email}}" class="dfinput" style="width:200px" />
+					</td>
+					<td style="text-align:right" width="15%">
+						公司电话：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="phone" id="phone" type="text" value="{{$companyInfo.phone}}" class="dfinput" style="width:200px" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						公司简介：
+					</td>
+					<td style="text-align:left" width="35%">
+						<textarea class="textinput" name="summary" id="summary">{{$companyInfo.summary}}</textarea>
+					</td>
+					<td style="text-align:right; padding:5px" width="15%">
+						联系人：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="linkman" id="linkman" type="text" value="{{$companyInfo.linkman}}" class="dfinput" style="width:200px" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						上传公司LOGO：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="file" name="logo" onchange = "PreviewImage(this, 'imgHeadPhoto', 'divPreview')" />
+						<font color="#FFF000000">注意：格式必需为jpg，大小不超过1M </font>
+					</td>
+					<td colspan="2" height="150px">
+						<div id="divPreview">
+					     	<img id="imgHeadPhoto" src="{{$companyInfo.logo}}" style="width: 200px; height: 150px;border: solid 1px #d2e2e2;" alt="" />
+						</div>
+					</td>
+				</tr>
+			</tbody>
+	    
+	    </table>
+		<ul class="forminfo">
+    
+		<li></li>
+		 
+		 
+	    <li><input name="" type="submit" class="btn" value="提交保存"/>
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)" /></li>
+   		</ul>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/upload.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/gsxx.js"></script>
+</html>

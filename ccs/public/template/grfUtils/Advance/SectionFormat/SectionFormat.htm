@@ -1,0 +1,105 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Web报表(B/S报表)演示 - 实现报表中的文字突出显示</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="../../CreateControl.js" type="text/javascript"></script>
+	<script src="../../GRUtility.js" type="text/javascript"></script>
+	<script type="text/javascript">
+var ColumnContent;
+var AmountContentCell;
+var AmountField; 
+
+var Report;
+
+function window_onload() 
+{
+    ReportViewer.Stop();
+    
+    Report = ReportViewer.Report;
+    
+    //关联报表事件
+    Report.OnSectionFormat = OnSectionFormat;
+        
+	//为了提高运行效率，在此记录下在响应事件中用到的报表对象的接口指针。
+	ColumnContent = Report.DetailGrid.ColumnContent;
+	AmountContentCell = ColumnContent.ContentCells.Item("Amount");
+	AmountField = Report.FieldByName("Amount");
+    
+    //启动报表运行
+    ReportViewer.Start();
+}
+
+function OnSectionFormat(Sender)
+{
+    //if (ColumnContent == Sender)
+    if ( ColumnContent.EqualTo(Sender) )
+    {
+	    //当Amount字段的值大于等于5000时，将Amount显示为粗体，绿色,背景色为白色
+	    //当Amount字段的值大于等于1000时，将整行显示为正常体，黄色,背景色为蓝色
+	    //当Amount字段的值小于1000时，将Amount显示为正常体，红色，背景色为白色
+	    var FontBold;
+	    var FontItalic;
+	    var TextColor;
+	    var BackColor;
+	    if (AmountField.AsFloat >= 5000)
+	    {
+		    FontBold = true;
+		    FontItalic = false;
+		    TextColor = ColorFromRGB(0, 255, 0); //Green
+		    BackColor = ColorFromRGB(255, 255, 255); //White;
+	    }
+	    else if (AmountField.AsFloat >= 1000)
+	    {
+		    FontBold = false;
+		    FontItalic = false;
+		    TextColor = ColorFromRGB(255, 255, 0);  //var.Yellow;
+		    BackColor = ColorFromRGB(0, 0, 255);  //var.Blue;
+	    }
+	    else
+	    {
+		    FontBold = false;
+		    FontItalic = true;
+		    TextColor = ColorFromRGB(255, 0, 0); //var.Red;
+		    BackColor = ColorFromRGB(255, 255, 255); //var.White;
+	    }
+
+	    //当为打印输出状态时，文字颜色始终为黑色,背景色始终为白色
+	    if (Report.DisplayMode == 2) //GRReportDisplayMode.grrdmPrintGenerate
+	    {
+		    TextColor = ColorFromRGB(0, 0, 0); ; //var.Black;
+		    BackColor = ColorFromRGB(255, 255, 255);  //var.White;
+	    }
+
+	    AmountContentCell.Font.Bold = FontBold;
+	    AmountContentCell.Font.Italic = FontItalic;
+	    
+		if (BackColor == ColorFromRGB(0, 0, 255)) //如果为蓝色，将整行改为蓝色
+		{
+			ColumnContent.SetCellsForeColor( TextColor );
+			ColumnContent.SetCellsBackColor( BackColor );
+		}
+		else
+		{
+			ColumnContent.SetCellsForeColor( ColorFromRGB(0,0,0) );
+			ColumnContent.SetCellsBackColor( ColorFromRGB(255,255,255) );
+
+	        AmountContentCell.ForeColor = TextColor;
+	        AmountContentCell.BackColor = BackColor;
+		}
+    }
+}
+    </script>
+    <style type="text/css">
+        html,body {
+            margin:0;
+            height:100%;
+        }
+    </style>
+</head>
+<body style="margin:0" onload="return window_onload()">
+	<script type="text/javascript"> 
+	    //CreatePrintViewerEx("100%", "100%", "SectionFormat.grf", "xmlSectionFormat.php", false, "");
+	    CreateDisplayViewerEx("100%", "100%", "SectionFormat.grf", "xmlSectionFormat.php", false, "");
+	</script>
+</body>
+</html>

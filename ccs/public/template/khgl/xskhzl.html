@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>下属客户资料</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">下属客户资料</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>下属客户资料</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		工号：<font style="color:#0000ff;">{{$JobNuber}}</font>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		组别：
+		<select class="dfinput" style="width:100px">
+		    <option>---</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option name="khszz"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select  class="dfinput" style="width:140px">
+		    <option>---</option>
+			{{foreach from=$WorkNumberOptions key=value item=name}}
+			<option name="khgsgh"  checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		注册时间：<input id="khzcsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		至<input id="khzcsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getZcsjEnd()" value="{{$defaultCurrentTime}}"/>
+	</li>
+	<li>
+		
+		客户姓名：&nbsp;<input id="khname" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户电话：&nbsp;<input id="khphone" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户等级：<!-- <input name="" type="text" class="dfinput" /> -->
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$CustomerLevelOptions key=value item=name}}
+			<option  name="kehudj" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+    <li>
+		客户意向：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$CustomerIntentionOptions key=value item=name}}
+			<option name="kehuyx" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		跟进标签：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$FollowLabelOptions key=value item=name}}
+			<option name="gjbq" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		客户来源：
+		<select class="dfinput" style="width:140px">
+			<option value="">---</option>
+			{{foreach from=$ClientSourceOptions key=value item=name}}
+			<option name="khly" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<!-- 关键字：<input name="" type="text" class="dfinput" style="width:100px" value="" /> -->
+	</li>
+	<li>
+		地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">选择省</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="khsf" checked="checked" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<select id="city" class="dfinput" style="width:100px">
+			<option>选择市</option>
+		</select>
+		<select id="area" class="dfinput" style="width:100px">
+			<option>选择区/县</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		是否成交：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$WhetherNotOptions key=value item=name}}
+			<option name="sfcj" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		注册方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$IntoLineOptions key=value item=name}}
+			<option name="zcfs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		<input id="sxss" value="显示更多条件" name="" type="button" class="btn" style="display:block;margin-top:4px;"/> 
+        <input id="yinc" value="隐藏更多条件" name="" type="button" class="btn" style="display:none;margin-top:4px;"/>
+	</li>
+	<ul id="sssss" class="xsgdzl" style="display:none;">
+	 <li>
+		最新跟进时间：<input id="zxgjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="zxgjz" name="" type="text" class="dfinput" style="width:100px" onClick="getZxgjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：<input id="khnlsq" name="" type="text" class="dfinput" style="width:75px" value="" />岁至<input id="khnlsz" name="" type="text" class="dfinput" style="width:75px" value="" />岁
+	</li>
+	 <li>
+		最新转单时间：<input id="zxzdq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="zxzdz" name="" type="text" class="dfinput" style="width:100px" onClick="getZxzdEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		消费金额：&nbsp;≥<input id="xfjed" name="" type="text" class="dfinput" style="width:75px" value="" />元  ≤<input id="xfjex" name="" type="text" class="dfinput" style="width:75px" value="" />元
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		年收入：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$IncomeOptions key=value item=name}}
+			<option name="nsr" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	 <li>
+		最新签收时间：<input id="zxqsq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="zxqsz" name="" type="text" class="dfinput" style="width:100px" onClick="getQssjEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$GetSexStatus key=value item=name}}
+			<option  name="khxb" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：<input name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="" />
+	</li>
+	 <li>
+		最新拒收时间：<input id="zxjsq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()"/>
+		至<input id="zxjsz" name="" type="text" class="dfinput" style="width:100px" onClick="getZxjsEnd()"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		购买产品&nbsp;&nbsp;：&nbsp;<input id="khgmcp" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		购买次数：
+		<select class="dfinput" style="width:100px">
+			<option value="">---</option>
+			{{foreach from=$PurchaseNumberOptions key=value item=name}}
+			<option name="gmcs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+	</li>
+	</ul>
+	<li>
+		<input id="StartSearchClient" name="" type="button" class="btn" value="开始搜索"/>
+	</li>
+   <li>
+		<input type="checkbox" id="checkall"/>全选&nbsp;&nbsp;
+		<input id="batchArragin" name="" type="button" class="btn" value="批量转给"/>&nbsp;&nbsp;
+		<select  class="dfinput" style="width:140px">
+		    <!-- <option value="">---</option> -->
+            {{foreach from=$XsWorkNumberOptions key=value item=name}}
+            <option name="zcgh" {{if $name == $sessioninfo.gonghao}}selected{{/if}} value="{{$name}}">{{$name}}</option>
+            {{/foreach}}
+        </select>
+	</li>
+	<table class="imgtable">
+		<thead>
+			<tr>
+				<th width="3%"></th>
+				<th width="8%" onclick="changeStr('khid')"><font id="khid">客户ID</font></th>
+				<th width="4%" onclick="changeStr('name')"><font id="name">姓名</font></th>
+				<th width="4%" onclick="changeStr('sex')"><font id="sex">性别</font></th>
+				<th onclick="changeStr('level')"><font id="level">等级</font></th>
+				<th width="5%" onclick="changeStr('deal')"><font id="deal">成交</font></th>
+				<th width="8%" onclick="changeStr('zc')"><font id="zc">注册时间</font></th>
+				<th width="8%" onclick="changeStr('last')"><font id="last">最新跟进</font></th>
+				<th width="8%" onclick="changeStr('zd')"><font id="zd">转单时间</font></th>
+				<th width="8%" onclick="changeStr('qs')"><font id="qs">最新签收</font></th>
+				<th width="8%" onclick="changeStr('pay')"><font id="pay">消费</font></th>
+				<th width="5%" onclick="changeStr('yx')"><font id="yx">意向</font></th>
+				<th width="8%" onclick="changeStr('ly')"><font id="ly">来源</font></th>
+				<th width="10%" onclick="changeStr('dq')"><font id="dq">地区</font></th>
+				<th width="6%" onclick="changeStr('gh')"><font id="gh">工号</font></th>
+			</tr>
+		</thead>
+		<tbody id="getCheckeboxId">
+			
+		</tbody>
+		<tfoot>
+			<tr><td colspan="15" class="page"></td></tr>				
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+	
+	<li style="margin-top:3px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+	</li>
+    </ul>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/ssqld_kh.js"></script>
+<script type="text/javascript" src="public/template/js/khgl/xskhzl_kh.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript">
+	//注册时间
+	function getZcsjEnd(){
+		var begindate = $("#khzcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZcsjEnd(){
+		$("#khzcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//跟进时间
+	function getZxgjEnd(){
+		var begindate = $("#zxgjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZxgjEnd(){
+		$("#zxgjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//转单
+	function getZxzdEnd(){
+		var begindate = $("#zxzdq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZxzdEnd(){
+		$("#zxzdz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+	//签收时间
+	function getQssjEnd(){
+		var begindate = $("#zxqsq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setQssjEnd(){
+		$("#zxqsz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+	//拒收
+	function getZxjsEnd(){
+		var begindate = $("#zxjsq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setZxjsEnd(){
+		$("#zxjsz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d'));
+	}*/
+
+</script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>任务列表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">外呼管理</a></li>
+    <li><a href="#">任务列表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>任务列表</span></div>
+    
+    <ul class="forminfo">
+    <li>	
+    	任务名称：<input id="kddh" name="" type="text" class="dfinput" style="width:100px" />
+    	&nbsp;&nbsp;&nbsp;&nbsp;
+    	执行状态：
+		<select id="province" class="dfinput" style="width:100px">
+			<option value="">全部</option>
+			{{foreach from=$appprovinceOptions key=value item=name}}
+			<option name="khsf" checked="checked" value="{{$value}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		创建时间：<input id="cjsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input id="cjsjz" name="" type="text" class="dfinput" style="width:100px" onClick="getCjsjEnd()" value="{{$defaultCurrentTime}}"/>
+
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="搜索"/>
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="导出"/>
+		&nbsp;&nbsp;<input name="" type="button" class="btn" value="制定新任务"/>
+	</li>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th>任务名称</th>
+				<th>参与座席</th>
+				<th>号码总量</th>
+				<th>已分配</th>
+				<th>已执行</th>
+				<th>完成率</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="getCheckeboxId">
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+		
+			</tr>
+		</tfoot>
+    	<input id="url" type="hidden" value=""/>
+    </table>
+    </ul>
+    </div>
+ <!--    
+ <div class="TCGB TC600 mydetTC" id="WorkNumber">
+ 	<div class="TCBox" style="width:500px;left:38%;height:430px;top:50px;">
+ 
+ 	<h2><span title="TCtitle">选择接收短信的工号--网页对话框</span></h2>
+ 
+ 	<h2><span title="TCtitle">查询接收短信的工号--网页对话框
+ 	<a><img id="CloseCommit" src="public/template/images/divclose.png" style="cursor:pointer;width:20px;height:20px; position:absolute; left:473px; top:6px;"></a></span></h2>
+ 	<div class="TCBody">
+ 		<table id="table8">
+ 			<tr class="JnLine ">
+ 				<td>请输入查询条件
+ 				    <input id="keyword" name="" type="text" class="dfinput" style="width:100px" value=""/>
+ 				    <input type="radio" name="search" value="1" checked />工号
+ 			                    <input type="radio" name="search" value="2" />姓名
+ 			                    <input id="searchgonghao" name="" type="button" class="btn" value="查询"/>
+ 				 </td>
+ 			</tr>
+ 			<tr>
+ 				<td>查询结果：
+ 					<font id="cxjg"></font>&nbsp;&nbsp;&nbsp;
+ 				</td>
+ 			</tr>
+ 			<tr>
+ 				<input id="queding" name="" type="button" class="btn" value="确定"/>
+ 			</tr>
+ 		</table>
+ 	<table class="imgtable">
+ 			    <thead>
+ 			            <tr>
+ 			            	<th width="10%"></th>
+ 			            	<th><font >工号</font></th>
+ 			            	<th><font >姓名</font></th>
+ 			            </tr>  
+ 		        </thead>
+ 		            <tbody id="tbody2">
+ 		            </tbody>
+ 		            	<tfoot>
+ 			<tr><td colspan="15" class="page"></td></tr>
+ 		</tfoot>
+ 	</table>
+ 	<li><input id="SelectUser" name="" type="button" class="btn" value="确定"/></li>
+ 
+ 	</div>	
+ </div>   
+ </div> -->
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	/*function setCjsjBegin(){
+		$("#cjsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getCjsjEnd(){
+		var begindate = $("#cjsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setCjsjEnd(){
+		$("#cjsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

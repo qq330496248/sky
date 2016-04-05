@@ -1,0 +1,3 @@
+<xml>
+<Table><cgac02>CG16030002</cgac02><cgac03>37</cgac03><cgac04>创可贴</cgac04><cgac05>20.00</cgac05><cgac06>10.00</cgac06><cgac07>200.00</cgac07><cgac08></cgac08><cgaa03>200.00</cgaa03><cgaa05>admin</cgaa05><cgaa06>2016-03-24 14:26:06</cgaa06><cgaa08>0.00</cgaa08><cgaa09>中国移动</cgaa09><cgaa10></cgaa10></Table>
+</xml>

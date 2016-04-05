@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>供应商统计列表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">采购管理</a></li>
+    <li><a href="#">供应商统计列表</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>供应商统计列表</span></div>
+    <form>
+    <ul class="forminfo">
+    <li>
+		供应商ID：<input id="gysid" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商名称：<input id="name" type="text" class="dfinput" style="width:100px" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		采购人员：
+		<select id="cgwy" class="dfinput" style="width:100px">
+			<option value="">请选择</option>
+			{{foreach from=$cgwy key=value item=name}}
+			<option name="" value="{{$name.id}}">{{$name.personname}}</option>
+			{{/foreach}}
+		</select>
+	<!-- 	&nbsp;&nbsp;&nbsp;&nbsp;
+	采购专员：
+	<select id="cgzy" class="dfinput" style="width:100px">
+		<option value="">请选择</option>
+		{{foreach from=$cgzy key=value item=name}}
+		<option name="" value="{{$name.id}}">{{$name.personname}}</option>
+		{{/foreach}}
+	</select> -->
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		录入日期：<input id="begindate" type="text" class="dfinput" style="width:100px" onclick="WdatePicker()"/>
+		到&nbsp;<input id="enddate" type="text" class="dfinput" style="width:100px" onclick="getEnddate()"/>
+		&nbsp;&nbsp;<input name="" onclick="getGysbb()" type="button" class="btn" value="查询"/>
+		
+	</li>
+	</form>
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="8%">供应商ID</th>
+				<th>供应商名称（全称）</th>
+				<th width="7%">供应商类型</th>
+				<th width="8%">采购文员</th>
+				<th width="8%">采购专员</th>
+				<th width="10%">采购量</th>
+				<th width="10%">库存量</th>
+				<th width="10%">发货量/金额</th>
+				<th width="10%">收货量/金额</th>
+			</tr>
+		</thead>
+		
+		<tbody id="gysTable">
+		</tbody>
+    	<tfoot>
+    		<tr><td colspan="10" id="page"></td></tr>
+    	</tfoot>
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/cggl/gystjbb.js"></script>
+<script type="text/javascript">
+	// function setBegindate(){
+	// 	$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	// }
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+</html>

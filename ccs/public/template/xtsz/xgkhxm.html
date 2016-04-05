@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改考核项目</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a>系统设置</a></li>
+    <li><a>修改考核项目</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改考核项目</span></div>
+    
+    
+    <form action="index.php?r=xtsz/UpdateXm" method="post">
+    	<ul class="forminfo">
+		<li>
+			考核项目ID：{{$id}}<input name="id" id="id" type="hidden" value="{{$id}}" />
+		</li>
+		<li>
+			考核项目：<input name="khxm" id="khxm" type="text" class="dfinput" onblur="khxmCheck()" style="width:100px" value="{{$khxm}}" />
+			<font id="khxmfont"> </font>
+		</li>
+		<li>
+			奖罚类型：
+			<input type="hidden" id="type" value="{{$type}}" />
+			<select name="type" id="newtype" class="dfinput" style="width:100px">
+				<option id="no" value="F">扣分（罚）</option>
+				<option id="yes" value="T">加分（奖）</option>
+			</select>
+		</li>
+		
+		<li>
+			分数：<input name="score" id="score" type="text" class="dfinput" onblur="scoreCheck()" style="width:100px" value="{{$score}}" />
+			<font id="scorefont"> </font>
+		</li>
+	   	<li>
+	   		<input name="" type="button" onclick="updateXm()" class="btn" value="修改"/>
+			<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="返回" onclick="history.go(-1);"/>
+	   	</li>
+	    </ul>
+    </form>
+    
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/xtsz/xgkhxm_xtsz.js"></script>
+</html>

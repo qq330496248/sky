@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查询客户资料</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">客户管理</a></li>
+    <li><a href="#">查询客户资料</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>客户信息</span></div>
+    
+    <ul class="forminfo" style="padding:0;">
+    <li>
+        <input id="keyword" name="" type="text" class="dfinput" style="width:100px" value=""/>
+        <input type="radio" name="search" value="1" checked />客户ID
+        <input type="radio" name="search" value="2" />订单ID
+        <input type="radio" name="search" value="3" />快递单号
+        <input type="radio" name="search" value="4" />电话
+        <input type="radio" name="search" value="5" />Email
+        <input type="radio" name="search" value="6" />真实姓名
+        <input type="radio" name="search" value="7" />QQ号
+        <input id="searchClient" name="" type="button" class="btn" value="开始查询"/>
+    </li>
+   <table class="imgtable" style="">
+        <thead>
+            <tr>
+                <th width="2%"></th>
+                <th width="6%"><font id="khid" onclick="changeStr('khid')">客户ID</font></th>
+                <th width="4%"><font id="name" onclick="changeStr('name')">姓名</font></th>
+                <th width="3%"><font id="sex" onclick="changeStr('sex')">性别</font></th>
+                <th width="4%"><font id="level" onclick="changeStr('level')">等级</font></th>
+                <th width="3%"><font id="deal" onclick="changeStr('deal')">成交</font></th>
+                <th width="7%"><font id="zc" onclick="changeStr('zc')">注册时间</font></th>
+                <th width="7%"><font id="last" onclick="changeStr('last')">最新跟进</font></th>
+                <th width="7%"><font id="zd" onclick="changeStr('zd')">转单时间</font></th>
+                <th width="7%"><font id="qs" onclick="changeStr('qs')">最新签收</font></th>
+                <th width="4%"><font id="pay" onclick="changeStr('pay')">消费</font></th>
+                <th width="4%"><font id="yx" onclick="changeStr('yx')">意向</font></th>
+                <th width="5%"><font id="ly" onclick="changeStr('ly')">来源</font></th>
+                <th width="10%"><font id="dq" onclick="changeStr('dq')">地区</font></th>
+                <th width="5%"><font id="gh" onclick="changeStr('gh')">工号</font></th>
+            </tr>
+        </thead>
+        <tbody id="getCheckeboxId">
+            
+        </tbody>
+        <tfoot>
+            <tr><td colspan="15" class="page"></td></tr>                
+        </tfoot>
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script> 
+<script type="text/javascript" src="public/template/js/khgl/cxkhzl_kh.js"></script>
+</html>

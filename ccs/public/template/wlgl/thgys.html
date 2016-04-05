@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货供应商</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">退货供应商</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>退货供应商</span></div>
+    <input id="httpHost" type="hidden" value="{{$HttpHost}}" />
+    <ul class="forminfo">
+    <li>
+		
+	</li>
+	<li>
+		采购单号：<input id="orderno" name="" type="text" class="dfinput" style="width:100px" value="" />
+	    <!-- <input name="" onclick="showCzCgdh()" type="button" class="btn" style="width:60px" value="查 找"/> -->
+		<img onclick="showCzCgdh()" src="public/img/1.png" border="0" title="查找"  style="width:1.4%;cursor:pointer"/>
+		&nbsp;&nbsp;
+		<input id="inquire" style="width:60px" name="" type="button" class="btn" value="查 询"/>
+		<font id="tips" style="color:#ff0000;"></font>
+	</li>
+	<li></li>
+	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="3%"></th>
+				<th width="12%"><font>供应商</font></th>
+				<th width="6%"><font>款号</font></th>
+				<th width="12%"><font>商品名称</font></th>
+				<th width="8%"><font>进货数量</font></th>
+				<th width="8%"><font>入库数量</font></th>
+				<th width="8%"><font>已退数量</font></th>
+				<th width="8%"><font>退货数量</font></th>
+				<th width="8%"><font>进货价（元）</font></th>
+				<th width="18%"><font>属性</font></th>
+				<th width="10%"><font>商品进货总价（元）</font></th>
+			</tr>
+		</thead>
+		
+		<tbody id="tbody2">
+
+		</tbody>
+    	<tr style="display:none;" class="returnMark">
+    		<td class="rightLine" colspan="10" style="text-align:left;">
+    			<input id="warehousing" name="" type="button" class="btn" value="退货"/>
+    			<input id="return" name="" type="button" class="btn" value="返回"/>
+    			<font id="prompt" style="color:#ff0000;"></font>
+    		</td>
+    	</tr>
+    </table>
+   
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="JavaScript" src="public/template/js/zDialog.js"></script>
+<script language="JavaScript" src="public/template/js/zDrag.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thgys_wl.js"></script>
+
+</html>

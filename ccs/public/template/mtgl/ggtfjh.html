@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广告投放计划</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">媒体管理</a></li>
+    <li><a href="#">广告投放计划</a></li>
+    </ul>
+    </div>
+    
+<div class="formbody">
+    
+    <div class="formtitle"><span>广告投放计划</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		媒体：<select id="adverttext" class="dfinput" style="width:130px">
+			<option value="">-</option>
+			{{foreach from=$mediaList key=value item=name}}
+			<option value="{{$name.mediatext}}">{{$name.mediatext}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		广告时间：<input name="" id="advertBegindate" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}"/>
+		到&nbsp;<input name="" id="advertEnddate" type="text" class="dfinput" style="width:100px" onClick="getAdvertEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		提交时间：<input name="" id="submitBegindate" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" />
+		到&nbsp;<input name="" id="submitEnddate" type="text" class="dfinput" style="width:100px" onClick="getSubmitEnd()" />
+		&nbsp;&nbsp;<input name="" type="button" class="btn" onclick="selectAdvert()" value="查询"/>
+		&nbsp;&nbsp;<a href="index.php?r=mtgl/GetTjgtfjhHtml"><input name="" type="button" class="btn" style="width:130px" value="添加广告投放计划"/></a>
+	</li>
+	 
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th colspan="10">广告投放计划</th>
+			</tr>
+			<tr>
+				<th width="5%">序号</th>
+				<th>媒体信息</th>
+				<th width="8%">广告日期</th>
+				<th width="8%">开始时间</th>
+				<th width="5%">时长（秒）</th>
+				<th width="10%">广告费用（元）</th>
+				<th width="8%">进线意向</th>
+				<th width="10%">操作工号</th>
+				<th width="10%">提交时间</th>
+				<th width="10%"> </th>
+			</tr>
+		</thead>
+		
+		<tbody id="advertTable">
+			
+		</tbody>
+    	<tfoot>
+    		<tr>
+				<td id="page" colspan="10" > </td>
+			</tr>
+    	</tfoot>
+    </table>
+    </ul>
+    
+    
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script type="text/javascript" src="public/template/js/mtgl/ggtfjh.js"></script>
+<script type="text/javascript">
+	/*function setAdvertBegin(){
+		$("#advertBegindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getAdvertEnd(){
+		var begindate = $("#advertBegindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setAdvertEnd(){
+		$("#advertEnddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	/*function setSubmitBegin(){
+		$("#submitBegindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getSubmitEnd(){
+		var begindate = $("#submitBegindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setSubmitEnd(){
+		$("#submitEnddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

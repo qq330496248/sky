@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货款号汇总</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <input type="hidden" id="pagehidden2" page="" psize="" />
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">退货款号汇总</a></li>
+    </ul>
+    </div>
+    <input id="inquireSign" type="hidden" value="0" />
+    <input id="exportExcelSign" type="hidden" value="1" />
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>退货款号汇总</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		<a href="index.php?r=wlgl/GetThrcHtml"><input name="" type="button" class="btn" value="退货订单记录"/></a>
+		<a href="index.php?r=wlgl/GetThkhhzHtml"><input name="" type="button" class="btn" style="color:#000000; background:#999999" value="退货款号汇总"/></a>
+	</li>
+	<li>
+		名&nbsp;&nbsp;称：<input id="cpmc" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		款号：<input id="cpkh" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		支付方式：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$PaymentMethodOptions key=value item=name}}
+			<option  name="zffs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		入仓时间：<input id="rcsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="rcsjz" name="" type="text" class="dfinput" style="width:100px"  onClick="getRcsjEnd()" value="{{$defaultCurrentTime}}"/>
+		
+	</li>
+	<li>
+	显示类型：
+		<input class="type" type="radio" value="1" name="type" checked="checked"/>汇总
+		<input class="type" type="radio" value="2" name="type" />明细
+		&nbsp;&nbsp;
+		订单号：<input id="ddid" name="" type="text" class="dfinput" style="width:100px" value="" />
+		<!-- 供应商ID：<input id="gysid" name="" type="text" class="dfinput" style="width:100px" value="" /> -->
+		&nbsp;&nbsp;&nbsp;&nbsp; 
+		快递公司：
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$DeliveryCompanyOptions key=value item=name}}
+			<option  name="kdgs" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		分组： 
+		<select class="dfinput" style="width:100px">
+			<option value="">--</option>
+			{{foreach from=$GroupsTypeOptions key=value item=name}}
+			<option  name="syz" checked="checked" value="{{$name}}">{{$name}}</option>
+			{{/foreach}}
+		</select>
+		&nbsp;&nbsp; 
+		<input id="NumberInquiry" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li></li>
+	<div id="table1">
+		<table class="imgtable">
+		<input type="hidden" id="sequence" value="DESC" />
+		<input type="hidden" id="order" value="xsab01" />
+			<thead>
+				<tr>
+					<th onclick="changeStr('kh')" width="15%"><font id="kh">款号</font></th>
+					<th onclick="changeStr('cpm')"><font id="cpm">产品名</font></th>
+					<th onclick="changeStr('rks')" width="15%"><font id="rks">入库数</font></th>
+					<th onclick="changeStr('ze')" width="15%"><font id="ze">总额</font></th>
+					<th onclick="changeStr('cb')" width="15%"><font id="cb">成本</font></th>
+				</tr>
+			</thead>
+			<tbody id="getCheckeboxId">
+
+			</tbody>
+			<tfoot id="tfoot">
+				<tr>
+					<td colspan="5" class="page">
+					
+					</td>
+				</tr>
+			</tfoot>
+	    </table>
+		<li style="margin-top:2px;">
+			<input id="exportExcel1" name="" type="button" class="btn-excel" value="导出到Excel"/> 
+			
+		</li>
+	</div>
+	<div id="table2" style="display:none;">
+	    <table class="imgtable">
+	    
+			<thead>
+				<tr>
+					<th>订单号</th>
+					<th>款号</th>
+					<th>产品名</th>
+					<th>入库数</th>
+					<th>总额</th>
+					<th>成本</th>
+					<th>入库时间</th>
+				</tr>
+			</thead>
+			<tbody id="getGoodsDetail">
+
+			</tbody>
+			<tfoot id="tfoot2">
+				<tr>
+					<td colspan="7" class="detailPage">
+					
+					</td>
+				</tr>
+			</tfoot>
+	    </table>
+		<li style="margin-top:2px;">
+			<input id="exportExcel2" name="" type="button" class="btn-excel" value="导出到Excel"/> 
+			
+		</li>
+   </div>
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/thkhhz_wl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//入仓时间
+	/*function setRcsjBegin(){
+		$("#rcsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getRcsjEnd(){
+		var begindate = $("#rcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setRcsjEnd(){
+		$("#rcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

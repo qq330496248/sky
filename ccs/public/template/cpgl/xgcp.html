@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改产品</title>
+<link href="public/template/css/cp_tj.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">修改产品</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    <div class="formtitle"><span>修改产品</span></div>
+    <form action="index.php?r=cpgl/UpdateCp" method="post" enctype="multipart/form-data" onsubmit="return checkValue();">
+    	<font color="#FF0000">带 * 的为必填项目</font>
+    	<input type="hidden" name="cpid" id="cpid" value="{{$id}}" />
+    	<input type="hidden" name="" id="oldBmbs" value="{{$bmbs}}" />
+    	<table class="imgtable">
+			<tbody>
+				<th colspan="4"><font id="check"></font></th>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						商品名称：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="cpmc" id="cpmc" type="text" value="{{$cpmc}}" onblur="cpmcCheck();" class="dfinput" style="width:300px" />
+						<font color="#FF0000" style="font-size:16px">*</font>
+						规格：
+						<input name="gg" id="gg" type="text" value="{{$gg}}" class="dfinput" style="width:100px" />
+					</td>
+					<td style="text-align:right" width="15%">
+						厂家货号：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="cjhh" id="cjhh" type="text" value="{{$cjhh}}" class="dfinput" style="width:100px" />
+					</td>
+				</tr>
+				<tr>
+					<input type="hidden" id="fl" value="{{$cpfl}}" />
+					<input type="hidden" id="zfl" value="{{$cpzfl}}" />
+					<td style="text-align:right; padding:5px" width="15%">
+						商品分类：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" id="cpfl" name="cpfl" onchange="getCpzfl()" onblur="cpflCheck();" style="width:150px">
+							<option value="0">请选择</option>
+						</select>
+						<select class="dfinput" id="cpzfl" name="cpzfl" style="width:100px">
+							<option value="0">请选择</option>
+						</select>
+						<font color="#FF0000" style="font-size:16px">*</font>
+					</td>
+					<input type="hidden" id="pp" value="{{$cppp}}" />
+					<td style="text-align:right" width="15%">
+						商家品牌：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" id="cppp" name="cppp" onblur="sjppCheck();" style="width:190px">
+							<option value="0">请选择</option>
+						</select>
+						<font color="#FF0000" style="font-size:16px">*</font>
+					</td>
+				</tr>
+				<tr>
+				<input type="hidden" id="on" value="{{$ifon}}" />
+					<td style="text-align:right; padding:5px" width="15%">
+						是否上架：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="radio" name="ifon" id="ifon" value="上架" checked="checked" />是
+						<input type="radio" name="ifon" id="ifon" value="下架" />否
+						<font color="#FF0000">如果下架，无法下单</font>
+					</td>
+					<td style="text-align:right" width="15%">
+						销售价：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="xsj" id="xsj" type="text" class="dfinput" value="{{$xsj}}" onblur="xsjCheck();" style="width:100px" />
+						<font color="#FF0000" style="font-size:16px">*</font>
+						<input type="hidden" id="cpcx" value="{{$cx}}" />
+						<input name="cx" id="cx" type="checkbox" value="是" />是否促销
+					</td>
+				</tr>
+				<tr>
+				<input type="hidden" id="gysbh" value="{{$gys}}" />
+					<td style="text-align:right; padding:5px" width="15%">
+						供应商：
+					</td>
+					<td style="text-align:left" width="35%">
+						<select class="dfinput" name="gys" id="gys" style="width:190px">
+							<option value="0">--</option>
+						</select>
+					</td>
+					<td style="text-align:right" width="15%">
+						部门标示：<br><font color="#FF0000">（如果选择共用，其他不可选）</font>
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="bmbsAll" id="bmbsAll" type="checkbox" onclick="ifAllSelected()" value="共用" />共用
+						{{foreach from=$dept key=value item=name}}
+						<input name="bmbs[]" type="checkbox" value="{{$name.deptID}}:{{$name.depttext}}" />{{$name.depttext}}
+						{{/foreach}}
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						商品描述：
+					</td>
+					<td style="text-align:left" width="35%">
+						<textarea class="textinput" name="spms">{{$spms}}</textarea>
+					</td>
+					<td style="text-align:right" width="15%">
+						预警数量：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input name="yjsl" type="text" class="dfinput" value="{{$yjsl}}" style="width:100px" />
+						<font color="#FF0000">如果此处为空，则数量默认为20</font>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; padding:5px" width="15%">
+						上传图片：
+					</td>
+					<td style="text-align:left" width="35%">
+						<input type="file" name="image" onchange = "PreviewImage(this, 'imgHeadPhoto', 'divPreview')" />
+						<font color="#FF0000">注意：格式必需为jpg，大小不超过1M </font>
+					</td>
+					<td colspan="2" height="150px">
+					<input type="hidden" name="pic" id="pic" value="{{$pic}}" />
+						<div id="divPreview">
+					     	<img id="imgHeadPhoto" src="{{$pic}}" style="width: 200px; height: 150px;border: solid 1px #d2e2e2;" alt="" />
+						</div>
+					</td>
+				</tr>
+			</tbody>
+	    
+	    </table>
+
+		<div class="formtitle" id="sxpj"><span>属性配件</span></div>
+		<input type="hidden" name="cpsx" id="sx" value="{{$sx}}" />
+   		   <ul class="forminfo" id="sxpjxx">
+   		   		<table class="imgtable">
+		   		   	<thead>
+		   		   		<tr>
+							<td style="text-align:right" width="15%">属性分类：</td>
+							<td style="text-align:left">
+								<select id="cpsx" class="dfinput" onchange="getCpsxU();" name="cpsx">
+									<option value="0">请选择</option>
+								</select>
+							</td>
+						</tr>
+		   		   	</thead>	
+					<tbody id="cpsxTable">
+						
+					</tbody>
+			    
+			    </table>
+   		   </ul>
+   		
+	    <ul class="forminfo">
+	    
+		<li></li>
+		 
+		 
+	    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="提交保存"/>&nbsp;&nbsp;&nbsp;
+		<input name="" type="button" class="btn" style="color:#000000; background:#999999" value="取消" onclick="history.go(-1)" /></li>
+   		</ul>
+    </form>
+    </div>
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/upload.js"></script>
+<script type="text/javascript" src="public/template/js/cpgl/xgcp_cpgl.js"></script>
+</html>

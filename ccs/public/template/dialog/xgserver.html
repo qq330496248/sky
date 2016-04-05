@@ -1,0 +1,57 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+<title>修改服务器</title>
+<div style="width:100%">
+
+    <div class="formbody">
+    <ul class="forminfo">	
+    <input type="hidden" id="id" value="{{$id}}" />
+	<li>
+		<label>引用标识：</label>
+		<input name="" id="refSigns" type="text" value="{{$refSigns}}" class="dfinput" />
+	</li>
+	<li>
+		<label>服务器ip：</label>
+		<input name="" id="serverIp" type="text" value="{{$serverIp}}" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库名：</label>
+		<input name="" id="dbName" type="text" value="{{$dbName}}" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库账号：</label>
+		<input name="" id="dbAccount" type="text" value="{{$dbAccount}}" class="dfinput" />
+	</li>
+	<li>
+		<label>数据库密码：</label>
+		<input name="" id="dbPwd" type="text" value="{{$dbPwd}}" class="dfinput" />
+	</li>
+	<li><input name="" type="button" class="btn-info" onclick="updateServer()" value="提交保存"/></li></ul></div>
+	
+</div>
+	
+<script type="text/javascript" src="public/template/js/jquery.js"></script>	
+
+<script type="text/javascript">
+	//修改城市以及区号
+	function updateServer(){
+		var id = $("#id").val();
+		var refSigns = $("#refSigns").val();
+		var serverIp = $("#serverIp").val();
+		var dbName = $("#dbName").val();
+		var dbAccount = $("#dbAccount").val();
+		var dbPwd = $("#dbPwd").val();
+		if(refSigns == '' || serverIp == '' || dbName == '' || dbAccount == '' || dbPwd == ''){
+			alert("所有信息不能为空！");
+		}else{
+			$.post("index.php?r=xtsz/UpdateServer",{id:id,refSigns:refSigns,serverIp:serverIp,dbName:dbName,dbAccount:dbAccount,dbPwd:dbPwd},function(data){
+				alert(data.mes);
+				if(data.res == "success"){
+					parent.location.href = "index.php?r=xtsz/GetFwqHtml";
+				}
+			},"json");
+		}
+	}
+</script>
+
+</html>

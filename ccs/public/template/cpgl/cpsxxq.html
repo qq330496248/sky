@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品属性详情</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">产品属性详情</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+	
+	<div class="formtitle" id="khcz"><span>产品属性详情</span></div>
+	<input type="hidden" name="parent" id="parent" value="{{$id}}" />
+	
+		<ul class="forminfo" id="khczxx">
+			<li>
+   			 <a href="index.php?r=cpgl/GetTjcpsxxqHtml&id={{$id}}"><input name="" type="button" class="btn" value="添加属性"/></a>
+   			 当前属性分类是：{{$parentName}}
+			</li>
+			<li>
+				<table class="imgtable">
+					<thead>
+						<tr>
+							<th width="20%">属性</th>
+							<th>值</th>
+							<th width="20%">操作</th>
+						</tr>
+					</thead>
+					<tbody id="cpsxxqTable">
+						<!-- <tr>
+							<td colspan="4" style="text-align:center">
+								总计 条记录
+								第 页
+								首页
+								上一页
+								下一页
+								尾页
+								<select class="dfinput" style="width:100px">
+									<option>1</option>
+								</select>
+							</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</li>
+			<li>
+			<input name="" type="button" class="btn" onclick="history.go(-1)" style="color:#000000; background:#999999" value="返回"/>
+			</li>
+		</ul>
+	</div>
+   
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/cpgl/cpsxxq_cpgl.js"></script>
+</html>

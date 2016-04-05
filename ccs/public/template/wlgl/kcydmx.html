@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>库存异动明细</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">物流管理</a></li>
+    <li><a href="#">库存异动明细</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formtitle"><span>库存异动明细</span></div>
+    
+    <ul class="forminfo">
+    <li>
+		
+	</li>
+	<li>
+		批次：<input id="rkpc" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		供应商：<input id="rkgys" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		库位：<input id="rkcw" name="" type="text" class="dfinput" style="width:100px" value="" />
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		出/入库时间：<input id="rcsjq" name="" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+		到&nbsp;<input id="rcsjz" name="" type="text" class="dfinput" style="width:100px"  onClick="getRcsjEnd()" value="{{$defaultCurrentTime}}"/>
+		&nbsp;&nbsp;
+		<input id="ReturnOrderQuery" name="" type="button" class="btn" value="查询"/>
+	</li>
+	<li>
+		
+	</li>
+	<li></li>
+	<table class="imgtable">
+		<input type="hidden" id="sequence" value="DESC" />
+		<input type="hidden" id="order" value="xsaa01" />    
+		<thead>
+			<tr>
+				<th width="8%"><font>批次</font></th>
+				<th width="5%"><font>款号</font></th>
+				<th width="10%"><font>产品名称</font></th>
+				<th width="8%"><font>操作人</font></th>
+				<th width="8%"><font>出/入库数量</font></th>
+				<th width="8%"><font>库位</font></th>
+				<th width="10%"><font>出/入库时间</font></th>
+				<th width="7%"><font>出/入库类型</font></th>
+				<th width="12%"><font>供应商</font></th>
+				<th width="6%"><font>运费</th>
+				<th><font>备注</th>
+			</tr>
+		</thead>
+    	<tbody id="getCheckeboxId">
+
+		</tbody>
+		<tfoot id="tfoot">
+			<tr>
+				<td colspan="11" class="page">
+				
+				</td>
+			</tr>
+		</tfoot>
+		<input id="url" type="hidden" value=""/>
+    </table>
+					
+	<li style="margin-top:2px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出到Excel"/> 
+		
+	</li>
+   
+    </ul>
+    
+    
+    </div>
+
+</body>
+<script type="text/javascript" src="public/template/js/jquery.js"></script>
+<script type="text/javascript" src="public/template/js/common.js"></script>
+<script type="text/javascript" src="public/template/js/wlgl/kcydmx_wl.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+
+<script type="text/javascript">
+	//生产日期
+	/*function setDdsjBegin(){
+		$("#ddsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getScrqEnd(){
+		var begindate = $("#scrqq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setDdsjEnd(){
+		$("#ddsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+	//到期时间
+/*	function setRcsjBegin(){
+		$("#rcsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getDqsjEnd(){
+		var begindate = $("#dqsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setRcsjEnd(){
+		$("#rcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+		//入仓时间
+/*	function setRcsjBegin(){
+		$("#rcsjq").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getRcsjEnd(){
+		var begindate = $("#rcsjq").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setRcsjEnd(){
+		$("#rcsjz").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+
+</script>
+</html>

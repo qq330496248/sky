@@ -1,0 +1,157 @@
+2016/03/21 11:13:11 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'xsaa.xsaa48xsaa.xsaa50' in 'field list'. The SQL statement executed was: SELECT `xsaa`.`xsaa01`, `xsaa`.`xsaa02`, `xsaa`.`xsaa04`, `xsaa`.`xsaa05`, `xsaa`.`xsaa13`, `xsaa`.`xsaa19`, `xsaa`.`xsaa20`, `xsaa`.`xsaa23`, `xsaa`.`xsaa22`, `xsaa`.`xsaa29`, `xsaa`.`xsaa08`, `xsaa`.`xsaa39`, `xsaa`.`xsaa40`, `xsaa`.`xsaa36`, `xsaa`.`xsaa33`, `xsaa`.`xsaa48xsaa`.`xsaa50`
+FROM `xsaa`
+WHERE xsaa.xsaa29 = :orderstatus
+ORDER BY `xsaa01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\xsaaDAO.php (325)
+in E:\wamp\www\ccs\protected\models\xsaaModel.php (696)
+in E:\wamp\www\ccs\protected\controllers\ddglController.php (626)
+2016/03/21 11:13:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'xsaa.xsaa48xsaa.xsaa50' in 'field list'. The SQL statement executed was: SELECT `xsaa`.`xsaa01`, `xsaa`.`xsaa02`, `xsaa`.`xsaa04`, `xsaa`.`xsaa05`, `xsaa`.`xsaa13`, `xsaa`.`xsaa19`, `xsaa`.`xsaa20`, `xsaa`.`xsaa23`, `xsaa`.`xsaa22`, `xsaa`.`xsaa29`, `xsaa`.`xsaa08`, `xsaa`.`xsaa39`, `xsaa`.`xsaa40`, `xsaa`.`xsaa36`, `xsaa`.`xsaa33`, `xsaa`.`xsaa48xsaa`.`xsaa50`
+FROM `xsaa`
+WHERE xsaa.xsaa29 = :orderstatus
+ORDER BY `xsaa01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\xsaaDAO.php (325)
+in E:\wamp\www\ccs\protected\models\xsaaModel.php (696)
+in E:\wamp\www\ccs\protected\controllers\ddglController.php (626)
+2016/03/21 11:13:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'xsaa.xsaa48xsaa.xsaa50' in 'field list'. The SQL statement executed was: SELECT `xsaa`.`xsaa01`, `xsaa`.`xsaa02`, `xsaa`.`xsaa04`, `xsaa`.`xsaa05`, `xsaa`.`xsaa13`, `xsaa`.`xsaa19`, `xsaa`.`xsaa20`, `xsaa`.`xsaa23`, `xsaa`.`xsaa22`, `xsaa`.`xsaa29`, `xsaa`.`xsaa08`, `xsaa`.`xsaa39`, `xsaa`.`xsaa40`, `xsaa`.`xsaa36`, `xsaa`.`xsaa33`, `xsaa`.`xsaa48xsaa`.`xsaa50`
+FROM `xsaa`
+WHERE xsaa.xsaa29 = :orderstatus
+ORDER BY `xsaa01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\xsaaDAO.php (325)
+in E:\wamp\www\ccs\protected\models\xsaaModel.php (696)
+in E:\wamp\www\ccs\protected\controllers\ddglController.php (626)
+2016/03/22 19:33:39 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1603180003-25-' for key 'PRIMARY'. The SQL statement executed was: UPDATE `cpae` SET `cpae01`=:cpae01, `cpae02`=:cpae02, `cpae10`=:cpae10, `cpae11`=:cpae11, `cpae03`=:cpae03, `cpae07`=:cpae07, `cpae13`=:cpae13, `cpae21`=:cpae21, `cpae04`=:cpae04, `cpae06`=:cpae06, `cpae22`=:cpae22, `cpae20`=:cpae20 WHERE cpae20 = :p0 and cpae01 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (326)
+in E:\wamp\www\ccs\protected\models\cpaeModel.php (386)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (931)
+2016/03/22 19:33:39 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1603180003-16-' for key 'PRIMARY'. The SQL statement executed was: UPDATE `cpae` SET `cpae01`=:cpae01, `cpae02`=:cpae02, `cpae10`=:cpae10, `cpae11`=:cpae11, `cpae03`=:cpae03, `cpae07`=:cpae07, `cpae13`=:cpae13, `cpae21`=:cpae21, `cpae04`=:cpae04, `cpae06`=:cpae06, `cpae22`=:cpae22, `cpae20`=:cpae20 WHERE cpae20 = :p0 and cpae01 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (326)
+in E:\wamp\www\ccs\protected\models\cpaeModel.php (386)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (931)
+2016/03/23 14:51:04 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:51:04 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:54:02 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:54:30 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:56:29 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:56:29 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:56:46 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:56:46 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:57:21 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/23 14:57:21 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cpae' in 'where clause'. The SQL statement executed was: SELECT `cpae03`
+FROM `cpae`
+WHERE cpae = :p0 and cpae02 = :p1.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (156)
+in E:\wamp\www\ccs\protected\models\cgaaModel.php (432)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1217)
+2016/03/24 18:26:20 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cgab02' in 'field list'. The SQL statement executed was: SELECT `cpae01`, `cpaa01`, `cpaa02`, `cpaa10`, `cpae06`, `cpae03`, `cpae04`, `cpae09`, `cpae07`, `cpae13`, `cpaa15`, `cpaa08`, `cgab02`
+FROM `cpaa`
+LEFT JOIN `cpae` ON cpaa.cpaa01 = cpae.cpae02
+WHERE cpae.cpae03 > 0
+ORDER BY `cpaa01` DESC, `cpae01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\cpaaDAO.php (384)
+in E:\wamp\www\ccs\protected\models\cpaaModel.php (349)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1042)
+2016/03/24 18:26:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cgab02' in 'field list'. The SQL statement executed was: SELECT `cpae01`, `cpaa01`, `cpaa02`, `cpaa10`, `cpae06`, `cpae03`, `cpae04`, `cpae09`, `cpae07`, `cpae13`, `cpaa15`, `cpaa08`, `cgab02`
+FROM `cpaa`
+LEFT JOIN `cpae` ON cpaa.cpaa01 = cpae.cpae02
+WHERE cpae.cpae03 > 0
+ORDER BY `cpaa01` DESC, `cpae01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\cpaaDAO.php (384)
+in E:\wamp\www\ccs\protected\models\cpaaModel.php (349)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1042)
+2016/03/24 18:26:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cgab02' in 'field list'. The SQL statement executed was: SELECT `cpae01`, `cpaa01`, `cpaa02`, `cpaa10`, `cpae06`, `cpae03`, `cpae04`, `cpae09`, `cpae07`, `cpae13`, `cpaa15`, `cpaa08`, `cgab02`
+FROM `cpaa`
+LEFT JOIN `cpae` ON cpaa.cpaa01 = cpae.cpae02
+WHERE cpae.cpae03 > 0
+ORDER BY `cpaa01` DESC, `cpae01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\cpaaDAO.php (384)
+in E:\wamp\www\ccs\protected\models\cpaaModel.php (349)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1042)
+2016/03/24 18:26:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cgab02' in 'field list'. The SQL statement executed was: SELECT `cpae01`, `cpaa01`, `cpaa02`, `cpaa10`, `cpae06`, `cpae03`, `cpae04`, `cpae09`, `cpae07`, `cpae13`, `cpaa15`, `cpaa08`, `cgab02`
+FROM `cpaa`
+LEFT JOIN `cpae` ON cpaa.cpaa01 = cpae.cpae02
+WHERE cpae.cpae03 > 0
+ORDER BY `cpaa01` DESC, `cpae01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\cpaaDAO.php (384)
+in E:\wamp\www\ccs\protected\models\cpaaModel.php (349)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1042)
+2016/03/24 18:26:26 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cgab02' in 'field list'. The SQL statement executed was: SELECT `cpae01`, `cpaa01`, `cpaa02`, `cpaa10`, `cpae06`, `cpae03`, `cpae04`, `cpae09`, `cpae07`, `cpae13`, `cpaa15`, `cpaa08`, `cgab02`
+FROM `cpaa`
+LEFT JOIN `cpae` ON cpaa.cpaa01 = cpae.cpae02
+WHERE cpae.cpae03 > 0
+ORDER BY `cpaa01` DESC, `cpae01` DESC LIMIT 20.
+in E:\wamp\www\ccs\protected\dao\cpaaDAO.php (384)
+in E:\wamp\www\ccs\protected\models\cpaaModel.php (349)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (1042)
+2016/04/05 09:42:20 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:43:10 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:46:30 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:46:41 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:46:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:47:20 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)
+2016/04/05 09:48:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'db000.cpah' doesn't exist. The SQL statement executed was: SELECT * FROM cpah  WHERE cpah01 = :p0.
+in E:\wamp\www\ccs\protected\dao\BaseDAO.php (194)
+in E:\wamp\www\ccs\protected\models\cpahModel.php (112)
+in E:\wamp\www\ccs\protected\controllers\cpglController.php (681)

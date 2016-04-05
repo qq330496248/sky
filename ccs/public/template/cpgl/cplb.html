@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品列表</title>
+<link href="public/template/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<div class="place">
+    <span id="pagehidden" page="" psize="">位置：</span>
+    <ul class="placeul">
+    <li><a href="#">产品管理</a></li>
+    <li><a href="#">产品列表</a></li>
+    </ul>
+    </div>
+    <input id="inquireSign" type="hidden" value="0" />
+    <div class="formbody">
+    
+    <div class="formtitle"><span>产品列表</span></div>
+    
+    <ul class="forminfo">
+    	 <li>
+			采购文员：
+			<select class="dfinput" style="width:100px">
+				<option>请选择</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			产品分类：
+			<select class="dfinput" id="cpfl" name="cpfl" style="width:100px">
+				<option value="0">--</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			产品品牌：
+			<select class="dfinput" id="cppp" name="cppp" style="width:120px">
+				<option value="0">--</option>
+			</select>
+		<li>
+			名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input name="cpmc" id="cpmc" type="text" class="dfinput" style="width:100px" />
+			&nbsp;&nbsp;&nbsp;
+			上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;架：
+			<select class="dfinput" name="ifon" id="ifon" style="width:100px">
+				<option value="">不限</option>
+				<option value="上架">上架</option>
+				<option value="下架">下架</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			添加时间： <input name="" id="begindate" type="text" class="dfinput" style="width:100px" onClick="WdatePicker()" value="{{$defaultStartTime}}" />
+			至&nbsp;<input name="" id="enddate" type="text" class="dfinput" style="width:100px" onClick="getEnddate()" value="{{$defaultCurrentTime}}"/>
+			
+		</li>
+		
+		</li>
+		 <li>
+			款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input name="id" id="id" type="text" class="dfinput" style="width:100px" />
+			&nbsp;&nbsp;&nbsp;
+			厂家货号： <input name="" id="cjhh" type="text" class="dfinput" style="width:100px" />
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 识：
+			<select class="dfinput" id="bmbs" style="width:100px">
+				<option value="">不限</option>
+				<option value="共用">共用</option>
+				<option value="一线">一线</option>
+				<option value="二线">二线</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;<input id="cx" value="是" type="checkbox" />促销
+			&nbsp;&nbsp;<input id="cpQuery" type="button" class="btn" value="查询"/>
+			&nbsp;&nbsp;<a href="index.php?r=cpgl/GetTjxcpHtml"><input name="" type="button" class="btn" value="添加产品"/></a>
+		</li>
+    
+   
+  	<table class="imgtable">
+    
+		<thead>
+			<tr>
+				<th width="6%">款号</th>
+				<th width="20%">商品名称</th>
+				<th width="4%">规格</th>
+				<th width="6%">产品分类</th>
+				<th>标示</th>
+				<th width="8%">厂家货号</th>
+				<th width="20%">产品图</th>
+				<th width="8%">销售价</th>
+				<th width="7%">上架</th>
+				<th width="8%">上一次修改时间</th>
+				<th width="8%">操作</th>
+			</tr>
+		</thead>
+		
+		<tbody id="cpTable">
+			
+		</tbody>
+    	<tfoot>
+    		<tr><td colspan="11" id="page"></td></tr>
+    	</tfoot>
+    </table>
+	<li style="padding-top:3px;">
+		<input id="exportExcel" name="" type="button" class="btn-excel" value="导出Excel"/>
+	</li>
+    </ul>
+    
+    
+    </div>
+</body>
+<script language="javascript" type="text/javascript" src="public/template/js/calendar1/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="public/template/js/cpgl/cplb_cpgl.js"></script>
+<script type="text/javascript">
+	/*function setBegindate(){
+		$("#begindate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 00:00:00");
+	}*/
+	function getEnddate(){
+		var begindate = $("#begindate").val();
+		WdatePicker({minDate:begindate});
+	}
+	/*function setEnddate(){
+		$("#enddate").val($dp.cal.getP('y')+"-"+$dp.cal.getP('M')+"-"+$dp.cal.getP('d')+" 23:59:59");
+	}*/
+</script>
+</html>
